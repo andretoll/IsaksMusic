@@ -42,7 +42,25 @@ namespace IsaksMusic
                 {
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
-                });
+            });
+
+            /* Configure Identity options */
+            services.Configure<IdentityOptions>(options =>
+            {
+                /* Password */
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 6;
+
+                /* User */  
+                options.User.RequireUniqueEmail = true;
+
+                /* Lockout */
+                options.Lockout.MaxFailedAccessAttempts = 5;
+            });
 
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
@@ -50,7 +68,7 @@ namespace IsaksMusic
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -89,6 +107,32 @@ namespace IsaksMusic
             app.UseAuthentication();
 
             app.UseMvc();
+
+            //CreateUserRoles(services).Wait();
+        }
+
+        /* Create new user roles */
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+            IdentityResult roleResult;
+            /* Add Admin role */ 
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+
+            if (!roleCheck)
+            {
+                /* Seed role to database */ 
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            /* Assign role to provided user */  
+            ApplicationUser user = await UserManager.FindByEmailAsync("isaktoll@live.se");
+            var User = new ApplicationUser();
+            await UserManager.AddToRoleAsync(user, "Admin");
+
         }
     }
 }
