@@ -35,11 +35,11 @@ namespace IsaksMusic.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "An email is required.")]
+            [EmailAddress(ErrorMessage = "Invalid email address.")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "A password is required.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -47,7 +47,7 @@ namespace IsaksMusic.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGet(string returnUrl = null)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -88,11 +88,12 @@ namespace IsaksMusic.Pages.Account
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
+                    TempData["UserLockedOut"] = "User account locked out.";
+                    return RedirectToPage("../Index");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Incorrect email or password.");
                     return Page();
                 }
             }

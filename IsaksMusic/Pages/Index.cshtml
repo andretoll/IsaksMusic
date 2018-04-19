@@ -32,6 +32,7 @@
         <p>Listen to music, check out upcoming projects and tune in to the latest news.</p>
         <a class="btn btn-dark" title="Start listening">Start listening<i class="fas fa-play ml-2"></i></a>
     </div>
+
     <i id="scrollIndicator" class="fas fa-angle-down fa-4x"></i>
 </header>
 <section class="section-odd">
@@ -164,3 +165,17 @@
 
 <!-- Back to Top Button -->
 <button onclick="scrollToTop()" id="backToTopBtn" title="Back to Top"><i class="fas fa-chevron-up fa-lg"></i><span id="backToTopText">Top</span></button>
+
+<!-- Locked Out -->
+@if (TempData["UserLockedOut"] != null)
+{
+    if (!string.IsNullOrEmpty(TempData["UserLockedOut"].ToString()))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Your account has been locked out.</strong> Please try again later.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
