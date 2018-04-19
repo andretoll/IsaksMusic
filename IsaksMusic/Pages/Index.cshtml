@@ -3,106 +3,171 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<!-- Scroll back to contact form if postback failed -->
+@if (Model.PostbackFailed)
+{
+    <script>
+        window.onload = function () {
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+            scrollToContactForm();
+        }
+    </script>
+}
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core Razor Pages</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+<!-- Show success message if any -->
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <script>
+        window.onload = function () {
+
+            ShowSuccessSnackbar("@Model.Message");
+        }
+    </script>
+}
+
+<header id="topHeader">
+    <div class="container intro-text">
+        <h1>Welcome to <span class="text-yellow font-weight-bold">Avantgarde</span></h1>
+        <br />
+        <p>Fimbriae nimia perspicue et sub effigiatae subtegminum species perflabiles ut sinistra quas subtegminum subtegminum quas</p>
+        <a class="btn btn-dark">Start listening<i class="fas fa-play ml-2"></i></a>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?linkid=852130">Working with Razor Pages.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
+    <i id="scrollIndicator" class="fas fa-angle-down fa-4x"></i>
+</header>
+<section class="section-odd">
+    <div class="container" id="aboutContainer">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="text-center mb-5">
+                    <img alt="Isak Toll" title="Isak Toll" class="img-fluid" src="~/images/about-profile.jpg" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <div class="d-inline-flex">
+                        <h3><span class="text-yellow font-weight-bold">About me</span></h3>
+                    </div>
+                    <hr />
+                    <br />
+                    <p>Fimbriae nimia perspicue et sub effigiatae subtegminum species<br /> perflabiles ut sinistra quas subtegminum subtegminum quas</p>
+                    <p>Fimbriae nimia perspicue et sub effigiatae subtegminum species<br /> perflabiles ut sinistra quas subtegminum subtegminum quas</p>
+                    <p>Fimbriae nimia perspicue et sub effigiatae subtegminum species<br /> perflabiles ut sinistra quas subtegminum subtegminum quas</p>
+                    <div class="row">
+                        <div class="col-md-6" id="socialLinks">
+                            <div class="fa-3x social-media-container">
+                                <a title="Facebook" href="https://www.facebook.com/" target="_blank">
+                                    <span class="fa-layers fa-fw">
+                                        <i class="fas fa-circle circle-facebook"></i>
+                                        <i class="fa-inverse fab fa-facebook-f" data-fa-transform="shrink-6"></i>
+                                    </span>
+                                </a>
+                                <a title="Instagram" href="https://www.instagram.com" target="_blank">
+                                    <span class="fa-layers fa-fw">
+                                        <i class="fas fa-circle circle-instagram"></i>
+                                        <i class="fa-inverse fab fa-instagram" data-fa-transform="shrink-6"></i>
+                                    </span>
+                                </a>
+                                <a title="Soundcloud" href="https://soundcloud.com/" target="_blank">
+                                    <span class="fa-layers fa-fw">
+                                        <i class="fas fa-circle circle-soundcloud"></i>
+                                        <i class="fa-inverse fab fa-soundcloud" data-fa-transform="shrink-6"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="contactInfo">
+                            <ul class="list-unstyled text-muted">
+                                <li><i class="far fa-fw fa-envelope mr-2"></i>isaktoll@outlook.com</li>
+                                <li><i class="fas fa-fw fa-mobile-alt mr-2"></i>+46 707371882</li>
+                                <li><i class="fas fa-fw fa-globe mr-2"></i>Märsta, Sweden</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
+</section>
+<section class="section-even">
+    <div class="container" id="infoContainer">
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fa-stack-1x fas fa-music fa-inverse"></i>
+                </span>
+                <h4>Music</h4>
+                <p class="text-muted ">
+                    Full access to all my music without any hassle! What are you waiting for? <br />Start listening today.
+                </p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fa-stack-1x fas fa-laptop fa-inverse"></i>
+                </span>
+                <h4>Production</h4>
+                <p class="text-muted">
+                    Created with the latest technology.
+                </p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fa-stack-1x fas fa-mobile-alt fa-inverse"></i>
+                </span>
+                <h4>On the go</h4>
+                <p class="text-muted">
+                    Avantgarde is also available for your smartphone and tablet. <br />Now you can listen wherever you are.
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure App Service</a></li>
-        </ul>
+</section>
+<section class="section-odd">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="contactForm">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h4><span class="text-yellow">Contact me</span></h4>
+                        <p>Fill out the form below to send me a message.</p>
+                    </div>
+                    <div class="col-md-2">
+                        <i class="far fa-envelope fa-4x"></i>
+
+                    </div>
+                </div>
+                <hr />
+                <form class="form" method="post">
+                    <div class="form-group">
+                        <label asp-for="Contact.FirstName">First Name:</label>
+                        <input asp-for="Contact.FirstName" autocomplete="off" class="form-control" />
+                        <span asp-validation-for="Contact.FirstName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.LastName">Last Name:</label>
+                        <input asp-for="Contact.LastName" autocomplete="off" class="form-control" />
+                        <span asp-validation-for="Contact.LastName"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.Email">Email Address:</label>
+                        <input asp-for="Contact.Email" autocomplete="off" class="form-control" />
+                        <span asp-validation-for="Contact.Email"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Contact.Message">Message:</label>
+                        <textarea asp-for="Contact.Message" class="form-control"></textarea>
+                        <span asp-validation-for="Contact.Message"></span>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Send message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="backToTopBtn" title="Back to Top"><i class="fas fa-chevron-up fa-lg"></i><span id="backToTopText">Top</span></button>

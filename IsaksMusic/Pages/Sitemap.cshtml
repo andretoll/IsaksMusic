@@ -1,0 +1,54 @@
+﻿@page
+@{
+    ViewData["Title"] = "Sitemap";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<section>
+    <div class="container" id="sitemapContainer">
+        <h3>Sitemap</h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Avantgarde
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-page="/index" title="Home">Home</a></li>
+                        <li class="list-group-item"><a asp-page="/">About</a></li>
+                        <li class="list-group-item"><a asp-page="/">FAQ</a></li>
+                        <li class="list-group-item"><a asp-page="/">Privacy Policy</a></li>
+                        <li class="list-group-item"><a asp-page="/">Terms & Conditions</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        Music
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-page="/">Music</a></li>
+                        <li class="list-group-item"><a asp-page="/">Music</a></li>
+                        <li class="list-group-item"><a asp-page="/">Music</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        News
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-page="/">News</a></li>
+                        <li class="list-group-item"><a asp-page="/">News</a></li>
+                        <li class="list-group-item"><a asp-page="/">News</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

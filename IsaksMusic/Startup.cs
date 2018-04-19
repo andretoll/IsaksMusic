@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using IsaksMusic.Data;
 using IsaksMusic.Services;
+using Microsoft.AspNetCore.Routing;
 
 namespace IsaksMusic
 {
@@ -32,6 +33,9 @@ namespace IsaksMusic
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            /* Lower case URLs */
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -59,7 +63,28 @@ namespace IsaksMusic
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseStatusCodePages();
+
+            /* Perform middleware for static files and end processing */
+            app.MapWhen(
+                context => context.Request.Path.HasValue && context.Request.Path.Value.Contains('.'),
+                appbuilder =>
+                {
+                    app.UseStaticFiles();
+                }
+                );
+
+            /* Perform middleware for custom 404 page */
+            app.Use(async (context, next) =>
+            {
+                await next();
+                if (context.Response.StatusCode == 404)
+                {
+                    context.Request.Path = "/Error404";
+                    await next();
+                }
+            });
 
             app.UseAuthentication();
 
