@@ -21,7 +21,7 @@ body {
 }
 
 a {
-    color: @secondary-text-color !important;
+    color: @secondary-text-color;
     text-decoration: none;
 
     &:hover {
@@ -64,6 +64,14 @@ textarea {
     }
 }
 
+.btn-link {
+    cursor: pointer;
+    
+    &:hover {
+        color: @primary-text-color;
+    }
+}
+
 hr {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -91,6 +99,21 @@ li {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
+}
+
+.dropdown-menu {
+    background-color: @secondary-bg-color;
+    border: 1px solid rgba(255,198, 0, 0.8);
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.dropdown-item {
+    color: @secondary-text-color;
+}
+
+.dropdown-item:hover {
+    background-color: @primary-bg-color;
 }
 /*#endregion */
 
@@ -214,9 +237,11 @@ li {
 
 #mainNav.navbar-shrink .navbar-brand {
     font-size: 1.35em;
-    /*padding: 12px 0;*/
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: @secondary-text-color;
+}
 /*#endregion */
 
 /*#region Bottom Footer */
@@ -237,11 +262,11 @@ footer {
 
 #mainFooter li a {
     border-left: 3px solid rgba(0,0,0,0);
-}
 
-#mainFooter li a:hover {
-    border-left: 3px solid @primary-text-color;
-    padding-left: 5px;
+    &:hover {
+        border-left: 3px solid @primary-text-color;
+        padding-left: 5px;
+    }
 }
 
 #subFooter {
@@ -344,10 +369,6 @@ section {
     color: #3b5998;
 }
 
-.circle-instagram {
-    color: #e2405f;
-}
-
 .circle-soundcloud {
     color: #f50;
 }
@@ -447,7 +468,7 @@ section {
         background-color: @black-bg-color;
     }
 
-    .navbar-collapse .navbar-nav {
+    .navbar-collapse {
         border-bottom: 2px solid rgba(255, 215, 0, 0.65);
         padding-bottom: 10px;
     }
