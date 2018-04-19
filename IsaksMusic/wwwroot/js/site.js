@@ -1,7 +1,9 @@
 ﻿$(document).ready(function () {
-    //loop();
+    loop();
     $(window).scroll(windowScroll);
 })
+
+windowScroll();
 
 /* Function to loop through animation */
 function loop() {
