@@ -1,22 +1,8 @@
 ﻿$(document).ready(function () {
-    //loop();
     $(window).scroll(windowScroll);
-})
+});
 
 windowScroll();
-
-/* Function to loop through animation */
-function loop() {
-    $('#scrollIndicator').animate({ 'top': '75%' }, {
-        duration: 500,
-        complete: function () {
-            $('#scrollIndicator').animate({ 'top': '80%' }, {
-                duration: 500,
-                complete: loop
-            });
-        }
-    });
-}
 
 /* Function to handle scroll events */
 function windowScroll() {
@@ -39,7 +25,7 @@ function windowScroll() {
         $('#backToTopBtn').hide();
         $('#scrollIndicator').show(500);
     }
-};
+}
 
 /* Function to show snackbar */
 function ShowSuccessSnackbar(message) {
@@ -63,9 +49,9 @@ function scrollToContactForm() {
     $(document).ready(function () {
 
         $('html, body').animate({
-            scrollTop: $('#contactForm').offset().top -100
-        }, 2000)
-    })
+            scrollTop: $('#contactForm').offset().top - 100
+        }, 2000);
+    });
 }
 
 /* Function to scroll to top of page */
