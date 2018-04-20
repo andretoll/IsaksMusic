@@ -37,9 +37,16 @@ namespace IsaksMusic
             /* Lower case URLs */
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+            /* Authorization policies */
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+            });
+
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
+                    options.Conventions.AuthorizeFolder("/Admin", "RequireAdminRole");
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
             });
@@ -60,7 +67,7 @@ namespace IsaksMusic
 
                 /* Lockout */
                 options.Lockout.MaxFailedAccessAttempts = 5;
-            });
+            });            
 
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713

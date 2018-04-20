@@ -108,6 +108,21 @@ li {
   position: absolute;
   height: 100%;
   width: 100%;
+}
+.denied-section {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(#3a1919, #111 60%);
+}
+.denied-section img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 20px auto;
+}
+.page-not-found-section {
   background: radial-gradient(#192d3a, #111 60%);
 }
 .error-section h1 {

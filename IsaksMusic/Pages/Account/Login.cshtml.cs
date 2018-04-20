@@ -17,7 +17,7 @@ namespace IsaksMusic.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
@@ -73,12 +73,21 @@ namespace IsaksMusic.Pages.Account
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    /* Get user and role */
+                    var user = await _signInManager.UserManager.FindByNameAsync(Input.Email);
+                    var userRole = await _signInManager.UserManager.GetRolesAsync(user);
+
+                    /* Check if user is admin */
+                    if (userRole.Contains("Admin"))
+                    {
+                        return RedirectToPage("../Admin/Dashboard");
+                    }
+
                     return LocalRedirect(Url.GetLocalUrl(returnUrl));
                 }
                 if (result.RequiresTwoFactor)

@@ -1,10 +1,51 @@
-@page
-@model AccessDeniedModel
+﻿@page
 @{
-    ViewData["Title"] = "Access denied";
+    Layout = null;
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Access denied">
+    <meta name="author" content="André Toll">
+    <title>Access denied - Isaks Music</title>
+
+    <!-- CSS Files -->
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class="error-section denied-section">
+        <div class="container error-container">
+            <label class="navbar-brand mb-4" asp-page="/index"><i class="fas fa-headphones fas-mr" data-fa-transform="rotate--30"></i>Isaks Music</></label>
+            <img src="~/images/access-denied.png"/>
+            <p><strong>You have been denied access to the requested page.</strong></p>
+            <p>Please check your account privileges and if you think there's been a mistake, contact website support.</p>
+            <ul class="list-inline mb-5">
+                <li><a asp-page="/Index">Home</a></li>
+                <li><a asp-page="/">Music</a></li>
+                <li><a asp-page="/">News</a></li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
+
