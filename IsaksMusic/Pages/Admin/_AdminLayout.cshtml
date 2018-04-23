@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="body-background">
+    <div class="container">
+        <div id="adminLayoutWrapper">
+            <div class="wrapper-header">
+                <div class="wrapper-header-left">
+                    <span id="adminSidemenuCollapse" data-target="#adminSidemenu" data-toggle="collapse"><i class="fas fa-rotate fa-bars fa-lg"></i></span>
+                </div>
+                <h4>Admin</h4>
+            </div>
+            <div class="wrapper-body">
+                <div class="side-menu-collapse collapse in width show" id="adminSidemenu">
+                    <div class="list-group border-0 text-md-left">
+                        <a asp-page="/" class="list-group-item d-inline-block"><i class="fas fa-home fa-fw fas-mr"></i><span class="d-none d-md-inline">Dashboard</span></a>
+                        <a asp-page="/" class="list-group-item d-inline-block"><i class="fas fa-music fa-fw fas-mr"></i><span class="d-none d-md-inline">Songs</span></a>
+                        <a asp-page="/" class="list-group-item d-inline-block"><i class="fas fa-home fa-fw fas-mr"></i><span class="d-none d-md-inline">Categories</span></a>
+                        <a asp-page="/" class="list-group-item d-inline-block"><i class="fas fa-home fa-fw fas-mr"></i><span class="d-none d-md-inline">News</span></a>
+                        <a asp-page="/" class="list-group-item d-inline-block"><i class="fas fa-home fa-fw fas-mr"></i><span class="d-none d-md-inline">Statistics</span></a>
+                    </div>
+                </div>
+                <div class="wrapper-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

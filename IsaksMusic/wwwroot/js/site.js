@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     $(window).scroll(windowScroll);
+
+    $('#adminSidemenuCollapse').click(rotateIcon);
 });
 
 windowScroll();
@@ -61,4 +63,17 @@ function scrollToTop() {
     document.body.scrollTop = 0;
 
     $("html, body").animate({ scrollTop: 0 }, 1000);
+}
+
+/* Function to rotate icon */
+function rotateIcon() {
+
+    var icon = $('#adminSidemenuCollapse').children('i');
+
+    if (icon.hasClass("down")) {
+        icon.removeClass("down");
+    }
+    else {
+        icon.addClass("down");
+    }
 }

@@ -3,6 +3,17 @@ body {
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: #0a0a0a;
 }
+.body-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/city-clouds.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #999;
+}
 .text-yellow {
   color: #ffc600 !important;
 }
@@ -40,6 +51,19 @@ textarea {
 }
 .fas-mr {
   margin-right: 5px;
+}
+.fa-rotate {
+  -o-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+.fa-rotate.down {
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .btn-dark {
   background-color: #0a0a0a;
@@ -99,6 +123,92 @@ li {
 }
 .dropdown-item:hover {
   background-color: #0a0a0a;
+}
+.wrapper-header {
+  background: #222222;
+  background: -moz-linear-gradient(top, #ffc600 0%, #c99b00 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffc600), color-stop(100%, #c99b00));
+  background: -o-linear-gradient(top, #ffc600 0%, #c99b00 100%);
+  background: linear-gradient(to bottom, #ffc600 0%, #c99b00 100%);
+  text-align: center;
+  padding: 10px 0;
+  height: auto;
+}
+#adminSidemenuCollapse {
+  color: white;
+  cursor: pointer;
+}
+#adminSidemenuCollapse:hover {
+  color: #0a0a0a !important;
+}
+.wrapper-header-left {
+  text-align: left;
+  display: flex;
+  padding-left: 20px;
+  position: absolute;
+}
+.wrapper-body {
+  display: flex;
+  align-items: stretch;
+  background-color: #111;
+}
+.wrapper-content {
+  width: 100%;
+  position: relative;
+  background-color: #0a0a0a;
+  padding: 20px;
+}
+/* Side menu collapse */
+.side-menu-collapse {
+  overflow: hidden;
+  z-index: 3;
+  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111;
+  -webkit-transition: width .5s;
+  -moz-transition: width .5s;
+  transition: width .5s;
+}
+.side-menu-collapse .list-group {
+  min-width: 300px;
+  height: 100%;
+}
+.collapse.show {
+  visibility: visible;
+}
+.collapsing {
+  visibility: visible;
+  height: 0;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.collapsing.width {
+  -webkit-transition-property: width, visibility;
+  transition-property: width, visibility;
+  width: 0;
+  height: 100%;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+/* Side menu links */
+.side-menu-collapse .list-group .list-group-item {
+  border-radius: 0;
+  background-color: transparent;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-color: rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+.side-menu-collapse .list-group .list-group-item:hover {
+  color: #ffc600;
+  border-left: thick solid #ffc600;
+}
+.side-menu-collapse .list-group .list-group-item:active {
+  color: #ffc600;
+  border-left: thick solid #ffc600;
 }
 /*#endregion */
 /*#region Error Pages */
@@ -383,6 +493,12 @@ section {
   text-align: center;
 }
 /*#endregion */
+/*#region Admin */
+#adminLayoutWrapper {
+  padding: 200px 0;
+  min-height: 60      00px;
+}
+/*#endregion */
 /*#region Media Queries */
 @media (max-width: 991px) {
   #socialLinks,
@@ -408,6 +524,14 @@ section {
   .navbar-collapse {
     border-bottom: 2px solid rgba(255, 215, 0, 0.65);
     padding-bottom: 10px;
+  }
+  .side-menu-collapse {
+    width: 70px;
+  }
+  .side-menu-collapse .list-group {
+    min-width: 70px;
+    overflow: visible;
+    min-height: 100%;
   }
 }
 @media (max-height: 768px) {

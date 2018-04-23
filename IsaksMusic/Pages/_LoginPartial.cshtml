@@ -10,7 +10,7 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@(Context.User.IsInRole("Admin") ? "admin" : @UserManager.GetUserName(User))</a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <div><a class="dropdown-item" asp-page="/" title="Dashboard"><i class="fas fa-tachometer-alt fa-fw mr-1"></i>Dashboard</a></div>
+                    <div><a class="dropdown-item" asp-page="/Admin/Dashboard" title="Dashboard"><i class="fas fa-tachometer-alt fa-fw mr-1"></i>Dashboard</a></div>
                     <div><button type="submit" class="dropdown-item btn-link" title="Logout"><i class="fas fa-sign-out-alt fa-fw mr-1"></i>Log out</button></div>
                 </div>
                 @*<a asp-page="/Account/Manage/Index" title="Manage"></a>*@
