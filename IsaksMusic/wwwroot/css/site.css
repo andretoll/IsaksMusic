@@ -206,7 +206,7 @@ li {
   color: #ffc600;
   border-left: thick solid #ffc600;
 }
-.side-menu-collapse .list-group .list-group-item:active {
+.side-menu-collapse .list-group .list-group-item.active {
   color: #ffc600;
   border-left: thick solid #ffc600;
 }
@@ -517,7 +517,7 @@ section {
     text-align: left;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   section {
     padding: 50px 0;
   }
@@ -537,7 +537,7 @@ section {
     min-height: 100%;
   }
 }
-@media (max-height: 768px) {
+@media (max-height: 767px) {
   .intro-text {
     padding-top: 200px;
     padding-bottom: 100px;

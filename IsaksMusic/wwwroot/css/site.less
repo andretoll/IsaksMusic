@@ -250,11 +250,11 @@ li {
         color: @primary-text-color;
         border-left: thick solid @primary-text-color;
     }
+}
 
-    &:active {
-        color: @primary-text-color;
-        border-left: thick solid @primary-text-color;
-    }
+.side-menu-collapse .list-group .list-group-item.active {
+    color: @primary-text-color;
+    border-left: thick solid @primary-text-color;
 }
 
 /*#endregion */
@@ -629,7 +629,7 @@ section {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
     section {
         padding: 50px 0;
@@ -655,7 +655,7 @@ section {
     }
 }
 
-@media (max-height: 768px) {
+@media (max-height: 767px) {
 
     .intro-text {
         padding-top: 200px;
