@@ -436,6 +436,9 @@ section {
 #aboutContainer img {
   max-height: 350px;
 }
+.circle-social-media {
+  font-size: 1.7em!important;
+}
 .circle-facebook {
   color: #3b5998;
 }
