@@ -5,12 +5,39 @@
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
-<div class="text-center">
+<div>
     <h2>Songs</h2>
     <hr />
+    <a class="btn btn-success text-white">Add song</a>
 </div>
 <div>
-    <a class="btn btn-success text-white">Add song</a>
+    <table class="table table-striped table-dark" id="songTable">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Length</th>
+                <th>Category</th>
+                <th>Upload date</th>
+                <th>File path</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tranquility</td>
+                <td>03:23</td>
+                <td>House</td>
+                <td>2018-04-23</td>
+                <td>music/songs/tranquility.wav</td>
+                <td>
+                    <div class="d-sm-inline-flex">
+                        <a asp-page="/" class="btn btn-info table-btn"><i class="fas fa-pen-square"></i></a>
+                        <a asp-page="/" class="btn btn-danger table-btn"><i class="fas fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 

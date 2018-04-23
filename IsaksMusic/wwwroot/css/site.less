@@ -35,11 +35,11 @@ body {
 a {
     color: @secondary-text-color;
     text-decoration: none;
+}
 
-    &:hover {
-        color: @primary-text-color !important;
-        text-decoration: none;
-    }
+a:not(.btn):hover {
+    color: @primary-text-color !important;
+    text-decoration: none;
 }
 
 h1, h2, h3, h4, p {
@@ -111,6 +111,18 @@ li {
     list-style: none;
 }
 
+table {
+    font-size: 0.9rem;
+}
+
+th {
+    color: @secondary-text-color;
+}
+
+.table-btn {
+    margin: 0 5px;
+}
+
 .field-validation-error, .validation-summary-errors {
     color: @error-text-color;
     margin-top: 5px;
@@ -167,7 +179,7 @@ li {
 }
 
 #adminSidemenuCollapse {
-    color: white;
+    color: @secondary-text-color;
     cursor: pointer;
 
     &:hover {
@@ -183,14 +195,16 @@ li {
 .wrapper-body {
     display: flex;
     align-items: stretch;
-    background-color: @secondary-bg-color;
+    background-color: @primary-bg-color;
 }
 
 .wrapper-content {
     width: 100%;
     position: relative;
     background-color: @secondary-bg-color;
-    padding: 20px;
+    padding: 30px;
+    max-height: 700px;
+    overflow-x: auto;
 }
 
 /* Side menu collapse */
@@ -200,13 +214,19 @@ li {
     height: 100%;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     background: @secondary-bg-color;
-    -webkit-transition: width .5s;
-    -moz-transition: width .5s;
-    transition: width .5s;
+    -webkit-transition: width .25s;
+    -moz-transition: width .25s;
+    transition: width .25s;
 }
 
-.side-menu-collapse .list-group {
-    min-width: 220px;
+#sideMenuImgContainer {
+    text-align: center;
+    padding: 20px;
+}
+
+.side-menu-header {
+    padding: 20px;
+    text-align: center;
 }
 
 .collapse.show {
@@ -232,13 +252,15 @@ li {
 }
 
 /* Side menu links */
+.side-menu-collapse .list-group {
+    min-width: 200px;
+}
 
 .side-menu-collapse .list-group .list-group-item {
     border-radius: 0;
     background-color: transparent;
     border-left: 0;
     border-right: 0;
-    border-bottom: 0;
     border-color: rgba(255, 255, 255, 0.1);
     white-space: nowrap;
 
@@ -479,7 +501,7 @@ section {
     border: none;
     outline: none;
     background-color: #208938;
-    color: white;
+    color: @secondary-text-color;
     cursor: pointer;
     border-radius: 50%;
     width: 60px;
@@ -601,13 +623,76 @@ section {
 /*#region Admin */
 
 #adminLayoutWrapper {
-    padding: 200px 0;
-    min-height: 60      00px;
+    padding: 150px 0;
+    min-height: 600px;
+}
+
+#songTable {
+    margin: 30px 0;
+    border-collapse: collapse;
+}
+
+#songTable td:last-child {
+    text-align: center;
 }
 
 /*#endregion */
 
 /*#region Media Queries */
+@media (max-width: 1199px) {
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        padding-right: 10px;
+        font-weight: bold;
+        color: @primary-text-color;
+        display: block;
+    }
+
+    td:nth-of-type(1):before {
+        content: "Title";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Length";
+    }
+
+    td:nth-of-type(3):before {
+        content: "Category";
+    }
+
+    td:nth-of-type(4):before {
+        content: "Upload date";
+    }
+
+    td:nth-of-type(5):before {
+        content: "File path";
+    }
+
+    #songTable td:last-child {
+        text-align: left;
+    }
+}
 @media (max-width: 991px) {
 
     #socialLinks, #contactInfo {
@@ -615,13 +700,6 @@ section {
         max-width: 100%;
         flex: 100%;
         text-align: center;
-    }
-}
-
-@media (min-width: 768px) {
-
-    #aboutContainer {
-        text-align: left;
     }
 }
 
@@ -644,10 +722,21 @@ section {
         width: 70px;
     }
 
+    .side-menu-header {
+        display: none;
+    }
+
     .side-menu-collapse .list-group {
         min-width: 70px;
         overflow: visible;
         min-height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #aboutContainer {
+        text-align: left;
     }
 }
 
