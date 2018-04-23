@@ -142,8 +142,6 @@ li {
   color: #0a0a0a !important;
 }
 .wrapper-header-left {
-  text-align: left;
-  display: flex;
   padding-left: 20px;
   position: absolute;
 }
@@ -155,12 +153,11 @@ li {
 .wrapper-content {
   width: 100%;
   position: relative;
-  background-color: #0a0a0a;
+  background-color: #111;
   padding: 20px;
 }
 /* Side menu collapse */
 .side-menu-collapse {
-  overflow: hidden;
   z-index: 3;
   height: 100%;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -170,8 +167,7 @@ li {
   transition: width .5s;
 }
 .side-menu-collapse .list-group {
-  min-width: 300px;
-  height: 100%;
+  min-width: 220px;
 }
 .collapse.show {
   visibility: visible;
