@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IsaksMusic.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,10 @@ namespace IsaksMusic.Data
             : base(options)
         {
         }
+
+        public DbSet<Song> Songs { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<SongCategory> SongCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
