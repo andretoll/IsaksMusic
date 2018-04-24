@@ -56,6 +56,8 @@ label {
 
 input {
     margin-bottom: 5px;
+    color: @secondary-text-color;
+    outline: none;
 }
 
 textarea {
@@ -125,17 +127,22 @@ th {
 
 .modal-content {
     background-color: @secondary-bg-color;
+    padding: 20px;
+}
+
+.modal-header {
+    border: none;
 }
 
 button[data-dismiss="modal"] {
-    color: red;
+    color: @error-text-color;
 
     &:hover {
-        color: red;
+        color: @error-text-color;
     }
 }
 
-.field-validation-error, .validation-summary-errors {
+.field-validation-error, .validation-summary-errors, .input-validation-error {
     color: @error-text-color;
     margin-top: 5px;
 }
@@ -219,9 +226,7 @@ button[data-dismiss="modal"] {
     max-height: 700px;
     overflow-x: auto;
 }
-
 /* Side menu collapse */
-
 .side-menu-collapse {
     z-index: 3;
     height: 100%;
@@ -263,7 +268,6 @@ button[data-dismiss="modal"] {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
-
 /* Side menu links */
 .side-menu-collapse .list-group {
     min-width: 200px;
@@ -287,9 +291,7 @@ button[data-dismiss="modal"] {
     color: @primary-text-color;
     border-left: thick solid @primary-text-color;
 }
-
 /*#endregion */
-
 /*#region Error Pages */
 .error-section {
     text-align: center;
@@ -337,7 +339,6 @@ button[data-dismiss="modal"] {
     padding-left: 0.3em;
 }
 /*#endregion */
-
 /*#region Snackbars */
 #snackbar-success {
     visibility: hidden;
@@ -408,7 +409,6 @@ button[data-dismiss="modal"] {
     }
 }
 /*#endregion */
-
 /*#region Top Navbar */
 #mainNav {
     background-color: transparent;
@@ -434,7 +434,6 @@ button[data-dismiss="modal"] {
     color: @secondary-text-color;
 }
 /*#endregion */
-
 /*#region Bottom Footer */
 footer {
     bottom: 0;
@@ -467,7 +466,6 @@ footer {
     text-align: center;
 }
 /*#endregion */
-
 /*#region Top Header */
 #topHeader {
     background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a), url(../images/bg-header.jpg);
@@ -488,7 +486,6 @@ footer {
     color: @secondary-text-color;
 }
 /*#endregion */
-
 /*#region Sections */
 section {
     padding: 100px 0;
@@ -503,7 +500,6 @@ section {
     background-color: @secondary-bg-color;
 }
 /*#endregion */
-
 /*#region Index */
 #backToTopBtn {
     display: none;
@@ -546,7 +542,6 @@ section {
     opacity: 0.7;
 }
 /*#endregion */
-
 /*#region Index About Me */
 #aboutContainer {
     text-align: center;
@@ -557,7 +552,7 @@ section {
 }
 
 .circle-social-media {
-    font-size: 1.7em!important;
+    font-size: 1.7em !important;
 }
 
 .circle-facebook {
@@ -568,7 +563,6 @@ section {
     color: #f50;
 }
 /*#endregion */
-
 /*#region Index Website Info */
 #infoContainer h4 {
     margin: 15px 0;
@@ -582,7 +576,6 @@ section {
     color: @primary-text-color;
 }
 /*#endregion */
-
 /*#region Contact Form */
 #contactForm {
     background: @secondary-bg-color;
@@ -595,9 +588,7 @@ section {
     color: @secondary-text-color;
 }
 /*#endregion */
-
 /*#region Sitemap */
-
 #sitemapContainer {
     margin-top: 50px;
     padding: 20px;
@@ -617,11 +608,8 @@ section {
     background-color: @secondary-bg-color;
     font-size: 1.0em;
 }
-
 /*#endregion */
-
 /*#region Login */
-
 #loginForm {
     margin: 100px auto;
     padding: 50px;
@@ -630,11 +618,8 @@ section {
     width: 400px;
     text-align: center;
 }
-
 /*#endregion */
-
 /*#region Admin */
-
 #adminLayoutWrapper {
     padding: 150px 0;
     min-height: 600px;
@@ -648,9 +633,7 @@ section {
 #songTable td:last-child {
     text-align: center;
 }
-
 /*#endregion */
-
 /*#region Media Queries */
 @media (max-width: 1199px) {
 
@@ -707,6 +690,7 @@ section {
         text-align: left;
     }
 }
+
 @media (max-width: 991px) {
 
     #socialLinks, #contactInfo {

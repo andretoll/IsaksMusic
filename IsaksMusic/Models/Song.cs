@@ -16,7 +16,7 @@ namespace IsaksMusic.Models
         public DateTime UploadDate { get; set; }
 
         [Required]
-        public string FilePath { get; set; }
+        public string FileName { get; set; }
 
         [Required]
         public long Length { get; set; }

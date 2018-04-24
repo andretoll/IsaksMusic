@@ -43,6 +43,8 @@ label {
 }
 input {
   margin-bottom: 5px;
+  color: #ffffff;
+  outline: none;
 }
 textarea {
   min-height: 60px;
@@ -97,15 +99,20 @@ th {
 }
 .modal-content {
   background-color: #111;
+  padding: 20px;
+}
+.modal-header {
+  border: none;
 }
 button[data-dismiss="modal"] {
-  color: red;
+  color: #e43636;
 }
 button[data-dismiss="modal"]:hover {
-  color: red;
+  color: #e43636;
 }
 .field-validation-error,
-.validation-summary-errors {
+.validation-summary-errors,
+.input-validation-error {
   color: #e43636;
   margin-top: 5px;
 }
@@ -461,7 +468,7 @@ section {
   max-height: 350px;
 }
 .circle-social-media {
-  font-size: 1.7em!important;
+  font-size: 1.7em !important;
 }
 .circle-facebook {
   color: #3b5998;
