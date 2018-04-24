@@ -76,11 +76,38 @@
                 <h4 class="modal-title">Add Song</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <!-- Modal body -->
             <div class="modal-body">
-                <form method="post" >
-
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All"></div>
+                    <div class="form-group">
+                        <input type="file" name="Music file" accept="mp3/wav" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Song.Title"></label>
+                        <input asp-for="Song.Title" class="form-control" />
+                        <span asp-validation-for="Song.Title"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Song.Description"></label>
+                        <textarea asp-for="Song.Description" class="form-control"></textarea>
+                        <span asp-validation-for="Song.Description"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label asp-for="Song.Minutes"></label>
+                            <input asp-for="Song.Minutes" class="form-control" />
+                            <span asp-validation-for="Song.Minutes"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Song.Seconds"></label>
+                            <input asp-for="Song.Seconds" class="form-control" />
+                            <span asp-validation-for="Song.Seconds"></span>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <input type="submit"/>
+                    </div>
                 </form>
             </div>
         </div>
