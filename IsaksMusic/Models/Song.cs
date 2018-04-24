@@ -12,6 +12,7 @@ namespace IsaksMusic.Models
         public string Description { get; set; }
         public DateTime UploadDate { get; set; }
         public string FilePath { get; set; }
+        public long Length { get; set; }
 
         public ICollection<SongCategory> SongCategories { get; set; }
     }

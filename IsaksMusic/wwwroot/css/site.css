@@ -95,6 +95,15 @@ th {
 .table-btn {
   margin: 0 5px;
 }
+.modal-content {
+  background-color: #111;
+}
+button[data-dismiss="modal"] {
+  color: red;
+}
+button[data-dismiss="modal"]:hover {
+  color: red;
+}
 .field-validation-error,
 .validation-summary-errors {
   color: #e43636;
