@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 
 namespace IsaksMusic.Pages.Admin.Music
 {
@@ -18,17 +19,25 @@ namespace IsaksMusic.Pages.Admin.Music
     {
         private readonly ApplicationDbContext _applicationDbContext;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration;
 
-        public SongsModel(ApplicationDbContext applicationDbContext, IHostingEnvironment hostingEnvironment)
+        public SongsModel(ApplicationDbContext applicationDbContext, IHostingEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _applicationDbContext = applicationDbContext;
             _hostingEnvironment = hostingEnvironment;
+            _configuration = configuration;
         }
 
         [BindProperty]
         public SongModel Song { get; set; }
 
         public List<Song> SongList { get; set; }
+
+        [TempData]
+        public string Message { get; set; }
+
+        [TempData]
+        public string ErrorMessage { get; set; }
 
         public class SongModel
         {
@@ -66,13 +75,24 @@ namespace IsaksMusic.Pages.Admin.Music
 
             if (HttpContext.Request.Form.Files != null)
             {
-                string PathDB = string.Empty;
-
                 var files = HttpContext.Request.Form.Files;
 
                 foreach (var file in files)
                 {
-                    if (file.Length > 0)
+                    /* Get allowed file extensions */
+                    IConfigurationSection myArraySection = _configuration.GetSection("AudioFileExtensions");
+                    var extensionList = myArraySection.GetChildren().ToList().Select(c => c.Value).ToList();
+
+                    /* Get file extension */
+                    string fileExtension = Path.GetExtension(file.FileName);
+
+                    /* Check file extension */
+                    if (!extensionList.Contains(fileExtension))
+                    {
+                        ModelState.AddModelError("", "Invalid filetype.");
+                    }
+
+                    if (file.Length > 0 && ModelState.IsValid)
                     {
                         /* Get file name */
                         fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
@@ -109,7 +129,17 @@ namespace IsaksMusic.Pages.Admin.Music
                 _applicationDbContext.Songs.Add(song);
                 await _applicationDbContext.SaveChangesAsync();
 
+                Message = "Song added";
+
                 return RedirectToPage();
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                ErrorMessage = errors.FirstOrDefault().FirstOrDefault().ErrorMessage;
             }
 
             return RedirectToPage();
