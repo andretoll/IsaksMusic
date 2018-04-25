@@ -73,8 +73,7 @@
                                 Action
                             </button>
                             <div class="dropdown-menu">
-                                @*<a class="dropdown-item" href="#"><i class="fas fa-pen-square fas-mr"></i>Edit</a>*@
-                                <a class="dropdown-item" href="#"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
+                                <a class="dropdown-item" asp-page="./Index" asp-route-id="@song.Id" asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
                             </div>
                         </td>
                     </tr>

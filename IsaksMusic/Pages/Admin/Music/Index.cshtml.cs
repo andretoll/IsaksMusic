@@ -89,6 +89,29 @@ namespace IsaksMusic.Pages.Admin.Music
             }
         }
 
+        public ActionResult OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                var song = _applicationDbContext.Songs.Where(s => s.Id == id).SingleOrDefault();
+
+                /* Remove entry from database */
+                _applicationDbContext.Songs.Remove(song);
+                _applicationDbContext.SaveChanges();
+
+                /* Set full path to file */
+                var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{song.FileName}";
+
+                /* Remove file from server */
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+
+            return RedirectToPage("Index");
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             /* Full path to file */
