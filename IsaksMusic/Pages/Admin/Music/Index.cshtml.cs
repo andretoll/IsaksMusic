@@ -73,7 +73,7 @@ namespace IsaksMusic.Pages.Admin.Music
         {
             /* List of songs */
             SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();            
 
             /* Select List with categories */
             CategoryList = new List<SelectListItem>();

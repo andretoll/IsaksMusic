@@ -60,7 +60,7 @@
                     <tr>
                         <td>
                             @song.Title
-                            <a class="float-right">
+                            <a class="float-right"> 
                                 <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
                             </a>
                         </td>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Title"></label>
-                        <input asp-for="Song.Title" class="form-control" />
+                        <input asp-for="Song.Title" class="form-control" autocomplete="off" />
                         <span asp-validation-for="Song.Title"></span>
                     </div>
                     <div class="form-group">
