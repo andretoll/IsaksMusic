@@ -250,6 +250,13 @@ button[data-dismiss="modal"]:hover {
   color: #ffc600;
   border-left: thick solid #ffc600;
 }
+.progress {
+  height: 40px;
+}
+.progress-bar {
+  width: 0px;
+  background-color: #ffc600;
+}
 /*#endregion */
 /*#region Error Pages */
 .error-section {

@@ -62,7 +62,7 @@ namespace IsaksMusic.Pages.Admin.Music
             public byte Seconds { get; set; }
 
             [Required(ErrorMessage = "Choose a file to upload")]
-            public IFormFile MusicFile { get; set; }
+            public string MusicFile { get; set; }
 
             [Required(ErrorMessage = "Choose a category")]
             [Display(Name = "Music Categories (limit 2)")]
@@ -91,49 +91,6 @@ namespace IsaksMusic.Pages.Admin.Music
 
         public async Task<IActionResult> OnPostAsync()
         {
-            /* Full path to file */
-            var fullPath = string.Empty;
-
-            /* File name */
-            var fileName = string.Empty;
-
-            if (HttpContext.Request.Form.Files != null)
-            {
-                var files = HttpContext.Request.Form.Files;
-
-                foreach (var file in files)
-                {
-                    /* Get allowed file extensions */
-                    IConfigurationSection myArraySection = _configuration.GetSection("AudioFileExtensions");
-                    var extensionList = myArraySection.GetChildren().ToList().Select(c => c.Value).ToList();
-
-                    /* Get file extension */
-                    string fileExtension = Path.GetExtension(file.FileName);
-
-                    /* Check file extension */
-                    if (!extensionList.Contains(fileExtension))
-                    {
-                        ModelState.AddModelError("", "Invalid filetype.");
-                    }
-
-                    if (file.Length > 0 && ModelState.IsValid)
-                    {
-                        /* Get file name */
-                        fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-
-                        /* Set full path to file */
-                        fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{fileName}";
-
-                        /* Upload to directory */
-                        using (FileStream fs = System.IO.File.Create(fullPath))
-                        {
-                            file.CopyTo(fs);
-                            fs.Flush();
-                        }
-                    }
-                }
-            }
-
             /* If modelstate is valid */
             if (ModelState.IsValid)
             {
@@ -147,7 +104,7 @@ namespace IsaksMusic.Pages.Admin.Music
                     Description = Song.Description,
                     Length = seconds,
                     UploadDate = DateTime.Now,
-                    FileName = fileName
+                    FileName = Song.MusicFile
                 };
 
                 _applicationDbContext.Songs.Add(song);
