@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 
 namespace IsaksMusic.Pages.Admin.Music
@@ -32,6 +33,7 @@ namespace IsaksMusic.Pages.Admin.Music
         public SongModel Song { get; set; }
 
         public List<Song> SongList { get; set; }
+        public List<SelectListItem> CategoryList { get; set; }
 
         [TempData]
         public string Message { get; set; }
@@ -56,13 +58,30 @@ namespace IsaksMusic.Pages.Admin.Music
 
             [Required(ErrorMessage = "Choose a file to upload")]
             public IFormFile MusicFile { get; set; }
+
+            [Required(ErrorMessage = "Choose a category")]
+            [Display(Name = "Music Category")]
+            public List<int> CategoryId { get; set; }
         }
 
         public void OnGet()
         {
+            /* List of songs */
             SongList = new List<Song>();
-
             SongList = _applicationDbContext.Songs.ToList();
+
+            /* Select List with categories */
+            CategoryList = new List<SelectListItem>();
+
+            /* Get categories from database */
+            List<Category> categories = new List<Category>();
+            categories = _applicationDbContext.Categories.ToList();
+
+            /* Convert categories into select items */
+            foreach (var category in categories)
+            {
+                CategoryList.Add(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
+            }
         }
 
         public async Task<IActionResult> OnPostAsync()
