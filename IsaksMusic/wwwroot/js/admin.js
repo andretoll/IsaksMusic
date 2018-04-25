@@ -10,14 +10,6 @@
             startLoadingAnimation();
         }
     });
-
-    $('#songUpload').change(function () {
-        var filePath = $('#songUpload').val();
-        console.log(filePath);
-
-        var fileExtension = filePath.split('.').pop();
-        console.log(fileExtension);
-    });
 });
 
 function startLoadingAnimation() {
