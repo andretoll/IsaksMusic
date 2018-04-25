@@ -2,6 +2,10 @@
     $(window).scroll(windowScroll);
 
     $('#adminSidemenuCollapse').click(rotateIcon);
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 });
 
 windowScroll();

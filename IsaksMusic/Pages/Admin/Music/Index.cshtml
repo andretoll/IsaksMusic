@@ -19,7 +19,7 @@
 <div>
     <h2>Songs</h2>
     <hr />
-    <a class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">Add song</a>
+    <a title="Add song" class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">Add song</a>
     @if (Model.ErrorMessage != null)
     {
         <div class="alert alert-danger mt-3" role="alert">
@@ -58,15 +58,23 @@
                     string categoryString = String.Join(", ", categoryList);
 
                     <tr>
-                        <td>@song.Title</td>
+                        <td>
+                            @song.Title
+                            <a class="float-right">
+                                <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
                         <td>@TimeSpan.FromSeconds(song.Length)</td>
                         <td>@categoryString</td>
                         <td>@song.UploadDate.ToShortDateString()</td>
                         <td>@song.FileName</td>
                         <td>
-                            <div class="d-sm-inline-flex">
-                                <a asp-page="/" class="btn btn-info table-btn"><i class="fas fa-pen-square"></i></a>
-                                <a asp-page="/" class="btn btn-danger table-btn"><i class="fas fa-trash"></i></a>
+                            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu">
+                                @*<a class="dropdown-item" href="#"><i class="fas fa-pen-square fas-mr"></i>Edit</a>*@
+                                <a class="dropdown-item" href="#"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -110,7 +118,7 @@
                     <div class="form-row mb-4">
                         <div class="col">
                             <label asp-for="Song.Minutes"></label>
-                            <input asp-for="Song.Minutes" class="form-control" />
+                            <input type="number" asp-for="Song.Minutes" class="form-control" />
                             <span asp-validation-for="Song.Minutes"></span>
                         </div>
                         <div class="col">
