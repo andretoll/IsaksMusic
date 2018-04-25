@@ -109,7 +109,7 @@ namespace IsaksMusic.Pages.Admin.Music
                 }
             }
 
-            return RedirectToPage("Index");
+            return RedirectToPage("Songs");
         }
 
         public async Task<IActionResult> OnPostAsync()
