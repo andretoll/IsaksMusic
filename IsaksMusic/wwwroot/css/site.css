@@ -23,6 +23,7 @@ body {
 a {
   color: #ffffff;
   text-decoration: none;
+  outline-color: #ffc600;
 }
 a:not(.btn):hover {
   color: #ffc600 !important;
@@ -84,6 +85,10 @@ hr {
 }
 .dropdown-divider {
   border-color: rgba(255, 255, 255, 0.1);
+}
+/* Bootstrap Select */
+.bootstrap-select li.selected a {
+  color: #ffc600;
 }
 ul {
   padding: 0;

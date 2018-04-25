@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace IsaksMusic.Pages.Admin.Music
@@ -29,10 +30,14 @@ namespace IsaksMusic.Pages.Admin.Music
             _configuration = configuration;
         }
 
+        /* For uploading song */
         [BindProperty]
         public SongModel Song { get; set; }
 
+        /* For displaying songs in table */
         public List<Song> SongList { get; set; }
+
+        /* For displaying categories when uploading song */
         public List<SelectListItem> CategoryList { get; set; }
 
         [TempData]
@@ -61,14 +66,14 @@ namespace IsaksMusic.Pages.Admin.Music
 
             [Required(ErrorMessage = "Choose a category")]
             [Display(Name = "Music Category")]
-            public List<int> CategoryId { get; set; }
+            public List<int> CategoryIds { get; set; }
         }
 
         public void OnGet()
         {
             /* List of songs */
-            SongList = new List<Song>();
-            SongList = _applicationDbContext.Songs.ToList();
+            SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
+                .ThenInclude(songCategories => songCategories.Category).ToList();
 
             /* Select List with categories */
             CategoryList = new List<SelectListItem>();
@@ -146,6 +151,24 @@ namespace IsaksMusic.Pages.Admin.Music
                 };
 
                 _applicationDbContext.Songs.Add(song);
+
+                await _applicationDbContext.SaveChangesAsync();
+
+                /* Get song ID */
+                int songId = song.Id;
+
+                /* Add song categories to database */
+                foreach (var category in Song.CategoryIds)
+                {
+                    SongCategory songCategory = new SongCategory()
+                    {
+                        SongId = songId,
+                        CategoryId = category
+                    };
+
+                    _applicationDbContext.SongCategories.Add(songCategory);
+                }
+
                 await _applicationDbContext.SaveChangesAsync();
 
                 Message = "Song added";

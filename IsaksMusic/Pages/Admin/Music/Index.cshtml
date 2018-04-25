@@ -48,10 +48,19 @@
             <tbody>
                 @foreach (var song in Model.SongList)
                 {
+                    List<string> categoryList = new List<string>();
+
+                    foreach (var category in song.SongCategories)
+                    {
+                        categoryList.Add(category.Category.Name);
+                    }
+
+                    string categoryString = String.Join(", ", categoryList);
+
                     <tr>
                         <td>@song.Title</td>
                         <td>@TimeSpan.FromSeconds(song.Length)</td>
-                        <td>House</td>
+                        <td>@categoryString</td>
                         <td>@song.UploadDate.ToShortDateString()</td>
                         <td>@song.FileName</td>
                         <td>
@@ -89,9 +98,9 @@
                         <span asp-validation-for="Song.Title"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Song.CategoryId"></label>
-                        <select multiple="multiple" class="custom-select" id="categorySelect" asp-for="Song.CategoryId" asp-items="Model.CategoryList"></select>
-                        <span asp-validation-for="Song.CategoryId"></span>
+                        <label asp-for="Song.CategoryIds"></label>
+                        <select data-max-options="2" multiple class="selectpicker form-control" id="categorySelect" asp-for="Song.CategoryIds" asp-items="Model.CategoryList" data-style="btn-dark"></select>
+                        <span asp-validation-for="Song.CategoryIds"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Description"></label>
