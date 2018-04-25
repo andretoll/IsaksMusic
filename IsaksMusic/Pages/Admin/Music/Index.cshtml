@@ -101,22 +101,22 @@
                 <form id="form" name="form" action="/uploader" enctype="multipart/form-data" method="post">
                     <div class="buttons">
                         <div class="upload-button">
-                            <input id="files" name="files" type="file" size="1" multiple onchange="uploadFiles('files');" />
+                            <input id="musicFile" name="musicFile" type="file" size="1" multiple onchange="uploadFiles('musicFile');" />
                         </div>
                         <div class="progress">
                             <div class="progress-bar"></div>
                         </div>
                     </div>
                 </form>
-                <form method="post" enctype="multipart/form-data">
+                <form id="songForm" name="songForm" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
-                        <input class="validateAlways" id="musicFileName" asp-for="Song.MusicFile" type="hidden" />
+                        <input class="validate" id="musicFileName" asp-for="Song.MusicFile" type="hidden" required/>
                         <span asp-validation-for="Song.MusicFile"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Title"></label>
-                        <input asp-for="Song.Title" class="form-control" />
+                        <input asp-for="Song.Title" class="form-control" autocomplete="off"/>
                         <span asp-validation-for="Song.Title"></span>
                     </div>
                     <div class="form-group">

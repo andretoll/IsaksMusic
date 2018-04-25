@@ -42,8 +42,8 @@ namespace IsaksMusic.Controllers
                 foreach (var file in files)
                 {
                     /* Get allowed file extensions */
-                    IConfigurationSection myArraySection = _configuration.GetSection("AudioFileExtensions");
-                    var extensionList = myArraySection.GetChildren().ToList().Select(c => c.Value).ToList();
+                    IConfigurationSection extensionsArraySection = _configuration.GetSection("AudioFileExtensions");
+                    var extensionList = extensionsArraySection.GetChildren().ToList().Select(c => c.Value).ToList();
 
                     /* Get file extension */
                     string fileExtension = Path.GetExtension(file.FileName);
@@ -59,8 +59,12 @@ namespace IsaksMusic.Controllers
                         /* Get file name */
                         fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
 
+                        /* Get music directory */
+                        IConfigurationSection directoryArraySection = _configuration.GetSection("MusicDirectory");
+                        var musicDirectory = directoryArraySection.GetChildren().ToList().Select(c => c.Value).First();
+
                         /* Set full path to file */
-                        fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{fileName}";
+                        fullPath = Path.Combine(_hostingEnvironment.WebRootPath, musicDirectory) + $@"\{fileName}";
 
                         /* Upload to directory */
                         using (FileStream fs = System.IO.File.Create(fullPath))
@@ -72,7 +76,14 @@ namespace IsaksMusic.Controllers
                 }
             }
 
-            return this.Ok();
+            if (ModelState.IsValid)
+            {
+                return this.Ok();
+            }
+            else
+            {
+                return this.BadRequest();
+            }
         }
     }
 }

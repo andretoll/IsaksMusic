@@ -3,15 +3,29 @@
     /* Change active link in admin layout */
     $('a.active').removeClass('active');
     $('a[href="' + location.pathname + '"]').closest('.list-group-item').addClass('active');
+
+    /* Enable validation of hidden fields */
+    $('#songForm').validate({
+        ignore: [],
+        submitHandler: function (form) {
+            form.submit();
+        }
+    });
+
+    /* On file upload change */
+    $('#musicFile').change(function () {
+        
+    });
 });
 
+/* Ajax function to upload music file */
 function uploadFiles(inputId) {
     var input = document.getElementById(inputId);
     var files = input.files;
     var formData = new FormData();
 
     for (var i = 0; i !== files.length; i++) {
-        formData.append("files", files[i]);
+        formData.append("musicFile", files[i]);
     }
 
     $.ajax(
@@ -34,7 +48,9 @@ function uploadFiles(inputId) {
             },
             success: function (data) {
                 $("#progress").hide();
-                $("#upload-status").show();               
+                $("#upload-status").show();
+
+                $('.progress-bar').addClass('bg-success');
             }
         }
     );
