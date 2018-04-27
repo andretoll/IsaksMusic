@@ -12,9 +12,19 @@
     });
 
     /* When choosing file to upload */
-    $('#songUpload').change(function () {
+    $('#songUpload').change(function () {        
+
         if (this.files.length > 0) {
-            $(this).addClass('file-valid');
+
+            var file = $("#songUpload")[0].files[0];
+            var ext = file.name.split('.').pop();
+
+            if (ext === 'wav' || ext === 'mp3') {
+                $(this).addClass('file-valid');
+            }
+            else {
+                $(this).removeClass('file-valid');
+            }
         }
         else {
             $(this).removeClass('file-valid');
