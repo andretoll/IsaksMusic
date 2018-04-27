@@ -30,21 +30,21 @@ namespace IsaksMusic.Pages.Admin.Music
             _configuration = configuration;
         }
 
-        /* For uploading song */
-        [BindProperty]
-        public SongModel Song { get; set; }
-
-        /* For displaying songs in table */
-        public List<Song> SongList { get; set; }
-
-        /* For displaying categories when uploading song */
-        public List<SelectListItem> CategoryList { get; set; }
-
         [TempData]
         public string Message { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        /* For uploading song */
+        [BindProperty]
+        public SongModel Song { get; set; }
+
+        /* For displaying songs in table */
+        public IList<Song> SongList { get; set; }
+
+        /* For displaying categories when uploading song */
+        public IList<SelectListItem> CategoryList { get; set; }       
 
         public class SongModel
         {
@@ -75,11 +75,11 @@ namespace IsaksMusic.Pages.Admin.Music
         /// <summary>
         /// Get list of songs and categories
         /// </summary>
-        public void OnGet()
+        public async Task OnGet()
         {
             /* List of songs */
-            SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();            
+            SongList = await _applicationDbContext.Songs.Include(song => song.SongCategories)
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();            
 
             /* Select List with categories */
             CategoryList = new List<SelectListItem>();

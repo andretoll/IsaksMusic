@@ -1,0 +1,56 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.Categories.CategoriesModel
+
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<div>
+    <h2>Categories</h2>
+    <hr />
+    <p>Below you can find each category with their respective amount of songs.<br />Click the <i class="fas fa-times-circle fa-sm text-danger"></i> icon to delete a category.</p>
+    <a title="Add category" class="btn btn-success text-white" data-toggle="modal" data-target="#newCategoryModal">Add Category</a>
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+</div>
+<div id="categoryList">
+    <ul>
+        @foreach (var category in Model.Categories)
+        {
+            <li><a asp-page="/">@category.Name (@category.SongCategories.Count)</a><a class="ml-2 text-danger" title="Delete"><i class="fas fa-times-circle fa-sm"></i></a></li>
+        }
+    </ul>
+</div>
+
+@*<p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category[0].Name)
+                    </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Category) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@

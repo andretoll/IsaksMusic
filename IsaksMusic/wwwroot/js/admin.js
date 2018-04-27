@@ -37,6 +37,7 @@ function startLoadingAnimation() {
     $('#songUploadAnim').removeClass('d-none');
 }
 
+/* Function to delete song */
 function deleteSong(songId) {
 
     var result = confirm("Are you sure you want to remove this song?");
@@ -55,6 +56,7 @@ function deleteSong(songId) {
     }    
 }
 
+/* Function to remove specific row from table */
 function removeTableRow(row) {
     $(row).fadeOut(500, function () {
         row.remove();
