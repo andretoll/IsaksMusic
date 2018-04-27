@@ -118,6 +118,7 @@ th {
 }
 .modal-header {
   border: none;
+  align-items: center;
 }
 button[data-dismiss="modal"] {
   color: #e43636;
