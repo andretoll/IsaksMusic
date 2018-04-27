@@ -47,6 +47,9 @@ input {
   color: #ffffff;
   outline: none;
 }
+input[type="file"].file-valid {
+  color: green;
+}
 textarea {
   min-height: 60px;
   max-height: 500px;
@@ -100,8 +103,8 @@ li {
   list-style: none;
 }
 table {
-  font-size: 0.9rem;
-  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
 }
 th {
   color: #ffffff;
