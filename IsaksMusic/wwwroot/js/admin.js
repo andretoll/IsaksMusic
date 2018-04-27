@@ -39,17 +39,20 @@ function startLoadingAnimation() {
 
 function deleteSong(songId) {
 
-    $.ajax({
+    var result = confirm("Are you sure you want to remove this song?");
+    if (result) {
+        $.ajax({
 
-        type: "Get",
-        url: "/admin/songs?handler=Delete",
-        data: { id: songId },
-        success: function () {
-            var row = $('#row_' + songId);
-            ShowSuccessSnackbar("Song removed");
-            removeTableRow(row);
-        }
-    });
+            type: "Get",
+            url: "/admin/songs?handler=Delete",
+            data: { id: songId },
+            success: function () {
+                var row = $('#row_' + songId);
+                ShowSuccessSnackbar("Song removed");
+                removeTableRow(row);
+            }
+        });
+    }    
 }
 
 function removeTableRow(row) {
