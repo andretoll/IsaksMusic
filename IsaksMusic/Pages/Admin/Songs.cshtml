@@ -57,12 +57,15 @@
 
                     string categoryString = String.Join(", ", categoryList);
 
-                    <tr>
+                    <tr id="row_@song.Id">
                         <td>
                             @song.Title
-                            <a class="float-right"> 
-                                <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
-                            </a>
+                            @if (song.Description != null)
+                            {
+                                <a class="float-right">
+                                    <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
+                                </a>
+                            }
                         </td>
                         <td>@TimeSpan.FromSeconds(song.Length)</td>
                         <td>@categoryString</td>
@@ -73,7 +76,7 @@
                                 Action
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-page="./Songs" asp-route-id="@song.Id" asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
+                                <a class="dropdown-item" onclick="deleteSong(@song.Id)"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -128,8 +131,8 @@
                         </div>
                     </div>
                     <div class="form-group text-center mb-0">
-                        <input type="submit" class="btn btn-success" value="Submit song" />                        
-                    </div>    
+                        <input type="submit" class="btn btn-success" value="Submit song" />
+                    </div>
                     <div class="text-center mt-2">
                         <label id="songUploadAnim" class="d-none">
                             Uploading...

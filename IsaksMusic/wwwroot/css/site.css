@@ -29,6 +29,9 @@ a:not(.btn):hover {
   color: #ffc600 !important;
   text-decoration: none;
 }
+a:not([href]):not([tabindex]) {
+  color: #ffffff;
+}
 h1,
 h2,
 h3,
@@ -161,6 +164,7 @@ button[data-dismiss="modal"]:hover {
 }
 .dropdown-item {
   color: #ffffff;
+  cursor: pointer;
 }
 .dropdown-item:hover {
   background-color: #0a0a0a;
@@ -545,7 +549,7 @@ section {
 /*#endregion */
 /*#region Admin */
 #adminLayoutWrapper {
-  padding: 150px 0;
+  padding: 175px 0;
   min-height: 600px;
 }
 #songTable {

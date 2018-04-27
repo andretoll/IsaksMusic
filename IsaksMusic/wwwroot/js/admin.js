@@ -36,3 +36,24 @@
 function startLoadingAnimation() {
     $('#songUploadAnim').removeClass('d-none');
 }
+
+function deleteSong(songId) {
+
+    $.ajax({
+
+        type: "Get",
+        url: "/admin/songs?handler=Delete",
+        data: { id: songId },
+        success: function () {
+            var row = $('#row_' + songId);
+            ShowSuccessSnackbar("Song removed");
+            removeTableRow(row);
+        }
+    });
+}
+
+function removeTableRow(row) {
+    $(row).fadeOut(500, function () {
+        row.remove();
+    });
+}
