@@ -97,8 +97,13 @@
                 <form id="songForm" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
+                        <label asp-for="Song.MusicFile"></label>
                         <input id="songUpload" asp-for="Song.MusicFile" type="file" />
-                        <i class="fas fa-circle-notch fa-spin fa-2x text-yellow d-none" id="songUploadAnim"></i>
+                        <span id="songUploadAnim" class="d-none">
+                            <i class="fas fa-circle-notch fa-spin fa-2x text-yellow"></i>
+                            <a asp-page="/admin/songs" title="Cancel upload"><i class="fas fa-times text-danger"></i></a>
+                        </span>
+                        
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Title"></label>
@@ -112,7 +117,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Description"></label>
-                        <textarea asp-for="Song.Description" class="form-control" id="songDescription"></textarea>
+                        <textarea asp-for="Song.Description" class="form-control textarea-sm" id="songDescription"></textarea>
                         <span asp-validation-for="Song.Description"></span>
                     </div>
                     <div class="form-row mb-4">

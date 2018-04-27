@@ -52,6 +52,9 @@ textarea {
   max-height: 500px;
   height: 100px;
 }
+textarea.textarea-sm {
+  height: 60px;
+}
 .fas-mr {
   margin-right: 5px;
 }

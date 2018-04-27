@@ -55,12 +55,15 @@ namespace IsaksMusic.Pages.Admin.Music
             [Display(Name = "Description (optional)")]
             public string Description { get; set; }
 
+            [Range(0, 59, ErrorMessage = "Not a valid number for minutes")]
             [Required(ErrorMessage = "Please specify minutes")]
             public byte Minutes { get; set; }
 
+            [Range(0, 59, ErrorMessage = "Not a valid number for seconds")]
             [Required(ErrorMessage = "Please specify seconds")]
             public byte Seconds { get; set; }
 
+            [Display(Name = "Music file (.mp3 .wav)")]
             [Required(ErrorMessage = "Choose a file to upload")]
             public IFormFile MusicFile { get; set; }
 
@@ -69,6 +72,9 @@ namespace IsaksMusic.Pages.Admin.Music
             public List<int> CategoryIds { get; set; }
         }
 
+        /// <summary>
+        /// Get list of songs and categories
+        /// </summary>
         public void OnGet()
         {
             /* List of songs */
@@ -89,29 +95,10 @@ namespace IsaksMusic.Pages.Admin.Music
             }
         }
 
-        public ActionResult OnGetDelete(int? id)
-        {
-            if (id != null)
-            {
-                var song = _applicationDbContext.Songs.Where(s => s.Id == id).SingleOrDefault();
-
-                /* Remove entry from database */
-                _applicationDbContext.Songs.Remove(song);
-                _applicationDbContext.SaveChanges();
-
-                /* Set full path to file */
-                var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{song.FileName}";
-
-                /* Remove file from server */
-                if (System.IO.File.Exists(fullPath))
-                {
-                    System.IO.File.Delete(fullPath);
-                }
-            }
-
-            return RedirectToPage("Songs");
-        }
-
+        /// <summary>
+        /// Upload file to server and save song in database
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             /* Full path to file */
@@ -127,8 +114,8 @@ namespace IsaksMusic.Pages.Admin.Music
                 foreach (var file in files)
                 {
                     /* Get allowed file extensions */
-                    IConfigurationSection myArraySection = _configuration.GetSection("AudioFileExtensions");
-                    var extensionList = myArraySection.GetChildren().ToList().Select(c => c.Value).ToList();
+                    ApplicationConfigurationRetriever retriever = new ApplicationConfigurationRetriever(_configuration);
+                    var extensionList = retriever.GetMusicFileExtensions();
 
                     /* Get file extension */
                     string fileExtension = Path.GetExtension(file.FileName);
@@ -208,7 +195,37 @@ namespace IsaksMusic.Pages.Admin.Music
             }
 
             return RedirectToPage();
-
         }
+
+        /// <summary>
+        /// Delete a song
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                /* Get song from database */
+                var song = _applicationDbContext.Songs.Where(s => s.Id == id).SingleOrDefault();
+
+                /* Remove entry from database */
+                _applicationDbContext.Songs.Remove(song);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /* Get full path to file */
+                var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{song.FileName}";
+
+                /* Remove file from server */
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+
+            Message = "Song removed";
+
+            return RedirectToPage();
+        }        
     }
 }

@@ -25,7 +25,6 @@ namespace IsaksMusic.Pages.Admin
         public void OnGet()
         {
             /* Check for broken links */
-
             var SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
                 .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();
 
