@@ -114,7 +114,7 @@ th {
 }
 .modal-content {
   background-color: #111;
-  padding: 20px;
+  padding: 15px;
 }
 .modal-header {
   border: none;
@@ -467,7 +467,7 @@ section {
 }
 #scrollIndicator {
   color: #ffc600;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 80%;
   transform: translateX(-50%);
