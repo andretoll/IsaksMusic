@@ -74,5 +74,55 @@ namespace IsaksMusic.Pages.Admin.Categories
 
             return RedirectToPage();
         }
+
+        /// <summary>
+        /// Delete a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                /* Get category from database */
+                var category = _applicationDbContext.Categories.Where(c => c.Id == id).Include(c => c.SongCategories).SingleOrDefault();
+
+                /* Check if category has any songs */
+                if (category.SongCategories.Count() > 0)
+                {
+                    ErrorMessage = "Category could not be removed because one or several songs depend on it.";
+                    return RedirectToPage();
+                }
+
+                /* Remove entry from database */
+                _applicationDbContext.Categories.Remove(category);
+                await _applicationDbContext.SaveChangesAsync();
+
+                Message = "Category removed";
+            }
+
+            return RedirectToPage();
+        }
+
+        /// <summary>
+        /// Rename a category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnGetEdit(int? id, string name)
+        {
+            if (id != null)
+            {
+                /* Get category from database */
+                var category = _applicationDbContext.Categories.Where(c => c.Id == id).SingleOrDefault();
+
+                /* Change category name */
+                category.Name = name;
+                await _applicationDbContext.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
     }
 }

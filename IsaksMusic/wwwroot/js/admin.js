@@ -1,4 +1,13 @@
-﻿$(document).ready(function () {
+﻿var categoryValue;
+var categoryId;
+var clicked;
+
+$(document).ready(function () {
+
+    $(document).click(function (e) {
+        clicked = e.target;
+        console.log(clicked);
+    });
 
     /* Change active link in admin layout */
     $('a.active').removeClass('active');
@@ -29,6 +38,43 @@
         else {
             $(this).removeClass('file-valid');
         }
+    });
+
+    /* When double clicking editable list item */
+    $('.list-item-editable').click(function () {
+        this.contentEditable = true;
+        this.focus();
+
+        /* Get category Id */
+        categoryId = $(this).parent().parent('li').attr('id');
+
+        /* Get content */
+        categoryValue = $(this).html();
+
+        /* Find and show save button */
+        var listItem = this.closest('li');
+        saveBtn = $(listItem).children('.list-item-save');
+        $(saveBtn).show();
+    });
+
+    /* Upon leaving edit area */
+    $('.list-item-editable').on('keypress blur', function (e) {
+
+        if (e.keyCode && e.keyCode === 13 || e.type === 'blur') {
+
+            /* Disable editable */
+            this.contentEditable = false;
+
+            //$(saveBtn).hide();
+
+            return false;
+        }
+
+    });
+
+    /* Prevent cut, copy and paste */
+    $('.list-item-editable').on("cut copy paste", function (e) {
+        e.preventDefault();
     });
 });
 
@@ -61,4 +107,26 @@ function removeTableRow(row) {
     $(row).fadeOut(500, function () {
         row.remove();
     });
+}
+
+/* Function to edit category name */
+function editCategory(id, dom) {
+
+    var newName = $(dom).html();
+
+    console.log("Saving: " + categoryValue + " => " + newName);
+
+    if (categoryValue !== newName) {
+        $.ajax({
+
+            type: "Get",
+            url: "/admin/categories?handler=Edit",
+            data: { id: id, name: newName },
+            success: function () {
+                ShowSuccessSnackbar("Category updated");
+            }
+        });
+    }   
+
+    $(saveBtn).hide();
 }

@@ -20,7 +20,10 @@
 <div>
     <h2>Categories</h2>
     <hr />
-    <p>Below you can find each category with their respective amount of songs.<br />Click the <i class="fas fa-times-circle fa-sm text-danger"></i> icon to delete a category.</p>
+    <p>
+        Below you can find each category with their respective amount of songs.
+        <br />Click the <i class="fas fa-times-circle fa-sm text-danger"></i> icon to delete a category.
+    </p>
     <a title="Add category" class="btn btn-success text-white" data-toggle="modal" data-target="#newCategoryModal">Add Category</a>
     @if (Model.ErrorMessage != null)
     {
@@ -33,7 +36,15 @@
     <ul>
         @foreach (var category in Model.Categories)
         {
-            <li><a asp-page="/">@category.Name (@category.SongCategories.Count)</a><a class="ml-2 text-danger" data-toggle="tooltip" title="Delete"><i class="fas fa-times-circle fa-sm"></i></a></li>
+            <li class="category-list-item">
+                <span spellcheck="false" id="category_@category.Id" class="list-item-editable p-1">@category.Name</span> (@category.SongCategories.Count)
+                <a class="text-info icon-link list-item-save" data-toggle="tooltip" title="Save" onclick="editCategory(@category.Id, category_@category.Id);">
+                    <i class="ml-2 fas fa-save fa-sm"></i>
+                </a>
+                <a class="text-danger icon-link" data-toggle="tooltip" title="Delete" asp-route-id="@category.Id" asp-page-handler="Delete" onclick="return confirm('Are you sure you want to remove this category?')">
+                    <i class="fas fa-times-circle fa-sm"></i>
+                </a>
+            </li>
         }
     </ul>
 </div>
@@ -64,31 +75,3 @@
         </div>
     </div>
 </div>
-
-@*<p>
-        <a asp-page="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Category[0].Name)
-                    </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-    @foreach (var item in Model.Category) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-    }
-        </tbody>
-    </table>*@

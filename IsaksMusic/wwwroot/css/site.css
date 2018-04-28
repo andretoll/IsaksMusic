@@ -571,7 +571,13 @@ section {
   flex-wrap: wrap;
 }
 #categoryList li {
-  padding: 10px 20px;
+  padding: 10px 15px;
+}
+.category-action-container {
+  display: none;
+}
+.category-action-container.show {
+  display: inline-block;
 }
 /*#endregion */
 /*#region Media Queries */
