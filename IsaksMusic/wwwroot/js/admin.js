@@ -1,13 +1,7 @@
 ﻿var categoryValue;
 var categoryId;
-var clicked;
 
 $(document).ready(function () {
-
-    $(document).click(function (e) {
-        clicked = e.target;
-        console.log(clicked);
-    });
 
     /* Change active link in admin layout */
     $('a.active').removeClass('active');
@@ -46,15 +40,10 @@ $(document).ready(function () {
         this.focus();
 
         /* Get category Id */
-        categoryId = $(this).parent().parent('li').attr('id');
+        categoryId = $(this).parent('li').attr('id').split("_").pop();
 
         /* Get content */
         categoryValue = $(this).html();
-
-        /* Find and show save button */
-        var listItem = this.closest('li');
-        saveBtn = $(listItem).children('.list-item-save');
-        $(saveBtn).show();
     });
 
     /* Upon leaving edit area */
@@ -65,11 +54,15 @@ $(document).ready(function () {
             /* Disable editable */
             this.contentEditable = false;
 
-            //$(saveBtn).hide();
+            if ($(this).html().length === 0) {
+                $(this).html(categoryValue);
+            } else {
+                editCategory(categoryId, this);
+            }
+            
 
             return false;
         }
-
     });
 
     /* Prevent cut, copy and paste */
@@ -114,7 +107,7 @@ function editCategory(id, dom) {
 
     var newName = $(dom).html();
 
-    console.log("Saving: " + categoryValue + " => " + newName);
+    console.log("Saving " + id + ": " + categoryValue + " => " + newName);
 
     if (categoryValue !== newName) {
         $.ajax({
@@ -127,6 +120,4 @@ function editCategory(id, dom) {
             }
         });
     }   
-
-    $(saveBtn).hide();
 }

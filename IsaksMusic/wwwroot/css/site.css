@@ -564,20 +564,22 @@ section {
   background-color: #0a0a0a;
 }
 #categoryList ul {
-  border: 1px solid #ffc600;
   color: #ffffff;
   font-size: 1.2rem;
   display: flex;
   flex-wrap: wrap;
 }
-#categoryList li {
-  padding: 10px 15px;
+.category-list-item {
+  padding: 10px 20px;
 }
-.category-action-container {
-  display: none;
+.list-item-editable[contenteditable="true"] {
+  outline: 2px dashed #ffc600;
+  outline-offset: 5px;
 }
-.category-action-container.show {
-  display: inline-block;
+.category-amount {
+  margin-left: 5px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
 }
 /*#endregion */
 /*#region Media Queries */

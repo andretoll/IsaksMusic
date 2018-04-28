@@ -318,6 +318,7 @@ button[data-dismiss="modal"] {
     border-left: thick solid @primary-text-color;
 }
 /*#endregion */
+
 /*#region Error Pages */
 .error-section {
     text-align: center;
@@ -674,29 +675,30 @@ section {
 
 #categoryList {
     margin-top: 30px;
-    background-color: @primary-bg-color;
+    background-color: @primary-bg-color;    
 }
 
 #categoryList ul {
-    border: 1px solid @primary-text-color;
     color: @secondary-text-color;
     font-size: 1.2rem;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
 }
 
-#categoryList li {
-    padding: 10px 15px;
+.category-list-item {
+    padding: 10px 20px;    
 }
 
-.category-action-container {
-    display: none;
+.list-item-editable[contenteditable="true"] {
+    outline: 2px dashed @primary-text-color;
+    outline-offset: 5px;
 }
 
-.category-action-container.show {
-    display: inline-block;
+.category-amount {
+    margin-left: 5px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
 }
-
 /*#endregion */
 
 /*#region Media Queries */
