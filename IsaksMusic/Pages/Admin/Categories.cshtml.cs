@@ -46,7 +46,9 @@ namespace IsaksMusic.Pages.Admin.Categories
         /// <returns></returns>
         public async Task OnGetAsync()
         {
+            /* Get categories and order by number of songs */
             Categories = await _applicationDbContext.Categories.Include(c => c.SongCategories).ToListAsync();
+            Categories = Categories.OrderByDescending(c => c.SongCategories.Count()).ToList();
         }
 
         /// <summary>
