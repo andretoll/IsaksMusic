@@ -1,0 +1,67 @@
+﻿@page
+@model IsaksMusic.Pages.Music.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div class="container">
+    <!-- Media player -->
+    <div id="waveFormContainer">
+        <!-- Wave form header -->
+        <div>
+            <h4 id="songPlayingTitle"></h4>
+        </div>
+        <!-- Wave form -->
+        <div id="waveform"></div>
+
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="col-xs-1">
+                    <i class="glyphicon glyphicon-zoom-in"></i>
+                </div>
+
+                <div class="col-xs-10">
+                    <input id="slider" type="range" min="1" max="200" value="1" />
+                </div>
+
+                <div class="col-xs-1">
+                    <i class="glyphicon glyphicon-zoom-out"></i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
+                    <i class="fas fa-play-circle fa-2x"></i>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <input id="volumeSlider" type="range" min="0" max="100" value="50" />
+            </div>
+
+
+
+            <!-- Zoom slider -->
+            @*<p class="row">
+                    
+                </p>*@
+        </div>
+    </div>
+    <div id="songListContainer">
+        <div id="songListHeader">
+            <h3>Songs</h3>
+        </div>
+        <div id="songList">
+            <ul>
+                @foreach (var song in Model.Songs)
+                {
+                    <li>
+                        <div>
+                            <a class="songTitle" onclick="playSong('@song.FileName', '@song.Title')">@song.Title</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
