@@ -312,7 +312,7 @@ button[data-dismiss="modal"]:hover {
   border-radius: 40px;
   padding: 16px;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 50%;
   bottom: 25%;
   transform: translateX(-50%);
@@ -573,6 +573,7 @@ section {
   padding: 10px 20px;
 }
 .list-item-editable[contenteditable="true"] {
+  padding: 5px;
   outline: 2px dashed #ffc600;
   outline-offset: 5px;
 }
