@@ -7,40 +7,52 @@
 
 <div class="container">
     <!-- Media player -->
-    <div id="waveFormContainer">
-        <!-- Wave form header -->
-        <div>
-            <h4 id="songPlayingTitle"></h4>
+    <div id="waveformContainer">        
+        <div id="waveformInner">
+            <!-- Wave form header -->
+            <div id="waveformHeader">
+                <h4 id="songPlayingTitle"></h4>
+            </div>
+            <div id="waveform">
+
+            </div>
+            <div class="d-flex">
+                <div>
+                    <span id="waveformCounter"></span>
+                </div>
+                <div class="ml-auto">
+                    <span id="waveformDuration"></span>
+                </div>
+            </div>
+            <div class="row text-center">
+                <!-- Zoom in -->
+                <div class="col-md-4">
+                    <div class="col-xs-1">
+                        <i class="glyphicon glyphicon-zoom-in"></i>
+                    </div>
+
+                    <div class="col-xs-10">
+                        <input id="zoomSlider" type="range" min="1" max="200" value="1" />
+                    </div>
+
+                    <div class="col-xs-1">
+                        <i class="glyphicon glyphicon-zoom-out"></i>
+                    </div>
+                </div>
+                <!-- Play/Pause -->
+                <div class="col-md-4">
+                    <button id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
+                        <i class="fas fa-play-circle fa-2x"></i>
+                    </button>
+                </div>
+                <!-- Volume -->
+                <div class="col-md-4">
+                    <input id="volumeSlider" type="range" min="0" max="100" value="50" />
+                </div>
+            </div>
         </div>
-        <!-- Wave form -->
-        <div id="waveform"></div>
 
-        <div class="row text-center">
-            <!-- Zoom in -->
-            <div class="col-md-4">
-                <div class="col-xs-1">
-                    <i class="glyphicon glyphicon-zoom-in"></i>
-                </div>
 
-                <div class="col-xs-10">
-                    <input id="zoomSlider" type="range" min="1" max="200" value="1" />
-                </div>
-
-                <div class="col-xs-1">
-                    <i class="glyphicon glyphicon-zoom-out"></i>
-                </div>
-            </div>
-            <!-- Play/Pause -->
-            <div class="col-md-4">
-                <button id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
-                    <i class="fas fa-play-circle fa-2x"></i>
-                </button>
-            </div>
-            <!-- Volume -->
-            <div class="col-md-4">
-                <input id="volumeSlider" type="range" min="0" max="100" value="50" />
-            </div>
-        </div>
     </div>
     <div id="songListContainer">
         <div id="songListHeader">

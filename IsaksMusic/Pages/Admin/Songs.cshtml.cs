@@ -134,12 +134,20 @@ namespace IsaksMusic.Pages.Admin.Music
                         /* Set full path to file */
                         fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{fileName}";
 
-                        /* Upload to directory */
-                        using (FileStream fs = System.IO.File.Create(fullPath))
+                        if (System.IO.File.Exists(fullPath))
                         {
-                            file.CopyTo(fs);
-                            fs.Flush();
+                            ModelState.AddModelError("", "The file already exists.");
                         }
+
+                        if (ModelState.IsValid)
+                        {
+                            /* Upload to directory */
+                            using (FileStream fs = System.IO.File.Create(fullPath))
+                            {
+                                file.CopyTo(fs);
+                                fs.Flush();
+                            }
+                        }                        
                     }
                 }
             }

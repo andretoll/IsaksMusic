@@ -34,6 +34,7 @@
 
     <!-- Bootstrap Select -->
     <link rel="stylesheet" href="~/lib/bootstrap-select/dist/css/bootstrap-select.min.css" />
+
 </head>
 <body>
 
@@ -59,8 +60,15 @@
                 crossorigin="anonymous"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 
+        <!-- Bootstrap Select -->
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+        <!-- Wave Surfer -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
+
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/js/admin.js" asp-append-version="true"></script>
+        <script src="~/js/music-player.js" asp-append-version="true"></script>
 
     </environment>
     <environment exclude="Development">
@@ -78,19 +86,17 @@
                 integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm">
         </script>
 
+        <!-- Bootstrap Select -->
+        <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+        <!-- Wave Surfer -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
+
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="~/js/admin.min.js" asp-append-version="true"></script>
-    </environment>
+        <script src="~/js/music-player.min.js" asp-append-version="true"></script>
 
-
-
-    <!-- Bootstrap Select -->
-    <script src="~/lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-
-    <!-- Wave Surfer -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
-
-    <script src="~/js/music-player.js"></script>
+    </environment>   
 
     @RenderSection("Scripts", required: false)
 </body>

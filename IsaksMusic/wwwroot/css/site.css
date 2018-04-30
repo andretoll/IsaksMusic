@@ -584,13 +584,25 @@ section {
 }
 /*#endregion */
 /*#region Music */
-#waveFormContainer {
+#waveformContainer {
   margin: 150px 0 50px 0;
   border: 1px solid white;
   padding: 30px;
 }
+#waveformInner {
+  max-width: 80%;
+  margin: auto;
+}
 #waveform {
-  margin: 30px 0;
+  margin: auto;
+}
+#waveformCounter,
+#waveformDuration {
+  color: #ffc600;
+}
+.tooltip-position {
+  left: 50%!important;
+  color: #ffc600;
 }
 #playPauseBtn:hover {
   color: #ffc600;
@@ -686,6 +698,9 @@ section {
     min-width: 70px;
     overflow: visible;
     min-height: 100%;
+  }
+  #waveformInner {
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {

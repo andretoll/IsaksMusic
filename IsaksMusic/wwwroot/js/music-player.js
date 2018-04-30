@@ -2,6 +2,7 @@
 
     var volumeSlider = $('#volumeSlider');
     var zoomSlider = $('#zoomSlider');
+    var wavesurfer = $('#waveform');
 });
 
 /* Wavesurfer options */
@@ -9,14 +10,20 @@ wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'white',
     progressColor: '#ffc600',
-    barHeight: 2,
+    barHeight: 1,
     barWidth: 3,
+    cursorWidth: 0,
     responsive: true,
     hideScrollbar: true
 });
 
 /* Set initial volume */
 wavesurfer.setVolume(0.5);
+
+$('#waveform').children().tooltip({
+    track: false,
+    tooltipClass: "tooltip-position"
+});
 
 /* When song has finished */
 wavesurfer.on('finish', function () {
@@ -26,7 +33,13 @@ wavesurfer.on('finish', function () {
 
 /* When file is ready */
 wavesurfer.on('ready', function () {
+    $('#waveformDuration').text(formatTime(wavesurfer.getDuration()));
     playPause();
+});
+
+/* When song is being played */
+wavesurfer.on('audioprocess', function () {
+    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));
 });
 
 /* Volume slider change */
@@ -41,7 +54,7 @@ volumeSlider.oninput = function () {
 
 /* Zoom slider change */
 zoomSlider.oninput = function () {
-    var zoomLevel = Number(slider.value);
+    var zoomLevel = Number(zoomSlider.value);
     wavesurfer.zoom(zoomLevel);
 };
 
@@ -65,3 +78,10 @@ function playPause() {
         $('#playPauseBtn').children('i').addClass('fa-pause-circle');
     }
 }
+
+var formatTime = function (time) {
+    return [
+        Math.floor((time % 3600) / 60), // minutes
+        ('00' + Math.floor(time % 60)).slice(-2) // seconds
+    ].join(':');
+};

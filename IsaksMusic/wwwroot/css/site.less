@@ -704,14 +704,28 @@ section {
 
 /*#region Music */
 
-#waveFormContainer {
+#waveformContainer {
     margin: 150px 0 50px 0;
     border: 1px solid white;
     padding: 30px;
 }
 
+#waveformInner {
+    max-width: 80%;
+    margin: auto;
+}
+
 #waveform {
-    margin: 30px 0;
+    margin: auto;
+}
+
+#waveformCounter, #waveformDuration {
+    color: @primary-text-color;
+}
+
+.tooltip-position {
+    left: 50%!important;
+    color: @primary-text-color;
 }
 
 #playPauseBtn {
@@ -836,6 +850,10 @@ section {
         min-width: 70px;
         overflow: visible;
         min-height: 100%;
+    }
+
+    #waveformInner {
+        max-width: 100%;
     }
 }
 
