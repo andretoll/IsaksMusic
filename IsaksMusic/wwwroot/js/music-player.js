@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
 
-    var volumeSlider = $('#volumeSlider');    
-})
+    var volumeSlider = $('#volumeSlider');
+    var zoomSlider = $('#zoomSlider');
+});
 
 /* Wavesurfer options */
 wavesurfer = WaveSurfer.create({
@@ -25,7 +26,6 @@ wavesurfer.on('finish', function () {
 
 /* When file is ready */
 wavesurfer.on('ready', function () {
-    console.log("Ready");
     playPause();
 });
 
@@ -33,22 +33,19 @@ wavesurfer.on('ready', function () {
 volumeSlider.oninput = function () {
 
     var volume = $('#volumeSlider').val();
-    console.log(volume);
 
     var value = volume / 100;
-    console.log(value);
 
     wavesurfer.setVolume(value);
-}
+};
 
-var slider = document.querySelector('#slider');
-
-slider.oninput = function () {
+/* Zoom slider change */
+zoomSlider.oninput = function () {
     var zoomLevel = Number(slider.value);
     wavesurfer.zoom(zoomLevel);
 };
 
-function playSong(file, title) {
+function loadSong(file, title) {
     wavesurfer.load('music/' + file);
 
     /* Set title */
@@ -58,13 +55,11 @@ function playSong(file, title) {
 function playPause() {
 
     if (wavesurfer.isPlaying()) {
-        console.log("Pause");
         wavesurfer.pause();
         $('#playPauseBtn').children('i').removeClass('fa-pause-circle');
         $('#playPauseBtn').children('i').addClass('fa-play-circle');
     }
     else {
-        console.log("Play");
         wavesurfer.play();
         $('#playPauseBtn').children('i').removeClass('fa-play-circle');
         $('#playPauseBtn').children('i').addClass('fa-pause-circle');

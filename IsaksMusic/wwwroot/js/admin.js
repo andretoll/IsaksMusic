@@ -107,8 +107,6 @@ function editCategory(id, dom) {
 
     var newName = $(dom).html();
 
-    console.log("Saving " + id + ": " + categoryValue + " => " + newName);
-
     if (categoryValue !== newName) {
         $.ajax({
 
