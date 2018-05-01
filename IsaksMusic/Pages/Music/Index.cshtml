@@ -9,7 +9,7 @@
 <div class="tooltip-track">00:00</div>
 
 <div class="body-background">
-    <div class="container" id="musicPlayerWrapper">
+    <div class="container" id="musicWrapper">
         <!-- Media player -->
         <div id="waveformContainer">
             <div id="waveformInner">
@@ -28,22 +28,23 @@
                         <span id="waveformDuration"></span>
                     </div>
                 </div>
+                <hr />
                 <div class="row text-center" id="waveformControls">
                     <!-- Zoom in -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-left">
                         <!-- Shuffle -->
-                        <button title="Shuffle" type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <a title="Shuffle" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <i class="fas fa-random"></i>
-                        </button>
+                        </a>
                     </div>
                     <div class="col-md-4">
                         <!-- Play/Pause -->
-                        <button title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
+                        <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
                             <i class="fas fa-play-circle fa-2x"></i>
-                        </button>
+                        </a>
                     </div>
                     <!-- Volume -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 text-right">
                         <input id="volumeSlider" type="range" min="0" max="100" value="50" />
                     </div>
                 </div>
@@ -53,33 +54,28 @@
             <div id="songListHeader">
                 <h2>Songs</h2>
             </div>
-            <div id="songList">                
+            <div>
                 <ul>
                     @foreach (var song in Model.Songs)
                     {
                         <li>
-                            <div class="row align-items-center">
-                                <div class="col-md-10">
-                                    <a class="songTitle" onclick="loadSong('@song.FileName', '@song.Title')">
-                                        <div class="song-wrapper">
-                                            <div class="song-details">
-                                                <span>@song.Title</span>
-                                                <span class="float-right">@TimeSpan.FromSeconds(@song.Length).Minutes:@TimeSpan.FromSeconds(song.Length).Seconds</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-2 text-center">
+                            <div class="song-container">
+                                <a class="song-info" onclick="loadSong('@song.FileName', '@song.Title')">
+                                    <div class="song-info-inner">
+                                        <span>@song.Title</span>
+                                        <span class="float-right">@TimeSpan.FromSeconds(@song.Length).Minutes:@TimeSpan.FromSeconds(song.Length).Seconds</span>
+                                    </div>
+                                </a>
+                                <div class="song-actions">
                                     <a class="btn btn-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-h"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">Queue</a>
+                                        <a class="dropdown-item" href="#">More</a>
                                     </div>
-                                </div>
-                            </div>                                                       
+                                </div>                                
+                            </div>                            
                         </li>
                     }
                 </ul>

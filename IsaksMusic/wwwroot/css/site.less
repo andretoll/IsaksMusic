@@ -708,14 +708,13 @@ section {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/bg-header.jpg);
 }
 
-#musicPlayerWrapper {
+#musicWrapper {
     padding: 175px 0;
     min-height: 600px;
 }
 
 #waveformContainer {
-    background-color: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: radial-gradient(#1d3033, black);
     padding: 30px 0;
 }
 
@@ -730,13 +729,14 @@ section {
 
 #waveformCounter, #waveformDuration {
     color: @primary-text-color;
+    font-size: 1.2rem;
 }
 
 .tooltip-track {
     position: absolute;
     display: none;
     background: @primary-bg-color;
-    color: @primary-text-color;
+    color: @secondary-text-color;
     border: 1px solid #ccc;
     padding: 5px;
     overflow: hidden;
@@ -746,9 +746,10 @@ section {
 
 #waveformControls {
     margin-top: 20px;
+    align-items: center;
 }
 
-#waveformContainer .btn-dark {
+#musicWrapper .btn-dark {
 
     background-color: transparent;
 
@@ -771,32 +772,36 @@ section {
     background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-text-color), color-stop(100%, #c99b00));
     background: -o-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
     background: linear-gradient(to bottom, @primary-text-color 0%, #c99b00 100%);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
     text-align: center;
     padding: 20px 0;
 }
 
-#songList li {
-
+.song-container {
     border-bottom: 1px solid rgba(255,255,255, 0.1);
+    display: flex;
+    align-items: center;
 
     &:hover {
-        background-color: black;
+        background-color: @secondary-bg-color;
     }
 }
 
-.song-wrapper {
-    height: 60px;
-    padding: 0 30px;
-}
-
-.song-details {
-    line-height: 60px;
-}
-
-.songTitle {
+.song-info {
     cursor: pointer;
+    width: 100%;
 }
+
+.song-info-inner {
+    height: 70px;
+    padding: 0 30px;
+    line-height: 70px;
+}
+
+.song-actions {
+    margin: 0 10px;
+}
+
+
 /*#endregion */
 /*#region Media Queries */
 @media (max-width: 1199px) {
