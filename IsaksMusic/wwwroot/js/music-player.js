@@ -63,7 +63,7 @@ volumeSlider.oninput = function () {
 };
 
 function loadSong(file, title) {
-    wavesurfer.load('music/' + file);
+    wavesurfer.load(file);
 
     /* Set title */
     $('#songPlayingTitle').html(title);

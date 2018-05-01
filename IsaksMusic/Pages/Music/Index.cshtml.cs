@@ -25,11 +25,39 @@ namespace IsaksMusic.Pages.Music
             _configuration = configuration;
         }
 
+        public List<SongModel> SongList { get; set; }
+
         public IList<Song> Songs { get; set; }
 
         public async Task OnGet()
         {
-            Songs = await _applicationDbContext.Songs.ToListAsync();
+            /* List of songs */
+            var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();
+
+            SongList = new List<SongModel>();
+
+            foreach (var song in songs)
+            {
+                SongList.Add(new SongModel
+                {
+                    Title = song.Title,
+                    Categories = StringFormatter.GetCategoryString(song.SongCategories),
+                    Description = song.Description,
+                    Duration = StringFormatter.GetDurationFromSeconds(song.Length),
+                    FilePath = "music/" + song.FileName
+                });
+            }
+        }
+
+        public class SongModel
+        {
+            public string Title { get; set; }
+            public string Categories { get; set; }
+            public string Duration { get; set; }
+            public string Description { get; set; }
+
+            public string FilePath { get; set; }
         }
     }
 }

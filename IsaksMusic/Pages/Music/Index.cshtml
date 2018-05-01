@@ -56,14 +56,15 @@
             </div>
             <div>
                 <ul>
-                    @foreach (var song in Model.Songs)
+                    @foreach (var song in Model.SongList)
                     {
                         <li>
                             <div class="song-container">
-                                <a class="song-info" onclick="loadSong('@song.FileName', '@song.Title')">
+                                <a class="song-info" onclick="loadSong('@song.FilePath', '@song.Title')">
                                     <div class="song-info-inner">
                                         <span>@song.Title</span>
-                                        <span class="float-right">@TimeSpan.FromSeconds(@song.Length).Minutes:@TimeSpan.FromSeconds(song.Length).Seconds</span>
+                                        <span>@song.Categories</span>
+                                        <span class="float-right">@song.Duration</span>
                                     </div>
                                 </a>
                                 <div class="song-actions">
