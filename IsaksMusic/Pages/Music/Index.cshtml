@@ -90,32 +90,32 @@
                     </tbody>
                 </table>
                 @*<ul>
-                    @foreach (var song in Model.SongList)
-                    {
-                        <li>
-                            <div class="song-container">
-                                <a class="song-info" onclick="loadSong('@song.FilePath', '@song.Title')">
-                                    <div class="song-info-inner">
-                                        <span class="float-left">@song.Title</span>
-                                        <div class="d-inline-flex">
-                                            <span>@song.Categories</span>
+                        @foreach (var song in Model.SongList)
+                        {
+                            <li>
+                                <div class="song-container">
+                                    <a class="song-info" onclick="loadSong('@song.FilePath', '@song.Title')">
+                                        <div class="song-info-inner">
+                                            <span class="float-left">@song.Title</span>
+                                            <div class="d-inline-flex">
+                                                <span>@song.Categories</span>
+                                            </div>
+                                            <span class="float-right">@song.Duration</span>
                                         </div>
-                                        <span class="float-right">@song.Duration</span>
-                                    </div>
-                                </a>
-                                <div class="song-actions">
-                                    <a class="btn btn-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-h"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Queue</a>
-                                        <a class="dropdown-item" href="#">More</a>
+                                    <div class="song-actions">
+                                        <a class="btn btn-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Queue</a>
+                                            <a class="dropdown-item" href="#">More</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    }
-                </ul>*@
+                            </li>
+                        }
+                    </ul>*@
             </div>
             <div id="songListFooter">
 
@@ -128,9 +128,12 @@
     window.onload = function () {
 
         playlist = @Html.Raw(Json.Serialize(Model.SongList));
-
-        
     }
-
 </script>
+
+@section scripts
+{
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
+    <script src="~/js/music-player.min.js" asp-append-version="true"></script>
+}
 
