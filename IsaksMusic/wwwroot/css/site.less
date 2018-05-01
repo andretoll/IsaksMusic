@@ -136,9 +136,10 @@ li {
     list-style: none;
 }
 
-table {
+.table {
     font-size: 1rem;
     font-weight: 300;
+    margin: 0;
 }
 
 th {
@@ -767,13 +768,18 @@ section {
 }
 
 #songListHeader {
-    background: #222222;
+    background: @secondary-bg-color;
     background: -moz-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-text-color), color-stop(100%, #c99b00));
     background: -o-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
     background: linear-gradient(to bottom, @primary-text-color 0%, #c99b00 100%);
     text-align: center;
     padding: 20px 0;
+}
+
+#songListFooter {
+    min-height: 30px;
+    background-color: @black-bg-color;
 }
 
 .song-container {
@@ -826,6 +832,12 @@ section {
     border-color: rgba(255,255,255, 0.1);
     color: inherit;
     font-weight: inherit;
+    width: auto;
+}
+
+#musicTable td.min {
+    width: 1%;
+    white-space: nowrap;
 }
 
 #musicTable .song-active {
@@ -838,28 +850,27 @@ section {
 /*#region Media Queries */
 @media (max-width: 1199px) {
 
-    table, thead, tbody, th, td, tr {
+    #songTable, #songTable thead, #songTable tbody, #songTable th, #songTable td, #songTable tr {
         display: block;
     }
 
-    thead tr {
+    #songTable thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    tr {
+    #songTable tr {
         border: 1px solid #ccc;
     }
 
-    td {
+    #songTable td {
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50%;
     }
 
-    td:before {
+    #songTable td:before {
         padding-right: 10px;
         font-weight: bold;
         font-size: 1.2rem;
@@ -890,6 +901,8 @@ section {
     #songTable td:last-child {
         text-align: left;
     }
+
+    
 }
 
 @media (max-width: 991px) {
@@ -900,13 +913,6 @@ section {
         flex: 100%;
         text-align: center;
     }
-}
-
-@media (max-width: 767px) {
-
-    section {
-        padding: 50px 0;
-    }
 
     #mainNav {
         background-color: @black-bg-color;
@@ -915,6 +921,13 @@ section {
     .navbar-collapse {
         border-bottom: 2px solid rgba(255, 215, 0, 0.65);
         padding-bottom: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    section {
+        padding: 50px 0;
     }
 
     .side-menu-collapse {
@@ -933,6 +946,10 @@ section {
 
     #waveformInner {
         max-width: 90%;
+    }
+
+    #musicTable th.dismissable, #musicTable td.dismissable {
+        display: none;
     }
 }
 

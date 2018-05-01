@@ -5,10 +5,14 @@ var repeatToggle = $('#toggleRepeat');
 var shuffleToggle = $('#toggleShuffle');
 var currentSong;
 var repeat;
+var shuffle;
+var playlist;
 
-$(document).ready(function () {
+$(document).ready(function () {   
 
     repeat = false;
+    shuffle = false;
+    currentSong = 1;
 
     /* Toggle repeat */
     repeatToggle.on('click', function (e) {
@@ -21,13 +25,18 @@ $(document).ready(function () {
         } else {
             repeat = true;
         }
-
-        console.log(repeat);
     });
 
     /* Toggle shuffle */
     shuffleToggle.on('click', function (e) {
+        var ele = $('#toggleShuffle');
 
+        /* If button state is pressed */
+        if (ele.attr("aria-pressed") === "true") {
+            shuffle = false;
+        } else {
+            shuffle = true;
+        }
     });
 });
 
@@ -93,16 +102,20 @@ volumeSlider.oninput = function () {
 function playNext() {
 
     /* If shuffling is toggled, randomize song */
-    /* LOGIC TO RANDOMIZE SONG HERE */
+    if (shuffle === true) {
+        var random = generateRandom(1, playlist.length, currentSong);
+        nextSong = playlist[random - 1];
+    } else {
+        /* Try to get the next song */
+        currentSong++;
+        var nextSong = playlist[currentSong - 1];
+    }      
 
-    /* Try to get the next song */
-    var nextSong = $(currentSong).next('tr');
-    console.log(repeat);
     /* If no song is found */
-    if (nextSong.length === 0) {
+    if (nextSong === undefined) {
         /* If repeat is toggled */
-        if (repeat === true) {            
-            nextSong = $('#musicTable > tbody').children('tr:first');
+        if (repeat === true) {      
+            nextSong = playlist[0];
         }
         /* Else stop playback */
         else {
@@ -110,29 +123,39 @@ function playNext() {
         }
     }
 
-    /* If next song is found, get path and title */
-    var songId = nextSong.attr('id');
-    var songTitle = nextSong.attr('title');
-    loadSong(songId, songTitle);
+    /* If next song is found */
+    loadSong(nextSong.playlistId);
 }
 
-function loadSong(file, title) {
-    wavesurfer.load(file);
+function loadSong(id) {
 
-    /* Set title */
-    $('#songPlayingTitle').html(title);
+    var song = playlist.filter(function (e) {
+        return e.playlistId === id;
+    })[0];
+
+    wavesurfer.load(song.filePath);
+
+    currentSong = song.playlistId;
+
+    $('#songPlayingTitle').html(song.title);
+    $('#songPlayingCategories').html(song.categories);
 
     /* Highlight song */
-    currentSong = document.getElementById(file);
+    currentSongElement = document.getElementById(id);
 
     $('#musicTable > tbody > tr').each(function () {
         $(this).removeClass('song-active');
     });
 
-    $(currentSong).addClass('song-active');
+    $(currentSongElement).addClass('song-active');
 }
 
 function playPause() {
+
+    /* If a song is not loaded */
+    if (wavesurfer.getDuration() === 0) {
+        loadSong(playlist[0].playlistId);
+    }
 
     if (wavesurfer.isPlaying()) {
         wavesurfer.pause();
@@ -163,4 +186,9 @@ function mousetooltiptime(e) {
             $('.tooltip-track').text(timeset).css('left', e.pageX + 25).css('top', e.pageY - 25).css('display', 'block');
         }
     }    
+}
+
+function generateRandom(min, max, exclude) {
+    var num = Math.floor(Math.random() * (max - min + 1)) + min;
+    return (num === exclude) ? generateRandom(min, max) : num;
 }

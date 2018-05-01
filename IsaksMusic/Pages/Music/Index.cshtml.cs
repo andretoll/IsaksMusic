@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace IsaksMusic.Pages.Music
 
         public List<SongModel> SongList { get; set; }
 
-        public IList<Song> Songs { get; set; }
+        public ArrayList Playlist { get; set; }
 
         public async Task OnGet()
         {
@@ -37,22 +38,35 @@ namespace IsaksMusic.Pages.Music
 
             SongList = new List<SongModel>();
 
+            int count = 1;
             foreach (var song in songs)
             {
                 SongList.Add(new SongModel
                 {
+                    SongId = song.Id,
+                    PlaylistId = count,
                     Title = song.Title,
                     Categories = StringFormatter.GetCategoryString(song.SongCategories),
                     Description = song.Description,
                     Duration = StringFormatter.GetDurationFromSeconds(song.Length),
                     FilePath = "music/" + song.FileName
                 });
+
+                count++;
+            }
+
+            Playlist = new ArrayList();
+
+            foreach (var song in SongList)
+            {
+                Playlist.Add(song.FilePath);
             }
         }
 
         public class SongModel
         {
             public int SongId { get; set; }
+            public int PlaylistId { get; set; }
             public string Title { get; set; }
             public string Categories { get; set; }
             public string Duration { get; set; }
