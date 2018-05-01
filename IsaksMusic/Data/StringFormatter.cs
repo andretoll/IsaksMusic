@@ -17,7 +17,7 @@ namespace IsaksMusic.Data
                 list.Add(category.Category.Name);
             }
 
-            return string.Join(",", list);
+            return string.Join(", ", list);
         }
 
         public static string GetDurationFromSeconds(long value)

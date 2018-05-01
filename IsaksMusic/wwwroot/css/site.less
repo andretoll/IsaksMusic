@@ -793,14 +793,46 @@ section {
 
 .song-info-inner {
     height: 70px;
-    padding: 0 30px;
+    padding: 0 20px;
     line-height: 70px;
+    text-align: center;
 }
 
 .song-actions {
     margin: 0 10px;
 }
 
+#musicTable tr {
+    background-color: @primary-bg-color;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    color: @secondary-text-color;    
+}
+
+#musicTable tbody tr:hover {
+    background-color: @secondary-bg-color;
+}
+
+#musicTable tr:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#musicTable th {
+    border: none;
+}
+
+#musicTable td {
+    border-color: rgba(255,255,255, 0.1);
+    color: inherit;
+    font-weight: inherit;
+}
+
+#musicTable .song-active {
+    color: @primary-text-color;
+    font-weight: 800;
+    background-color: #070707;
+}
 
 /*#endregion */
 /*#region Media Queries */
@@ -835,23 +867,23 @@ section {
         display: block;
     }
 
-    td:nth-of-type(1):before {
+    #songTable td:nth-of-type(1):before {
         content: "Title";
     }
 
-    td:nth-of-type(2):before {
+    #songTable td:nth-of-type(2):before {
         content: "Length";
     }
 
-    td:nth-of-type(3):before {
+    #songTable td:nth-of-type(3):before {
         content: "Category";
     }
 
-    td:nth-of-type(4):before {
+    #songTable td:nth-of-type(4):before {
         content: "Upload date";
     }
 
-    td:nth-of-type(5):before {
+    #songTable td:nth-of-type(5):before {
         content: "File path";
     }
 

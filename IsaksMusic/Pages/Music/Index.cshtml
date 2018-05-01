@@ -18,7 +18,6 @@
                     <h4 id="songPlayingTitle"></h4>
                 </div>
                 <div id="waveform">
-
                 </div>
                 <div class="d-flex">
                     <div>
@@ -33,8 +32,11 @@
                     <!-- Zoom in -->
                     <div class="col-md-4 text-left">
                         <!-- Shuffle -->
-                        <a title="Shuffle" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <a id="toggleShuffle" title="Shuffle" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <i class="fas fa-random"></i>
+                        </a>
+                        <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <i class="fas fa-redo"></i>
                         </a>
                     </div>
                     <div class="col-md-4">
@@ -55,15 +57,38 @@
                 <h2>Songs</h2>
             </div>
             <div>
-                <ul>
+                <table class="table" id="musicTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Categories</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var song in Model.SongList)
+                        {
+                            <tr id="@song.FilePath" title="@song.Title" onclick="loadSong('@song.FilePath', '@song.Title')">
+                                <td>@song.Title</td>
+                                <td>@song.Categories</td>
+                                <td>@song.Duration</td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @*<ul>
                     @foreach (var song in Model.SongList)
                     {
                         <li>
                             <div class="song-container">
                                 <a class="song-info" onclick="loadSong('@song.FilePath', '@song.Title')">
                                     <div class="song-info-inner">
-                                        <span>@song.Title</span>
-                                        <span>@song.Categories</span>
+                                        <span class="float-left">@song.Title</span>
+                                        <div class="d-inline-flex">
+                                            <span>@song.Categories</span>
+                                        </div>
                                         <span class="float-right">@song.Duration</span>
                                     </div>
                                 </a>
@@ -75,11 +100,11 @@
                                         <a class="dropdown-item" href="#">Queue</a>
                                         <a class="dropdown-item" href="#">More</a>
                                     </div>
-                                </div>                                
-                            </div>                            
+                                </div>
+                            </div>
                         </li>
                     }
-                </ul>
+                </ul>*@
             </div>
         </div>
     </div>

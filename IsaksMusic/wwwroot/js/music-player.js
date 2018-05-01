@@ -1,8 +1,34 @@
-﻿$(document).ready(function () {
+﻿var volumeSlider = $('#volumeSlider');
+var zoomSlider = $('#zoomSlider');
+var wavesurfer = $('#waveform');
+var repeatToggle = $('#toggleRepeat');
+var shuffleToggle = $('#toggleShuffle');
+var currentSong;
+var repeat;
 
-    var volumeSlider = $('#volumeSlider');
-    var zoomSlider = $('#zoomSlider');
-    var wavesurfer = $('#waveform');
+$(document).ready(function () {
+
+    repeat = false;
+
+    /* Toggle repeat */
+    repeatToggle.on('click', function (e) {
+
+        var ele = $('#toggleRepeat');
+
+        /* If button state is pressed */
+        if (ele.attr("aria-pressed") === "true") {
+            repeat = false;
+        } else {
+            repeat = true;
+        }
+
+        console.log(repeat);
+    });
+
+    /* Toggle shuffle */
+    shuffleToggle.on('click', function (e) {
+
+    });
 });
 
 /* Wavesurfer options */
@@ -24,6 +50,8 @@ wavesurfer.setVolume(0.5);
 wavesurfer.on('finish', function () {
     $('#playPauseBtn').children('i').removeClass('fa-pause-circle');
     $('#playPauseBtn').children('i').addClass('fa-play-circle');
+
+    playNext();
 });
 
 /* When file is ready */
@@ -62,11 +90,46 @@ volumeSlider.oninput = function () {
     wavesurfer.setVolume(value);
 };
 
+function playNext() {
+
+    /* If shuffling is toggled, randomize song */
+    /* LOGIC TO RANDOMIZE SONG HERE */
+
+    /* Try to get the next song */
+    var nextSong = $(currentSong).next('tr');
+    console.log(repeat);
+    /* If no song is found */
+    if (nextSong.length === 0) {
+        /* If repeat is toggled */
+        if (repeat === true) {            
+            nextSong = $('#musicTable > tbody').children('tr:first');
+        }
+        /* Else stop playback */
+        else {
+            return;
+        }
+    }
+
+    /* If next song is found, get path and title */
+    var songId = nextSong.attr('id');
+    var songTitle = nextSong.attr('title');
+    loadSong(songId, songTitle);
+}
+
 function loadSong(file, title) {
     wavesurfer.load(file);
 
     /* Set title */
     $('#songPlayingTitle').html(title);
+
+    /* Highlight song */
+    currentSong = document.getElementById(file);
+
+    $('#musicTable > tbody > tr').each(function () {
+        $(this).removeClass('song-active');
+    });
+
+    $(currentSong).addClass('song-active');
 }
 
 function playPause() {

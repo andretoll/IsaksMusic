@@ -52,6 +52,7 @@ namespace IsaksMusic.Pages.Music
 
         public class SongModel
         {
+            public int SongId { get; set; }
             public string Title { get; set; }
             public string Categories { get; set; }
             public string Duration { get; set; }
