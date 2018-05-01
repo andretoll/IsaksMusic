@@ -20,11 +20,6 @@ wavesurfer = WaveSurfer.create({
 /* Set initial volume */
 wavesurfer.setVolume(0.5);
 
-$('#waveform').children().tooltip({
-    track: false,
-    tooltipClass: "tooltip-position"
-});
-
 /* When song has finished */
 wavesurfer.on('finish', function () {
     $('#playPauseBtn').children('i').removeClass('fa-pause-circle');
@@ -39,7 +34,22 @@ wavesurfer.on('ready', function () {
 
 /* When song is being played */
 wavesurfer.on('audioprocess', function () {
+    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));    
+});
+
+/* When song is seeked */
+wavesurfer.on('seek', function () {
     $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));
+});
+
+/* When cursor moves over waveform */
+$('#waveform').on('mousemove', function (e) {
+    mousetooltiptime(e);
+});
+
+/* When cursor leaves waveform */
+$('#waveform').on('mouseleave', function (e) {
+    mousetooltiptime(false);
 });
 
 /* Volume slider change */
@@ -50,12 +60,6 @@ volumeSlider.oninput = function () {
     var value = volume / 100;
 
     wavesurfer.setVolume(value);
-};
-
-/* Zoom slider change */
-zoomSlider.oninput = function () {
-    var zoomLevel = Number(zoomSlider.value);
-    wavesurfer.zoom(zoomLevel);
 };
 
 function loadSong(file, title) {
@@ -79,9 +83,21 @@ function playPause() {
     }
 }
 
-var formatTime = function (time) {
+function formatTime (time) {
     return [
-        Math.floor((time % 3600) / 60), // minutes
+        Math.floor(time % 3600 / 60), // minutes
         ('00' + Math.floor(time % 60)).slice(-2) // seconds
     ].join(':');
-};
+}
+
+function mousetooltiptime(e) {
+    var timeset = formatTime(Math.floor(event.layerX / wavesurfer.drawer.width * wavesurfer.getDuration()));
+
+    if (wavesurfer.getCurrentTime() !== 0) {
+        if (e === false) {
+            $('.tooltip-track').text(timeset).css('display', 'none');
+        } else {
+            $('.tooltip-track').text(timeset).css('left', e.pageX + 25).css('top', e.pageY - 25).css('display', 'block');
+        }
+    }    
+}

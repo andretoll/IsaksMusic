@@ -128,7 +128,7 @@ hr {
     color: @primary-text-color;
 }
 
-ul {
+ul, ol {
     padding: 0;
 }
 
@@ -704,10 +704,19 @@ section {
 
 /*#region Music */
 
+#musicBackground {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/bg-header.jpg);
+}
+
+#musicPlayerWrapper {
+    padding: 175px 0;
+    min-height: 600px;
+}
+
 #waveformContainer {
-    margin: 150px 0 50px 0;
-    border: 1px solid white;
-    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 30px 0;
 }
 
 #waveformInner {
@@ -723,33 +732,66 @@ section {
     color: @primary-text-color;
 }
 
-.tooltip-position {
-    left: 50%!important;
+.tooltip-track {
+    position: absolute;
+    display: none;
+    background: @primary-bg-color;
     color: @primary-text-color;
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1000;
 }
 
-#playPauseBtn {
+#waveformControls {
+    margin-top: 20px;
+}
+
+#waveformContainer .btn-dark {
+
+    background-color: transparent;
 
     &:hover {
         color: @primary-text-color;
     }
+
+    &.active {
+        color: @primary-text-color;    }
 }
 
 #songListContainer {
-    padding: 30px;
-    background-color: @secondary-bg-color;
+    background-color: @primary-bg-color;
+    margin-top: 50px;
 }
 
 #songListHeader {
+    background: #222222;
+    background: -moz-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-text-color), color-stop(100%, #c99b00));
+    background: -o-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
+    background: linear-gradient(to bottom, @primary-text-color 0%, #c99b00 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     text-align: center;
-}
-
-#songList {
-    
+    padding: 20px 0;
 }
 
 #songList li {
 
+    border-bottom: 1px solid rgba(255,255,255, 0.1);
+
+    &:hover {
+        background-color: black;
+    }
+}
+
+.song-wrapper {
+    height: 60px;
+    padding: 0 30px;
+}
+
+.song-details {
+    line-height: 60px;
 }
 
 .songTitle {
@@ -853,7 +895,7 @@ section {
     }
 
     #waveformInner {
-        max-width: 100%;
+        max-width: 90%;
     }
 }
 
