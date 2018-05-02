@@ -29,9 +29,9 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row text-center" id="waveformControls">
+                <div class="d-flex" id="waveformControls">
                     <!-- Zoom in -->
-                    <div class="col-sm-5 text-left">
+                    <div class="flex-group-item">
                         <!-- Shuffle -->
                         <a id="toggleShuffle" title="Shuffle" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <i class="fas fa-random"></i>
@@ -40,20 +40,20 @@
                             <i class="fas fa-redo"></i>
                         </a>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="flex-group-item justify-content-center">
                         <!-- Play/Pause -->
                         <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
                             <i class="fas fa-play-circle fa-2x"></i>
                         </a>
                     </div>
                     <!-- Volume -->
-                    <div class="col-sm-5 text-right">
+                    <div class="flex-group-item flex-group-item-last">
                         <a class="btn btn-dark" id="volumeMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-volume-up"></i>
+                            <i class="fas fa-volume-down"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="volumeMenuButton">
+                        <div class="dropdown-menu dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
                             <div id="volumeControl">
-                                <i class="fa fa-volume-down"></i>
+                                <i class="fa fa-volume-off"></i>
                                 <div id="volumeSlider"></div>
                                 <i class="fa fa-volume-up"></i>
                             </div>
@@ -64,9 +64,10 @@
         </div>
         <div id="songListContainer">
             <div id="songListHeader">
-                <h2>Songs</h2>
+                <h2 class="text-yellow">Songs</h2>
+                <p>Click a song to play it!</p>
             </div>
-            <div>
+            <div id="musicTableContainer">
                 <table class="table" id="musicTable">
                     <thead>
                         <tr>
@@ -93,6 +94,7 @@
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdownButton">
                                             <a class="dropdown-item" href="#">Queue</a>
                                             <a class="dropdown-item" href="#">More</a>
+                                            <a class="dropdown-item" href="#">Share</a>
                                         </div>
                                     </div>
                                 </td>

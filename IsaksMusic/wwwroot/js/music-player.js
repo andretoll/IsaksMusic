@@ -99,7 +99,19 @@ $("#volumeSlider").slider({
 
 function setVolume(myVolume) {
 
-    console.log(myVolume);
+    if (myVolume === 0) {
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-down');
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-up');
+        $('#volumeMenuButton').children('i').addClass('fa-volume-off');
+    } else if (myVolume < .75) {
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-off');
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-up');
+        $('#volumeMenuButton').children('i').addClass('fa-volume-down');
+    } else if (myVolume >= .75) {
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-off');
+        $('#volumeMenuButton').children('i').removeClass('fa-volume-down');
+        $('#volumeMenuButton').children('i').addClass('fa-volume-up');
+    }
 
     wavesurfer.setVolume(myVolume);
 }
@@ -110,6 +122,7 @@ function playNext() {
     if (shuffle === true) {
         var random = generateRandom(1, playlist.length, currentSong);
         nextSong = playlist[random - 1];
+        currentSong = random;
     } else {
         /* Try to get the next song */
         currentSong++;
@@ -195,5 +208,5 @@ function mousetooltiptime(e) {
 
 function generateRandom(min, max, exclude) {
     var num = Math.floor(Math.random() * (max - min + 1)) + min;
-    return (num === exclude) ? generateRandom(min, max) : num;
+    return num === exclude ? generateRandom(min, max, exclude) : num;
 }

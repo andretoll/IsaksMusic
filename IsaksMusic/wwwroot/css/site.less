@@ -750,17 +750,37 @@ section {
     align-items: center;
 }
 
+#waveformControls .flex-group-item {
+    flex: 1;
+    display: flex;
+}
+
+#waveformControls .flex-group-item-last {
+    justify-content: flex-end;
+}
+
+#volumeMenuButton {
+    min-width: 50px;
+}
+
+#volume-dropdown {
+    padding: 15px;
+    min-width: 190px;
+}
+
 #volumeControl {
     width: auto;
     max-width: 150px;
     display: flex;
+    margin: auto;
+    align-items: center;
 
     i {
-        margin-top: -6px;
+        /*margin-top: -6px;*/
         color: #666;
     }
 
-    i.fa-volume-down {
+    i.fa-volume-off {
         margin-right: 15px;
     }
 
@@ -802,13 +822,16 @@ section {
 
 #musicWrapper .btn-dark {
     background-color: transparent;
+    border-radius: 0;
 
     &:hover {
         color: @primary-text-color;
+        border-color: @primary-text-color;
     }
 
     &.active {
         color: @primary-text-color;
+        border-color: @primary-text-color;
     }
 }
 
@@ -819,10 +842,10 @@ section {
 
 #songListHeader {
     background: @secondary-bg-color;
-    background: -moz-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-text-color), color-stop(100%, #c99b00));
-    background: -o-linear-gradient(top, @primary-text-color 0%, #c99b00 100%);
-    background: linear-gradient(to bottom, @primary-text-color 0%, #c99b00 100%);
+    background: -moz-linear-gradient(top, @primary-bg-color 0%, #0a0a0a 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-bg-color), color-stop(100%, #0a0a0a));
+    background: -o-linear-gradient(top, @primary-bg-color 0%, #0a0a0a 100%);
+    background: linear-gradient(to bottom, @primary-bg-color 0%, #0a0a0a 100%);
     text-align: center;
     padding: 20px 0;
 }
@@ -856,6 +879,10 @@ section {
 
 .song-actions {
     margin: 0 10px;
+}
+
+#musicTable {
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 #musicTable tr {
@@ -1015,6 +1042,10 @@ section {
 
     #aboutContainer {
         text-align: left;
+    }
+
+    #musicTableContainer {
+        padding: 20px;
     }
 }
 

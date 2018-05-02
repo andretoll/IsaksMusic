@@ -624,16 +624,32 @@ section {
   margin-top: 20px;
   align-items: center;
 }
+#waveformControls .flex-group-item {
+  flex: 1;
+  display: flex;
+}
+#waveformControls .flex-group-item-last {
+  justify-content: flex-end;
+}
+#volumeMenuButton {
+  min-width: 50px;
+}
+#volume-dropdown {
+  padding: 15px;
+  min-width: 190px;
+}
 #volumeControl {
   width: auto;
   max-width: 150px;
   display: flex;
+  margin: auto;
+  align-items: center;
 }
 #volumeControl i {
-  margin-top: -6px;
+  /*margin-top: -6px;*/
   color: #666;
 }
-#volumeControl i.fa-volume-down {
+#volumeControl i.fa-volume-off {
   margin-right: 15px;
 }
 #volumeControl i.fa-volume-up {
@@ -669,12 +685,15 @@ section {
 }
 #musicWrapper .btn-dark {
   background-color: transparent;
+  border-radius: 0;
 }
 #musicWrapper .btn-dark:hover {
   color: #ffc600;
+  border-color: #ffc600;
 }
 #musicWrapper .btn-dark.active {
   color: #ffc600;
+  border-color: #ffc600;
 }
 #songListContainer {
   background-color: #0a0a0a;
@@ -682,10 +701,10 @@ section {
 }
 #songListHeader {
   background: #111;
-  background: -moz-linear-gradient(top, #ffc600 0%, #c99b00 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffc600), color-stop(100%, #c99b00));
-  background: -o-linear-gradient(top, #ffc600 0%, #c99b00 100%);
-  background: linear-gradient(to bottom, #ffc600 0%, #c99b00 100%);
+  background: -moz-linear-gradient(top, #0a0a0a 0%, #0a0a0a 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #0a0a0a), color-stop(100%, #0a0a0a));
+  background: -o-linear-gradient(top, #0a0a0a 0%, #0a0a0a 100%);
+  background: linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 100%);
   text-align: center;
   padding: 20px 0;
 }
@@ -713,6 +732,9 @@ section {
 }
 .song-actions {
   margin: 0 10px;
+}
+#musicTable {
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 #musicTable tr {
   background-color: #0a0a0a;
@@ -843,6 +865,9 @@ section {
 @media (min-width: 768px) {
   #aboutContainer {
     text-align: left;
+  }
+  #musicTableContainer {
+    padding: 20px;
   }
 }
 @media (max-height: 767px) {
