@@ -119,7 +119,8 @@ function setVolume(myVolume) {
 function playNext() {
 
     /* If shuffling is toggled, randomize song */
-    if (shuffle === true) {
+    if (shuffle === true && playlist.length > 1) {
+
         var random = generateRandom(1, playlist.length, currentSong);
         nextSong = playlist[random - 1];
         currentSong = random;
@@ -195,7 +196,12 @@ function formatTime (time) {
 }
 
 function mousetooltiptime(e) {
-    var timeset = formatTime(Math.floor(event.layerX / wavesurfer.drawer.width * wavesurfer.getDuration()));
+
+    var perc = (event.layerX / $('#waveform').width());
+
+    console.log(wavesurfer.getDuration() * perc);
+
+    var timeset = formatTime(Math.floor(wavesurfer.getDuration() * perc));
 
     if (wavesurfer.getCurrentTime() !== 0) {
         if (e === false) {

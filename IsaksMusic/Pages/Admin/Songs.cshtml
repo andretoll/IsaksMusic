@@ -62,7 +62,7 @@
                             @song.Title
                             @if (song.Description != null)
                             {
-                                <a class="float-right">
+                                <a class="float-right info-circle">
                                     <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
                                 </a>
                             }
@@ -75,7 +75,7 @@
                             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
                             </button>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" onclick="deleteSong(@song.Id)"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
                             </div>
                         </td>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="form-group text-center mb-0">
-                        <input type="submit" class="btn btn-success" value="Submit song" />
+                        <input id="songFormSubmit" type="submit" class="btn btn-success" value="Submit song" />
                     </div>
                     <div class="text-center mt-2">
                         <label id="songUploadAnim" class="d-none">

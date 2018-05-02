@@ -784,6 +784,9 @@ section {
   #songTable tr {
     display: block;
   }
+  #songTable {
+    background: none;
+  }
   #songTable thead tr {
     position: absolute;
     top: -9999px;
@@ -791,11 +794,20 @@ section {
   }
   #songTable tr {
     border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  #songTable tr:nth-of-type(odd) {
+    background-color: transparent;
   }
   #songTable td {
     border: none;
-    border-bottom: 1px solid #eee;
     position: relative;
+  }
+  #songTable td .info-circle {
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
   #songTable td:before {
     padding-right: 10px;

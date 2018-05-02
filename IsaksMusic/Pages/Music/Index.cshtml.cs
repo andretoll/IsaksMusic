@@ -53,6 +53,8 @@ namespace IsaksMusic.Pages.Music
                 });
 
                 count++;
+
+                break;
             }
 
             Playlist = new ArrayList();

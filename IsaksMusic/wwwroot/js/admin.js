@@ -74,6 +74,8 @@ $(document).ready(function () {
 /* Function to start loading animation */
 function startLoadingAnimation() {
     $('#songUploadAnim').removeClass('d-none');
+
+    $('#songForm').find(':submit').hide();
 }
 
 /* Function to delete song */
