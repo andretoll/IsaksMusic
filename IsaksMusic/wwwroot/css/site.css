@@ -624,6 +624,49 @@ section {
   margin-top: 20px;
   align-items: center;
 }
+#volumeControl {
+  width: auto;
+  max-width: 150px;
+  display: flex;
+}
+#volumeControl i {
+  margin-top: -6px;
+  color: #666;
+}
+#volumeControl i.fa-volume-down {
+  margin-right: 15px;
+}
+#volumeControl i.fa-volume-up {
+  margin-left: 15px;
+}
+#volumeSlider {
+  margin: 0 auto;
+  height: 5px;
+  width: 100%;
+  background: #555;
+  border-radius: 15px;
+  border: none;
+}
+#volumeSlider .ui-slider-range-min {
+  height: 5px;
+  width: 300px;
+  position: absolute;
+  background: #ffc600;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+#volumeSlider .ui-slider-handle {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: #FFF;
+  position: absolute;
+  margin-left: -8px;
+  margin-top: -4px;
+  cursor: pointer;
+  outline: none;
+}
 #musicWrapper .btn-dark {
   background-color: transparent;
 }
@@ -702,8 +745,14 @@ section {
   font-weight: 800;
   background-color: #070707;
 }
+#musicTable tr .is-playing {
+  opacity: 0;
+}
+#musicTable tr.song-active .is-playing {
+  opacity: 1;
+}
 /*#endregion */
-/*#region Media Queries */
+/*#region Media Queries  */
 @media (max-width: 1199px) {
   #songTable,
   #songTable thead,

@@ -676,18 +676,18 @@ section {
 
 #categoryList {
     margin-top: 30px;
-    background-color: @primary-bg-color;    
+    background-color: @primary-bg-color;
 }
 
 #categoryList ul {
     color: @secondary-text-color;
     font-size: 1.2rem;
     display: flex;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;
 }
 
 .category-list-item {
-    padding: 10px 20px;    
+    padding: 10px 20px;
 }
 
 .list-item-editable[contenteditable="true"] {
@@ -750,8 +750,57 @@ section {
     align-items: center;
 }
 
-#musicWrapper .btn-dark {
+#volumeControl {
+    width: auto;
+    max-width: 150px;
+    display: flex;
 
+    i {
+        margin-top: -6px;
+        color: #666;
+    }
+
+    i.fa-volume-down {
+        margin-right: 15px;
+    }
+
+    i.fa-volume-up {
+        margin-left: 15px;
+    }
+}
+
+#volumeSlider {
+    margin: 0 auto;
+    height: 5px;
+    width: 100%;
+    background: #555;
+    border-radius: 15px;
+    border: none;
+
+    .ui-slider-range-min {
+        height: 5px;
+        width: 300px;
+        position: absolute;
+        background: @primary-text-color;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    .ui-slider-handle {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        background: #FFF;
+        position: absolute;
+        margin-left: -8px;
+        margin-top: -4px;
+        cursor: pointer;
+        outline: none;
+    }
+}
+
+#musicWrapper .btn-dark {
     background-color: transparent;
 
     &:hover {
@@ -759,7 +808,8 @@ section {
     }
 
     &.active {
-        color: @primary-text-color;    }
+        color: @primary-text-color;
+    }
 }
 
 #songListContainer {
@@ -813,7 +863,7 @@ section {
     height: 40px;
     line-height: 40px;
     cursor: pointer;
-    color: @secondary-text-color;    
+    color: @secondary-text-color;
 }
 
 #musicTable tbody tr:hover {
@@ -846,8 +896,18 @@ section {
     background-color: #070707;
 }
 
+#musicTable tr .is-playing {
+    opacity: 0;
+}
+
+#musicTable tr.song-active .is-playing {
+    opacity: 1;
+}
+
 /*#endregion */
-/*#region Media Queries */
+
+/*#region Media Queries  */
+
 @media (max-width: 1199px) {
 
     #songTable, #songTable thead, #songTable tbody, #songTable th, #songTable td, #songTable tr {
@@ -901,8 +961,6 @@ section {
     #songTable td:last-child {
         text-align: left;
     }
-
-    
 }
 
 @media (max-width: 991px) {
@@ -967,4 +1025,5 @@ section {
         padding-bottom: 100px;
     }
 }
+
 /*#endregion */

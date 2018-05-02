@@ -1,6 +1,4 @@
-﻿var volumeSlider = $('#volumeSlider');
-var zoomSlider = $('#zoomSlider');
-var wavesurfer = $('#waveform');
+﻿var wavesurfer = $('#waveform');
 var repeatToggle = $('#toggleRepeat');
 var shuffleToggle = $('#toggleShuffle');
 var currentSong;
@@ -8,7 +6,7 @@ var repeat;
 var shuffle;
 var playlist;
 
-$(document).ready(function () {   
+$(document).ready(function () {       
 
     repeat = false;
     shuffle = false;
@@ -37,7 +35,7 @@ $(document).ready(function () {
         } else {
             shuffle = true;
         }
-    });
+    });    
 });
 
 /* Wavesurfer options */
@@ -89,15 +87,22 @@ $('#waveform').on('mouseleave', function (e) {
     mousetooltiptime(false);
 });
 
-/* Volume slider change */
-volumeSlider.oninput = function () {
+$("#volumeSlider").slider({
+    min: 0,
+    max: 100,
+    value: 50,
+    range: "min",
+    slide: function (event, ui) {
+        setVolume(ui.value / 100);
+    }
+});
 
-    var volume = $('#volumeSlider').val();
+function setVolume(myVolume) {
 
-    var value = volume / 100;
+    console.log(myVolume);
 
-    wavesurfer.setVolume(value);
-};
+    wavesurfer.setVolume(myVolume);
+}
 
 function playNext() {
 
