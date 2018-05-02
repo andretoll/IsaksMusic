@@ -30,10 +30,8 @@
                 </div>
                 <hr />
                 <div class="d-flex" id="waveformControls">
-                    <!-- Zoom in -->
                     <div class="flex-group-item">
-                        <!-- Shuffle -->
-                        <a id="toggleShuffle" title="Shuffle" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <a id="toggleShuffle" title="Shuffle" class="btn btn-dark mr-1" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <i class="fas fa-random"></i>
                         </a>
                         <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
@@ -41,12 +39,10 @@
                         </a>
                     </div>
                     <div class="flex-group-item justify-content-center">
-                        <!-- Play/Pause -->
                         <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
                             <i class="fas fa-play-circle fa-2x"></i>
                         </a>
                     </div>
-                    <!-- Volume -->
                     <div class="flex-group-item flex-group-item-last">
                         <a class="btn btn-dark" id="volumeMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-volume-down"></i>
@@ -130,6 +126,7 @@
 @section scripts
     {
     <script src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>
+    <script src="~/lib/jquery-ui/dist/js/jquery.ui.touch-punch.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
     <script src="~/js/music-player.js" asp-append-version="true"></script>
 }

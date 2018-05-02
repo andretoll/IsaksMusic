@@ -69,6 +69,12 @@ input[type="file"].file-valid {
     color: green;
 }
 
+[data-toggle=buttons] > .btn input[type=checkbox] {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
 textarea {
     min-height: 60px;
     max-height: 500px;
@@ -825,8 +831,8 @@ section {
     border-radius: 0;
 
     &:hover {
-        color: @primary-text-color;
-        border-color: @primary-text-color;
+        color: @secondary-text-color;
+        border-color: #343a40;
     }
 
     &.active {
@@ -1002,6 +1008,14 @@ section {
 
     #songTable td:last-child {
         text-align: left;
+    }
+}
+
+@media (min-width: 1199px) {
+
+    #musicWrapper .btn-dark:hover {
+        color: @primary-text-color;
+        border-color: @primary-text-color;
     }
 }
 

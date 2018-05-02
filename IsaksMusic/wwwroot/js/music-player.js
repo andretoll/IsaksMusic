@@ -14,7 +14,6 @@ $(document).ready(function () {
 
     /* Toggle repeat */
     repeatToggle.on('click', function (e) {
-
         var ele = $('#toggleRepeat');
 
         /* If button state is pressed */
@@ -35,7 +34,7 @@ $(document).ready(function () {
         } else {
             shuffle = true;
         }
-    });    
+    });
 });
 
 /* Wavesurfer options */
@@ -197,9 +196,7 @@ function formatTime (time) {
 
 function mousetooltiptime(e) {
 
-    var perc = (event.layerX / $('#waveform').width());
-
-    console.log(wavesurfer.getDuration() * perc);
+    var perc = event.layerX / $('#waveform').width();
 
     var timeset = formatTime(Math.floor(wavesurfer.getDuration() * perc));
 
