@@ -378,10 +378,9 @@ button[data-dismiss="modal"]:hover {
   -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
   -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
   transition: padding-top 0.3s, padding-bottom 0.3s;
-  /*height: 90px;*/
 }
 #mainNav.navbar-shrink {
-  background-color: #040404;
+  background-color: #111;
   padding-top: 20px;
   padding-bottom: 10px;
 }
@@ -599,6 +598,8 @@ section {
   min-height: 600px;
 }
 #waveformContainer {
+  background: -moz-radial-gradient(#2c1d33, black);
+  background: -webkit-radial-gradient(#2c1d33, black);
   background: radial-gradient(#2c1d33, black);
   padding: 30px 0;
   border-radius: 10px;
@@ -644,11 +645,16 @@ section {
   flex: 1;
   display: flex;
 }
+#waveformControls .flex-group-item:not(.justify-content-center) .btn-dark {
+  width: 45px;
+  height: 40px;
+}
+#waveformControls .flex-group-item:not(.justify-content-center) .btn-dark .fas {
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
 #waveformControls .flex-group-item-last {
   justify-content: flex-end;
-}
-#volumeMenuButton {
-  min-width: 50px;
 }
 #volume-dropdown {
   padding: 15px;
@@ -728,8 +734,10 @@ section {
   padding: 20px 0 10px 0;
 }
 #songListFooter {
-  min-height: 30px;
   background-color: #040404;
+  margin-top: 30px;
+  padding: 10px;
+  text-align: center;
 }
 .song-container {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);

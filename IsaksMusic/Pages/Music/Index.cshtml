@@ -19,7 +19,7 @@
                     <label id="songPlayingCategories"></label>
                 </div>
                 <div id="waveform" class="text-center">
-                    <p id="waveformEmptyMessage">Choose a song in the playlist below.</p>
+                    <p id="waveformEmptyMessage">Choose a song in the playlist below to play it.</p>
                 </div>
                 <div class="d-flex">
                     <div>
@@ -37,10 +37,7 @@
                         </a>
                         <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
                             <i class="fas fa-redo"></i>
-                        </a>
-                        <a id="togglePulse" title="Pulse" class="btn btn-dark ml-1" data-toggle="button" aria-pressed="false" autocomplete="off">
-                            <i class="fas fa-heartbeat"></i>
-                        </a>
+                        </a>                        
                     </div>
                     <div class="flex-group-item justify-content-center">
                         <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
@@ -48,7 +45,10 @@
                         </a>
                     </div>
                     <div class="flex-group-item flex-group-item-last">
-                        <a class="btn btn-dark" id="volumeMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a id="togglePulse" title="Pulse" class="btn btn-dark mr-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <i class="fas fa-heartbeat"></i>
+                        </a>
+                        <a id="volumeMenuButton" title="Volume" class="btn btn-dark"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-volume-down"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
@@ -114,7 +114,7 @@
 
             </div>
             <div id="songListFooter">
-
+                <label class="text-muted">Please note that some of these tracks might be in an unfinished state.</label>
             </div>
         </div>
     </div>
