@@ -5,6 +5,7 @@ var currentSong;
 var repeat;
 var shuffle;
 var playlist;
+var autoplay;
 
 $(document).ready(function () {       
 
@@ -63,6 +64,7 @@ wavesurfer.on('finish', function () {
 /* When file is ready */
 wavesurfer.on('ready', function () {
     $('#waveformDuration').text(formatTime(wavesurfer.getDuration()));
+    $('#waveformEmptyMessage').hide();
     playPause();
 });
 

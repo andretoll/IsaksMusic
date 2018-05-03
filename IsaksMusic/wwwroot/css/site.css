@@ -688,6 +688,9 @@ section {
   cursor: pointer;
   outline: none;
 }
+#volumeSlider .ui-slider-handle.ui-state-active {
+  border-color: #ffffff;
+}
 #musicWrapper .btn-dark {
   background-color: transparent;
   border-radius: 0;

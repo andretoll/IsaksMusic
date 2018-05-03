@@ -18,7 +18,8 @@
                     <h4 id="songPlayingTitle"></h4>
                     <label id="songPlayingCategories"></label>
                 </div>
-                <div id="waveform">
+                <div id="waveform" class="text-center">
+                    <p id="waveformEmptyMessage">Choose a song in the playlist below.</p>
                 </div>
                 <div class="d-flex">
                     <div>
@@ -120,6 +121,12 @@
     window.onload = function () {
 
         playlist = @Html.Raw(Json.Serialize(Model.SongList));
+
+        autoplay = ("@Model.Autoplay" === "True");
+
+        if (autoplay) {
+            playPause();
+        }
     }
 </script>
 

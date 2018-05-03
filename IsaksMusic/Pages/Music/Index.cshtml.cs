@@ -30,7 +30,9 @@ namespace IsaksMusic.Pages.Music
 
         public ArrayList Playlist { get; set; }
 
-        public async Task OnGet()
+        public bool Autoplay { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(bool autoplay)
         {
             /* List of songs */
             var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
@@ -53,8 +55,6 @@ namespace IsaksMusic.Pages.Music
                 });
 
                 count++;
-
-                break;
             }
 
             Playlist = new ArrayList();
@@ -63,6 +63,10 @@ namespace IsaksMusic.Pages.Music
             {
                 Playlist.Add(song.FilePath);
             }
+
+            Autoplay = autoplay;
+
+            return Page();
         }
 
         public class SongModel
