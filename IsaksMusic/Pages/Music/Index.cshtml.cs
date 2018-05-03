@@ -26,10 +26,13 @@ namespace IsaksMusic.Pages.Music
             _configuration = configuration;
         }
 
+        /* List of songs */
         public List<SongModel> SongList { get; set; }
 
+        /* Playlist */
         public ArrayList Playlist { get; set; }
 
+        /* Whether or not to autoplay */
         public bool Autoplay { get; set; }
 
         public async Task<IActionResult> OnGetAsync(bool autoplay)
@@ -77,7 +80,6 @@ namespace IsaksMusic.Pages.Music
             public string Categories { get; set; }
             public string Duration { get; set; }
             public string Description { get; set; }
-
             public string FilePath { get; set; }
         }
     }

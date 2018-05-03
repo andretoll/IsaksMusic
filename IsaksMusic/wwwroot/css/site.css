@@ -250,7 +250,7 @@ button[data-dismiss="modal"]:hover {
 }
 /* Side menu links */
 .side-menu-collapse .list-group {
-  min-width: 200px;
+  min-width: 180px;
 }
 .side-menu-collapse .list-group .list-group-item {
   border-radius: 0;
@@ -560,7 +560,7 @@ section {
 }
 #songTable {
   margin: 30px 0;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 #songTable td:last-child {
   text-align: center;
