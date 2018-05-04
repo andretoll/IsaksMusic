@@ -126,6 +126,7 @@ hr {
 
 .dropdown-divider {
     border-color: rgba(255, 255, 255, 0.1);
+    margin: 0;
 }
 
 /* Bootstrap Select */
@@ -205,9 +206,13 @@ button[data-dismiss="modal"] {
 
 .dropdown-menu {
     background-color: @secondary-bg-color;
-    border: 1px solid rgba(255,198, 0, 0.8);
+    /*border: 1px solid rgba(255,198, 0, 0.8);*/
     min-width: 250px;
     max-width: 300px;
+    padding: 0;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 .dropdown-item {
@@ -378,15 +383,14 @@ button[data-dismiss="modal"] {
 #snackbar-success {
     visibility: hidden;
     min-width: 300px;
-    background-color: #3e8e41;
+    background-color: #064308;
     color: #fff;
     text-align: center;
-    border-radius: 40px;
     padding: 16px;
     position: fixed;
     z-index: 1000;
     left: 50%;
-    bottom: 25%;
+    bottom: 15%;
     transform: translateX(-50%);
 }
 
@@ -403,7 +407,7 @@ button[data-dismiss="modal"] {
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 }
@@ -415,31 +419,31 @@ button[data-dismiss="modal"] {
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 0;
     }
 }
 
 @keyframes fadeout {
     from {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 0;
     }
 }
@@ -467,6 +471,10 @@ button[data-dismiss="modal"] {
 
 .navbar-dark .navbar-nav .nav-link {
     color: @secondary-text-color;
+}
+
+#mainNav .dropdown-menu .dropdown-item {
+    padding: 10px 20px;
 }
 /*#endregion */
 
@@ -723,11 +731,7 @@ section {
     background: -moz-radial-gradient(#2c1d33, black);
     background: -webkit-radial-gradient(#2c1d33, black); 
     background: radial-gradient(#2c1d33, black);
-    padding: 30px 0;
-    border-radius: 10px;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+    padding: 30px 0;    
 }
 
 #waveformInner {
@@ -770,7 +774,7 @@ section {
     border-color: #ffffff;
 }
 
-#waveformControls .flex-group-item {
+.flex-group-item {
     flex: 1;
     display: flex;
 }
@@ -780,12 +784,12 @@ section {
     height: 40px;
 }
 
-#waveformControls .flex-group-item:not(.justify-content-center) .btn-dark .fas {
+.flex-group-item:not(.justify-content-center) .btn-dark .fas {
     font-size: 1.2rem;
     vertical-align: middle;
 }
 
-#waveformControls .flex-group-item-last {
+.flex-group-item-last {
     justify-content: flex-end;
 }
 
@@ -880,8 +884,12 @@ section {
     padding: 20px 0 10px 0;
 }
 
+#songListControls {
+    padding: 0 20px;
+    margin-bottom: 1.3rem;
+}
+
 #songListFooter {
-    background-color: @black-bg-color;
     margin-top: 30px;
     padding: 10px;
     text-align: center;
@@ -1061,6 +1069,16 @@ section {
     .navbar-collapse {
         border-bottom: 2px solid rgba(255, 215, 0, 0.65);
         padding-bottom: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    #waveformContainer {
+        border-radius: 10px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
     }
 }
 

@@ -19,7 +19,7 @@
                     <label id="songPlayingCategories"></label>
                 </div>
                 <div id="waveform" class="text-center">
-                    <p id="waveformEmptyMessage">Choose a song in the playlist below to play it.</p>
+                    <p id="waveformMessage">Choose a song in the playlist below to play it.</p>
                 </div>
                 <div class="d-flex">
                     <div>
@@ -67,6 +67,14 @@
                 <h2 class="text-yellow">Songs</h2>
                 <p>Click a song to play it!</p>
             </div>
+            <div id="songListControls" class="d-flex">
+                <div class="flex-group-item">
+                    <a title="Toggle filters" class="btn btn-dark">Filter</a>
+                </div>
+                <div class="flex-group-item flex-group-item-last">
+                    <a title="Clear song queue" class="btn btn-dark" onclick="clearQueueList()">Clear queue</a>
+                </div>
+            </div>
             <div id="musicTableContainer">
                 @if (Model.SongList.Count == 0)
                 {
@@ -100,9 +108,10 @@
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdownButton">
-                                                <a class="dropdown-item" href="#">Queue</a>
-                                                <a class="dropdown-item" href="#">More</a>
-                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" onclick="addToQueueList(@song.PlaylistId)"><i class="fas fa-fw mr-2 fa-indent"></i>Queue</a>
+                                                <a class="dropdown-item"><i class="fas fa-fw mr-2 fa-plus"></i>More</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item"><i class="fas fa-fw mr-2 fa-share-alt"></i>Share</a>
                                             </div>
                                         </div>
                                     </td>

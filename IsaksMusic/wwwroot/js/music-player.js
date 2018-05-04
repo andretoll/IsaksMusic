@@ -9,6 +9,7 @@ var pulse;
 var playlist;
 var autoplay;
 var ccInterval;
+var queueList = [];
 
 /* Color array */
 var colors = new Array(
@@ -99,7 +100,7 @@ wavesurfer.on('finish', function () {
 /* When file is ready */
 wavesurfer.on('ready', function () {
     $('#waveformDuration').text(formatTime(wavesurfer.getDuration()));
-    $('#waveformEmptyMessage').hide();
+    $('#waveformMessage').hide();
     playPause();
 });
 
@@ -154,8 +155,13 @@ function setVolume(myVolume) {
 
 function playNext() {
 
+    /* If queue list contains items */
+    if (queueList.length > 0) {
+        nextSong = playlist[queueList[0]-1];
+        queueList.shift();
+    }
     /* If shuffling is toggled, randomize song */
-    if (shuffle === true && playlist.length > 1) {
+    else if (shuffle === true && playlist.length > 1) {
 
         var random = generateRandom(1, playlist.length, currentSong);
         nextSong = playlist[random - 1];
@@ -183,6 +189,9 @@ function playNext() {
 }
 
 function loadSong(id) {
+
+    $('#waveformMessage').show();
+    $('#waveformMessage').text("Loading track...");
 
     var song = playlist.filter(function (e) {
         return e.playlistId === id;
@@ -288,4 +297,18 @@ function updateGradient() {
         colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
 
     }
+}
+
+function addToQueueList(id) {
+
+    queueList.push(id);
+    ShowSuccessSnackbar(queueList.length + " song(s) in queue");
+}
+
+function clearQueueList() {
+
+    if (queueList.length > 0) {
+        queueList = [];
+        ShowSuccessSnackbar(queueList.length + " song(s) in queue");
+    }    
 }
