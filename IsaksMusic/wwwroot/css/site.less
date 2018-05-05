@@ -110,6 +110,10 @@ textarea.textarea-sm {
     &:hover {
         background-color: @secondary-bg-color;
     }
+
+    &:focus {
+        box-shadow: none;
+    }
 }
 
 .btn-link {
@@ -206,13 +210,19 @@ button[data-dismiss="modal"] {
 
 .dropdown-menu {
     background-color: @secondary-bg-color;
-    /*border: 1px solid rgba(255,198, 0, 0.8);*/
+    border: 1px solid @primary-text-color;
     min-width: 250px;
     max-width: 300px;
-    padding: 0;
+    max-height: 150px;
+    padding: 5px;    
+}
+
+.dropdown-menu-borderless {
+    border: none;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    padding: 0px;
 }
 
 .dropdown-item {
@@ -328,6 +338,34 @@ button[data-dismiss="modal"] {
 .side-menu-collapse .list-group .list-group-item.active {
     color: @primary-text-color;
     border-left: thick solid @primary-text-color;
+}
+
+.collapse {
+    /*visibility: hidden;*/
+}
+
+.collapse.show {
+    visibility: visible;
+    display: block;
+}
+
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition-property: height, visibility;
+    transition-property: height, visibility;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
+}
+
+.collapsing.width {
+    -webkit-transition-property: width, visibility;
+    transition-property: width, visibility;
+    width: 0;
+    height: auto;
 }
 /*#endregion */
 
@@ -734,6 +772,21 @@ section {
     padding: 30px 0;    
 }
 
+#waveformContainer .btn-dark {
+    background-color: transparent;
+    border-radius: 0;
+
+    &:hover {
+        color: @secondary-text-color;
+        border-color: #343a40;
+    }
+
+    &.active {
+        color: @primary-text-color;
+        border-color: @primary-text-color;
+    }
+}
+
 #waveformInner {
     max-width: 80%;
     margin: auto;
@@ -784,7 +837,7 @@ section {
     height: 40px;
 }
 
-.flex-group-item:not(.justify-content-center) .btn-dark .fas {
+#waveformContainer .flex-group-item:not(.justify-content-center) .btn-dark .fas {
     font-size: 1.2rem;
     vertical-align: middle;
 }
@@ -854,20 +907,7 @@ section {
     }
 }
 
-#musicWrapper .btn-dark {
-    background-color: transparent;
-    border-radius: 0;
 
-    &:hover {
-        color: @secondary-text-color;
-        border-color: #343a40;
-    }
-
-    &.active {
-        color: @primary-text-color;
-        border-color: @primary-text-color;
-    }
-}
 
 #songListContainer {
     background-color: @primary-bg-color;
@@ -885,8 +925,16 @@ section {
 }
 
 #songListControls {
-    padding: 0 20px;
-    margin-bottom: 1.3rem;
+    margin: 10px 20px;
+}
+
+#songListFilters {
+    border: 1px solid rgba(255,255,255, 0.1);
+    color: @secondary-text-color;
+}
+
+#songListFiltersInner {
+    padding: 20px;
 }
 
 #songListFooter {
@@ -960,7 +1008,7 @@ section {
 #musicTable .song-active {
     color: @primary-text-color;
     font-weight: 800;
-    background-color: #070707;
+    background-color: @secondary-bg-color;
 }
 
 #musicTable tr .is-playing {
@@ -1119,6 +1167,10 @@ section {
 
     #musicTableContainer {
         padding: 20px;
+    }
+
+    #songListFilters {
+        margin: 0 20px;
     }
 }
 

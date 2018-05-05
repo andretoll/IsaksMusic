@@ -8,6 +8,7 @@ using IsaksMusic.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -35,11 +36,16 @@ namespace IsaksMusic.Pages.Music
         /* Whether or not to autoplay */
         public bool Autoplay { get; set; }
 
+        /* For filtering */
+        public IList<SelectListItem> CategoryList { get; set; }
+
         public async Task<IActionResult> OnGetAsync(bool autoplay)
         {
             /* List of songs */
             var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
                 .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();
+
+            /* List of categories */
 
             SongList = new List<SongModel>();
 
@@ -68,6 +74,18 @@ namespace IsaksMusic.Pages.Music
             }
 
             Autoplay = autoplay;
+
+            CategoryList = new List<SelectListItem>();
+
+            /* Get categories from database */
+            List<Category> categories = new List<Category>();
+            categories = _applicationDbContext.Categories.Where(c => _applicationDbContext.SongCategories.Select(sc => sc.CategoryId).Contains(c.Id)).ToList();
+
+            /* Convert categories into select items */
+            foreach (var category in categories)
+            {
+                CategoryList.Add(new SelectListItem { Text = category.Name });
+            }
 
             return Page();
         }

@@ -10,6 +10,7 @@ var playlist;
 var autoplay;
 var ccInterval;
 var queueList = [];
+var queueLimit = 7;
 
 /* Color array */
 var colors = new Array(
@@ -71,6 +72,12 @@ $(document).ready(function () {
             ccInterval = setInterval(updateGradient, 10);
             $('#waveformControls').addClass('pulse');
         }
+    });
+
+    $('input[type=checkbox]').iCheck({
+        checkboxClass: 'icheckbox_square-red',
+        radioClass: 'iradio_square-red',
+        increaseArea: '20%'
     });
 });
 
@@ -159,6 +166,7 @@ function playNext() {
     if (queueList.length > 0) {
         nextSong = playlist[queueList[0]-1];
         queueList.shift();
+        $(clearQueue).text("Clear queue (" + queueList.length + ")");
     }
     /* If shuffling is toggled, randomize song */
     else if (shuffle === true && playlist.length > 1) {
@@ -301,14 +309,83 @@ function updateGradient() {
 
 function addToQueueList(id) {
 
-    queueList.push(id);
-    ShowSuccessSnackbar(queueList.length + " song(s) in queue");
+    if (queueList.length < queueLimit) {
+        queueList.push(id);
+        $('#clearQueueBtn').attr("data-original-title", "Added to queue").tooltip('show');        
+    }
+
+    if (queueList.length === queueLimit) {
+        $('#clearQueueBtn').attr("data-original-title", "Queue limit reached").tooltip('show');
+    }
+
+    setTimeout(function () {
+        $('#clearQueueBtn').tooltip('hide');
+    }, 2000);
 }
 
 function clearQueueList() {
 
     if (queueList.length > 0) {
         queueList = [];
-        ShowSuccessSnackbar(queueList.length + " song(s) in queue");
+        $('#clearQueueBtn').attr("data-original-title", "Queue cleared").tooltip('show');
     }    
+
+    setTimeout(function () {
+        $('#clearQueueBtn').tooltip('hide');
+    }, 1000);
+}
+
+function clearFilters() {
+
+    var table = $('#musicTable');
+    var rows = $('#musicTable > tbody > tr');
+
+    /* Loop rows */
+    for (var i = 0; i < rows.length; i++) {
+        var td = $(rows[i]).find('.categoryColumn');
+
+        rows[i].style.display = "";
+    }
+
+    $('input').iCheck('uncheck');
+
+    $('#songListFilters').collapse('toggle');
+}
+
+function applyFilters() {
+
+    var inputs = $('#songListFilters').find('input');
+    var filters = [];
+
+    for (var j = 0; j < inputs.length; j++) {
+        if ($(inputs[j]).is(':checked')) {
+            filters.push(inputs[j].id);
+        }
+    }    
+
+    var table = $('#musicTable');
+    var rows = $('#musicTable > tbody > tr');
+
+    /* Loop rows */
+    for (var i = 0; i < rows.length; i++) {
+        var td = $(rows[i]).find('.categoryColumn');
+
+        if (filters.length === 0) {
+            rows[i].style.display = "";
+            continue;
+        }
+
+        /* Loop filters */
+        for (var k = 0; k < filters.length; k++) {
+
+            var categories = $(td).html();
+
+            if (categories.indexOf(filters[k]) >= 0) {
+                rows[i].style.display = "";
+                break;
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
 }

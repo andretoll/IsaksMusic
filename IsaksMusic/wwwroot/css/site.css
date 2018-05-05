@@ -88,6 +88,9 @@ textarea.textarea-sm {
 .btn-dark:hover {
   background-color: #111;
 }
+.btn-dark:focus {
+  box-shadow: none;
+}
 .btn-link {
   cursor: pointer;
 }
@@ -166,13 +169,18 @@ button[data-dismiss="modal"]:hover {
 }
 .dropdown-menu {
   background-color: #111;
-  /*border: 1px solid rgba(255,198, 0, 0.8);*/
+  border: 1px solid #ffc600;
   min-width: 250px;
   max-width: 300px;
-  padding: 0;
+  max-height: 150px;
+  padding: 5px;
+}
+.dropdown-menu-borderless {
+  border: none;
   -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  padding: 0px;
 }
 .dropdown-item {
   color: #ffffff;
@@ -272,6 +280,30 @@ button[data-dismiss="modal"]:hover {
 .side-menu-collapse .list-group .list-group-item.active {
   color: #ffc600;
   border-left: thick solid #ffc600;
+}
+.collapse {
+  /*visibility: hidden;*/
+}
+.collapse.show {
+  visibility: visible;
+  display: block;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+.collapsing.width {
+  -webkit-transition-property: width, visibility;
+  transition-property: width, visibility;
+  width: 0;
+  height: auto;
 }
 /*#endregion */
 /*#region Error Pages */
@@ -610,6 +642,18 @@ section {
   background: radial-gradient(#2c1d33, black);
   padding: 30px 0;
 }
+#waveformContainer .btn-dark {
+  background-color: transparent;
+  border-radius: 0;
+}
+#waveformContainer .btn-dark:hover {
+  color: #ffffff;
+  border-color: #343a40;
+}
+#waveformContainer .btn-dark.active {
+  color: #ffc600;
+  border-color: #ffc600;
+}
 #waveformInner {
   max-width: 80%;
   margin: auto;
@@ -652,7 +696,7 @@ section {
   width: 45px;
   height: 40px;
 }
-.flex-group-item:not(.justify-content-center) .btn-dark .fas {
+#waveformContainer .flex-group-item:not(.justify-content-center) .btn-dark .fas {
   font-size: 1.2rem;
   vertical-align: middle;
 }
@@ -711,18 +755,6 @@ section {
 #volumeSlider .ui-slider-handle.ui-state-active {
   border-color: #ffffff;
 }
-#musicWrapper .btn-dark {
-  background-color: transparent;
-  border-radius: 0;
-}
-#musicWrapper .btn-dark:hover {
-  color: #ffffff;
-  border-color: #343a40;
-}
-#musicWrapper .btn-dark.active {
-  color: #ffc600;
-  border-color: #ffc600;
-}
 #songListContainer {
   background-color: #0a0a0a;
   margin-top: 50px;
@@ -737,8 +769,14 @@ section {
   padding: 20px 0 10px 0;
 }
 #songListControls {
-  padding: 0 20px;
-  margin-bottom: 1.3rem;
+  margin: 10px 20px;
+}
+#songListFilters {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+#songListFiltersInner {
+  padding: 20px;
 }
 #songListFooter {
   margin-top: 30px;
@@ -798,7 +836,7 @@ section {
 #musicTable .song-active {
   color: #ffc600;
   font-weight: 800;
-  background-color: #070707;
+  background-color: #111;
 }
 #musicTable tr .is-playing {
   opacity: 0;
@@ -927,6 +965,9 @@ section {
   }
   #musicTableContainer {
     padding: 20px;
+  }
+  #songListFilters {
+    margin: 0 20px;
   }
 }
 @media (max-height: 767px) {

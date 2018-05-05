@@ -51,7 +51,7 @@
                         <a id="volumeMenuButton" title="Volume" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-volume-down"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
+                        <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
                             <div id="volumeControl">
                                 <i class="fa fa-volume-off"></i>
                                 <div id="volumeSlider"></div>
@@ -69,10 +69,24 @@
             </div>
             <div id="songListControls" class="d-flex">
                 <div class="flex-group-item">
-                    <a title="Toggle filters" class="btn btn-dark">Filter</a>
+                    <a title="Toggle filters" class="btn btn-dark" data-toggle="collapse" href="#songListFilters" aria-controls="songListFilters"><i class="fas fas-mr fa-filter fa-sm"></i>Filter</a>
                 </div>
                 <div class="flex-group-item flex-group-item-last">
-                    <a title="Clear song queue" class="btn btn-dark" onclick="clearQueueList()">Clear queue</a>
+                    <a title="Clear song queue" class="btn btn-dark" data-toggle="tooltip" data-trigger="manual" id="clearQueueBtn" onclick="clearQueueList()"><i class="fas fas-mr fa-ban fa-sm"></i>Clear queue</a>
+                </div>
+            </div>
+            <div class="collapse" id="songListFilters">
+                <div id="songListFiltersInner">
+                    <ul class="list-inline text-center">
+                        @foreach (var category in Model.CategoryList)
+                        {
+                            <li class="list-inline-item"><input class="icheckbox mr-3" type="checkbox" id="@category.Text" />  @category.Text</li>
+                        }
+                    </ul>
+                    <div class="text-center">
+                        <a class="btn btn-success" id="filterChange" onclick="applyFilters()">Apply</a>
+                        <a class="btn btn-dark" id="filterClear" onclick="clearFilters()">Clear</a>
+                    </div>
                 </div>
             </div>
             <div id="musicTableContainer">
@@ -100,18 +114,18 @@
                                 <tr id="@song.PlaylistId" title="@song.Title">
                                     <td class="is-playing min ml-3"><i class="fas fa-volume-up"></i></td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Title</td>
-                                    <td class="dismissable" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
+                                    <td class="dismissable categoryColumn" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Duration</td>
                                     <td class="min">
                                         <div class="song-actions">
                                             <a class="btn btn-dark" id="actionDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
+                                                <i title="Actions" class="fas fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdownButton">
-                                                <a class="dropdown-item" onclick="addToQueueList(@song.PlaylistId)"><i class="fas fa-fw mr-2 fa-indent"></i>Queue</a>
-                                                <a class="dropdown-item"><i class="fas fa-fw mr-2 fa-plus"></i>More</a>
+                                                <a title="Queue" class="dropdown-item queue-btn" onclick="addToQueueList(@song.PlaylistId)"><i class="fas fa-fw mr-2 fa-indent"></i>Queue</a>
+                                                <a title="More" class="dropdown-item"><i class="fas fa-fw mr-2 fa-plus"></i>More</a>
                                                 <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item"><i class="fas fa-fw mr-2 fa-share-alt"></i>Share</a>
+                                                <a title="Share" class="dropdown-item"><i class="fas fa-fw mr-2 fa-share-alt"></i>Share</a>
                                             </div>
                                         </div>
                                     </td>
@@ -138,14 +152,12 @@
 
         if (autoplay) {
             playPause();
-        }        
+        }
     }
 </script>
 
 @section scripts
-    {
-    <script src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>
-    <script src="~/lib/jquery-ui/dist/js/jquery.ui.touch-punch.min.js"></script>
+{
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
     <script src="~/js/music-player.js" asp-append-version="true"></script>
 }

@@ -24,4 +24,7 @@
     <None Include="wwwroot\lib\jquery-ui\dist\js\jquery-ui.js" />
     <None Include="wwwroot\lib\jquery-ui\dist\js\jquery-ui.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\icheck\dist\css\" />
+  </ItemGroup>
 </Project>
