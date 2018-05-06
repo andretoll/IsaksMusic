@@ -5,7 +5,6 @@ var pulseToggle = $('#togglePulse');
 var currentSong;
 var repeat;
 var shuffle;
-var pulse;
 var playlist;
 var autoplay;
 var ccInterval;
@@ -30,7 +29,6 @@ $(document).ready(function () {
 
     repeat = false;
     shuffle = false;
-    pulse = false;
     currentSong = 1;
 
     /* Toggle repeat */
@@ -63,12 +61,10 @@ $(document).ready(function () {
 
         /* If button state is pressed */
         if (ele.attr("aria-pressed") === "true") {
-            pulse = false;
             clearInterval(ccInterval);
             $('#waveformContainer').removeAttr('Style');
             $('#waveformControls').removeClass('pulse');
         } else {
-            pulse = true;
             ccInterval = setInterval(updateGradient, 10);
             $('#waveformControls').addClass('pulse');
         }
