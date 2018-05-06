@@ -1,12 +1,8 @@
 ﻿var wavesurfer = $('#waveform');
-var repeatToggle = $('#toggleRepeat');
-var shuffleToggle = $('#toggleShuffle');
-var pulseToggle = $('#togglePulse');
 var currentSong;
 var repeat;
 var shuffle;
 var playlist;
-var autoplay;
 var ccInterval;
 var queueList = [];
 var queueLimit = 7;
@@ -25,18 +21,26 @@ var colorIndices = [0, 1, 2, 3];
 
 var gradientSpeed = 0.002;
 
-$(document).ready(function () {       
+$(document).ready(function () {
 
     repeat = false;
     shuffle = false;
     currentSong = 1;
 
-    /* Toggle repeat */
-    repeatToggle.on('click', function (e) {
-        var ele = $('#toggleRepeat');
+    /* Toggle play/pause */
+    $('#playPauseBtn').on('click', function () {
+        /* If a song is not loaded */
+        if (wavesurfer.getDuration() === 0) {
+            loadSong(playlist[0].playlistId);
+        } else {
+            playPause();
+        }
+    });
 
+    /* Toggle repeat */
+    $('#toggleRepeat').on('click', function () {
         /* If button state is pressed */
-        if (ele.attr("aria-pressed") === "true") {
+        if ($(this).attr("aria-pressed") === "true") {
             repeat = false;
         } else {
             repeat = true;
@@ -44,11 +48,9 @@ $(document).ready(function () {
     });
 
     /* Toggle shuffle */
-    shuffleToggle.on('click', function (e) {
-        var ele = $('#toggleShuffle');
-
+    $('#toggleShuffle').on('click', function () {
         /* If button state is pressed */
-        if (ele.attr("aria-pressed") === "true") {
+        if ($(this).attr("aria-pressed") === "true") {
             shuffle = false;
         } else {
             shuffle = true;
@@ -56,11 +58,9 @@ $(document).ready(function () {
     });
 
     /* Toggle pulse */
-    pulseToggle.on('click', function (e) {
-        var ele = $('#togglePulse');
-
+    $('#togglePulse').on('click', function (e) {
         /* If button state is pressed */
-        if (ele.attr("aria-pressed") === "true") {
+        if ($(this).attr("aria-pressed") === "true") {
             clearInterval(ccInterval);
             $('#waveformContainer').removeAttr('Style');
             $('#waveformControls').removeClass('pulse');
@@ -70,11 +70,30 @@ $(document).ready(function () {
         }
     });
 
+    /* Initiate checkboxes */
     $('input[type=checkbox]').iCheck({
         checkboxClass: 'icheckbox_square-red',
         radioClass: 'iradio_square-red',
         increaseArea: '20%'
     });
+
+    /* Initiate volume slider */
+    $("#volumeSlider").slider({
+        min: 0,
+        max: 100,
+        value: 50,
+        range: "min",
+        slide: function (event, ui) {
+            setVolume(ui.value / 100);
+        }
+    });
+
+    /* Start with pulse */
+    ccInterval = setInterval(updateGradient, 10);
+    $('#waveformControls').addClass('pulse');
+
+    /* Set initial volume */
+    wavesurfer.setVolume(0.5);    
 });
 
 /* Wavesurfer options */
@@ -88,9 +107,6 @@ wavesurfer = WaveSurfer.create({
     responsive: true,
     hideScrollbar: true
 });
-
-/* Set initial volume */
-wavesurfer.setVolume(0.5);
 
 /* When song has finished */
 wavesurfer.on('finish', function () {
@@ -109,7 +125,7 @@ wavesurfer.on('ready', function () {
 
 /* When song is being played */
 wavesurfer.on('audioprocess', function () {
-    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));  
+    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));
 });
 
 /* When song is seeked */
@@ -125,16 +141,6 @@ $('#waveform').on('mousemove', function (e) {
 /* When cursor leaves waveform */
 $('#waveform').on('mouseleave', function (e) {
     mousetooltiptime(false);
-});
-
-$("#volumeSlider").slider({
-    min: 0,
-    max: 100,
-    value: 50,
-    range: "min",
-    slide: function (event, ui) {
-        setVolume(ui.value / 100);
-    }
 });
 
 function setVolume(myVolume) {
@@ -160,7 +166,7 @@ function playNext() {
 
     /* If queue list contains items */
     if (queueList.length > 0) {
-        nextSong = playlist[queueList[0]-1];
+        nextSong = playlist[queueList[0] - 1];
         queueList.shift();
     }
     /* If shuffling is toggled, randomize song */
@@ -173,12 +179,12 @@ function playNext() {
         /* Try to get the next song */
         currentSong++;
         var nextSong = playlist[currentSong - 1];
-    }      
+    }
 
     /* If no song is found */
     if (nextSong === undefined) {
         /* If repeat is toggled */
-        if (repeat === true) {      
+        if (repeat === true) {
             nextSong = playlist[0];
         }
         /* Else stop playback */
@@ -192,7 +198,6 @@ function playNext() {
 }
 
 function loadSong(id) {
-
     $('#waveformMessage').show();
     $('#waveformMessage').text("Loading track...");
 
@@ -219,11 +224,6 @@ function loadSong(id) {
 
 function playPause() {
 
-    /* If a song is not loaded */
-    if (wavesurfer.getDuration() === 0) {
-        loadSong(playlist[0].playlistId);
-    }
-
     if (wavesurfer.isPlaying()) {
         wavesurfer.pause();
         $('#playPauseBtn').children('i').removeClass('fa-pause-circle');
@@ -236,7 +236,7 @@ function playPause() {
     }
 }
 
-function formatTime (time) {
+function formatTime(time) {
     return [
         Math.floor(time % 3600 / 60), // minutes
         ('00' + Math.floor(time % 60)).slice(-2) // seconds
@@ -255,7 +255,7 @@ function mousetooltiptime(e) {
         } else {
             $('.tooltip-track').text(timeset).css('left', e.pageX + 25).css('top', e.pageY - 25).css('display', 'block');
         }
-    }    
+    }
 }
 
 function generateRandom(min, max, exclude) {
@@ -287,6 +287,8 @@ function updateGradient() {
         background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
     }).css({
         background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+    }).css({
+        background: "linear-gradient(left" + color1 + "," + color2 + ")"
     });
 
     step += gradientSpeed;
@@ -306,7 +308,7 @@ function addToQueueList(id) {
 
     if (queueList.length < queueLimit) {
         queueList.push(id);
-        $('#clearQueueBtn').attr("data-original-title", "Added to queue").tooltip('show');        
+        $('#clearQueueBtn').attr("data-original-title", "Added to queue").tooltip('show');
     }
 
     if (queueList.length === queueLimit) {
@@ -323,7 +325,7 @@ function clearQueueList() {
     if (queueList.length > 0) {
         queueList = [];
         $('#clearQueueBtn').attr("data-original-title", "Queue cleared").tooltip('show');
-    }    
+    }
 
     setTimeout(function () {
         $('#clearQueueBtn').tooltip('hide');
@@ -358,7 +360,7 @@ function applyFilters() {
         if ($(inputs[j]).is(':checked')) {
             filters.push(inputs[j].id);
         }
-    }    
+    }
 
     if (filters.length === 0) {
         $('#songListFiltersBtn').removeClass('filter-active');

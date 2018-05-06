@@ -40,12 +40,12 @@
                         </a>
                     </div>
                     <div class="flex-group-item justify-content-center">
-                        <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
+                        <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark">
                             <i class="fas fa-play-circle fa-2x"></i>
                         </a>
                     </div>
                     <div class="flex-group-item flex-group-item-last">
-                        <a id="togglePulse" title="Pulse" class="btn btn-dark mr-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                        <a id="togglePulse" title="Pulse" class="btn btn-dark mr-1 active" data-toggle="button" aria-pressed="true" autocomplete="off">
                             <i class="fas fa-heartbeat"></i>
                         </a>
                         <a id="volumeMenuButton" title="Volume" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -148,10 +148,8 @@
 
         playlist = @Html.Raw(Json.Serialize(Model.SongList));
 
-        autoplay = ("@Model.Autoplay" === "True");
-
-        if (autoplay) {
-            playPause();
+        if ("@Model.Autoplay" === "True") {
+            $('#playPauseBtn').trigger('click');
         }
     }
 </script>
