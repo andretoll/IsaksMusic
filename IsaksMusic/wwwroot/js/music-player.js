@@ -166,7 +166,6 @@ function playNext() {
     if (queueList.length > 0) {
         nextSong = playlist[queueList[0]-1];
         queueList.shift();
-        $(clearQueue).text("Clear queue (" + queueList.length + ")");
     }
     /* If shuffling is toggled, randomize song */
     else if (shuffle === true && playlist.length > 1) {

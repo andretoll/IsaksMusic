@@ -51,7 +51,6 @@ namespace IsaksMusic.Pages.Admin.Music
             [Required(ErrorMessage = "A song needs a title")]
             public string Title { get; set; }
 
-            [MaxLength(length: 150, ErrorMessage = "Description cannot exceed 150 characters.")]
             [Display(Name = "Description (optional)")]
             public string Description { get; set; }
 
