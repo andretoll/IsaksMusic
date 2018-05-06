@@ -113,7 +113,7 @@ wavesurfer.on('ready', function () {
 
 /* When song is being played */
 wavesurfer.on('audioprocess', function () {
-    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));    
+    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));  
 });
 
 /* When song is seeked */
@@ -332,7 +332,7 @@ function clearQueueList() {
 
     setTimeout(function () {
         $('#clearQueueBtn').tooltip('hide');
-    }, 1000);
+    }, 2000);
 }
 
 function clearFilters() {
@@ -350,6 +350,8 @@ function clearFilters() {
     $('input').iCheck('uncheck');
 
     $('#songListFilters').collapse('toggle');
+
+    $('#songListFiltersBtn').removeClass('filter-active');
 }
 
 function applyFilters() {
@@ -362,6 +364,12 @@ function applyFilters() {
             filters.push(inputs[j].id);
         }
     }    
+
+    if (filters.length === 0) {
+        $('#songListFiltersBtn').removeClass('filter-active');
+    } else {
+        $('#songListFiltersBtn').addClass('filter-active');
+    }
 
     var table = $('#musicTable');
     var rows = $('#musicTable > tbody > tr');

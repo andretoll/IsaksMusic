@@ -90,6 +90,10 @@ textarea.textarea-sm {
 }
 .btn-dark:focus {
   box-shadow: none;
+  background-color: #111;
+}
+.btn-dark:active {
+  background-color: #111;
 }
 .btn-link {
   cursor: pointer;
@@ -120,8 +124,12 @@ li {
   font-weight: 300;
   margin: 0;
 }
-th {
+table th {
   color: #ffffff;
+}
+.table th,
+.table td {
+  padding: 0.4rem 0.6rem;
 }
 .table-btn {
   margin: 0 5px;
@@ -168,7 +176,7 @@ button[data-dismiss="modal"]:hover {
   transition: all 0.3s;
 }
 .dropdown-menu {
-  background-color: #111;
+  background-color: #0a0a0a;
   border: 1px solid #ffc600;
   min-width: 250px;
   max-width: 300px;
@@ -185,9 +193,10 @@ button[data-dismiss="modal"]:hover {
 .dropdown-item {
   color: #ffffff;
   cursor: pointer;
+  padding: 0 1rem;
 }
 .dropdown-item:hover {
-  background-color: #0a0a0a;
+  background-color: #111;
 }
 .wrapper-header {
   background: #222222;
@@ -281,29 +290,15 @@ button[data-dismiss="modal"]:hover {
   color: #ffc600;
   border-left: thick solid #ffc600;
 }
-.collapse {
-  /*visibility: hidden;*/
+.tooltip {
+  font-weight: 600;
 }
-.collapse.show {
-  visibility: visible;
-  display: block;
+.tooltip .tooltip-inner {
+  background-color: #ffc600;
+  color: #040404;
 }
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  -webkit-transition-property: height, visibility;
-  transition-property: height, visibility;
-  -webkit-transition-duration: 0.35s;
-  transition-duration: 0.35s;
-  -webkit-transition-timing-function: ease;
-  transition-timing-function: ease;
-}
-.collapsing.width {
-  -webkit-transition-property: width, visibility;
-  transition-property: width, visibility;
-  width: 0;
-  height: auto;
+.tooltip .arrow::before {
+  border-top-color: #ffc600;
 }
 /*#endregion */
 /*#region Error Pages */
@@ -416,7 +411,7 @@ button[data-dismiss="modal"]:hover {
   transition: padding-top 0.3s, padding-bottom 0.3s;
 }
 #mainNav.navbar-shrink {
-  background-color: #111;
+  background-color: #040404;
   padding-top: 20px;
   padding-bottom: 10px;
 }
@@ -606,7 +601,6 @@ section {
 }
 #categoryList {
   margin-top: 30px;
-  background-color: #0a0a0a;
 }
 #categoryList ul {
   color: #ffffff;
@@ -618,8 +612,7 @@ section {
   padding: 10px 20px;
 }
 .list-item-editable[contenteditable="true"] {
-  padding: 5px;
-  outline: 2px dashed #ffc600;
+  outline: 2px solid #ffc600;
   outline-offset: 5px;
 }
 .category-amount {
@@ -760,16 +753,15 @@ section {
   margin-top: 50px;
 }
 #songListHeader {
-  background: #111;
-  background: -moz-linear-gradient(top, #0a0a0a 0%, #0a0a0a 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #0a0a0a), color-stop(100%, #0a0a0a));
-  background: -o-linear-gradient(top, #0a0a0a 0%, #0a0a0a 100%);
-  background: linear-gradient(to bottom, #0a0a0a 0%, #0a0a0a 100%);
   text-align: center;
   padding: 20px 0 10px 0;
 }
 #songListControls {
   margin: 10px 20px;
+}
+#songListFiltersBtn.filter-active {
+  color: #ffc600;
+  background-color: #0a0a0a;
 }
 #songListFilters {
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -836,7 +828,6 @@ section {
 #musicTable .song-active {
   color: #ffc600;
   font-weight: 800;
-  background-color: #111;
 }
 #musicTable tr .is-playing {
   opacity: 0;

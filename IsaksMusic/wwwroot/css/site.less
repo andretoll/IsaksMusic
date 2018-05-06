@@ -113,6 +113,11 @@ textarea.textarea-sm {
 
     &:focus {
         box-shadow: none;
+        background-color: @secondary-bg-color;
+    }
+
+    &:active {
+        background-color: @secondary-bg-color;
     }
 }
 
@@ -153,8 +158,12 @@ li {
     margin: 0;
 }
 
-th {
+table th {
     color: @secondary-text-color;
+}
+
+.table th, .table td {
+    padding: 0.4rem 0.6rem;
 }
 
 .table-btn {
@@ -209,12 +218,12 @@ button[data-dismiss="modal"] {
 }
 
 .dropdown-menu {
-    background-color: @secondary-bg-color;
+    background-color: @primary-bg-color;
     border: 1px solid @primary-text-color;
     min-width: 250px;
     max-width: 300px;
     max-height: 150px;
-    padding: 5px;    
+    padding: 5px;
 }
 
 .dropdown-menu-borderless {
@@ -228,10 +237,11 @@ button[data-dismiss="modal"] {
 .dropdown-item {
     color: @secondary-text-color;
     cursor: pointer;
+    padding: 0 1rem;
 }
 
 .dropdown-item:hover {
-    background-color: @primary-bg-color;
+    background-color: @secondary-bg-color;
 }
 
 .wrapper-header {
@@ -340,33 +350,19 @@ button[data-dismiss="modal"] {
     border-left: thick solid @primary-text-color;
 }
 
-.collapse {
-    /*visibility: hidden;*/
+.tooltip {
+    font-weight: 600;
 }
 
-.collapse.show {
-    visibility: visible;
-    display: block;
+.tooltip .tooltip-inner {
+    background-color: @primary-text-color;
+    color: @black-bg-color;
 }
 
-.collapsing {
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    -webkit-transition-property: height, visibility;
-    transition-property: height, visibility;
-    -webkit-transition-duration: 0.35s;
-    transition-duration: 0.35s;
-    -webkit-transition-timing-function: ease;
-    transition-timing-function: ease;
+.tooltip .arrow::before {
+    border-top-color: @primary-text-color;
 }
 
-.collapsing.width {
-    -webkit-transition-property: width, visibility;
-    transition-property: width, visibility;
-    width: 0;
-    height: auto;
-}
 /*#endregion */
 
 /*#region Error Pages */
@@ -498,7 +494,7 @@ button[data-dismiss="modal"] {
 }
 
 #mainNav.navbar-shrink {
-    background-color: @secondary-bg-color;
+    background-color: @black-bg-color;
     padding-top: 20px;
     padding-bottom: 10px;
 }
@@ -727,7 +723,6 @@ section {
 
 #categoryList {
     margin-top: 30px;
-    background-color: @primary-bg-color;
 }
 
 #categoryList ul {
@@ -742,8 +737,7 @@ section {
 }
 
 .list-item-editable[contenteditable="true"] {
-    padding: 5px;
-    outline: 2px dashed @primary-text-color;
+    outline: 2px solid @primary-text-color;
     outline-offset: 5px;
 }
 
@@ -767,9 +761,9 @@ section {
 
 #waveformContainer {
     background: -moz-radial-gradient(#2c1d33, black);
-    background: -webkit-radial-gradient(#2c1d33, black); 
+    background: -webkit-radial-gradient(#2c1d33, black);
     background: radial-gradient(#2c1d33, black);
-    padding: 30px 0;    
+    padding: 30px 0;
 }
 
 #waveformContainer .btn-dark {
@@ -915,17 +909,17 @@ section {
 }
 
 #songListHeader {
-    background: @secondary-bg-color;
-    background: -moz-linear-gradient(top, @primary-bg-color 0%, #0a0a0a 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, @primary-bg-color), color-stop(100%, #0a0a0a));
-    background: -o-linear-gradient(top, @primary-bg-color 0%, #0a0a0a 100%);
-    background: linear-gradient(to bottom, @primary-bg-color 0%, #0a0a0a 100%);
     text-align: center;
     padding: 20px 0 10px 0;
 }
 
 #songListControls {
     margin: 10px 20px;
+}
+
+#songListFiltersBtn.filter-active {
+    color: @primary-text-color;
+    background-color: @primary-bg-color;
 }
 
 #songListFilters {
@@ -1008,7 +1002,6 @@ section {
 #musicTable .song-active {
     color: @primary-text-color;
     font-weight: 800;
-    background-color: @secondary-bg-color;
 }
 
 #musicTable tr .is-playing {
