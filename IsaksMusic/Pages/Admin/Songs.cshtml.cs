@@ -30,50 +30,55 @@ namespace IsaksMusic.Pages.Admin.Music
             _configuration = configuration;
         }
 
-        /* For uploading song */
-        [BindProperty]
-        public SongModel Song { get; set; }
-
-        /* For displaying songs in table */
-        public List<Song> SongList { get; set; }
-
-        /* For displaying categories when uploading song */
-        public List<SelectListItem> CategoryList { get; set; }
-
         [TempData]
         public string Message { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
 
+        /* For uploading song */
+        [BindProperty]
+        public SongModel Song { get; set; }
+
+        /* For displaying songs in table */
+        public IList<Song> SongList { get; set; }
+
+        /* For displaying categories when uploading song */
+        public IList<SelectListItem> CategoryList { get; set; }       
+
         public class SongModel
         {
             [Required(ErrorMessage = "A song needs a title")]
             public string Title { get; set; }
 
-            [MaxLength(length: 150, ErrorMessage = "Description cannot exceed 150 characters.")]
             [Display(Name = "Description (optional)")]
             public string Description { get; set; }
 
+            [Range(0, 59, ErrorMessage = "Not a valid number for minutes")]
             [Required(ErrorMessage = "Please specify minutes")]
             public byte Minutes { get; set; }
 
+            [Range(0, 59, ErrorMessage = "Not a valid number for seconds")]
             [Required(ErrorMessage = "Please specify seconds")]
             public byte Seconds { get; set; }
 
+            [Display(Name = "Music file (.mp3 .wav)")]
             [Required(ErrorMessage = "Choose a file to upload")]
-            public string MusicFile { get; set; }
+            public IFormFile MusicFile { get; set; }
 
             [Required(ErrorMessage = "Choose a category")]
             [Display(Name = "Music Categories (limit 2)")]
             public List<int> CategoryIds { get; set; }
         }
 
-        public void OnGet()
+        /// <summary>
+        /// Get list of songs and categories
+        /// </summary>
+        public async Task OnGet()
         {
             /* List of songs */
-            SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();
+            SongList = await _applicationDbContext.Songs.Include(song => song.SongCategories)
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();            
 
             /* Select List with categories */
             CategoryList = new List<SelectListItem>();
@@ -89,8 +94,63 @@ namespace IsaksMusic.Pages.Admin.Music
             }
         }
 
+        /// <summary>
+        /// Upload file to server and save song in database
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
+            /* Full path to file */
+            var fullPath = string.Empty;
+
+            /* File name */
+            var fileName = string.Empty;
+
+            if (HttpContext.Request.Form.Files != null)
+            {
+                var files = HttpContext.Request.Form.Files;
+
+                foreach (var file in files)
+                {
+                    /* Get allowed file extensions */
+                    ApplicationConfigurationRetriever retriever = new ApplicationConfigurationRetriever(_configuration);
+                    var extensionList = retriever.GetMusicFileExtensions();
+
+                    /* Get file extension */
+                    string fileExtension = Path.GetExtension(file.FileName);
+
+                    /* Check file extension */
+                    if (!extensionList.Contains(fileExtension))
+                    {
+                        ModelState.AddModelError("", "Invalid filetype.");
+                    }
+
+                    if (file.Length > 0 && ModelState.IsValid)
+                    {
+                        /* Get file name */
+                        fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+
+                        /* Set full path to file */
+                        fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{fileName}";
+
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            ModelState.AddModelError("", "The file already exists.");
+                        }
+
+                        if (ModelState.IsValid)
+                        {
+                            /* Upload to directory */
+                            using (FileStream fs = System.IO.File.Create(fullPath))
+                            {
+                                file.CopyTo(fs);
+                                fs.Flush();
+                            }
+                        }                        
+                    }
+                }
+            }
+
             /* If modelstate is valid */
             if (ModelState.IsValid)
             {
@@ -104,7 +164,7 @@ namespace IsaksMusic.Pages.Admin.Music
                     Description = Song.Description,
                     Length = seconds,
                     UploadDate = DateTime.Now,
-                    FileName = Song.MusicFile
+                    FileName = fileName
                 };
 
                 _applicationDbContext.Songs.Add(song);
@@ -142,7 +202,37 @@ namespace IsaksMusic.Pages.Admin.Music
             }
 
             return RedirectToPage();
-
         }
+
+        /// <summary>
+        /// Delete a song
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                /* Get song from database */
+                var song = _applicationDbContext.Songs.Where(s => s.Id == id).SingleOrDefault();
+
+                /* Remove entry from database */
+                _applicationDbContext.Songs.Remove(song);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /* Get full path to file */
+                var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music") + $@"\{song.FileName}";
+
+                /* Remove file from server */
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+            }
+
+            Message = "Song removed";
+
+            return RedirectToPage();
+        }        
     }
 }

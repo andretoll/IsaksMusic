@@ -3,9 +3,9 @@
 
     $('#adminSidemenuCollapse').click(rotateIcon);
 
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
+    $('[data-toggle="popover"]').popover();
+
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 windowScroll();
@@ -20,7 +20,7 @@ function windowScroll() {
 
         }
         $('#backToTopBtn').show();
-        $('#scrollIndicator').hide(500);
+        $('#scrollIndicator').fadeOut(500);
 
     } else {
 
@@ -29,7 +29,7 @@ function windowScroll() {
 
         }
         $('#backToTopBtn').hide();
-        $('#scrollIndicator').show(500);
+        $('#scrollIndicator').fadeIn(500);
     }
 }
 

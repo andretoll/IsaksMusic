@@ -48,10 +48,7 @@
             <tbody>
                 @foreach (var song in Model.SongList)
                 {
-                    List
-                    <string>
-                        categoryList = new List<string>
-                            ();
+                    List<string> categoryList = new List<string>();
 
                     foreach (var category in song.SongCategories)
                     {
@@ -60,12 +57,15 @@
 
                     string categoryString = String.Join(", ", categoryList);
 
-                    <tr>
+                    <tr id="row_@song.Id">
                         <td>
                             @song.Title
-                            <a class="float-right">
-                                <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
-                            </a>
+                            @if (song.Description != null)
+                            {
+                                <a class="float-right info-circle">
+                                    <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Description" data-content="@song.Description" class="fas fa-info-circle"></i>
+                                </a>
+                            }
                         </td>
                         <td>@TimeSpan.FromSeconds(song.Length)</td>
                         <td>@categoryString</td>
@@ -75,9 +75,8 @@
                             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
                             </button>
-                            <div class="dropdown-menu">
-                                @*<a class="dropdown-item" href="#"><i class="fas fa-pen-square fas-mr"></i>Edit</a>*@
-                                <a class="dropdown-item" href="#"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" onclick="deleteSong(@song.Id)"><i class="fas fa-trash fas-mr text-danger"></i>Delete</a>
                             </div>
                         </td>
                     </tr>
@@ -98,25 +97,15 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="form" name="form" action="/uploader" enctype="multipart/form-data" method="post">
-                    <div class="buttons">
-                        <div class="upload-button">
-                            <input id="musicFile" name="musicFile" type="file" size="1" multiple onchange="uploadFiles('musicFile');" />
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-                    </div>
-                </form>
-                <form id="songForm" name="songForm" method="post" enctype="multipart/form-data">
+                <form id="songForm" method="post" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
-                        <input class="validate" id="musicFileName" asp-for="Song.MusicFile" type="hidden" required/>
-                        <span asp-validation-for="Song.MusicFile"></span>
+                        <label asp-for="Song.MusicFile"></label>
+                        <input id="songUpload" asp-for="Song.MusicFile" type="file" accept="audio/*" />
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Title"></label>
-                        <input asp-for="Song.Title" class="form-control" autocomplete="off"/>
+                        <input asp-for="Song.Title" class="form-control" autocomplete="off" />
                         <span asp-validation-for="Song.Title"></span>
                     </div>
                     <div class="form-group">
@@ -126,7 +115,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Song.Description"></label>
-                        <textarea asp-for="Song.Description" class="form-control" id="songDescription"></textarea>
+                        <textarea asp-for="Song.Description" class="form-control textarea-sm" id="songDescription"></textarea>
                         <span asp-validation-for="Song.Description"></span>
                     </div>
                     <div class="form-row mb-4">
@@ -141,8 +130,14 @@
                             <span asp-validation-for="Song.Seconds"></span>
                         </div>
                     </div>
-                    <div class="form-group text-center">
-                        <input type="submit" class="btn btn-success" value="Submit song" />
+                    <div class="form-group text-center mb-0">
+                        <input id="songFormSubmit" type="submit" class="btn btn-success" value="Submit song" />
+                    </div>
+                    <div class="text-center mt-2">
+                        <label id="songUploadAnim" class="d-none">
+                            Uploading...
+                            <i class="fas fa-cog fa-spin fa-2x text-yellow"></i>
+                        </label>
                     </div>
                 </form>
             </div>

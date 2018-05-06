@@ -5,6 +5,12 @@
     <ApplicationIcon />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\music\**" />
+    <Content Remove="wwwroot\music\**" />
+    <EmbeddedResource Remove="wwwroot\music\**" />
+    <None Remove="wwwroot\music\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" PrivateAssets="All" />
@@ -15,6 +21,10 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\music\" />
+    <None Include="wwwroot\lib\jquery-ui\dist\js\jquery-ui.js" />
+    <None Include="wwwroot\lib\jquery-ui\dist\js\jquery-ui.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\icheck\dist\css\" />
   </ItemGroup>
 </Project>

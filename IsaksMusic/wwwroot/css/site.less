@@ -43,6 +43,10 @@ a:not(.btn):hover {
     text-decoration: none;
 }
 
+a:not([href]):not([tabindex]) {
+    color: @secondary-text-color;
+}
+
 h1, h2, h3, h4, p {
     color: @secondary-text-color;
 }
@@ -61,10 +65,24 @@ input {
     outline: none;
 }
 
+input[type="file"].file-valid {
+    color: green;
+}
+
+[data-toggle=buttons] > .btn input[type=checkbox] {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
 textarea {
     min-height: 60px;
     max-height: 500px;
     height: 100px;
+}
+
+textarea.textarea-sm {
+    height: 60px;
 }
 
 .fas-mr {
@@ -92,6 +110,15 @@ textarea {
     &:hover {
         background-color: @secondary-bg-color;
     }
+
+    &:focus {
+        box-shadow: none;
+        background-color: @secondary-bg-color;
+    }
+
+    &:active {
+        background-color: @secondary-bg-color;
+    }
 }
 
 .btn-link {
@@ -108,6 +135,7 @@ hr {
 
 .dropdown-divider {
     border-color: rgba(255, 255, 255, 0.1);
+    margin: 0;
 }
 
 /* Bootstrap Select */
@@ -116,7 +144,7 @@ hr {
     color: @primary-text-color;
 }
 
-ul {
+ul, ol {
     padding: 0;
 }
 
@@ -124,13 +152,18 @@ li {
     list-style: none;
 }
 
-table {
-    font-size: 0.9rem;
-    font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif;
+.table {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
 }
 
-th {
+table th {
     color: @secondary-text-color;
+}
+
+.table th, .table td {
+    padding: 0.4rem 0.6rem;
 }
 
 .table-btn {
@@ -139,11 +172,12 @@ th {
 
 .modal-content {
     background-color: @secondary-bg-color;
-    padding: 20px;
+    padding: 15px;
 }
 
 .modal-header {
     border: none;
+    align-items: center;
 }
 
 button[data-dismiss="modal"] {
@@ -184,18 +218,30 @@ button[data-dismiss="modal"] {
 }
 
 .dropdown-menu {
-    background-color: @secondary-bg-color;
-    border: 1px solid rgba(255,198, 0, 0.8);
+    background-color: @primary-bg-color;
+    border: 1px solid @primary-text-color;
     min-width: 250px;
     max-width: 300px;
+    max-height: 150px;
+    padding: 5px;
+}
+
+.dropdown-menu-borderless {
+    border: none;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    padding: 0px;
 }
 
 .dropdown-item {
     color: @secondary-text-color;
+    cursor: pointer;
+    padding: 0 1rem;
 }
 
 .dropdown-item:hover {
-    background-color: @primary-bg-color;
+    background-color: @secondary-bg-color;
 }
 
 .wrapper-header {
@@ -282,7 +328,7 @@ button[data-dismiss="modal"] {
 }
 /* Side menu links */
 .side-menu-collapse .list-group {
-    min-width: 200px;
+    min-width: 180px;
 }
 
 .side-menu-collapse .list-group .list-group-item {
@@ -304,15 +350,21 @@ button[data-dismiss="modal"] {
     border-left: thick solid @primary-text-color;
 }
 
-.progress {
-    height: 40px;
+.tooltip {
+    font-weight: 600;
 }
 
-.progress-bar {
-    width: 0px;
+.tooltip .tooltip-inner {
     background-color: @primary-text-color;
+    color: @black-bg-color;
 }
+
+.tooltip .arrow::before {
+    border-top-color: @primary-text-color;
+}
+
 /*#endregion */
+
 /*#region Error Pages */
 .error-section {
     text-align: center;
@@ -360,19 +412,19 @@ button[data-dismiss="modal"] {
     padding-left: 0.3em;
 }
 /*#endregion */
+
 /*#region Snackbars */
 #snackbar-success {
     visibility: hidden;
     min-width: 300px;
-    background-color: #3e8e41;
+    background-color: #064308;
     color: #fff;
     text-align: center;
-    border-radius: 40px;
     padding: 16px;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 50%;
-    bottom: 25%;
+    bottom: 15%;
     transform: translateX(-50%);
 }
 
@@ -389,7 +441,7 @@ button[data-dismiss="modal"] {
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 }
@@ -401,35 +453,36 @@ button[data-dismiss="modal"] {
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 }
 
 @-webkit-keyframes fadeout {
     from {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 0;
     }
 }
 
 @keyframes fadeout {
     from {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 1;
     }
 
     to {
-        bottom: 25%;
+        bottom: 15%;
         opacity: 0;
     }
 }
 /*#endregion */
+
 /*#region Top Navbar */
 #mainNav {
     background-color: transparent;
@@ -438,7 +491,6 @@ button[data-dismiss="modal"] {
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
-    /*height: 90px;*/
 }
 
 #mainNav.navbar-shrink {
@@ -454,7 +506,12 @@ button[data-dismiss="modal"] {
 .navbar-dark .navbar-nav .nav-link {
     color: @secondary-text-color;
 }
+
+#mainNav .dropdown-menu .dropdown-item {
+    padding: 10px 20px;
+}
 /*#endregion */
+
 /*#region Bottom Footer */
 footer {
     bottom: 0;
@@ -487,6 +544,7 @@ footer {
     text-align: center;
 }
 /*#endregion */
+
 /*#region Top Header */
 #topHeader {
     background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a), url(../images/bg-header.jpg);
@@ -507,6 +565,7 @@ footer {
     color: @secondary-text-color;
 }
 /*#endregion */
+
 /*#region Sections */
 section {
     padding: 100px 0;
@@ -521,6 +580,7 @@ section {
     background-color: @secondary-bg-color;
 }
 /*#endregion */
+
 /*#region Index */
 #backToTopBtn {
     display: none;
@@ -553,7 +613,7 @@ section {
 
 #scrollIndicator {
     color: @primary-text-color;
-    position: fixed;
+    position: absolute;
     left: 50%;
     top: 80%;
     transform: translateX(-50%);
@@ -563,6 +623,7 @@ section {
     opacity: 0.7;
 }
 /*#endregion */
+
 /*#region Index About Me */
 #aboutContainer {
     text-align: center;
@@ -584,6 +645,7 @@ section {
     color: #f50;
 }
 /*#endregion */
+
 /*#region Index Website Info */
 #infoContainer h4 {
     margin: 15px 0;
@@ -597,6 +659,7 @@ section {
     color: @primary-text-color;
 }
 /*#endregion */
+
 /*#region Contact Form */
 #contactForm {
     background: @secondary-bg-color;
@@ -609,6 +672,7 @@ section {
     color: @secondary-text-color;
 }
 /*#endregion */
+
 /*#region Sitemap */
 #sitemapContainer {
     margin-top: 50px;
@@ -630,6 +694,7 @@ section {
     font-size: 1.0em;
 }
 /*#endregion */
+
 /*#region Login */
 #loginForm {
     margin: 100px auto;
@@ -640,46 +705,355 @@ section {
     text-align: center;
 }
 /*#endregion */
+
 /*#region Admin */
 #adminLayoutWrapper {
-    padding: 150px 0;
+    padding: 175px 0;
     min-height: 600px;
 }
 
 #songTable {
     margin: 30px 0;
-    border-collapse: collapse;
+    border-collapse: collapse !important;
 }
 
 #songTable td:last-child {
     text-align: center;
 }
+
+#categoryList {
+    margin-top: 30px;
+}
+
+#categoryList ul {
+    color: @secondary-text-color;
+    font-size: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-list-item {
+    padding: 10px 20px;
+}
+
+.list-item-editable[contenteditable="true"] {
+    outline: 2px solid @primary-text-color;
+    outline-offset: 5px;
+}
+
+.category-amount {
+    margin-left: 5px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
 /*#endregion */
-/*#region Media Queries */
+
+/*#region Music */
+
+#musicBackground {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/bg-header.jpg);
+}
+
+#musicWrapper {
+    padding: 175px 0;
+    min-height: 600px;
+}
+
+#waveformContainer {
+    background: -moz-radial-gradient(#2c1d33, black);
+    background: -webkit-radial-gradient(#2c1d33, black);
+    background: radial-gradient(#2c1d33, black);
+    padding: 30px 0;
+}
+
+#waveformContainer .btn-dark {
+    background-color: transparent;
+    border-radius: 0;
+
+    &:hover {
+        color: @secondary-text-color;
+        border-color: #343a40;
+    }
+
+    &.active {
+        color: @primary-text-color;
+        border-color: @primary-text-color;
+    }
+}
+
+#waveformInner {
+    max-width: 80%;
+    margin: auto;
+}
+
+#waveform {
+    margin: auto;
+}
+
+#waveformCounter, #waveformDuration {
+    color: @primary-text-color;
+    font-size: 1.2rem;
+}
+
+.tooltip-track {
+    position: absolute;
+    display: none;
+    background: @primary-bg-color;
+    color: @secondary-text-color;
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+#waveformControls {
+    margin-top: 20px;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.pulse {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pulse .btn-dark {
+    border-color: #ffffff;
+}
+
+.flex-group-item {
+    flex: 1;
+    display: flex;
+}
+
+#waveformControls .flex-group-item:not(.justify-content-center) .btn-dark {
+    width: 45px;
+    height: 40px;
+}
+
+#waveformContainer .flex-group-item:not(.justify-content-center) .btn-dark .fas {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.flex-group-item-last {
+    justify-content: flex-end;
+}
+
+#volume-dropdown {
+    padding: 15px;
+    min-width: 190px;
+}
+
+#volumeControl {
+    width: auto;
+    max-width: 150px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+
+    i {
+        /*margin-top: -6px;*/
+        color: #666;
+    }
+
+    i.fa-volume-off {
+        margin-right: 15px;
+    }
+
+    i.fa-volume-up {
+        margin-left: 15px;
+    }
+}
+
+#volumeSlider {
+    margin: 0 auto;
+    height: 5px;
+    width: 100%;
+    background: #555;
+    border-radius: 15px;
+    border: none;
+
+    .ui-slider-range-min {
+        height: 5px;
+        width: 300px;
+        position: absolute;
+        background: @primary-text-color;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+    }
+
+    .ui-slider-handle {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        background: #FFF;
+        position: absolute;
+        margin-left: -8px;
+        margin-top: -4px;
+        cursor: pointer;
+        outline: none;
+
+        &.ui-state-active {
+            border-color: #ffffff;
+        }
+    }
+}
+
+
+
+#songListContainer {
+    background-color: @primary-bg-color;
+    margin-top: 50px;
+}
+
+#songListHeader {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+#songListControls {
+    margin: 10px 20px;
+}
+
+#songListFiltersBtn.filter-active {
+    color: @primary-text-color;
+    background-color: @primary-bg-color;
+}
+
+#songListFilters {
+    border: 1px solid rgba(255,255,255, 0.1);
+    color: @secondary-text-color;
+}
+
+#songListFiltersInner {
+    padding: 20px;
+}
+
+#songListFooter {
+    margin-top: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.song-container {
+    border-bottom: 1px solid rgba(255,255,255, 0.1);
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: @secondary-bg-color;
+    }
+}
+
+.song-info {
+    cursor: pointer;
+    width: 100%;
+}
+
+.song-info-inner {
+    height: 70px;
+    padding: 0 20px;
+    line-height: 70px;
+    text-align: center;
+}
+
+.song-actions {
+    margin: 0 10px;
+}
+
+#musicTable {
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+#musicTable tr {
+    background-color: @primary-bg-color;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    color: @secondary-text-color;
+}
+
+#musicTable tbody tr:hover {
+    background-color: @secondary-bg-color;
+}
+
+#musicTable tr:last-child {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#musicTable th {
+    border: none;
+}
+
+#musicTable td {
+    border-color: rgba(255,255,255, 0.1);
+    color: inherit;
+    font-weight: inherit;
+    width: auto;
+}
+
+#musicTable td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+#musicTable .song-active {
+    color: @primary-text-color;
+    font-weight: 800;
+}
+
+#musicTable tr .is-playing {
+    opacity: 0;
+}
+
+#musicTable tr.song-active .is-playing {
+    opacity: 1;
+}
+
+/*#endregion */
+
+/*#region Media Queries  */
+
 @media (max-width: 1199px) {
 
-    table, thead, tbody, th, td, tr {
+    #songTable, #songTable thead, #songTable tbody, #songTable th, #songTable td, #songTable tr {
         display: block;
     }
 
-    thead tr {
+    #songTable {
+        background: none;
+    }
+
+    #songTable thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    tr {
+    #songTable tr {
         border: 1px solid #ccc;
+        margin-bottom: 10px;
     }
 
-    td {
+    #songTable tr:nth-of-type(odd) {
+        background-color: transparent;
+    }
+
+    #songTable td {
         border: none;
-        border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50%;
     }
 
-    td:before {
+    #songTable td .info-circle {
+        font-size: 24px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    #songTable td:before {
         padding-right: 10px;
         font-weight: bold;
         font-size: 1.2rem;
@@ -687,28 +1061,36 @@ section {
         display: block;
     }
 
-    td:nth-of-type(1):before {
+    #songTable td:nth-of-type(1):before {
         content: "Title";
     }
 
-    td:nth-of-type(2):before {
+    #songTable td:nth-of-type(2):before {
         content: "Length";
     }
 
-    td:nth-of-type(3):before {
+    #songTable td:nth-of-type(3):before {
         content: "Category";
     }
 
-    td:nth-of-type(4):before {
+    #songTable td:nth-of-type(4):before {
         content: "Upload date";
     }
 
-    td:nth-of-type(5):before {
+    #songTable td:nth-of-type(5):before {
         content: "File path";
     }
 
     #songTable td:last-child {
         text-align: left;
+    }
+}
+
+@media (min-width: 1199px) {
+
+    #musicWrapper .btn-dark:hover {
+        color: @primary-text-color;
+        border-color: @primary-text-color;
     }
 }
 
@@ -720,13 +1102,6 @@ section {
         flex: 100%;
         text-align: center;
     }
-}
-
-@media (max-width: 767px) {
-
-    section {
-        padding: 50px 0;
-    }
 
     #mainNav {
         background-color: @black-bg-color;
@@ -735,6 +1110,23 @@ section {
     .navbar-collapse {
         border-bottom: 2px solid rgba(255, 215, 0, 0.65);
         padding-bottom: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    #waveformContainer {
+        border-radius: 10px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+    }
+}
+
+@media (max-width: 767px) {
+
+    section {
+        padding: 50px 0;
     }
 
     .side-menu-collapse {
@@ -750,12 +1142,28 @@ section {
         overflow: visible;
         min-height: 100%;
     }
+
+    #waveformInner {
+        max-width: 90%;
+    }
+
+    #musicTable th.dismissable, #musicTable td.dismissable {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {
 
     #aboutContainer {
         text-align: left;
+    }
+
+    #musicTableContainer {
+        padding: 20px;
+    }
+
+    #songListFilters {
+        margin: 0 20px;
     }
 }
 
@@ -766,4 +1174,5 @@ section {
         padding-bottom: 100px;
     }
 }
+
 /*#endregion */

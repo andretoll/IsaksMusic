@@ -1,0 +1,78 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.Categories.CategoriesModel
+
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Show success message if any -->
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <script>
+        window.onload = function () {
+
+            ShowSuccessSnackbar("@Model.Message");
+        }
+    </script>
+}
+
+<div>
+    <h2>Categories</h2>
+    <hr />
+    <a title="Add category" class="btn btn-success text-white" data-toggle="modal" data-target="#newCategoryModal">Add category</a>
+    @if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+</div>
+@if (Model.Categories == null || Model.Categories.Count == 0)
+{
+    <p class="text-center mt-4">Sorry, we couldn't find any categories in the database.</p>
+}
+else
+{
+    <div id="categoryList">
+
+        <ul>
+            @foreach (var category in Model.Categories)
+            {
+                <li class="category-list-item" id="category_@category.Id">
+                    <span spellcheck="false" class="list-item-editable">@category.Name</span>
+                    <a class="text-danger ml-2" data-toggle="tooltip" title="Delete" asp-route-id="@category.Id" asp-page-handler="Delete" onclick="return confirm('Are you sure you want to remove this category?')">
+                        <i class="fas fa-times-circle fa-sm"></i>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<!-- New Category Modal -->
+<div class="modal fade" id="newCategoryModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title text-yellow">Add Category</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="songForm" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Category.Name"></label>
+                        <input asp-for="Category.Name" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Category.Name"></span>
+                    </div>
+                    <div class="form-group text-center mb-0">
+                        <input type="submit" class="btn btn-success" value="Save" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

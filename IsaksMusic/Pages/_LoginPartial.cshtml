@@ -8,11 +8,11 @@
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a class="dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@(Context.User.IsInRole("Admin") ? "admin" : @UserManager.GetUserName(User))</a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div><a class="dropdown-item" asp-page="/Admin/Dashboard" title="Dashboard"><i class="fas fa-tachometer-alt fa-fw mr-1"></i>Dashboard</a></div>
+                <a class="dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fas-mr fa-user-circle"></i>@(Context.User.IsInRole("Admin") ? "admin" : @UserManager.GetUserName(User))</a>
+                <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right">
+                    <a class="dropdown-item" asp-page="/Admin/Dashboard" title="Dashboard"><i class="fas fa-tachometer-alt fa-fw mr-1"></i>Dashboard</a>
                     <div class="dropdown-divider"></div>
-                    <div><button type="submit" class="dropdown-item btn-link" title="Logout"><i class="fas fa-sign-out-alt fa-fw mr-1"></i>Log out</button></div>
+                    <button type="submit" class="dropdown-item btn-link" title="Logout"><i class="fas fa-sign-out-alt fa-fw mr-1"></i>Log out</button>
                 </div>
                 @*<a asp-page="/Account/Manage/Index" title="Manage"></a>*@
             </li>

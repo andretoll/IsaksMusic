@@ -1,0 +1,164 @@
+﻿@page
+@model IsaksMusic.Pages.Music.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<!-- Mouseover tooltip -->
+<div class="tooltip-track">00:00</div>
+
+<div class="body-background">
+    <div class="container" id="musicWrapper">
+        <!-- Media player -->
+        <div id="waveformContainer">
+            <div id="waveformInner">
+                <!-- Wave form header -->
+                <div id="waveformHeader">
+                    <h4 id="songPlayingTitle"></h4>
+                    <label id="songPlayingCategories"></label>
+                </div>
+                <div id="waveform" class="text-center">
+                    <p id="waveformMessage">Choose a song in the playlist below to play it.</p>
+                </div>
+                <div class="d-flex">
+                    <div>
+                        <span id="waveformCounter"></span>
+                    </div>
+                    <div class="ml-auto">
+                        <span id="waveformDuration"></span>
+                    </div>
+                </div>
+                <hr />
+                <div class="d-flex" id="waveformControls">
+                    <div class="flex-group-item">
+                        <a id="toggleShuffle" title="Shuffle" class="btn btn-dark mr-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <i class="fas fa-random"></i>
+                        </a>
+                        <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <i class="fas fa-redo"></i>
+                        </a>
+                    </div>
+                    <div class="flex-group-item justify-content-center">
+                        <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark" onclick="playPause()">
+                            <i class="fas fa-play-circle fa-2x"></i>
+                        </a>
+                    </div>
+                    <div class="flex-group-item flex-group-item-last">
+                        <a id="togglePulse" title="Pulse" class="btn btn-dark mr-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <i class="fas fa-heartbeat"></i>
+                        </a>
+                        <a id="volumeMenuButton" title="Volume" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-volume-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
+                            <div id="volumeControl">
+                                <i class="fa fa-volume-off"></i>
+                                <div id="volumeSlider"></div>
+                                <i class="fa fa-volume-up"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="songListContainer">
+            <div id="songListHeader">
+                <h2 class="text-yellow">Songs</h2>
+                <p>Click a song to play it!</p>
+            </div>
+            <div id="songListControls" class="d-flex">
+                <div class="flex-group-item">
+                    <a title="Toggle filters" class="btn btn-dark" data-toggle="collapse" id="songListFiltersBtn" href="#songListFilters" aria-controls="songListFilters"><i class="fas fas-mr fa-filter fa-sm"></i>Filter</a>
+                </div>
+                <div class="flex-group-item flex-group-item-last">
+                    <a title="Clear song queue" class="btn btn-dark" data-toggle="tooltip" data-trigger="manual" id="clearQueueBtn" onclick="clearQueueList()"><i class="fas fas-mr fa-ban fa-sm"></i>Clear queue</a>
+                </div>
+            </div>
+            <div class="collapse" id="songListFilters">
+                <div id="songListFiltersInner">
+                    <ul class="list-inline text-center">
+                        @foreach (var category in Model.CategoryList)
+                        {
+                            <li class="list-inline-item"><input class="icheckbox mr-3" type="checkbox" id="@category.Text" />  @category.Text</li>
+                        }
+                    </ul>
+                    <div class="text-center">
+                        <a class="btn btn-success" id="filterChange" onclick="applyFilters()">Apply</a>
+                        <a class="btn btn-dark" id="filterClear" onclick="clearFilters()">Clear</a>
+                    </div>
+                </div>
+            </div>
+            <div id="musicTableContainer">
+                @if (Model.SongList.Count == 0)
+                {
+                    <div class="text-center">
+                        <p><strong>Unfortunately, there are no songs available at this moment.</strong><br />Check in another time or contact me for a sample. </p>
+                    </div>
+                }
+                else
+                {
+                    <table class="table" id="musicTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th class="dismissable">Categories</th>
+                                <th>Duration</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var song in Model.SongList)
+                            {
+                                <tr id="@song.PlaylistId" title="@song.Title">
+                                    <td class="is-playing min ml-3"><i class="fas fa-volume-up"></i></td>
+                                    <td onclick="loadSong(@song.PlaylistId)">@song.Title</td>
+                                    <td class="dismissable categoryColumn" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
+                                    <td onclick="loadSong(@song.PlaylistId)">@song.Duration</td>
+                                    <td class="min">
+                                        <div class="song-actions">
+                                            <a class="btn btn-dark" id="actionDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdownButton">
+                                                <a title="Queue" class="dropdown-item queue-btn" onclick="addToQueueList(@song.PlaylistId)"><i class="fas fa-fw mr-2 fa-indent"></i>Queue</a>
+                                                <a title="More" class="dropdown-item"><i class="fas fa-fw mr-2 fa-info"></i>More</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a title="Share" class="dropdown-item"><i class="fas fa-fw mr-2 fa-share-alt"></i>Share</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+
+            </div>
+            <div id="songListFooter">
+                <label class="text-muted">Please note that some of these tracks might be in an unfinished state.</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+
+        playlist = @Html.Raw(Json.Serialize(Model.SongList));
+
+        autoplay = ("@Model.Autoplay" === "True");
+
+        if (autoplay) {
+            playPause();
+        }
+    }
+</script>
+
+@section scripts
+{
+    <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
+    <script src="~/js/music-player.js" asp-append-version="true"></script>
+}
+
