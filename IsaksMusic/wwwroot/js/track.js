@@ -22,6 +22,15 @@ $(document).ready(function () {
             setVolume(ui.value / 100);
         }
     });
+
+    /* Check description overflow */
+    var element = document.querySelector('#collapseDescription');
+
+    if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
+        $('#collapseDescriptionBtn').show();
+    } else {
+
+    }
     
 });
 

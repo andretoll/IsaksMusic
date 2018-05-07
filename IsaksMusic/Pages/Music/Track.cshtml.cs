@@ -38,6 +38,36 @@ namespace IsaksMusic.Pages.Music
 
             Track = new SongModel()
             {
+                Id = song.Id,
+                Title = song.Title,
+                Description = song.Description,
+                Categories = StringFormatter.GetCategoryString(song.SongCategories),
+                UploadDate = song.UploadDate.ToShortDateString(),
+                FilePath = song.FileName
+            };
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnGetRandomAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var songs = await _applicationDbContext.Songs.Include(s => s.SongCategories).ThenInclude(sc => sc.Category).ToListAsync();
+
+            songs.RemoveAll(s => s.Id == id);
+
+            /* Get random track, but not the same */
+            Random rand = new Random();
+            int toSkip = rand.Next(0, songs.Count());
+            var song = songs.Skip(toSkip).FirstOrDefault();
+
+            Track = new SongModel()
+            {
+                Id = song.Id,
                 Title = song.Title,
                 Description = song.Description,
                 Categories = StringFormatter.GetCategoryString(song.SongCategories),
@@ -50,6 +80,7 @@ namespace IsaksMusic.Pages.Music
 
         public class SongModel
         {
+            public int Id { get; set; }
             public string Title { get; set; }
             public string Categories { get; set; }
             public string Description { get; set; }

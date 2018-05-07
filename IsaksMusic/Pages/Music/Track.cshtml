@@ -9,13 +9,13 @@
 <!-- Mouseover tooltip -->
 <div class="tooltip-track">00:00</div>
 
-<div class="body-background">
-    <div class="container" id="trackWrapper">
-        <div class="mb-2">
-            <a asp-page="/music/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to music</a>
-        </div>
+<div class="container" id="trackWrapper">
+    <div class="mb-2">
+        <a asp-page="/music/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to all music</a>
+    </div>
+    <div id="trackWrapperInner">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <!-- Media player -->
                 <div id="waveformContainer">
                     <div id="waveformInner">
@@ -23,6 +23,9 @@
                         <div id="waveformHeader">
                             <h4 id="songPlayingTitle">@Model.Track.Title</h4>
                             <label id="songPlayingCategories">@Model.Track.Categories</label>
+                            <a id="randomTrack" data-toggle="tooltip" title="Random track" asp-page="./Track" asp-page-handler="Random" asp-route-id="@Model.Track.Id">
+                                <img src="https://openclipart.org/download/189685/1387954956.svg" height="50" width="50" />
+                            </a>
                         </div>
                         <div id="waveform" class="text-center">
                             <p id="waveformMessage">Loading track...</p>
@@ -63,22 +66,30 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4" id="trackContainer">
                 <!-- Track info -->
-                <div id="trackContainer">
-                    <div class="d-flex" id="trackHeader">
-                        <div class="flex-group-item">
-                            <label>@Model.Track.Title</label>
-                        </div>
-                        <div class="flex-group-item justify-content-center">
-                            <label>@Model.Track.Categories</label>
-                        </div>
-                        <div class="flex-group-item flex-group-item-last">
-                            <label>@Model.Track.UploadDate</label>
-                        </div>
+                <div>
+                    <div id="trackHeader">
+                        <h4 class="text-yellow">@Model.Track.Title</h4>
                     </div>
-                    <div id="trackDescription">
-
+                    <div id="trackBody">
+                        <div class="mb-4">
+                            <label class="text-yellow">Upload Date</label>
+                            <p>@Model.Track.UploadDate</p>
+                        </div>
+                        <div class="mb-4">
+                            <label class="text-yellow">Categories</label>
+                            <p>@Model.Track.Categories</p>
+                        </div>
+                        <div class="mt-4">
+                            <label class="text-yellow">Description</label>
+                            <div id="trackDescription">
+                                <p class="collapse" id="collapseDescription">
+                                    @Model.Track.Description
+                                </p>
+                                <a class="collapsed" id="collapseDescriptionBtn" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription"></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
