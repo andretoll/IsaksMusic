@@ -630,7 +630,6 @@ section {
 }
 #musicWrapper {
   padding: 175px 0;
-  min-height: 600px;
 }
 #waveformContainer {
   background: -moz-radial-gradient(#2c1d33, black);
@@ -693,7 +692,7 @@ section {
   height: 40px;
 }
 #waveformContainer .flex-group-item:not(.justify-content-center) .btn-dark .fas {
-  font-size: 1.2rem;
+  font-size: 1rem;
   vertical-align: middle;
 }
 .flex-group-item-last {
@@ -711,7 +710,6 @@ section {
   align-items: center;
 }
 #volumeControl i {
-  /*margin-top: -6px;*/
   color: #666;
 }
 #volumeControl i.fa-volume-off {
@@ -839,6 +837,33 @@ section {
   opacity: 1;
 }
 /*#endregion */
+/*#region Tracks */
+#trackWrapper {
+  padding: 175px 0;
+}
+#trackContainer {
+  /*max-width: 600px;
+    min-height: 400px;
+    margin: auto;*/
+}
+#trackContainer #songPlayingTitle,
+#trackContainer #songPlayingCategories {
+  display: none;
+}
+#trackContainer #waveformContainer {
+  background: -moz-radial-gradient(#1d2333, black);
+  background: -webkit-radial-gradient(#1d2333, black);
+  background: radial-gradient(#1d2333, black);
+  padding: 20px 0;
+}
+#trackContainer #waveformControls {
+  padding: 0;
+}
+#trackDetailsContainer {
+  background-color: #0a0a0a;
+  padding: 15px;
+}
+/*#endregion */
 /*#region Media Queries  */
 @media (max-width: 1199px) {
   #songTable,
@@ -901,7 +926,8 @@ section {
   }
 }
 @media (min-width: 1199px) {
-  #musicWrapper .btn-dark:hover {
+  #musicWrapper .btn-dark:hover,
+  #trackWrapper .btn-dark:hover {
     color: #ffc600;
     border-color: #ffc600;
   }
@@ -923,7 +949,7 @@ section {
   }
 }
 @media (min-width: 992px) {
-  #waveformContainer {
+  #musicWrapper #waveformContainer {
     border-radius: 10px;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);

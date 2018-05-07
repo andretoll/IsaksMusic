@@ -93,7 +93,7 @@ $(document).ready(function () {
     $('#waveformControls').addClass('pulse');
 
     /* Set initial volume */
-    wavesurfer.setVolume(0.5);    
+    wavesurfer.setVolume(0.5);
 });
 
 /* Wavesurfer options */
@@ -130,7 +130,9 @@ wavesurfer.on('audioprocess', function () {
 
 /* When song is seeked */
 wavesurfer.on('seek', function () {
-    $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));
+    if (wavesurfer.getDuration() !== 0) {
+        $('#waveformCounter').text(formatTime(wavesurfer.getCurrentTime()));
+    }
 });
 
 /* When cursor moves over waveform */
