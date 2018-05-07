@@ -25,7 +25,11 @@ namespace IsaksMusic.Data
             var minutes = TimeSpan.FromSeconds(value).Minutes;
             var seconds = TimeSpan.FromSeconds(value).Seconds;
 
-            return minutes + ":" + seconds;
+            var duration = TimeSpan.FromSeconds(value).ToString();
+
+            duration = duration.Remove(0, 3);
+
+            return duration;
         }
     }
 }

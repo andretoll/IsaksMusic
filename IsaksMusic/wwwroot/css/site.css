@@ -599,6 +599,9 @@ section {
 #songTable td:last-child {
   text-align: center;
 }
+#songTable .dropdown-menu .dropdown-item {
+  padding: 0.7rem 1rem;
+}
 #categoryList {
   margin-top: 30px;
 }
