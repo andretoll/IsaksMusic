@@ -31,22 +31,39 @@ namespace IsaksMusic.Pages.Admin
         [TempData]
         public string ErrorMessage { get; set; }
 
+        /* Password */
         [BindProperty]
         public PasswordModel Password { get; set; }
 
+        /* Email */
+        [BindProperty]
+        public EmailModel Email { get; set; }
+
+        /* Username */
+        [BindProperty]
+        public UsernameModel Username { get; set; }
+
         public void OnGet()
         {
-
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostPasswordAsync()
         {
+            ModelState.Remove("Username");
+
+            ModelState.Remove("Email");
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -74,17 +91,110 @@ namespace IsaksMusic.Pages.Admin
             Message = "Your password has been changed.";
             ErrorMessage = null;
 
-            return Page();
+            return RedirectToPage();
+        }
+
+        /// <summary>
+        /// Change email
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IActionResult> OnPostEmailAsync()
+        {
+            ModelState.Remove("Username");
+
+            ModelState.Remove("OldPassword");
+            ModelState.Remove("NewPassword");
+            ModelState.Remove("ConfirmPassword");
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var setEmailResult = await _userManager.SetEmailAsync(user, Email.Email);
+            if (!setEmailResult.Succeeded)
+            {
+                foreach (var error in setEmailResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                ErrorMessage = errors.FirstOrDefault().FirstOrDefault().ErrorMessage;
+
+                return Page();
+            }
+
+            _logger.LogInformation("User changed their email successfully.");
+            Message = "Your email has been changed.";
+            ErrorMessage = null;
+
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostUsernameAsync()
+        {
+            ModelState.Remove("Email");
+
+            ModelState.Remove("OldPassword");
+            ModelState.Remove("NewPassword");
+            ModelState.Remove("ConfirmPassword");
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var setUsernameResult = await _userManager.SetUserNameAsync(user, Username.Username);
+
+            if (!setUsernameResult.Succeeded)
+            {
+                foreach (var error in setUsernameResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                ErrorMessage = errors.FirstOrDefault().FirstOrDefault().ErrorMessage;
+
+                return Page();
+            }
+
+            _logger.LogInformation("User changed their username successfully.");
+            Message = "Your username has been changed.";
+            ErrorMessage = null;
+
+            return RedirectToPage();
         }
 
         public class PasswordModel
         {
-            [Required]
+            [Required(ErrorMessage = "This field is required.")]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
             public string OldPassword { get; set; }
 
-            [Required]
+            [Required (ErrorMessage = "This field is required.")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "New password")]
@@ -94,6 +204,19 @@ namespace IsaksMusic.Pages.Admin
             [Display(Name = "Confirm new password")]
             [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+        }
+
+        public class EmailModel
+        {
+            [Required(ErrorMessage = "This field is required.")]
+            [DataType(DataType.EmailAddress, ErrorMessage = "Not a valid email address.")]
+            public string Email { get; set; }
+        }
+
+        public class UsernameModel
+        {
+            [Required(ErrorMessage = "This field is required.")]
+            public string Username { get; set; }
         }
     }
 }

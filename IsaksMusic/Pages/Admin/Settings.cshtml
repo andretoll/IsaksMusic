@@ -24,58 +24,92 @@
         @Model.ErrorMessage
     </div>
 }
-<div id="settingsAccordion">
-    <div class="card">
-        <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <div class="card-header" id="changeUsernameHeader">
-                <i class="fas fas-mr fa-plus"></i>
-                Change username
+    <div id="settingsAccordion">
+        <div class="card">
+            <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="card-header" id="changeUsernameHeader">
+                    <i class="fas fas-mr fa-plus"></i>
+                    Change username
+                </div>
+            </a>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="changeUsernameHeader" data-parent="#settingsAccordion">
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Username.Username"></label>
+                            <input asp-for="Username.Username" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="Username.Username" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <button asp-page-handler="Username" type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </a>
+        </div>
+        <div class="card">
+            <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <div class="card-header" id="changePasswordHeader">
+                    <i class="fas fas-mr fa-plus"></i>
+                    Change password
+                </div>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="changePasswordHeader" data-parent="#settingsAccordion">
+                <div class="card-body">
+                    <form asp-page-handler="Password" method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Password.OldPassword"></label>
+                                    <input asp-for="Password.OldPassword" class="form-control" />
+                                    <span asp-validation-for="Password.OldPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password.NewPassword"></label>
+                                    <input asp-for="Password.NewPassword" class="form-control" />
+                                    <span asp-validation-for="Password.NewPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Password.ConfirmPassword"></label>
+                                    <input asp-for="Password.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="Password.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div>
+                                    <button asp-page-handler="Password" type="submit" class="btn btn-success m-auto d-block">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <a class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <div class="card-header" id="changeEmailHeader">
+                    <i class="fas fas-mr fa-plus"></i>
+                    Change email
+                </div>
+            </a>
 
-        <div id="collapseOne" class="collapse" aria-labelledby="changeUsernameHeader" data-parent="#settingsAccordion">
-            <div class="card-body">
-
+            <div id="collapseThree" class="collapse" aria-labelledby="changeEmailHeader" data-parent="#settingsAccordion">
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Email.Email"></label>
+                            <input asp-for="Email.Email" class="form-control" autocomplete="off" />
+                            <span asp-validation-for="Email.Email" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <button asp-page-handler="Email" type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="card">
-        <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <div class="card-header" id="changePasswordHeader">
-                <i class="fas fas-mr fa-plus"></i>
-                Change password
-            </div>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="changePasswordHeader" data-parent="#settingsAccordion">
-            <div class="card-body">
-                <form asp-page-handler="Password" method="post" id="changePasswordForm">
-                    <div asp-validation-summary="ModelOnly"></div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Password.OldPassword"></label>
-                                <input asp-for="Password.OldPassword" class="form-control" />
-                                <span asp-validation-for="Password.OldPassword" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Password.NewPassword"></label>
-                                <input asp-for="Password.NewPassword" class="form-control" />
-                                <span asp-validation-for="Password.NewPassword" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label asp-for="Password.ConfirmPassword"></label>
-                                <input asp-for="Password.ConfirmPassword" class="form-control" />
-                                <span asp-validation-for="Password.ConfirmPassword" class="text-danger"></span>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-success m-auto d-block">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>

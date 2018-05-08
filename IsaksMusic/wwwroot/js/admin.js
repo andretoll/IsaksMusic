@@ -81,7 +81,7 @@ function startLoadingAnimation() {
 /* Function to delete song */
 function deleteSong(songId) {
 
-    var result = confirm("Are you sure you want to remove this song?");
+    var result = confirm("Are you sure you want to delete this song?");
     if (result) {
         $.ajax({
 
@@ -102,6 +102,29 @@ function removeTableRow(row) {
     $(row).fadeOut(500, function () {
         row.remove();
     });
+}
+
+/* Function to delete a category */
+function deleteCategory(categoryId) {
+
+    var element = $('#category_' + categoryId);
+
+    var result = confirm("Are you sure you want to delete this category?");
+    if (result) {
+        $.ajax({
+
+            type: "Get",
+            url: "/admin/categories?handler=Delete",
+            data: { id: categoryId },
+            success: function () {
+                ShowSuccessSnackbar("Category removed");
+                $(element).remove();
+            },
+            error: function () {
+                location.reload();
+            }
+        });
+    }
 }
 
 /* Function to edit category name */

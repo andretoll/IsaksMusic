@@ -41,7 +41,7 @@ else
             {
                 <li class="category-list-item" id="category_@category.Id">
                     <span spellcheck="false" class="list-item-editable">@category.Name</span>
-                    <a class="text-danger ml-2" data-toggle="tooltip" title="Delete" asp-route-id="@category.Id" asp-page-handler="Delete" onclick="return confirm('Are you sure you want to remove this category?')">
+                    <a class="text-danger ml-2" data-toggle="tooltip" title="Delete" onclick="deleteCategory(@category.Id)">
                         <i class="fas fa-times-circle fa-sm"></i>
                     </a>
                 </li>

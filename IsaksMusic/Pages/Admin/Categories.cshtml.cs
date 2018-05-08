@@ -91,7 +91,7 @@ namespace IsaksMusic.Pages.Admin.Categories
                 if (category.SongCategories.Count() > 0)
                 {
                     ErrorMessage = "Category could not be removed because one or several songs depend on it.";
-                    return RedirectToPage();
+                    return StatusCode(400);
                 }
 
                 /* Remove entry from database */

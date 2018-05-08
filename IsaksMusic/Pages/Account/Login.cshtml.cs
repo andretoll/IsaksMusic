@@ -36,8 +36,7 @@ namespace IsaksMusic.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = "An email is required.")]
-            [EmailAddress(ErrorMessage = "Invalid email address.")]
-            public string Email { get; set; }
+            public string Username { get; set; }
 
             [Required(ErrorMessage = "A password is required.")]
             [DataType(DataType.Password)]
@@ -73,13 +72,13 @@ namespace IsaksMusic.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
 
                     /* Get user and role */
-                    var user = await _signInManager.UserManager.FindByNameAsync(Input.Email);
+                    var user = await _signInManager.UserManager.FindByNameAsync(Input.Username);
                     var userRole = await _signInManager.UserManager.GetRolesAsync(user);
 
                     /* Check if user is admin */
