@@ -1,7 +1,7 @@
 ﻿@page
 @model IsaksMusic.Pages.Music.IndexModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Music";
     Layout = "~/Pages/_Layout.cshtml";
 }
 
@@ -19,7 +19,7 @@
                     <label id="songPlayingCategories"></label>
                 </div>
                 <div id="waveform" class="text-center">
-                    <p id="waveformMessage">Choose a song in the playlist below to play it.</p>
+                    <p id="waveformMessage">Choose a track in the playlist below to play it.</p>
                 </div>
                 <div class="d-flex">
                     <div>
@@ -65,7 +65,7 @@
         <div id="songListContainer">
             <div id="songListHeader">
                 <h2 class="text-yellow">Songs</h2>
-                <p>Click a song to play it!</p>
+                <p>Click a track to play it!</p>
             </div>
             <div id="songListControls" class="d-flex">
                 <div class="flex-group-item">
@@ -93,7 +93,7 @@
                 @if (Model.SongList.Count == 0)
                 {
                     <div class="text-center">
-                        <p><strong>Unfortunately, there are no songs available at this moment.</strong><br />Check in another time or contact me for a sample. </p>
+                        <p><strong>Unfortunately, there are no tracks available at this moment.</strong><br />Check in another time or contact me for a sample. </p>
                     </div>
                 }
                 else

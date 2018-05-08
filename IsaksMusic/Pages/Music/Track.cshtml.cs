@@ -43,7 +43,7 @@ namespace IsaksMusic.Pages.Music
                 Description = song.Description,
                 Categories = StringFormatter.GetCategoryString(song.SongCategories),
                 UploadDate = song.UploadDate.ToShortDateString(),
-                FilePath = song.FileName
+                FilePath = "/music/" + song.FileName
             };
 
             return Page();
@@ -72,7 +72,7 @@ namespace IsaksMusic.Pages.Music
                 Description = song.Description,
                 Categories = StringFormatter.GetCategoryString(song.SongCategories),
                 UploadDate = song.UploadDate.ToShortDateString(),
-                FilePath = song.FileName
+                FilePath = "/music/" + song.FileName
             };
 
             return Page();

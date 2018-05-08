@@ -1,8 +1,8 @@
-﻿@page
+﻿@page "{id:int}"
 @model IsaksMusic.Pages.Music.TrackModel
 
 @{
-    ViewData["Title"] = "Track";
+    ViewData["Title"] = Model.Track.Title;
     Layout = "~/Pages/_Layout.cshtml";
 }
 
