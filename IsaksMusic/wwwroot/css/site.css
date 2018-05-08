@@ -615,7 +615,7 @@ section {
   padding: 10px 20px;
 }
 .list-item-editable[contenteditable="true"] {
-  outline: 2px solid #ffc600;
+  outline: 2px dashed #ffc600;
   outline-offset: 5px;
 }
 .category-amount {
