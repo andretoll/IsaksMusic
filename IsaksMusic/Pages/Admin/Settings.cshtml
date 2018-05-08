@@ -1,0 +1,81 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.SettingsModel
+@{
+    ViewData["Title"] = "Settings";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<!-- Show success message if any -->
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <script>
+        window.onload = function () {
+
+            ShowSuccessSnackbar("@Model.Message");
+        }
+    </script>
+}
+
+<h2>Settings</h2>
+<hr />
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+<div id="settingsAccordion">
+    <div class="card">
+        <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <div class="card-header" id="changeUsernameHeader">
+                <i class="fas fas-mr fa-plus"></i>
+                Change username
+            </div>
+        </a>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="changeUsernameHeader" data-parent="#settingsAccordion">
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <div class="card-header" id="changePasswordHeader">
+                <i class="fas fas-mr fa-plus"></i>
+                Change password
+            </div>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="changePasswordHeader" data-parent="#settingsAccordion">
+            <div class="card-body">
+                <form asp-page-handler="Password" method="post" id="changePasswordForm">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Password.OldPassword"></label>
+                                <input asp-for="Password.OldPassword" class="form-control" />
+                                <span asp-validation-for="Password.OldPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password.NewPassword"></label>
+                                <input asp-for="Password.NewPassword" class="form-control" />
+                                <span asp-validation-for="Password.NewPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Password.ConfirmPassword"></label>
+                                <input asp-for="Password.ConfirmPassword" class="form-control" />
+                                <span asp-validation-for="Password.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-success m-auto d-block">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

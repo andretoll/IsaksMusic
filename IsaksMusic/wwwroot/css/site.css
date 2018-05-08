@@ -239,9 +239,9 @@ button[data-dismiss="modal"]:hover {
   height: 100%;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   background: #111;
-  -webkit-transition: width .5s;
-  -moz-transition: width .5s;
-  transition: width .5s;
+  -webkit-transition: width.5s;
+  -moz-transition: width.5s;
+  transition: width.5s;
 }
 #sideMenuImgContainer {
   text-align: center;
@@ -265,15 +265,12 @@ button[data-dismiss="modal"]:hover {
 .collapsing.width {
   -webkit-transition-property: width, visibility;
   transition-property: width, visibility;
-  width: 0;
+  width: 0px;
   height: 100%;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
 /* Side menu links */
-.side-menu-collapse .list-group {
-  min-width: 180px;
-}
 .side-menu-collapse .list-group .list-group-item {
   border-radius: 0;
   background-color: transparent;
@@ -622,6 +619,30 @@ section {
   margin-left: 5px;
   font-size: 0.9rem;
   letter-spacing: 2px;
+}
+#settingsAccordion .card {
+  background-color: #0a0a0a;
+}
+#settingsAccordion .card-header {
+  cursor: pointer;
+}
+#settingsAccordion .btn-link {
+  color: #ffc600;
+}
+[data-toggle="collapse"] .card-header .fas:before {
+  content: "\f0d7";
+}
+[data-toggle="collapse"].collapsed .card-header .fas:before {
+  content: "\f0da";
+}
+#settingsAccordion [data-toggle="collapse"]:not(.collapsed) {
+  font-weight: 800;
+}
+#settingsAccordion .form-group {
+  max-width: 400px;
+}
+#settingsAccordion label {
+  color: #ffc600;
 }
 /*#endregion */
 /*#region Music */
@@ -1001,13 +1022,12 @@ section {
     padding: 50px 0;
   }
   .side-menu-collapse {
-    width: 70px;
+    width: 60px;
   }
   .side-menu-header {
     display: none;
   }
   .side-menu-collapse .list-group {
-    min-width: 70px;
     overflow: visible;
     min-height: 100%;
   }
@@ -1020,6 +1040,9 @@ section {
   }
 }
 @media (min-width: 768px) {
+  .side-menu-collapse .list-group {
+    min-width: 180px;
+  }
   #aboutContainer {
     text-align: left;
   }
