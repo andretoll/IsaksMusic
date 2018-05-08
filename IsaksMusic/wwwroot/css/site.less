@@ -750,10 +750,15 @@ section {
 
 #settingsAccordion .card {
     background-color: @primary-bg-color;
+    margin-bottom: 5px;
 }
 
 #settingsAccordion .card-header {
     cursor: pointer;
+}
+
+#settingsAccordion [data-parent="#settingsAccordion"] {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #settingsAccordion .btn-link {

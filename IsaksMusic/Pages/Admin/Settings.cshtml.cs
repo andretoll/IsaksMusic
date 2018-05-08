@@ -45,6 +45,7 @@ namespace IsaksMusic.Pages.Admin
 
         public void OnGet()
         {
+            ErrorMessage = null;
         }
 
         /// <summary>
@@ -142,6 +143,10 @@ namespace IsaksMusic.Pages.Admin
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Change username
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostUsernameAsync()
         {
             ModelState.Remove("Email");
@@ -195,7 +200,7 @@ namespace IsaksMusic.Pages.Admin
             public string OldPassword { get; set; }
 
             [Required (ErrorMessage = "This field is required.")]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The password must be between {2} and {1} characters long.", MinimumLength = 8)]
             [DataType(DataType.Password)]
             [Display(Name = "New password")]
             public string NewPassword { get; set; }
@@ -216,6 +221,7 @@ namespace IsaksMusic.Pages.Admin
         public class UsernameModel
         {
             [Required(ErrorMessage = "This field is required.")]
+            [StringLength(20, ErrorMessage = "The username must be between {2} and {1} characters long.", MinimumLength = 4)]
             public string Username { get; set; }
         }
     }

@@ -65,10 +65,13 @@
                                 <div class="form-group">
                                     <label asp-for="Password.OldPassword"></label>
                                     <input asp-for="Password.OldPassword" class="form-control" />
-                                    <span asp-validation-for="Password.OldPassword" class="text-danger"></span>
+                                    <span asp-validation-for="Password.OldPassword" class="text-danger"></span>                                    
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Password.NewPassword"></label>
+                                    <a class="float-right info-circle">
+                                        <i tabindex="0" data-toggle="popover" data-trigger="focus" title="Password policy" data-content="- At least one digit<br/>- At least one uppercase letter<br/>- At least 8 characters<br/>- At least 6 unique characters" data-html="true" class="fas fa-info-circle"></i>
+                                    </a>
                                     <input asp-for="Password.NewPassword" class="form-control" />
                                     <span asp-validation-for="Password.NewPassword" class="text-danger"></span>
                                 </div>
