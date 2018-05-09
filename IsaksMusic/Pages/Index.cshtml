@@ -29,13 +29,23 @@
     <div class="container intro-text">
         <h1>Welcome to <span class="text-yellow font-weight-bold">Isak's Music</span></h1>
         <br />
-        <p>Listen to music, check out upcoming projects and tune in to the latest news.</p>
-        <a class="btn btn-dark" title="Start listening" asp-page="/music/index" asp-route-autoplay="true">Start listening<i class="fas fa-play ml-2"></i></a>
+        <p class="mb-4">Listen to music, check out upcoming projects and tune in to the latest news.</p>
+        @if (false)
+        {
+            <a class="btn btn-dark" title="Start listening" asp-page="/music/index" asp-route-autoplay="true">Start listening<i class="fas fa-play ml-2"></i></a>
+        }
+        else
+        {
+            <a title="Featured Track" asp-page="/music/index" id="featuredSongContainer" class="alert alert-dark">
+                <span><span><strong class="text-uppercase"><i class="fas fas-mr fa-fire"></i>Featured - </strong></span><span>A Simple Truth</span></span>
+            </a>
+        }
     </div>
 
     <i id="scrollIndicator" class="fas fa-angle-down fa-4x"></i>
 </header>
-<section class="section-odd">
+<section class="section-odd"></section>
+<section class="section-even">
     <div class="container" id="aboutContainer">
         <div class="row">
             <div class="col-md-6">
@@ -54,15 +64,15 @@
                     <p>For now I'm mostly orienting myself with rap/trap type of beats, but I love doing more electronic-based stuff as well!</p>
                     <div class="row">
                         <div class="col-md-6" id="socialLinks">
-                            <div class="social-media-container mt-3 mb-3">                                
-                                <a title="Facebook" href="https://www.facebook.com/" target="_blank">
-                                    <span class="fa-stack fa-lg circle-social-media">
+                            <div class="social-media-container mt-3 mb-3">
+                                <a class="mr-2" title="Facebook" href="https://www.facebook.com/" target="_blank">
+                                    <span class="fa-stack circle-social-media">
                                         <i class="fas circle-facebook fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                                 <a title="Soundcloud" href="https://soundcloud.com/" target="_blank">
-                                    <span class="fa-stack fa-lg circle-social-media">
+                                    <span class="fa-stack circle-social-media">
                                         <i class="fas circle-soundcloud fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-soundcloud fa-stack-1x fa-inverse"></i>
                                     </span>
@@ -82,7 +92,7 @@
         </div>
     </div>
 </section>
-<section class="section-even">
+<section class="section-odd">
     <div class="container" id="infoContainer">
         <div class="row text-center">
             <div class="col-md-4 mb-3">
@@ -118,7 +128,7 @@
         </div>
     </div>
 </section>
-<section class="section-odd">
+<section class="section-even">
     <div class="container">
         <div class="row">
             <div class="col-md-12" id="contactForm">

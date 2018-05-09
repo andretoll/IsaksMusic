@@ -517,7 +517,7 @@ footer {
 #mainFooter {
     bottom: 0;
     min-height: 200px;
-    background-color: @black-bg-color;
+    background-color: @primary-bg-color;
     padding: 30px;
 }
 
@@ -537,7 +537,7 @@ footer {
 #subFooter {
     height: 60px;
     line-height: 60px;
-    background-color: @primary-bg-color;
+    background-color: @secondary-bg-color;
     text-align: center;
 }
 /*#endregion */
@@ -619,8 +619,22 @@ section {
 .social-media-container a:hover {
     opacity: 0.7;
 }
-/*#endregion */
 
+#featuredSongContainer {
+    margin: auto;
+    border: none;
+    background-color: @secondary-bg-color;
+    color: white;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
+}
+
+#featuredSongContainer .fas {
+    color: orange;
+}
+
+/*#endregion */
 /*#region Index About Me */
 #aboutContainer {
     text-align: center;
@@ -786,6 +800,7 @@ section {
 }
 
 /*#endregion */
+
 /*#region Music */
 #musicBackground {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/bg-header.jpg);
