@@ -3,24 +3,45 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using IsaksMusic.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace IsaksMusic.Pages
 {
     public class IndexModel : PageModel
     {
+        ApplicationDbContext _applicationDbContext;
+
+        public IndexModel(ApplicationDbContext applicationDbContext)
+        {
+            _applicationDbContext = applicationDbContext;
+        }
+
         [BindProperty]
         public ContactFormModel Contact { get; set; }
+
+        public FeaturedModel Featured { get; set; }
 
         [TempData]
         public string Message { get; set; }
 
         public bool PostbackFailed { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            /* Get featured song, if any */
+            var featuredSong = await _applicationDbContext.FeaturedSongs.Include(f => f.Song).FirstOrDefaultAsync();
 
+            if (featuredSong != null)
+            {
+                Featured = new FeaturedModel
+                {
+                    SongId = featuredSong.SongId,
+                    Title = featuredSong.Song.Title
+                };
+            }
         }
 
         /* On contact submit */
@@ -38,6 +59,12 @@ namespace IsaksMusic.Pages
             Message = "Email successfully sent!";
 
             return RedirectToPage("Index");
+        }
+
+        public class FeaturedModel
+        {
+            public int SongId { get; set; }
+            public string Title { get; set; }
         }
 
         public class ContactFormModel

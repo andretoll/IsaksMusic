@@ -9,7 +9,7 @@
 /*#region Global */
 body {
     font-family: 'Roboto Slab','Helvetica Neue',Helvetica,Arial,sans-serif;
-    background-color: @primary-bg-color;
+    background-color: @secondary-bg-color;
 }
 
 .body-background {
@@ -104,6 +104,10 @@ textarea.textarea-sm {
     transform: rotate(90deg);
 }
 
+.fa-fire {
+    color: orange;
+}
+
 .btn-dark {
     background-color: @primary-bg-color;
 
@@ -163,11 +167,15 @@ table th {
 }
 
 .table th, .table td {
-    padding: 0.4rem 0.6rem;
+    vertical-align: middle;
 }
 
 .table-btn {
     margin: 0 5px;
+}
+
+.table-dark .thead-dark th {
+    background-color: #441d1d;
 }
 
 .modal-content {
@@ -237,7 +245,7 @@ button[data-dismiss="modal"] {
 .dropdown-item {
     color: @secondary-text-color;
     cursor: pointer;
-    padding: 0 1rem;
+    padding: 0.6rem 0.8rem;
 }
 
 .dropdown-item:hover {
@@ -358,6 +366,10 @@ button[data-dismiss="modal"] {
 
 .tooltip .arrow::before {
     border-top-color: @primary-text-color;
+}
+
+.cursor-default {
+    cursor: default;
 }
 
 /*#endregion */
@@ -504,9 +516,6 @@ button[data-dismiss="modal"] {
     color: @secondary-text-color;
 }
 
-#mainNav .dropdown-menu .dropdown-item {
-    padding: 10px 20px;
-}
 /*#endregion */
 
 /*#region Bottom Footer */
@@ -630,11 +639,8 @@ section {
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.55);
 }
 
-#featuredSongContainer .fas {
-    color: orange;
-}
-
 /*#endregion */
+
 /*#region Index About Me */
 #aboutContainer {
     text-align: center;
@@ -732,8 +738,12 @@ section {
     text-align: center;
 }
 
-#songTable .dropdown-menu .dropdown-item {
-    padding: 0.7rem 1rem;
+#songTable tr .fa-fire {
+    display: none;
+}
+
+#songTable .featured-row .fa-fire {
+    display: inline-block;
 }
 
 #categoryList {
@@ -1016,10 +1026,11 @@ section {
     border: 1px solid rgba(255,255,255,0.1);
 }
 
+#musicTable thead tr {
+    background-color: #441d1d;
+}
+
 #musicTable tr {
-    background-color: @primary-bg-color;
-    height: 40px;
-    line-height: 40px;
     cursor: pointer;
     color: @secondary-text-color;
 }
@@ -1041,6 +1052,7 @@ section {
     color: inherit;
     font-weight: inherit;
     width: auto;
+    padding: 0.45rem;
 }
 
 #musicTable td.min {

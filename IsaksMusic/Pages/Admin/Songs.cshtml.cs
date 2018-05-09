@@ -38,38 +38,13 @@ namespace IsaksMusic.Pages.Admin.Music
 
         /* For uploading song */
         [BindProperty]
-        public SongModel Song { get; set; }
+        public SongUploadModel Song { get; set; }
 
         /* For displaying songs in table */
-        public IList<Song> SongList { get; set; }
+        public List<SongModel> SongList { get; set; }
 
         /* For displaying categories when uploading song */
-        public IList<SelectListItem> CategoryList { get; set; }       
-
-        public class SongModel
-        {
-            [Required(ErrorMessage = "A song needs a title")]
-            public string Title { get; set; }
-
-            [Display(Name = "Description (optional)")]
-            public string Description { get; set; }
-
-            [Range(0, 59, ErrorMessage = "Not a valid number for minutes")]
-            [Required(ErrorMessage = "Please specify minutes")]
-            public byte Minutes { get; set; }
-
-            [Range(0, 59, ErrorMessage = "Not a valid number for seconds")]
-            [Required(ErrorMessage = "Please specify seconds")]
-            public byte Seconds { get; set; }
-
-            [Display(Name = "Music file (.mp3 .wav)")]
-            [Required(ErrorMessage = "Choose a file to upload")]
-            public IFormFile MusicFile { get; set; }
-
-            [Required(ErrorMessage = "Choose a category")]
-            [Display(Name = "Music Categories (limit 2)")]
-            public List<int> CategoryIds { get; set; }
-        }
+        public IList<SelectListItem> CategoryList { get; set; }             
 
         /// <summary>
         /// Get list of songs and categories
@@ -77,8 +52,34 @@ namespace IsaksMusic.Pages.Admin.Music
         public async Task OnGet()
         {
             /* List of songs */
-            SongList = await _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();            
+            var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();
+
+            SongList = new List<SongModel>();
+
+            /* Get featured song, if any */
+            var featuredSong = await _applicationDbContext.FeaturedSongs.FirstOrDefaultAsync();
+
+            foreach (var song in songs)
+            {
+                SongModel newSong = new SongModel()
+                {
+                    Id = song.Id,
+                    Title = song.Title,
+                    Description = song.Description,
+                    Duration = StringFormatter.GetDurationFromSeconds(song.Length),
+                    Categories = StringFormatter.GetCategoryString(song.SongCategories),
+                    UploadDate = song.UploadDate.ToShortDateString(),
+                    FileName = song.FileName
+                };
+
+                if (featuredSong != null && featuredSong.SongId == song.Id)
+                {
+                    newSong.Featured = true;
+                }
+
+                SongList.Add(newSong);
+            }
 
             /* Select List with categories */
             CategoryList = new List<SelectListItem>();
@@ -233,6 +234,75 @@ namespace IsaksMusic.Pages.Admin.Music
             }
 
             return RedirectToPage();
-        }        
+        }
+
+        public async Task<IActionResult> OnGetFeature(int? id, bool featured)
+        {
+            if (id != null)
+            {
+                var featuredSong = await _applicationDbContext.FeaturedSongs.FirstOrDefaultAsync();
+                var song = await _applicationDbContext.Songs.Where(s => s.Id == id).SingleOrDefaultAsync();
+
+                if (!featured)
+                {
+                    _applicationDbContext.FeaturedSongs.Remove(featuredSong);
+                }
+                else
+                {
+                    if (featuredSong == null)
+                    {
+                        _applicationDbContext.FeaturedSongs.Add(new FeaturedSong
+                        {
+                            Song = song
+                        });
+                    }
+                    else
+                    {
+                        featuredSong.Song = song;
+                    }
+                }                            
+
+                await _applicationDbContext.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+
+        public class SongModel
+        {
+            public int Id { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public string Duration { get; set; }
+            public string Categories { get; set; }
+            public string UploadDate { get; set; }
+            public string FileName { get; set; }
+            public bool Featured { get; set; }
+        }
+
+        public class SongUploadModel
+        {
+            [Required(ErrorMessage = "A song needs a title")]
+            public string Title { get; set; }
+
+            [Display(Name = "Description (optional)")]
+            public string Description { get; set; }
+
+            [Range(0, 59, ErrorMessage = "Not a valid number for minutes")]
+            [Required(ErrorMessage = "Please specify minutes")]
+            public byte Minutes { get; set; }
+
+            [Range(0, 59, ErrorMessage = "Not a valid number for seconds")]
+            [Required(ErrorMessage = "Please specify seconds")]
+            public byte Seconds { get; set; }
+
+            [Display(Name = "Music file (.mp3 .wav)")]
+            [Required(ErrorMessage = "Choose a file to upload")]
+            public IFormFile MusicFile { get; set; }
+
+            [Required(ErrorMessage = "Choose a category")]
+            [Display(Name = "Music Categories (limit 2)")]
+            public List<int> CategoryIds { get; set; }
+        }
     }
 }

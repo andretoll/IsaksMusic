@@ -30,14 +30,14 @@
         <h1>Welcome to <span class="text-yellow font-weight-bold">Isak's Music</span></h1>
         <br />
         <p class="mb-4">Listen to music, check out upcoming projects and tune in to the latest news.</p>
-        @if (false)
+        @if (Model.Featured == null)
         {
             <a class="btn btn-dark" title="Start listening" asp-page="/music/index" asp-route-autoplay="true">Start listening<i class="fas fa-play ml-2"></i></a>
         }
         else
         {
-            <a title="Featured Track" asp-page="/music/index" id="featuredSongContainer" class="alert alert-dark">
-                <span><span><strong class="text-uppercase"><i class="fas fas-mr fa-fire"></i>Featured - </strong></span><span>A Simple Truth</span></span>
+            <a title="Featured Track" asp-page="music/track" asp-route-id="@Model.Featured.SongId" id="featuredSongContainer" class="alert alert-dark">
+                <span><span><strong class="text-uppercase"><i class="fas fas-mr fa-fire"></i>Featured - </strong></span><span>@Model.Featured.Title</span></span>
             </a>
         }
     </div>

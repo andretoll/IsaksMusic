@@ -34,7 +34,7 @@
     }
     else
     {
-        <table class="table table-dark" id="songTable">
+        <table class="table table-borderless table-dark" id="songTable">
             <thead class="thead-dark">
                 <tr>
                     <th>Title</th>
@@ -48,17 +48,11 @@
             <tbody>
                 @foreach (var song in Model.SongList)
                 {
-                    List<string> categoryList = new List<string>();
+                    var className = song.Featured ? "featured-row" : "";
 
-                    foreach (var category in song.SongCategories)
-                    {
-                        categoryList.Add(category.Category.Name);
-                    }
-
-                    string categoryString = String.Join(", ", categoryList);
-
-                    <tr id="row_@song.Id">
+                    <tr id="row_@song.Id" class="@className">
                         <td>
+                            <i title="Featured" class="fas fas-mr fa-fire"></i>
                             @song.Title
                             @if (song.Description != null)
                             {
@@ -67,18 +61,30 @@
                                 </a>
                             }
                         </td>
-                        <td>@TimeSpan.FromSeconds(song.Length)</td>
-                        <td>@categoryString</td>
-                        <td>@song.UploadDate.ToShortDateString()</td>
+                        <td>@song.Duration</td>
+                        <td>@song.Categories</td>
+                        <td>@song.UploadDate</td>
                         <td>@song.FileName</td>
                         <td>
                             <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
                             </button>
                             <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right">
-                                <a class="dropdown-item">
-                                    <i class="fas fa-fire fas-mr"></i>Feature
-                                </a>
+                                @if (song.Featured)
+                                {
+                                    <a class="dropdown-item cursor-default">
+                                        <input class="icheck feature-check" type="checkbox" checked />
+                                        <span class="ml-2 align-middle">Featured</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item cursor-default">
+                                        <input class="icheck feature-check" type="checkbox" />
+                                        <span class="ml-2 align-middle">Featured</span>
+                                    </a>
+                                }
+
                                 <a class="dropdown-item" onclick="deleteSong(@song.Id)">
                                     <i class="fas fa-trash fas-mr text-danger"></i>Delete
                                 </a>

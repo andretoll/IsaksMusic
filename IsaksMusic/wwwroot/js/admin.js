@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
 
     /* When choosing file to upload */
-    $('#songUpload').change(function () {        
+    $('#songUpload').change(function () {
 
         if (this.files.length > 0) {
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
             } else {
                 editCategory(categoryId, this);
             }
-            
+
 
             return false;
         }
@@ -68,6 +68,52 @@ $(document).ready(function () {
     /* Prevent cut, copy and paste */
     $('.list-item-editable').on("cut copy paste", function (e) {
         e.preventDefault();
+    });
+
+    /* Initiate checkboxes */
+    $('input[type=checkbox]').iCheck({
+        checkboxClass: 'icheckbox_square-red',
+        radioClass: 'iradio_square-red',
+        increaseArea: '20%'
+    });
+
+    /* When a checkbox is clicked */
+    $('.feature-check').on('ifClicked', function () {
+
+        /* Get Id */
+        var id = $(this).closest('tr').attr('id').split('_').pop();
+
+        /* Get row */
+        var row = $(this).closest('tr');
+
+        /* If checked */
+        if (!$(this).is(':checked')) {
+
+            /* Save */
+            featureSong(id, true);
+
+            $(row).addClass('featured-row');
+        } else {
+
+            /* Save */
+            featureSong(id, false);
+        }
+    });
+
+    /* When a checkbox is checked */
+    $('.feature-check').on('ifChecked', function () {
+
+        /* Uncheck others */
+        $(this).removeClass('feature-check');
+        $('.feature-check').iCheck('uncheck');
+        $(this).addClass('feature-check');
+    });
+
+    /* When a checkbox is unchecked */
+    $('.feature-check').on('ifUnchecked', function () {
+
+        var row = $(this).closest('tr');
+        $(row).removeClass('featured-row');
     });
 });
 
@@ -94,7 +140,7 @@ function deleteSong(songId) {
                 removeTableRow(row);
             }
         });
-    }    
+    }
 }
 
 /* Function to remove specific row from table */
@@ -142,5 +188,35 @@ function editCategory(id, dom) {
                 ShowSuccessSnackbar("Category updated");
             }
         });
-    }   
+    }
+}
+
+/* Function to feature song */
+function featureSong(songId, feature) {
+
+    disableCheckboxes(true);
+
+    $.ajax({
+
+        type: "Get",
+        url: "/admin/songs?handler=Feature",
+        data: { id: songId, featured: feature },
+        success: function () {
+            disableCheckboxes(false);
+            ShowSuccessSnackbar("Changes saved");
+        }
+    });
+}
+
+/* Function to disable checkboxes while ajax request is open */
+function disableCheckboxes(disable) {
+
+    $('.feature-check').each(function () {
+        if (disable) {
+            $(this).attr('disabled', true);
+
+        } else {
+            $(this).attr('disabled', false);
+        }
+    });    
 }

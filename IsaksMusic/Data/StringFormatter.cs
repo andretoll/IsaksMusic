@@ -22,9 +22,6 @@ namespace IsaksMusic.Data
 
         public static string GetDurationFromSeconds(long value)
         {
-            var minutes = TimeSpan.FromSeconds(value).Minutes;
-            var seconds = TimeSpan.FromSeconds(value).Seconds;
-
             var duration = TimeSpan.FromSeconds(value).ToString();
 
             duration = duration.Remove(0, 3);
