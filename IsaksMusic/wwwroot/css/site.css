@@ -1,7 +1,9 @@
 ﻿/*#region Global */
 body {
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #111;
+  background: -moz-radial-gradient(#1d2b33, #040404);
+  background: -webkit-radial-gradient(#1d2b33, #040404);
+  background: radial-gradient(#1d2b33, #040404);
 }
 .body-background {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/city-clouds.jpg);
@@ -12,13 +14,16 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: #999;
+  background-color: #0a0a0a;
 }
 .text-yellow {
   color: #ffc600 !important;
 }
 .text-muted {
   color: #9a9a9a !important;
+}
+.text-shadow {
+  text-shadow: 2px 2px 4px #000000;
 }
 a {
   color: #ffffff;
@@ -482,9 +487,6 @@ section {
 .section-odd {
   background-color: #0a0a0a;
 }
-.section-even {
-  background-color: #111;
-}
 /*#endregion */
 /*#region Index */
 #backToTopBtn {
@@ -540,7 +542,7 @@ section {
   max-height: 350px;
 }
 .circle-social-media {
-  font-size: 1.7em !important;
+  font-size: 1.4em !important;
 }
 .circle-facebook {
   color: #3b5998;
@@ -554,7 +556,7 @@ section {
   margin: 15px 0;
 }
 #infoContainer .fa-stack {
-  color: #0a0a0a;
+  color: #111;
 }
 #infoContainer .fa-inverse {
   color: #ffc600;
@@ -562,7 +564,7 @@ section {
 /*#endregion */
 /*#region Contact Form */
 #contactForm {
-  background: #111;
+  background: #0a0a0a;
   padding: 30px;
   max-width: 600px;
   margin: auto;
@@ -593,7 +595,7 @@ section {
 #loginForm {
   margin: 100px auto;
   padding: 50px;
-  background-color: #111;
+  background-color: #0a0a0a;
   max-width: 600px;
   width: 400px;
   text-align: center;
@@ -675,9 +677,9 @@ section {
   padding: 175px 0;
 }
 #waveformContainer {
-  background: -moz-radial-gradient(#2c1d33, black);
-  background: -webkit-radial-gradient(#2c1d33, black);
-  background: radial-gradient(#2c1d33, black);
+  background: -moz-radial-gradient(#1d2b33, #040404);
+  background: -webkit-radial-gradient(#1d2b33, #040404);
+  background: radial-gradient(#1d2b33, #040404);
   padding: 30px 0;
 }
 #waveformContainer .btn-dark {
@@ -698,6 +700,11 @@ section {
 }
 #waveform {
   margin: auto;
+}
+#waveformMessage {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
 }
 #waveformCounter,
 #waveformDuration {
@@ -882,7 +889,8 @@ section {
 /*#endregion */
 /*#region Tracks */
 #trackWrapper {
-  padding: 175px 0;
+  padding-top: 175px;
+  padding-bottom: 175px;
 }
 #trackWrapperInner {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/city-clouds.jpg);

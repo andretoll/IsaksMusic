@@ -5,11 +5,14 @@
 @primary-bg-color: #0a0a0a;
 @secondary-bg-color: #111;
 @black-bg-color: #040404;
+@gradient-bg-color: #1d2b33;
 
 /*#region Global */
 body {
     font-family: 'Roboto Slab','Helvetica Neue',Helvetica,Arial,sans-serif;
-    background-color: @secondary-bg-color;
+    background: -moz-radial-gradient(@gradient-bg-color, @black-bg-color);
+    background: -webkit-radial-gradient(@gradient-bg-color, @black-bg-color);
+    background: radial-gradient(@gradient-bg-color, @black-bg-color);
 }
 
 .body-background {
@@ -21,7 +24,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: #999;
+    background-color: @primary-bg-color;
 }
 
 .text-yellow {
@@ -32,10 +35,14 @@ body {
     color: #9a9a9a !important;
 }
 
+.text-shadow {
+    text-shadow: 2px 2px 4px #000000;
+}
+
 a {
     color: @secondary-text-color;
     text-decoration: none;
-    outline-color: #ffc600;
+    outline-color: @primary-text-color;
 }
 
 a:not(.btn):hover {
@@ -581,10 +588,6 @@ section {
 .section-odd {
     background-color: @primary-bg-color;
 }
-
-.section-even {
-    background-color: @secondary-bg-color;
-}
 /*#endregion */
 
 /*#region Index */
@@ -651,7 +654,10 @@ section {
 }
 
 .circle-social-media {
-    font-size: 1.7em !important;
+    font-size: 1.4em !important;
+}
+
+.circle-social-media {
 }
 
 .circle-facebook {
@@ -669,7 +675,7 @@ section {
 }
 
 #infoContainer .fa-stack {
-    color: @primary-bg-color;
+    color: @secondary-bg-color;
 }
 
 #infoContainer .fa-inverse {
@@ -679,7 +685,7 @@ section {
 
 /*#region Contact Form */
 #contactForm {
-    background: @secondary-bg-color;
+    background: @primary-bg-color;
     padding: 30px;
     max-width: 600px;
     margin: auto;
@@ -716,7 +722,7 @@ section {
 #loginForm {
     margin: 100px auto;
     padding: 50px;
-    background-color: @secondary-bg-color;
+    background-color: @primary-bg-color;
     max-width: 600px;
     width: 400px;
     text-align: center;
@@ -821,9 +827,9 @@ section {
 }
 
 #waveformContainer {
-    background: -moz-radial-gradient(#2c1d33, black);
-    background: -webkit-radial-gradient(#2c1d33, black);
-    background: radial-gradient(#2c1d33, black);
+    background: -moz-radial-gradient(@gradient-bg-color, @black-bg-color);
+    background: -webkit-radial-gradient(@gradient-bg-color, @black-bg-color);
+    background: radial-gradient(@gradient-bg-color, @black-bg-color);
     padding: 30px 0;
 }
 
@@ -849,6 +855,12 @@ section {
 
 #waveform {
     margin: auto;
+}
+
+#waveformMessage {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
 }
 
 #waveformCounter, #waveformDuration {
@@ -1078,7 +1090,8 @@ section {
 /*#region Tracks */
 
 #trackWrapper {
-    padding: 175px 0;
+    padding-top: 175px;
+    padding-bottom: 175px;
 }
 
 #trackWrapperInner {
