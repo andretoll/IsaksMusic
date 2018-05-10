@@ -25,6 +25,12 @@ namespace IsaksMusic.Pages.Admin
             _userManager = userManager;
         }
 
+        public bool UnusedCategories { get; set; }
+
+        public bool NoFeaturedSong { get; set; }
+
+        public List<string> MissingFiles { get; set; }
+
         public UserModel SignedInUser { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -37,19 +43,36 @@ namespace IsaksMusic.Pages.Admin
                 Email = user.Email
             };
 
+            /* Check for unused categories */
+            var categories = await _applicationDbContext.Categories.Where(c => !_applicationDbContext.SongCategories.Select(sc => sc.CategoryId).Contains(c.Id)).ToListAsync();
+
+            if (categories.Count > 0)
+            {
+                UnusedCategories = true;
+            }
+
+            /* Check for featured song */
+            var featuredSong = await _applicationDbContext.FeaturedSongs.FirstOrDefaultAsync();
+
+            if (featuredSong == null)
+            {
+                NoFeaturedSong = true;
+            }
+
             /* Check for broken links */
-            //var SongList = _applicationDbContext.Songs.Include(song => song.SongCategories)
-            //    .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToList();
+            var SongList = await _applicationDbContext.Songs.ToListAsync();
 
-            //var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music");
+            var fullPath = Path.Combine(_hostingEnvironment.WebRootPath, "music");
 
-            //for (int i = 0; i < SongList.Count; i++)
-            //{
-            //    if (!System.IO.File.Exists(fullPath + $@"\{SongList[i].FileName}"))
-            //    {
-            //        SongList[i].FileName = "Not found";
-            //    }
-            //}
+            MissingFiles = new List<string>();
+
+            for (int i = 0; i < SongList.Count; i++)
+            {
+                if (!System.IO.File.Exists(fullPath + $@"\{SongList[i].FileName}"))
+                {
+                    MissingFiles.Add(SongList[i].FileName);
+                }
+            }
 
             return Page();
         }

@@ -7,11 +7,47 @@
 
 <h2>Dashboard</h2>
 <hr />
+<div id="dashboardContainer">
+    @if (Model.MissingFiles.Count > 0)
+    {
+        <div class="alert alert-warning alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h6 class="alert-heading">Warnings<i class="fas fa-exclamation-triangle ml-2"></i></h6>
+            <ul>
+                @foreach (var file in Model.MissingFiles)
+                {
+                    <li>It appears to be a file missing: <strong>@file.ToString()</strong></li>
+                }
+            </ul>
+        </div>
+    }
+    @if (Model.NoFeaturedSong || Model.UnusedCategories)
+    {
+        <div class="alert alert-info alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h6 class="alert-heading">Reminder<i class="fas fa-info-circle ml-2"></i></h6>
+            <ul>
+                @if (Model.NoFeaturedSong)
+                {
+                    <li>There is currently no <a class="alert-link" asp-page="/admin/songs">song</a> featured on the home page.</li>
+                }
+                @if (Model.UnusedCategories)
+                {
+                    <li>You have <a class="alert-link" asp-page="/admin/categories">categories</a> that are not being used.</li>
+                }
+            </ul>
+        </div>
+    }
+    @if (Model.MissingFiles.Count == 0 && !Model.NoFeaturedSong && !Model.UnusedCategories)
+    {
+        <p>No messages.</p>
+    }
 
-<div class="text-center p-3">
-    <ul>
-        <li>@Model.SignedInUser.Email</li>
-        <li>@Model.SignedInUser.Username</li>
-    </ul>
 </div>
+
+
 

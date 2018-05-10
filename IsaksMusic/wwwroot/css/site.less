@@ -50,7 +50,7 @@ a {
     outline-color: @primary-text-color;
 }
 
-a:not(.btn):hover {
+a:not(.btn):not(.alert-link):hover {
     color: @primary-text-color !important;
     text-decoration: none;
 }
@@ -224,6 +224,14 @@ button[data-dismiss="modal"] {
 
 .alert-dismissible {
     width: 100%;
+}
+
+.alert-heading {
+    font-weight: bold;
+}
+
+.alert-link:hover {
+    color: none!important;
 }
 
 .navbar-brand {
@@ -508,8 +516,7 @@ button[data-dismiss="modal"] {
 /*#region Top Navbar */
 #mainNav {
     background-color: transparent;
-    padding-top: 25px;
-    padding-bottom: 10px;
+    padding-top: 15px;
     -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
     -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
     transition: padding-top 0.3s, padding-bottom 0.3s;
@@ -827,6 +834,16 @@ section {
 
 #settingsAccordion label {
     color: @primary-text-color;
+}
+
+#dashboardContainer ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+#dashboardContainer li {
+    list-style: disc;
+    font-size: 0.9em;
 }
 
 /*#endregion */
