@@ -1,6 +1,6 @@
 ﻿/*#region Global */
 body {
-  font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Arial, sans-serif;
   background-color: #0a0a0a;
   background: -moz-radial-gradient(#1d2b33, #040404);
   background: -webkit-radial-gradient(#1d2b33, #040404);
@@ -41,12 +41,12 @@ a:not([href]):not([tabindex]) {
 h1,
 h2,
 h3,
-h4,
-p {
+h4 {
   color: #ffffff;
+  font-family: 'Playfair Display', 'Open Sans', Arial, serif;
 }
 p {
-  font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #ffffff;
 }
 label {
   color: #ffffff;
@@ -177,11 +177,10 @@ button[data-dismiss="modal"]:hover {
   width: 100%;
 }
 .navbar-brand {
-  font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
+  font-family: 'Italianno', 'Open Sans', Arial cursive;
   color: #ffc600 !important;
   letter-spacing: 2px;
-  font-size: 1.65rem;
-  margin: 0 0 10px 0;
+  font-size: 2.65rem;
   padding: 0;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -290,6 +289,7 @@ button[data-dismiss="modal"]:hover {
   border-right: 0;
   border-color: rgba(255, 255, 255, 0.1);
   white-space: nowrap;
+  font-family: 'Playfair Display', 'Open Sans', Arial, serif;
 }
 .side-menu-collapse .list-group .list-group-item:hover {
   color: #ffc600;
@@ -428,7 +428,7 @@ button[data-dismiss="modal"]:hover {
   padding-bottom: 10px;
 }
 #mainNav.navbar-shrink .navbar-brand {
-  font-size: 1.35em;
+  font-size: 2.05em;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff;
@@ -453,6 +453,9 @@ footer {
 #mainFooter li a:hover {
   border-left: 3px solid #ffc600;
   padding-left: 5px;
+}
+#mainFooter .navbar-brand {
+  margin-right: 0;
 }
 #subFooter {
   height: 60px;

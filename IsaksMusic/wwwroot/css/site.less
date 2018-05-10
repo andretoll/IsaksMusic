@@ -7,9 +7,13 @@
 @black-bg-color: #040404;
 @gradient-bg-color: #1d2b33;
 
+@main-font: 'Montserrat', Arial, sans-serif;
+@brand-font: 'Italianno', 'Open Sans', Arial cursive;
+@header-font: 'Playfair Display', 'Open Sans', Arial, serif;
+
 /*#region Global */
 body {
-    font-family: 'Roboto Slab','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: @main-font;
     background-color: @primary-bg-color;
     background: -moz-radial-gradient(@gradient-bg-color, @black-bg-color);
     background: -webkit-radial-gradient(@gradient-bg-color, @black-bg-color);
@@ -55,12 +59,13 @@ a:not([href]):not([tabindex]) {
     color: @secondary-text-color;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4 {
     color: @secondary-text-color;
+    font-family: @header-font;
 }
 
 p {
-    font-family: Montserrat,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: @secondary-text-color;
 }
 
 label {
@@ -222,11 +227,10 @@ button[data-dismiss="modal"] {
 }
 
 .navbar-brand {
-    font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+    font-family: @brand-font;
     color: @primary-text-color !important;
     letter-spacing: 2px;
-    font-size: 1.65rem;
-    margin: 0 0 10px 0;
+    font-size: 2.65rem;
     padding: 0;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -351,6 +355,7 @@ button[data-dismiss="modal"] {
     border-right: 0;
     border-color: rgba(255, 255, 255, 0.1);
     white-space: nowrap;
+    font-family: @header-font;
 
     &:hover {
         color: @primary-text-color;
@@ -517,7 +522,7 @@ button[data-dismiss="modal"] {
 }
 
 #mainNav.navbar-shrink .navbar-brand {
-    font-size: 1.35em;
+    font-size: 2.05em;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -549,6 +554,10 @@ footer {
         border-left: 3px solid @primary-text-color;
         padding-left: 5px;
     }
+}
+
+#mainFooter .navbar-brand {
+    margin-right: 0;
 }
 
 #subFooter {
