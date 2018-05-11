@@ -3,7 +3,7 @@
 @error-text-color: #e43636;
 
 @primary-bg-color: #0a0a0a;
-@secondary-bg-color: #111;
+@secondary-bg-color: #0e0e0e;
 @black-bg-color: #040404;
 @gradient-bg-color: #1d2b33;
 
@@ -228,7 +228,7 @@ button[data-dismiss="modal"] {
 }
 
 .alert-link:hover {
-    color: none!important;
+    color: none !important;
 }
 
 .navbar-brand {
@@ -527,12 +527,16 @@ button[data-dismiss="modal"] {
 
 #mainNav.navbar-shrink .navbar-brand {
     font-size: 2.05em;
+
+    &:hover {
+        opacity: 0.8;
+    }
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: @secondary-text-color;
+    text-transform: uppercase;
 }
-
 /*#endregion */
 
 /*#region Bottom Footer */
@@ -567,14 +571,14 @@ footer {
 #subFooter {
     height: 60px;
     line-height: 60px;
-    background-color: @primary-bg-color;
+    background-color: @secondary-bg-color;
     text-align: center;
 }
 /*#endregion */
 
 /*#region Top Header */
 #topHeader {
-    background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a), url(../images/bg-header.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.65), @primary-bg-color), url(../images/bg-header.jpg);
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -597,11 +601,10 @@ footer {
     border: none;
     background-color: white;
     color: black;
-    padding: 15px 60px;
 }
 
 #featuredSongContainer:hover {
-    color: black!important;
+    color: black !important;
     opacity: 0.9;
 }
 
@@ -652,7 +655,7 @@ section {
     color: @primary-text-color;
     position: absolute;
     left: 50%;
-    top: 80%;
+    top: 90%;
     transform: translateX(-50%);
 }
 
@@ -1307,6 +1310,25 @@ section {
         -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
         -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
         box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+
+        &:after {
+            display: block;
+            content: '';
+            border-bottom: solid 3px @primary-text-color;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        &:hover:after {
+            transform: scaleX(1);
+        }
+
+        &:after {
+            transform-origin: 0% 50%;
+        }
     }
 }
 

@@ -26,10 +26,8 @@ $(document).ready(function () {
     /* Check description overflow */
     var element = document.querySelector('#collapseDescription');
 
-    if ((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
+    if (element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth) {
         $('#collapseDescriptionBtn').show();
-    } else {
-
     }
     
 });

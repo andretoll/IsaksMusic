@@ -1,7 +1,7 @@
 ﻿/*#region Global */
 body {
   font-family: 'Open Sans', Arial, sans-serif;
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .body-background {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/city-clouds.jpg);
@@ -92,14 +92,14 @@ textarea.textarea-sm {
   background-color: #0a0a0a;
 }
 .btn-dark:hover {
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .btn-dark:focus {
   box-shadow: none;
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .btn-dark:active {
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .btn-link {
   cursor: pointer;
@@ -144,7 +144,7 @@ table th {
   background-color: #441d1d;
 }
 .modal-content {
-  background-color: #111;
+  background-color: #0e0e0e;
   padding: 15px;
 }
 .modal-header {
@@ -177,7 +177,7 @@ button[data-dismiss="modal"]:hover {
   font-weight: bold;
 }
 .alert-link:hover {
-  color: none!important;
+  color: none !important;
 }
 .navbar-brand {
   font-family: 'Italianno', 'Open Sans', Arial cursive;
@@ -210,7 +210,7 @@ button[data-dismiss="modal"]:hover {
   padding: 0.6rem 0.8rem;
 }
 .dropdown-item:hover {
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .wrapper-header {
   background: #222222;
@@ -242,7 +242,7 @@ button[data-dismiss="modal"]:hover {
 .wrapper-content {
   width: 100%;
   position: relative;
-  background-color: #111;
+  background-color: #0e0e0e;
   padding: 30px;
   max-height: 700px;
   overflow-x: auto;
@@ -252,7 +252,7 @@ button[data-dismiss="modal"]:hover {
   z-index: 3;
   height: 100%;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  background: #111;
+  background: #0e0e0e;
   -webkit-transition: width.5s;
   -moz-transition: width.5s;
   transition: width.5s;
@@ -329,7 +329,7 @@ button[data-dismiss="modal"]:hover {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: radial-gradient(#3a1919, #111 60%);
+  background: radial-gradient(#3a1919, #0e0e0e 60%);
 }
 .denied-section img {
   width: 150px;
@@ -338,7 +338,7 @@ button[data-dismiss="modal"]:hover {
   margin: 20px auto;
 }
 .page-not-found-section {
-  background: radial-gradient(#192d3a, #111 60%);
+  background: radial-gradient(#192d3a, #0e0e0e 60%);
 }
 .error-section h1 {
   font-size: 10rem;
@@ -432,8 +432,12 @@ button[data-dismiss="modal"]:hover {
 #mainNav.navbar-shrink .navbar-brand {
   font-size: 2.05em;
 }
+#mainNav.navbar-shrink .navbar-brand:hover {
+  opacity: 0.8;
+}
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff;
+  text-transform: uppercase;
 }
 /*#endregion */
 /*#region Bottom Footer */
@@ -462,13 +466,13 @@ footer {
 #subFooter {
   height: 60px;
   line-height: 60px;
-  background-color: #0a0a0a;
+  background-color: #0e0e0e;
   text-align: center;
 }
 /*#endregion */
 /*#region Top Header */
 #topHeader {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), #0a0a0a), url(../images/bg-header.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.65), #0a0a0a), url(../images/bg-header.jpg);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -489,10 +493,9 @@ footer {
   border: none;
   background-color: white;
   color: black;
-  padding: 15px 60px;
 }
 #featuredSongContainer:hover {
-  color: black!important;
+  color: black !important;
   opacity: 0.9;
 }
 /*#endregion */
@@ -535,7 +538,7 @@ section {
   color: #ffc600;
   position: absolute;
   left: 50%;
-  top: 80%;
+  top: 90%;
   transform: translateX(-50%);
 }
 .social-media-container a:hover {
@@ -564,7 +567,7 @@ section {
   margin: 15px 0;
 }
 #infoContainer .fa-stack {
-  color: #111;
+  color: #0e0e0e;
 }
 #infoContainer .fa-inverse {
   color: #ffc600;
@@ -595,7 +598,7 @@ section {
   font-size: 1.0em;
 }
 #sitemapContainer li {
-  background-color: #111;
+  background-color: #0e0e0e;
   font-size: 1.0em;
 }
 /*#endregion */
@@ -847,7 +850,7 @@ section {
   align-items: center;
 }
 .song-container:hover {
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 .song-info {
   cursor: pointer;
@@ -873,7 +876,7 @@ section {
   color: #ffffff;
 }
 #musicTable tbody tr:hover {
-  background-color: #111;
+  background-color: #0e0e0e;
 }
 #musicTable tr:last-child {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1062,6 +1065,19 @@ section {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
     box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
+  }
+  .navbar-dark .navbar-nav .nav-link:after {
+    display: block;
+    content: '';
+    border-bottom: solid 3px #ffc600;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+  }
+  .navbar-dark .navbar-nav .nav-link:hover:after {
+    transform: scaleX(1);
+  }
+  .navbar-dark .navbar-nav .nav-link:after {
+    transform-origin: 0% 50%;
   }
 }
 @media (max-width: 767px) {
