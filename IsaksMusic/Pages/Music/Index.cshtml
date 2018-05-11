@@ -112,7 +112,7 @@
                             @foreach (var song in Model.SongList)
                             {
                                 <tr id="@song.PlaylistId" title="@song.Title">
-                                    <td class="is-playing min ml-3"><i class="fas fa-volume-up"></i></td>
+                                    <td class="is-playing min pl-3"><i class="fas fa-volume-up"></i></td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Title</td>
                                     <td class="dismissable categoryColumn" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Duration</td>

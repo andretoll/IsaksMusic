@@ -7,17 +7,14 @@
 @black-bg-color: #040404;
 @gradient-bg-color: #1d2b33;
 
-@main-font: 'Montserrat', Arial, sans-serif;
+@main-font: 'Open Sans', Arial, sans-serif;
 @brand-font: 'Italianno', 'Open Sans', Arial cursive;
 @header-font: 'Playfair Display', 'Open Sans', Arial, serif;
 
 /*#region Global */
 body {
     font-family: @main-font;
-    background-color: @primary-bg-color;
-    background: -moz-radial-gradient(@gradient-bg-color, @black-bg-color);
-    background: -webkit-radial-gradient(@gradient-bg-color, @black-bg-color);
-    background: radial-gradient(@gradient-bg-color, @black-bg-color);
+    background-color: @secondary-bg-color;
 }
 
 .body-background {
@@ -570,7 +567,7 @@ footer {
 #subFooter {
     height: 60px;
     line-height: 60px;
-    background-color: @secondary-bg-color;
+    background-color: @primary-bg-color;
     text-align: center;
 }
 /*#endregion */
@@ -789,8 +786,8 @@ section {
 }
 
 .list-item-editable[contenteditable="true"] {
-    outline: 2px dashed @primary-text-color;
-    outline-offset: 5px;
+    background-color: white;
+    color: #222;
 }
 
 .category-amount {

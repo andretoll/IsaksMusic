@@ -1,10 +1,7 @@
 ﻿/*#region Global */
 body {
-  font-family: 'Montserrat', Arial, sans-serif;
-  background-color: #0a0a0a;
-  background: -moz-radial-gradient(#1d2b33, #040404);
-  background: -webkit-radial-gradient(#1d2b33, #040404);
-  background: radial-gradient(#1d2b33, #040404);
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: #111;
 }
 .body-background {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/city-clouds.jpg);
@@ -465,7 +462,7 @@ footer {
 #subFooter {
   height: 60px;
   line-height: 60px;
-  background-color: #111;
+  background-color: #0a0a0a;
   text-align: center;
 }
 /*#endregion */
@@ -643,8 +640,8 @@ section {
   padding: 10px 20px;
 }
 .list-item-editable[contenteditable="true"] {
-  outline: 2px dashed #ffc600;
-  outline-offset: 5px;
+  background-color: white;
+  color: #222;
 }
 .category-amount {
   margin-left: 5px;
