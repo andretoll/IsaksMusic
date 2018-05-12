@@ -1,5 +1,6 @@
 ﻿var categoryValue;
 var categoryId;
+var songOrder;
 
 $(document).ready(function () {
 
@@ -114,6 +115,38 @@ $(document).ready(function () {
 
         var row = $(this).closest('tr');
         $(row).removeClass('featured-row');
+    });
+
+    /* Initiate row reordering plugin */
+    $('#songTable').tableDnD({
+        onDragClass: "row-drag",
+        onDrop: function (table, row) {
+            $('#saveOrderBtn').fadeIn(500);
+            var orderStr = $.tableDnD.serialize();
+
+            var tmpArr = orderStr.split('&');
+            var orderArr = [];
+            for (var i = 0; i < tmpArr.length; i++) {
+                var paramArr = tmpArr[i].split('=');
+                if (paramArr[1] !== null && paramArr[1] !== '') {
+                    orderArr.push(paramArr[1].split('_').pop());
+                }
+            }
+            songOrder = orderArr.join(',');
+        }
+    });
+
+    /* When user saves song order */
+    $('#saveOrderBtn').on('click', function () {
+        $.ajax({
+            type: "Get",
+            url: "/admin/songs?handler=Reorder",
+            data: { orderString: songOrder },
+            success: function () {
+                $('#saveOrderBtn').fadeOut(250);
+                ShowSuccessSnackbar("Order saved");
+            }
+        });
     });
 });
 

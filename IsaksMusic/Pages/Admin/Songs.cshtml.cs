@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 
 namespace IsaksMusic.Pages.Admin.Music
 {
@@ -53,7 +54,7 @@ namespace IsaksMusic.Pages.Admin.Music
         {
             /* List of songs */
             var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).OrderBy(song => song.Order).ToListAsync();
 
             SongList = new List<SongModel>();
 
@@ -165,8 +166,17 @@ namespace IsaksMusic.Pages.Admin.Music
                     Description = Song.Description,
                     Length = seconds,
                     UploadDate = DateTime.Now,
-                    FileName = fileName
+                    FileName = fileName       
                 };
+
+                if (_applicationDbContext.Songs.Count() == 0)
+                {
+                    song.Order = 1;
+                }
+                else
+                {
+                    song.Order = _applicationDbContext.Songs.Max(s => s.Order) + 1;
+                }
 
                 _applicationDbContext.Songs.Add(song);
 
@@ -236,6 +246,12 @@ namespace IsaksMusic.Pages.Admin.Music
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Set feature status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="featured"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetFeature(int? id, bool featured)
         {
             if (id != null)
@@ -266,6 +282,31 @@ namespace IsaksMusic.Pages.Admin.Music
             }
 
             return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnGetReorder(string orderString)
+        {
+            /* Get song ID array from string */
+            string[] orderArray = orderString.Split(',');
+
+            var songs = await _applicationDbContext.Songs.ToListAsync();
+
+            int order = 1;
+
+            /* For each song */
+            foreach (var song in orderArray)
+            {
+                /* Get song */
+                var songDb = songs.Where(s => s.Id == int.Parse(song)).FirstOrDefault();
+
+                songDb.Order = order;
+
+                order++;
+            }
+
+            await _applicationDbContext.SaveChangesAsync();
+
+            return Page();
         }
 
         public class SongModel

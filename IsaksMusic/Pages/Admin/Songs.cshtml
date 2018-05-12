@@ -17,9 +17,20 @@
 }
 
 <div>
-    <h2>Songs</h2>
+    <div class="d-flex align-items-center">
+        <h2>Songs</h2>
+        <div class="ml-auto">
+            <a title="Add song" class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">+ Add song</a>
+        </div>
+    </div>
     <hr />
-    <a title="Add song" class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">Add song</a>
+    <div class="d-flex">
+        <p>Drag and drop rows to reorder the songs as they appear in the music player. <br />Click "Save order" when done.</p>
+        <div class="ml-auto">
+            <a title="Save order" class="btn btn-success text-white" id="saveOrderBtn">Save order</a>
+        </div>
+    </div>
+
     @if (Model.ErrorMessage != null)
     {
         <div class="alert alert-danger mt-3" role="alert">
@@ -34,8 +45,8 @@
     }
     else
     {
-        <table class="table table-borderless table-dark" id="songTable">
-            <thead class="thead-dark">
+        <table class="table table-borderless" id="songTable">
+            <thead>
                 <tr>
                     <th>Title</th>
                     <th>Length</th>

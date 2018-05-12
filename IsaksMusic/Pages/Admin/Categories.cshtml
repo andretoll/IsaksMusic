@@ -18,9 +18,14 @@
 }
 
 <div>
-    <h2>Categories</h2>
+    <div class="d-flex align-items-center">
+        <h2>Categories</h2>
+        <div class="ml-auto">
+            <a title="Add category" class="btn btn-success text-white" data-toggle="modal" data-target="#newCategoryModal">+ Add category</a>
+        </div>
+    </div>
     <hr />
-    <a title="Add category" class="btn btn-success text-white" data-toggle="modal" data-target="#newCategoryModal">Add category</a>
+    <p>Click a category to edit the name, then outside to save it.<br />Click the <i class="fas fa-times-circle fa-sm text-danger"></i> icon to delete the category.</p>
     @if (Model.ErrorMessage != null)
     {
         <div class="alert alert-danger mt-3" role="alert">

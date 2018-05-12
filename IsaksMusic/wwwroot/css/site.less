@@ -135,6 +135,22 @@ textarea.textarea-sm {
     }
 }
 
+.btn-success {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#4da309), color-stop(6%, #469408), to(#3f8507));
+    background-image: linear-gradient(#4da309, #469408 6%, #3f8507);
+    border: #377506;
+
+    &:hover {
+        background-color: #357006;
+        border-color: #2f6405;
+    }
+
+    &:active {
+        background-color: #2f6405;
+        border-color: #295805;
+    }
+}
+
 .btn-link {
     cursor: pointer;
 
@@ -172,8 +188,13 @@ li {
     margin: 0;
 }
 
-table th {
+.table tr {
     color: @secondary-text-color;
+}
+
+table th {
+    background-color: #105579;
+    cursor: default;
 }
 
 .table th, .table td {
@@ -184,8 +205,8 @@ table th {
     margin: 0 5px;
 }
 
-.table-dark .thead-dark th {
-    background-color: #441d1d;
+.table .thead-dark th {
+    background-color: @primary-bg-color;
 }
 
 .modal-content {
@@ -361,6 +382,7 @@ button[data-dismiss="modal"] {
     border-color: rgba(255, 255, 255, 0.1);
     white-space: nowrap;
     font-family: @header-font;
+    font-size: 18px;
 
     &:hover {
         color: @primary-text-color;
@@ -444,7 +466,8 @@ button[data-dismiss="modal"] {
 #snackbar-success {
     visibility: hidden;
     min-width: 300px;
-    background-color: #064308;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#4da309), color-stop(6%, #469408), to(#3f8507));
+    background-image: linear-gradient(#4da309, #469408 6%, #3f8507);
     color: #fff;
     text-align: center;
     padding: 16px;
@@ -578,7 +601,7 @@ footer {
 
 /*#region Top Header */
 #topHeader {
-    background: linear-gradient(rgba(0, 0, 0, 0.65), @primary-bg-color), url(../images/bg-header.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.35), @primary-bg-color), url(../images/bg-header.jpg);
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -759,6 +782,7 @@ section {
 #songTable {
     margin: 30px 0;
     border-collapse: collapse !important;
+    background-color: @gradient-bg-color;
 }
 
 #songTable td:last-child {
@@ -771,6 +795,20 @@ section {
 
 #songTable .featured-row .fa-fire {
     display: inline-block;
+}
+
+#songTable a {
+    cursor: pointer;
+}
+
+/* Row reorder DnD-plugin */
+
+.row-drag {
+    background-color: #2d4451;
+}
+
+#saveOrderBtn {
+    display: none;
 }
 
 #categoryList {
@@ -800,7 +838,7 @@ section {
 }
 
 #settingsAccordion .card {
-    background-color: @primary-bg-color;
+    background-color: #1d2b33;
     margin-bottom: 5px;
 }
 
@@ -1069,13 +1107,8 @@ section {
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-#musicTable thead tr {
-    background-color: #441d1d;
-}
-
-#musicTable tr {
+#musicTable tbody tr {
     cursor: pointer;
-    color: @secondary-text-color;
 }
 
 #musicTable tbody tr:hover {
@@ -1179,6 +1212,7 @@ section {
 
 #trackDescription a.collapsed:after {
     content: '+ Read More';
+    color: @primary-text-color;
 }
 
 #trackDescription a:not(.collapsed):after {

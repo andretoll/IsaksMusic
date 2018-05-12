@@ -43,7 +43,7 @@ namespace IsaksMusic.Pages.Music
         {
             /* List of songs */
             var songs = await _applicationDbContext.Songs.Include(song => song.SongCategories)
-                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).ToListAsync();
+                .ThenInclude(songCategories => songCategories.Category).OrderBy(song => song.Title).OrderBy(song => song.Order).ToListAsync();
 
             /* List of categories */
 

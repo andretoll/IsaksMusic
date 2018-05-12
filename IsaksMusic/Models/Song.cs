@@ -21,6 +21,8 @@ namespace IsaksMusic.Models
         [Required]
         public long Length { get; set; }
 
+        public int Order { get; set; }
+
         public ICollection<SongCategory> SongCategories { get; set; }
     }
 }
