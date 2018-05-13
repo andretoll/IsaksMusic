@@ -8,6 +8,13 @@ $(document).ready(function () {
     $('a.active').removeClass('active');
     $('a[href="' + location.pathname + '"]').closest('.list-group-item').addClass('active');
 
+    /* Change active parent link in admin layout */
+    if ($('a[href="' + location.pathname + '"]').length === 0) {
+        var loc = location.pathname.substr(0, location.pathname.lastIndexOf("/"));
+
+        $('a[href="' + loc + '"]').closest('.list-group-item').addClass('active');
+    }
+
     /* When submitting form */
     $('#songForm').submit(function (e) {
         if ($('#songForm').valid()) {

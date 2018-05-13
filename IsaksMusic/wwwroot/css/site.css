@@ -568,6 +568,10 @@ section {
 }
 #aboutContainer img {
   max-height: 350px;
+  border-radius: 20px;
+}
+#aboutContactContainer {
+  display: flex;
 }
 .circle-social-media {
   font-size: 1.4em !important;
@@ -1063,13 +1067,6 @@ section {
   }
 }
 @media (max-width: 991px) {
-  #socialLinks,
-  #contactInfo {
-    width: 100%;
-    max-width: 100%;
-    flex: 100%;
-    text-align: center;
-  }
   #mainNav {
     background-color: #040404;
   }
@@ -1107,6 +1104,12 @@ section {
 @media (max-width: 767px) {
   section {
     padding: 50px 0;
+  }
+  #aboutContainer img {
+    margin-bottom: 20px;
+  }
+  #aboutContactContainer {
+    display: block;
   }
   .side-menu-collapse {
     width: 60px;
