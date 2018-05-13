@@ -211,7 +211,6 @@ button[data-dismiss="modal"]:hover {
   border: 1px solid #ffc600;
   min-width: 250px;
   max-width: 300px;
-  max-height: 150px;
   padding: 5px;
 }
 .dropdown-menu-borderless {
@@ -305,19 +304,17 @@ button[data-dismiss="modal"]:hover {
 .side-menu-collapse .list-group .list-group-item {
   border-radius: 0;
   background-color: transparent;
-  border-left: 0;
-  border-right: 0;
-  border-color: rgba(255, 255, 255, 0.1);
+  border: none;
   white-space: nowrap;
   font-family: 'Playfair Display', 'Open Sans', Arial, serif;
-  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
 }
 .side-menu-collapse .list-group .list-group-item:hover {
-  color: #ffc600;
+  color: #ffffff !important;
   border-left: thick solid #ffc600;
 }
 .side-menu-collapse .list-group .list-group-item.active {
-  color: #ffc600;
+  color: #ffffff;
   border-left: thick solid #ffc600;
 }
 .tooltip {
@@ -639,7 +636,7 @@ section {
 #songTable {
   margin: 30px 0;
   border-collapse: collapse !important;
-  background-color: #1d2b33;
+  background-color: #18313f;
 }
 #songTable td:last-child {
   text-align: center;
@@ -682,7 +679,7 @@ section {
   letter-spacing: 2px;
 }
 #settingsAccordion .card {
-  background-color: #1d2b33;
+  background-color: #18313f;
   margin-bottom: 5px;
 }
 #settingsAccordion .card-header {
@@ -726,9 +723,9 @@ section {
   padding: 175px 0;
 }
 #waveformContainer {
-  background: -moz-radial-gradient(#1d2b33, #040404);
-  background: -webkit-radial-gradient(#1d2b33, #040404);
-  background: radial-gradient(#1d2b33, #040404);
+  background: -moz-radial-gradient(#0a547e, #040404);
+  background: -webkit-radial-gradient(#0a547e, #040404);
+  background: radial-gradient(#0a547e, #040404);
   padding: 30px 0;
 }
 #waveformContainer .btn-dark {

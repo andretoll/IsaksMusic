@@ -9,85 +9,87 @@
 <!-- Mouseover tooltip -->
 <div class="tooltip-track">00:00</div>
 
-<div class="container" id="trackWrapper">
-    <div class="mb-2">
-        <a asp-page="/music/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to all music</a>
-    </div>
-    <div id="trackWrapperInner">
-        <div class="row">
-            <div class="col-md-8">
-                <!-- Media player -->
-                <div id="waveformContainer">
-                    <div id="waveformInner">
-                        <!-- Wave form header -->
-                        <div id="waveformHeader">
-                            <h4 id="songPlayingTitle">@Model.Track.Title</h4>
-                            <label id="songPlayingCategories">@Model.Track.Categories</label>
-                            <a id="randomTrack" data-toggle="tooltip" title="Random track" asp-page="./Track" asp-page-handler="Random" asp-route-id="@Model.Track.Id">
-                                <img src="~/images/dice.svg" height="50" width="50" />
-                            </a>
-                        </div>
-                        <div id="waveform" class="text-center">
-                            <p id="waveformMessage">Loading track...</p>
-                        </div>
-                        <div class="d-flex">
-                            <div>
-                                <span id="waveformCounter"></span>
-                            </div>
-                            <div class="ml-auto">
-                                <span id="waveformDuration"></span>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="d-flex" id="waveformControls">
-                            <div class="flex-group-item">
-                                <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                    <i class="fas fa-redo"></i>
+<div id="trackWrapper">
+    <div class="container">
+        <div class="mb-2">
+            <a asp-page="/music/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to all music</a>
+        </div>
+        <div id="trackWrapperInner">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Media player -->
+                    <div id="waveformContainer">
+                        <div id="waveformInner">
+                            <!-- Wave form header -->
+                            <div id="waveformHeader">
+                                <h4 id="songPlayingTitle">@Model.Track.Title</h4>
+                                <label id="songPlayingCategories">@Model.Track.Categories</label>
+                                <a id="randomTrack" data-toggle="tooltip" title="Random track" asp-page="./Track" asp-page-handler="Random" asp-route-id="@Model.Track.Id">
+                                    <img src="~/images/dice.svg" height="50" width="50" />
                                 </a>
                             </div>
-                            <div class="flex-group-item justify-content-center">
-                                <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark">
-                                    <i class="fas fa-play-circle fa-2x"></i>
-                                </a>
+                            <div id="waveform" class="text-center">
+                                <p id="waveformMessage">Loading track...</p>
                             </div>
-                            <div class="flex-group-item flex-group-item-last">
-                                <a id="volumeMenuButton" title="Volume" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-volume-down"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
-                                    <div id="volumeControl">
-                                        <i class="fa fa-volume-off"></i>
-                                        <div id="volumeSlider"></div>
-                                        <i class="fa fa-volume-up"></i>
+                            <div class="d-flex">
+                                <div>
+                                    <span id="waveformCounter"></span>
+                                </div>
+                                <div class="ml-auto">
+                                    <span id="waveformDuration"></span>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="d-flex" id="waveformControls">
+                                <div class="flex-group-item">
+                                    <a id="toggleRepeat" title="Repeat" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                        <i class="fas fa-redo"></i>
+                                    </a>
+                                </div>
+                                <div class="flex-group-item justify-content-center">
+                                    <a title="Play/Pause" id="playPauseBtn" class="btn btn-dark">
+                                        <i class="fas fa-play-circle fa-2x"></i>
+                                    </a>
+                                </div>
+                                <div class="flex-group-item flex-group-item-last">
+                                    <a id="volumeMenuButton" title="Volume" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-volume-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-borderless dropdown-menu-right" id="volume-dropdown" aria-labelledby="volumeMenuButton">
+                                        <div id="volumeControl">
+                                            <i class="fa fa-volume-off"></i>
+                                            <div id="volumeSlider"></div>
+                                            <i class="fa fa-volume-up"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4" id="trackContainer">
-                <!-- Track info -->
-                <div>
-                    <div id="trackHeader">
-                        <h4 class="text-yellow">@Model.Track.Title</h4>
-                    </div>
-                    <div id="trackBody">
-                        <div class="mb-4">
-                            <label class="text-yellow">Upload Date</label>
-                            <p>@Model.Track.UploadDate</p>
+                <div class="col-md-4" id="trackContainer">
+                    <!-- Track info -->
+                    <div>
+                        <div id="trackHeader">
+                            <h4 class="text-yellow">@Model.Track.Title</h4>
                         </div>
-                        <div class="mb-4">
-                            <label class="text-yellow">Genre</label>
-                            <p>@Model.Track.Categories</p>
-                        </div>
-                        <div class="mt-4">
-                            <label class="text-yellow">Description</label>
-                            <div id="trackDescription">
-                                <p class="collapse" id="collapseDescription">
-                                    @Model.Track.Description
-                                </p>
-                                <a class="collapsed" id="collapseDescriptionBtn" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription"></a>
+                        <div id="trackBody">
+                            <div class="mb-4">
+                                <label class="text-yellow">Upload Date</label>
+                                <p>@Model.Track.UploadDate</p>
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-yellow">Genre</label>
+                                <p>@Model.Track.Categories</p>
+                            </div>
+                            <div class="mt-4">
+                                <label class="text-yellow">Description</label>
+                                <div id="trackDescription">
+                                    <p class="collapse" id="collapseDescription">
+                                        @Model.Track.Description
+                                    </p>
+                                    <a class="collapsed" id="collapseDescriptionBtn" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription"></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -20,7 +20,7 @@
     <div class="d-flex align-items-center">
         <h2>Songs</h2>
         <div class="ml-auto">
-            <a title="Add song" class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">+ Add song</a>
+            <a title="Add song" class="btn btn-success text-white" data-toggle="modal" data-target="#newSongModal">+ New</a>
         </div>
     </div>
     <hr />
@@ -95,9 +95,12 @@
                                         <span class="ml-2 align-middle">Featured</span>
                                     </a>
                                 }
-
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-page="/music/track" asp-route-id="@song.Id">
+                                    <i class="fas fa-fw mr-2 fa-arrow-circle-right"></i>Go to track
+                                </a>
                                 <a class="dropdown-item" onclick="deleteSong(@song.Id)">
-                                    <i class="fas fa-trash fas-mr text-danger"></i>Delete
+                                    <i class="fas fa-fw mr-2 fa-trash"></i>Delete
                                 </a>
                             </div>
                         </td>

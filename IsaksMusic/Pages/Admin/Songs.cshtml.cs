@@ -284,6 +284,11 @@ namespace IsaksMusic.Pages.Admin.Music
             return RedirectToPage();
         }
 
+        /// <summary>
+        /// Reorder songs
+        /// </summary>
+        /// <param name="orderString"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetReorder(string orderString)
         {
             /* Get song ID array from string */
