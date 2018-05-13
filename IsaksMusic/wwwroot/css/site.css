@@ -1,6 +1,6 @@
 ﻿/*#region Global */
 body {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #0e0e0e;
 }
 .body-background {
@@ -149,6 +149,7 @@ li {
 table th {
   background-color: #105579;
   cursor: default;
+  font-weight: 100;
 }
 .table th,
 .table td {
@@ -912,7 +913,6 @@ section {
   color: inherit;
   font-weight: inherit;
   width: auto;
-  padding: 0.45rem;
 }
 #musicTable td.min {
   width: 1%;
