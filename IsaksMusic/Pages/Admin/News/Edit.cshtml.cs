@@ -13,9 +13,9 @@ namespace IsaksMusic.Pages.Admin.News
 {
     public class EditModel : PageModel
     {
-        private readonly IsaksMusic.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public EditModel(IsaksMusic.Data.ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -36,6 +36,7 @@ namespace IsaksMusic.Pages.Admin.News
             {
                 return NotFound();
             }
+
             return Page();
         }
 

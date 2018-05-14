@@ -167,7 +167,16 @@ $(document).ready(function () {
             var btn = $(this).parent().children('.collapse-news-btn');
             $(btn).show();
         }
-    });   
+    });
+
+    $('.img-thumbnail').on('click', function () {
+
+        var modal = document.getElementById('newsImgModal');
+        var modalImg = document.getElementById("newsImg");
+
+        $(modal).modal("toggle");
+        modalImg.src = this.src;
+    });
 });
 
 /* Function to start loading animation */
@@ -271,7 +280,7 @@ function disableCheckboxes(disable) {
         } else {
             $(this).attr('disabled', false);
         }
-    });    
+    });
 }
 
 /* Function to convert string to paragraph html with breaks */
@@ -285,5 +294,27 @@ function paragraphBreaks() {
 
         /* Insert line breaks */
         $(bodyP).html($(bodyP).text());
-    });    
+    });
+}
+
+/* Function to delete news entry */
+function deleteNewsEntry(newsEntryId) {
+
+    console.log(newsEntryId);
+
+    var result = confirm("Are you sure you want to delete this entry?");
+    if (result) {
+        $.ajax({
+
+            type: "Get",
+            url: "/admin/news?handler=Delete",
+            data: { id: newsEntryId },
+            success: function () {
+                ShowSuccessSnackbar("Entry removed");
+            },
+            error: function () {
+                location.reload();
+            }
+        });
+    }
 }

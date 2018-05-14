@@ -2,7 +2,7 @@
 @model IsaksMusic.Pages.Admin.News.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "News";
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
@@ -28,21 +28,20 @@
     {
         <div class="news-entry-container">
             <div class="row">
-                <div class="col-md-3 text-center">
-                    <img id="myImg" class="img-thumbnail" src="@entry.ImageUrl" />
-                    <span class="text-muted ml-auto">@StringFormatter.GetDatetimeNoSeconds(entry.PublishDate)</span>
-
+                <div class="col-md-4 text-center">
+                    <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="News Image" />
+                    <span class="text-muted ml-auto">@entry.PublishDate.ToLongDateString()</span>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <div class="news-entry-inner">
                         <div class="news-entry-header">
                             <h4 class="text-yellow">@entry.Headline</h4>
                             <div class="news-entry-actions">
-                                <a title="Delete" data-toggle="tooltip" asp-page="./Delete" asp-route-id="@entry.Id">
-                                    <i class="fas fa-trash"></i>
-                                </a>
                                 <a title="Edit" data-toggle="tooltip" asp-page="./Edit" asp-route-id="@entry.Id">
                                     <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a title="Delete" data-toggle="tooltip" onclick="deleteNewsEntry(@entry.Id)">
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </div>
                         </div>
@@ -54,7 +53,10 @@
 
                             }
                             <p class="news-body-text">@entry.Body</p>
-                            <a class="text-yellow" href="@entry.LinkUrl" target="_blank">@entry.LinkTitle</a>
+                            @if (!string.IsNullOrEmpty(entry.LinkUrl))
+                            {
+                                <a title="Opens new tab" class="d-block text-yellow mt-3" href="@entry.LinkUrl" target="_blank">@entry.LinkTitle</a>
+                            }
                         </div>
                         <a class="collapse-news-btn collapsed" id="collapseNewsBtn_@entry.Id" data-toggle="collapse" href="#newsEntryContent_@entry.Id" aria-expanded="false" aria-controls="collapseDescription"></a>
                     </div>
@@ -62,4 +64,17 @@
             </div>
         </div>
     }
+</div>
+
+<div class="modal" id="newsImgModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img class="w-100" id="newsImg">
+            </div>
+        </div>
+    </div>
 </div>

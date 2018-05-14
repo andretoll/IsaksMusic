@@ -26,6 +26,31 @@ namespace IsaksMusic.Pages.Admin.News
         public async Task OnGetAsync()
         {
             NewsEntries = await _applicationDbContext.NewsEntries.ToListAsync();
+
+            foreach (var entry in NewsEntries)
+            {
+                if (string.IsNullOrEmpty(entry.ImageUrl))
+                {
+                    entry.ImageUrl = "/images/news-default.jpg";
+                }
+            }
+        }
+
+        public async Task<IActionResult> OnGetDelete(int? id)
+        {
+            if (id != null)
+            {
+                /* Get news entry from database */
+                var entry = await _applicationDbContext.NewsEntries.Where(n => n.Id == id).SingleOrDefaultAsync();
+
+                /* Remove news entry from database */
+                if (entry != null)
+                {
+                    _applicationDbContext.NewsEntries.Remove(entry);
+                    await _applicationDbContext.SaveChangesAsync();
+                }                
+            }
+            return Page();
         }
     }
 }

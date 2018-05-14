@@ -28,10 +28,5 @@ namespace IsaksMusic.Data
 
             return duration;
         }
-
-        public static string GetDatetimeNoSeconds(DateTime value)
-        {
-            return value.ToString().Substring(0, value.ToString().Length - 3);
-        }
     }
 }

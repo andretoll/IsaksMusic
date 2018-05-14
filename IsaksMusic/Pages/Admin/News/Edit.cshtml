@@ -6,58 +6,108 @@
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<div>
+    <div class="d-flex align-items-center">
+        <h3>Update entry</h3>
+        <div class="ml-auto">
+            <a asp-page="Index" title="Back to news" class="text-white"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to news</a>
+        </div>
+    </div>
+    <hr />
+</div>
 
-<h4>NewsEntry</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div>
+    <div>
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NewsEntry.Id" />
-            <div class="form-group">
-                <label asp-for="NewsEntry.Headline" class="control-label"></label>
-                <input asp-for="NewsEntry.Headline" class="form-control" />
-                <span asp-validation-for="NewsEntry.Headline" class="text-danger"></span>
+            <input type="hidden" asp-for="NewsEntry.PublishDate" />
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.Headline" class="control-label"></label>
+                        <input asp-for="NewsEntry.Headline" class="form-control" />
+                        <span asp-validation-for="NewsEntry.Headline" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.ImageUrl" class="control-label"></label>
+                        <i tabindex="0"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           title="Image URL"
+                           data-content="Provide a link to an image to be shown with the entry.<br/>If no link is provided, a default image will be used."
+                           data-html="true"
+                           class="fas fa-info-circle text-white">
+                        </i>
+
+                        <input asp-for="NewsEntry.ImageUrl" class="form-control" />
+                        <span asp-validation-for="NewsEntry.ImageUrl" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.Lead" class="control-label"></label>
-                <input asp-for="NewsEntry.Lead" class="form-control" />
-                <span asp-validation-for="NewsEntry.Lead" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.Lead" class="control-label"></label>
+                        <textarea asp-for="NewsEntry.Lead" class="form-control" spellcheck="false"></textarea>
+                        <span asp-validation-for="NewsEntry.Lead" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.Body" class="control-label"></label>
-                <input asp-for="NewsEntry.Body" class="form-control" />
-                <span asp-validation-for="NewsEntry.Body" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.Body" class="control-label"></label>
+                        <i tabindex="0"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           title="Body tags"
+                           data-content="Add < br > without spaces to break into a new line.<br>"
+                           data-html="true"
+                           class="fas fa-info-circle text-white">
+                        </i>
+                        <textarea asp-for="NewsEntry.Body" class="form-control" spellcheck="false"></textarea>
+                        <span asp-validation-for="NewsEntry.Body" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.PublishDate" class="control-label"></label>
-                <input asp-for="NewsEntry.PublishDate" class="form-control" />
-                <span asp-validation-for="NewsEntry.PublishDate" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.LinkTitle" class="control-label"></label>
+                        <i tabindex="0"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           title="Link Text"
+                           data-content="The text of the link that will be in the bottom of the entry."
+                           data-html="true"
+                           class="fas fa-info-circle text-white">
+                        </i>
+                        <input asp-for="NewsEntry.LinkTitle" class="form-control" />
+                        <span asp-validation-for="NewsEntry.LinkTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NewsEntry.LinkUrl" class="control-label"></label>
+                        <i tabindex="0"
+                           data-toggle="popover"
+                           data-trigger="focus"
+                           title="Link URL"
+                           data-content="Provide a link to an internal or external webpage."
+                           data-html="true"
+                           class="fas fa-info-circle text-white">
+                        </i>
+                        <input asp-for="NewsEntry.LinkUrl" class="form-control" />
+                        <span asp-validation-for="NewsEntry.LinkUrl" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.ImageUrl" class="control-label"></label>
-                <input asp-for="NewsEntry.ImageUrl" class="form-control" />
-                <span asp-validation-for="NewsEntry.ImageUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.LinkTitle" class="control-label"></label>
-                <input asp-for="NewsEntry.LinkTitle" class="form-control" />
-                <span asp-validation-for="NewsEntry.LinkTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NewsEntry.LinkUrl" class="control-label"></label>
-                <input asp-for="NewsEntry.LinkUrl" class="form-control" />
-                <span asp-validation-for="NewsEntry.LinkUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group text-center">
+                <input type="submit" value="Update entry" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
