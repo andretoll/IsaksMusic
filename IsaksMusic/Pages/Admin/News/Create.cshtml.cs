@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
+using System.Net;
 
 namespace IsaksMusic.Pages.Admin.News
 {
     public class CreateModel : PageModel
     {
-        private readonly IsaksMusic.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public CreateModel(IsaksMusic.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext applicationDbContext)
         {
-            _context = context;
+            _applicationDbContext = applicationDbContext;
         }
 
         public IActionResult OnGet()
@@ -28,16 +29,18 @@ namespace IsaksMusic.Pages.Admin.News
         public NewsEntry NewsEntry { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
-        {
+        {          
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.NewsEntries.Add(NewsEntry);
-            await _context.SaveChangesAsync();
+            NewsEntry.PublishDate = DateTime.Now;
+
+            _applicationDbContext.NewsEntries.Add(NewsEntry);
+            await _applicationDbContext.SaveChangesAsync();
 
             return RedirectToPage("./Index");
-        }
+        }        
     }
 }

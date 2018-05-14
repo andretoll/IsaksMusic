@@ -12,18 +12,20 @@ namespace IsaksMusic.Pages.Admin.News
 {
     public class IndexModel : PageModel
     {
-        private readonly IsaksMusic.Data.ApplicationDbContext _context;
+        private readonly IsaksMusic.Data.ApplicationDbContext _applicationDbContext;
 
-        public IndexModel(IsaksMusic.Data.ApplicationDbContext context)
+        public IndexModel(IsaksMusic.Data.ApplicationDbContext applicationDbContext)
         {
-            _context = context;
+            _applicationDbContext = applicationDbContext;
         }
 
         public IList<NewsEntry> NewsEntry { get;set; }
 
+        public string ErrorMessage { get; set; }
+
         public async Task OnGetAsync()
         {
-            NewsEntry = await _context.NewsEntries.ToListAsync();
+            NewsEntry = await _applicationDbContext.NewsEntries.ToListAsync();
         }
     }
 }
