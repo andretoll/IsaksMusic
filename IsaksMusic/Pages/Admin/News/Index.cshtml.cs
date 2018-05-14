@@ -4,18 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using IsaksMusic.Data;
+using IsaksMusic.Models;
 
 namespace IsaksMusic.Pages.Admin.News
 {
     public class IndexModel : PageModel
     {
-        public string TestLink { get; set; }
+        private readonly IsaksMusic.Data.ApplicationDbContext _context;
 
-        public string ErrorMessage { get; set; }
-
-        public void OnGet()
+        public IndexModel(IsaksMusic.Data.ApplicationDbContext context)
         {
-            TestLink = "This is a <a href='./songs'>page</a>";
+            _context = context;
+        }
+
+        public IList<NewsEntry> NewsEntry { get;set; }
+
+        public async Task OnGetAsync()
+        {
+            NewsEntry = await _context.NewsEntries.ToListAsync();
         }
     }
 }

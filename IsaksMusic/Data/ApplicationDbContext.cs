@@ -18,8 +18,8 @@ namespace IsaksMusic.Data
         public DbSet<Song> Songs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SongCategory> SongCategories { get; set; }
-
         public DbSet<FeaturedSong> FeaturedSongs { get; set; }
+        public DbSet<NewsEntry> NewsEntries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

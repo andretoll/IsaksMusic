@@ -11,9 +11,10 @@ using System;
 namespace IsaksMusic.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180514085041_AddedNewsModel")]
+    partial class AddedNewsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,7 +98,7 @@ namespace IsaksMusic.Migrations
                     b.ToTable("FeaturedSongs");
                 });
 
-            modelBuilder.Entity("IsaksMusic.Models.NewsEntry", b =>
+            modelBuilder.Entity("IsaksMusic.Models.News", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -120,7 +121,7 @@ namespace IsaksMusic.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewsEntries");
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("IsaksMusic.Models.Song", b =>

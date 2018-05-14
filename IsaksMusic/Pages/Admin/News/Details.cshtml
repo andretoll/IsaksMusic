@@ -1,0 +1,62 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.News.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NewsEntry</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.Headline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.Headline)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.Lead)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.Lead)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.Body)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.Body)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.PublishDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.PublishDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.ImageUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.ImageUrl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.LinkTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.LinkTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NewsEntry.LinkUrl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NewsEntry.LinkUrl)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.NewsEntry.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

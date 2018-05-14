@@ -1,0 +1,62 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.News.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>NewsEntry</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.Headline" class="control-label"></label>
+                <input asp-for="NewsEntry.Headline" class="form-control" />
+                <span asp-validation-for="NewsEntry.Headline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.Lead" class="control-label"></label>
+                <input asp-for="NewsEntry.Lead" class="form-control" />
+                <span asp-validation-for="NewsEntry.Lead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.Body" class="control-label"></label>
+                <input asp-for="NewsEntry.Body" class="form-control" />
+                <span asp-validation-for="NewsEntry.Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.PublishDate" class="control-label"></label>
+                <input asp-for="NewsEntry.PublishDate" class="form-control" />
+                <span asp-validation-for="NewsEntry.PublishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.ImageUrl" class="control-label"></label>
+                <input asp-for="NewsEntry.ImageUrl" class="form-control" />
+                <span asp-validation-for="NewsEntry.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.LinkTitle" class="control-label"></label>
+                <input asp-for="NewsEntry.LinkTitle" class="form-control" />
+                <span asp-validation-for="NewsEntry.LinkTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsEntry.LinkUrl" class="control-label"></label>
+                <input asp-for="NewsEntry.LinkUrl" class="form-control" />
+                <span asp-validation-for="NewsEntry.LinkUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

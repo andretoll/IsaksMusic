@@ -1,26 +1,73 @@
 ﻿@page
 @model IsaksMusic.Pages.Admin.News.IndexModel
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
-<div>
-    <div class="d-flex align-items-center">
-        <h2>News</h2>
-        <div class="ml-auto">
-            <a title="Add update" class="btn btn-success text-white" asp-page="./create">+ New</a>
-        </div>
-    </div>
-    <hr />
-    @if (Model.ErrorMessage != null)
-    {
-        <div class="alert alert-danger mt-3" role="alert">
-            @Model.ErrorMessage
-        </div>
-    }
-</div>
+<h2>Index</h2>
 
-<p id="testlink">
-    @Html.Raw(Model.TestLink)
+<p>
+    <a asp-page="Create">Create New</a>
 </p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].Headline)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].Lead)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].ImageUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].LinkTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NewsEntry[0].LinkUrl)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.NewsEntry) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LinkUrl)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
