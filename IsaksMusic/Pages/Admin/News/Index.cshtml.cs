@@ -19,13 +19,13 @@ namespace IsaksMusic.Pages.Admin.News
             _applicationDbContext = applicationDbContext;
         }
 
-        public IList<NewsEntry> NewsEntry { get;set; }
+        public IList<NewsEntry> NewsEntries { get;set; }
 
         public string ErrorMessage { get; set; }
 
         public async Task OnGetAsync()
         {
-            NewsEntry = await _applicationDbContext.NewsEntries.ToListAsync();
+            NewsEntries = await _applicationDbContext.NewsEntries.ToListAsync();
         }
     }
 }

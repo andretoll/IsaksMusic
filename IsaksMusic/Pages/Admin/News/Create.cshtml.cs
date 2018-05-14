@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
-using System.Net;
 
 namespace IsaksMusic.Pages.Admin.News
 {
@@ -37,6 +36,11 @@ namespace IsaksMusic.Pages.Admin.News
 
             NewsEntry.PublishDate = DateTime.Now;
 
+            if (string.IsNullOrEmpty(NewsEntry.ImageUrl))
+            {
+                NewsEntry.ImageUrl = "/images/news-default.jpg";
+            }
+       
             _applicationDbContext.NewsEntries.Add(NewsEntry);
             await _applicationDbContext.SaveChangesAsync();
 
