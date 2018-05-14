@@ -28,7 +28,12 @@ namespace IsaksMusic.Pages.Admin.News
         public NewsEntry NewsEntry { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
-        {          
+        {
+            if ((!string.IsNullOrEmpty(NewsEntry.LinkTitle) && string.IsNullOrEmpty(NewsEntry.LinkUrl)) || (string.IsNullOrEmpty(NewsEntry.LinkTitle) && !string.IsNullOrEmpty(NewsEntry.LinkUrl)))
+            {
+                ModelState.AddModelError("", "Incomplete link setup.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();

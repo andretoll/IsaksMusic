@@ -23,14 +23,14 @@ namespace IsaksMusic.Models
         public DateTime PublishDate { get; set; }
 
         [Display(Name = "Image URL (optional)")]
-        [LinkExists(ErrorMessage = "URL Could not be found")]
+        [Url(ErrorMessage = "Not valid URL")]
         public string ImageUrl { get; set; }
 
         [Display(Name = "Link text (optional)")]
         public string LinkTitle { get; set; }
 
         [Display(Name = "Link URL (optional)")]
-        [LinkExists(ErrorMessage = "URL Could not be found")]
+        [Url(ErrorMessage = "Not valid URL")]
         public string LinkUrl { get; set; }
     }
 }
