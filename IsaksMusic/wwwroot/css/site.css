@@ -1069,10 +1069,7 @@ section {
   content: '- Read Less';
 }
 .news-entry-container-front {
-  margin: 0;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
+  margin: 0 0 0px 0;
 }
 .news-entry-container-front img {
   cursor: default;
@@ -1087,6 +1084,14 @@ section {
 }
 #newsWrapper {
   padding: 175px 0;
+}
+#newsLoading {
+  margin-top: 50px;
+  text-align: center;
+  color: white;
+}
+#newsLoadingInner {
+  visibility: hidden;
 }
 /*#endregion */
 /*#region Media Queries  */

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $(window).scroll(windowScroll);
 
-    $('#adminSidemenuCollapse').click(rotateIcon);
+    $('#adminSidemenuCollapse').click(rotateIcon);    
 
     $('[data-toggle="popover"]').popover();
 
@@ -10,18 +10,10 @@
     /* Break paragraphs */
     paragraphBreaksFront();
 
-    /* Check news text overflow */
-    var element = $('.news-entry-content-front');
-    $(element).each(function () {
+    checkTextOverflow();  
 
-        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
-            var btn = $(this).parent().children('.collapse-news-btn');
-            $(btn).show();
-        }
-    });    
+    windowScroll();
 });
-
-windowScroll();
 
 /* Function to handle scroll events */
 function windowScroll() {
@@ -107,4 +99,82 @@ function paragraphBreaksFront() {
         /* Insert line breaks */
         $(bodyP).html($(bodyP).text());
     });
+}
+
+/* Function to determine text overflow */
+function checkTextOverflow() {
+    /* Check news text overflow */
+    var element = $('.news-entry-content-front');
+    $(element).each(function () {
+
+        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
+            var btn = $(this).parent().children('.collapse-news-btn');
+            $(btn).show();
+        }
+    }); 
+}
+
+/* Function to load more news according to block size */
+function loadNews() {
+
+    if (!noMoreData) {
+
+        $('#newsLoadingInner').css('visibility', 'visible');
+
+        $.ajax({
+            type: "Get",
+            url: "/news/index?handler=NewsBlock",
+            data: { skip: skipEntries },
+            success: function (data) {
+                noMoreData = data.noMoreData;
+                appendNews(data);
+                skipEntries += blockSize;
+                $('#newsLoadingInner').css('visibility', 'hidden');
+
+            },
+            error: function () {
+
+            }
+        });
+    }    
+}
+
+/* Function to append news entries */
+function appendNews(data) {
+    
+    for (var i = 0; i < data.newsEntries.length; i++) {
+
+        /* Append news entry */
+        $('#newsBlockContainer').append(""
+            + "<div class='news-entry-container news-entry-container-front'>"
+            + "<div class='row'>"
+            + "<div class='col-md-3 text-center'>"
+            + "<img class='img-thumbnail' src=" + data.newsEntries[i].imageUrl + " alt='News Image' title='@Model.Headline' />"
+            + "<span class='text-muted ml-auto'>" + data.newsEntries[i].publishDate + "</span>"
+            + "</div>"
+            + "<div class='col-md-9'>"
+            + "<div class='news-entry-inner'>"
+            + "<div class='news-entry-header'>"
+            + "<h4 class='text-yellow'>" + data.newsEntries[i].headline + "</h4>"
+            + "</div>"
+            + "<hr />"
+            + "<div class='news-entry-content-front collapse' id='newsEntryContent_" + data.newsEntries[i].id + "'>"
+            + "<p class='text-muted font-italic'>" + data.newsEntries[i].lead + "</p>"
+            + "<p class='news-body-text'>" + data.newsEntries[i].body + "</p>"
+            + "</div>"
+            + "<a class='collapse-news-btn collapsed' id='collapseNewsBtn_" + data.newsEntries[i].id + "' data-toggle='collapse' href='#newsEntryContent_" + data.newsEntries[i].id + "' aria-expanded='false' aria-controls='collapseDescription'></a>"
+            + "</div>"
+            + "</div>"
+            + "</div>"
+            + "</div>"
+        );
+
+        /* Append link, if any */
+        if (data.newsEntries[i].linkTitle !== null) {
+            $('#newsEntryContent_' + data.newsEntries[i].id).append("<a title='Opens new tab' class='d-inline-block text-yellow mt-3' href='" + data.newsEntries[i].linkUrl + "' target='_blank'>" + data.newsEntries[i].linkTitle + "</a>");
+        }
+
+        /* Check text height */
+        checkTextOverflow();
+    }
 }

@@ -23,7 +23,9 @@ namespace IsaksMusic.Pages.News
 
         public async Task OnGetAsync()
         {
-            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).ToListAsync();
+            int blockSize = 3;
+
+            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Take(blockSize).ToListAsync();
             foreach (var entry in NewsEntries)
             {
                 if (string.IsNullOrEmpty(entry.ImageUrl))
@@ -31,6 +33,68 @@ namespace IsaksMusic.Pages.News
                     entry.ImageUrl = "/images/news-default.jpg";
                 }
             }
+        }
+
+        public async Task<IActionResult> OnGetNewsBlockAsync(int skip)
+        {
+            int blockSize = 3;
+
+            NewsBlockModel newsBlock = new NewsBlockModel();
+
+            var news = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Skip(skip).Take(blockSize).ToListAsync();
+
+            newsBlock.NewsEntries = new List<NewsEntryViewModel>();
+
+            foreach (var entry in news)
+            {
+                NewsEntryViewModel viewModel = new NewsEntryViewModel()
+                {
+                    Id = entry.Id,
+                    Headline = entry.Headline,
+                    Lead = entry.Lead,
+                    Body = entry.Body,
+                    ImageUrl = entry.ImageUrl,
+                    LinkTitle = entry.LinkTitle,
+                    LinkUrl = entry.LinkUrl,
+                    PublishDate = entry.PublishDate.ToLongDateString()
+                };
+
+                if (string.IsNullOrEmpty(viewModel.ImageUrl))
+                {
+                    viewModel.ImageUrl = "/images/news-default.jpg";
+                }
+
+                newsBlock.NewsEntries.Add(viewModel);
+            }
+
+            if (newsBlock.NewsEntries.Count < blockSize)
+            {
+                newsBlock.NoMoreData = true;
+            }
+            else
+            {
+                newsBlock.NoMoreData = false;
+            }
+
+            return new JsonResult(newsBlock);
+        }
+
+        public class NewsBlockModel
+        {
+            public List<NewsEntryViewModel> NewsEntries { get; set; }
+            public bool NoMoreData { get; set; }
+        }
+
+        public class NewsEntryViewModel
+        {
+            public int Id { get; set; }
+            public string Headline { get; set; }
+            public string Lead { get; set; }
+            public string Body { get; set; }
+            public string ImageUrl { get; set; }
+            public string LinkTitle { get; set; }
+            public string LinkUrl { get; set; }
+            public string PublishDate { get; set; }
         }
     }
 }
