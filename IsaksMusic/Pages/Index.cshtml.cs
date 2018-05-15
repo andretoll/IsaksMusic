@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using IsaksMusic.Data;
+using IsaksMusic.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,8 @@ namespace IsaksMusic.Pages
 
         public FeaturedModel Featured { get; set; }
 
+        public NewsEntry LatestNews { get; set; }
+
         [TempData]
         public string Message { get; set; }
 
@@ -41,6 +44,14 @@ namespace IsaksMusic.Pages
                     SongId = featuredSong.SongId,
                     Title = featuredSong.Song.Title
                 };
+            }
+
+            /* Get latest news */
+            LatestNews = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).FirstOrDefaultAsync();
+
+            if (string.IsNullOrEmpty(LatestNews.ImageUrl))
+            {
+                LatestNews.ImageUrl = "/images/news-default.jpg";
             }
         }
 

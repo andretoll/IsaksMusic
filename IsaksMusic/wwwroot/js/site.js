@@ -6,6 +6,19 @@
     $('[data-toggle="popover"]').popover();
 
     $('[data-toggle="tooltip"]').tooltip();
+
+    /* Break paragraphs */
+    paragraphBreaksFront();
+
+    /* Check news text overflow */
+    var element = $('.news-entry-content-front');
+    $(element).each(function () {
+
+        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
+            var btn = $(this).parent().children('.collapse-news-btn');
+            $(btn).show();
+        }
+    });    
 });
 
 windowScroll();
@@ -80,4 +93,18 @@ function rotateIcon() {
     else {
         icon.addClass("down");
     }
+}
+
+/* Function to convert string to paragraph html with breaks */
+function paragraphBreaksFront() {
+
+    var containers = $('.news-entry-content-front');
+
+    /* For each paragraph */
+    $(containers).each(function () {
+        var bodyP = $(this).children('.news-body-text');
+
+        /* Insert line breaks */
+        $(bodyP).html($(bodyP).text());
+    });
 }

@@ -154,20 +154,7 @@ $(document).ready(function () {
                 ShowSuccessSnackbar("Order saved");
             }
         });
-    });
-
-    /* Break paragraphs */
-    paragraphBreaks();
-
-    /* Check news text overflow */
-    var element = $('.news-entry-content');
-    $(element).each(function () {
-
-        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
-            var btn = $(this).parent().children('.collapse-news-btn');
-            $(btn).show();
-        }
-    });
+    });    
 
     /* When an image is clicked */
     $('.img-thumbnail').on('click', function () {
@@ -178,6 +165,19 @@ $(document).ready(function () {
         $(modal).modal("toggle");
         modalImg.src = this.src;
     });
+
+    /* Break paragraphs */
+    paragraphBreaks();    
+
+    /* Check news text overflow */
+    var element = $('.news-entry-content');
+    $(element).each(function () {
+
+        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
+            var btn = $(this).parent().children('.collapse-news-btn');
+            $(btn).show();
+        }
+    }); 
 });
 
 /* Function to start loading animation */
@@ -282,20 +282,6 @@ function disableCheckboxes(disable) {
     });
 }
 
-/* Function to convert string to paragraph html with breaks */
-function paragraphBreaks() {
-
-    var containers = $('.news-entry-content');
-
-    /* For each paragraph */
-    $(containers).each(function () {
-        var bodyP = $(this).children('.news-body-text');
-
-        /* Insert line breaks */
-        $(bodyP).html($(bodyP).text());
-    });
-}
-
 /* Function to delete news entry */
 function deleteNewsEntry(newsEntryId) {
 
@@ -319,4 +305,18 @@ function deleteNewsEntry(newsEntryId) {
             }
         });
     }
+}
+
+/* Function to convert string to paragraph html with breaks */
+function paragraphBreaks() {
+
+    var containers = $('.news-entry-content');
+
+    /* For each paragraph */
+    $(containers).each(function () {
+        var bodyP = $(this).children('.news-body-text');
+
+        /* Insert line breaks */
+        $(bodyP).html($(bodyP).text());
+    });
 }

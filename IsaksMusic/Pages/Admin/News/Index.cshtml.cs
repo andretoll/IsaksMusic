@@ -26,7 +26,7 @@ namespace IsaksMusic.Pages.Admin.News
 
         public async Task OnGetAsync()
         {
-            NewsEntries = await _applicationDbContext.NewsEntries.ToListAsync();
+            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).ToListAsync();
 
             foreach (var entry in NewsEntries)
             {
