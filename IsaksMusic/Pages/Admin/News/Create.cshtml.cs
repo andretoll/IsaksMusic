@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
+using System.Net;
 
 namespace IsaksMusic.Pages.Admin.News
 {
@@ -19,14 +20,18 @@ namespace IsaksMusic.Pages.Admin.News
             _applicationDbContext = applicationDbContext;
         }
 
-        public IActionResult OnGet()
-        {
-            return Page();
-        }
+        [TempData]
+        public string Message { get; set; }
 
         [BindProperty]
         public NewsEntry NewsEntry { get; set; }
 
+        public IActionResult OnGet()
+        {
+            return Page();
+        }        
+
+        /* Create a news entry */
         public async Task<IActionResult> OnPostAsync()
         {
             if ((!string.IsNullOrEmpty(NewsEntry.LinkTitle) && string.IsNullOrEmpty(NewsEntry.LinkUrl)) || (string.IsNullOrEmpty(NewsEntry.LinkTitle) && !string.IsNullOrEmpty(NewsEntry.LinkUrl)))
@@ -44,7 +49,9 @@ namespace IsaksMusic.Pages.Admin.News
             _applicationDbContext.NewsEntries.Add(NewsEntry);
             await _applicationDbContext.SaveChangesAsync();
 
+            Message = "News entry added";
+
             return RedirectToPage("./Index");
-        }        
+        }              
     }
 }

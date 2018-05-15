@@ -97,8 +97,6 @@ namespace IsaksMusic.Pages.Admin.Categories
                 /* Remove entry from database */
                 _applicationDbContext.Categories.Remove(category);
                 await _applicationDbContext.SaveChangesAsync();
-
-                Message = "Category removed";
             }
 
             return RedirectToPage();

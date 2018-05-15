@@ -169,6 +169,7 @@ $(document).ready(function () {
         }
     });
 
+    /* When an image is clicked */
     $('.img-thumbnail').on('click', function () {
 
         var modal = document.getElementById('newsImgModal');
@@ -189,6 +190,8 @@ function startLoadingAnimation() {
 /* Function to delete song */
 function deleteSong(songId) {
 
+    var element = $('#row_' + songId);
+
     var result = confirm("Are you sure you want to delete this song?");
     if (result) {
         $.ajax({
@@ -197,19 +200,13 @@ function deleteSong(songId) {
             url: "/admin/songs?handler=Delete",
             data: { id: songId },
             success: function () {
-                var row = $('#row_' + songId);
                 ShowSuccessSnackbar("Song removed");
-                removeTableRow(row);
+                $(element).fadeOut(500, function () {
+                    element.remove();
+                });
             }
         });
     }
-}
-
-/* Function to remove specific row from table */
-function removeTableRow(row) {
-    $(row).fadeOut(500, function () {
-        row.remove();
-    });
 }
 
 /* Function to delete a category */
@@ -226,7 +223,9 @@ function deleteCategory(categoryId) {
             data: { id: categoryId },
             success: function () {
                 ShowSuccessSnackbar("Category removed");
-                $(element).remove();
+                $(element).fadeOut(500, function () {
+                    element.remove();
+                }); 
             },
             error: function () {
                 location.reload();
@@ -300,7 +299,7 @@ function paragraphBreaks() {
 /* Function to delete news entry */
 function deleteNewsEntry(newsEntryId) {
 
-    console.log(newsEntryId);
+    var element = $('#entryContainer_' + newsEntryId);
 
     var result = confirm("Are you sure you want to delete this entry?");
     if (result) {
@@ -311,6 +310,9 @@ function deleteNewsEntry(newsEntryId) {
             data: { id: newsEntryId },
             success: function () {
                 ShowSuccessSnackbar("Entry removed");
+                $(element).fadeOut(500, function () {
+                    element.remove();
+                });                
             },
             error: function () {
                 location.reload();

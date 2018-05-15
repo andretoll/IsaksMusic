@@ -239,8 +239,6 @@ namespace IsaksMusic.Pages.Admin.Music
                 {
                     System.IO.File.Delete(fullPath);
                 }
-
-                Message = "Song removed";
             }
 
             return RedirectToPage();

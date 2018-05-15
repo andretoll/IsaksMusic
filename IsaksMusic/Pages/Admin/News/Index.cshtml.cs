@@ -12,16 +12,14 @@ namespace IsaksMusic.Pages.Admin.News
 {
     public class IndexModel : PageModel
     {
-        private readonly IsaksMusic.Data.ApplicationDbContext _applicationDbContext;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public IndexModel(IsaksMusic.Data.ApplicationDbContext applicationDbContext)
+        public IndexModel(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
 
         public IList<NewsEntry> NewsEntries { get;set; }
-
-        public string ErrorMessage { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -36,6 +34,11 @@ namespace IsaksMusic.Pages.Admin.News
             }
         }
 
+        /// <summary>
+        /// Delete news entry
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetDelete(int? id)
         {
             if (id != null)
@@ -49,8 +52,9 @@ namespace IsaksMusic.Pages.Admin.News
                     _applicationDbContext.NewsEntries.Remove(entry);
                     await _applicationDbContext.SaveChangesAsync();
                 }                
-            }
-            return Page();
+            }           
+
+            return RedirectToPage();
         }
     }
 }
