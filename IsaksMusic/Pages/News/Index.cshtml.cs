@@ -23,8 +23,7 @@ namespace IsaksMusic.Pages.News
 
         public async Task OnGetAsync()
         {
-            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Take(1).ToListAsync();
-
+            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).ToListAsync();
             foreach (var entry in NewsEntries)
             {
                 if (string.IsNullOrEmpty(entry.ImageUrl))

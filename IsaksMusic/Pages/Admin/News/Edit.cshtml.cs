@@ -20,6 +20,9 @@ namespace IsaksMusic.Pages.Admin.News
             _context = context;
         }
 
+        [TempData]
+        public string Message { get; set; }
+
         [BindProperty]
         public NewsEntry NewsEntry { get; set; }
 
@@ -69,6 +72,8 @@ namespace IsaksMusic.Pages.Admin.News
                     throw;
                 }
             }
+
+            Message = "Entry updated";
 
             return RedirectToPage("./Index");
         }
