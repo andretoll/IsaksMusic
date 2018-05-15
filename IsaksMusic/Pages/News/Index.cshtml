@@ -1,0 +1,45 @@
+﻿@page
+@model IsaksMusic.Pages.News.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div class="body-background">
+    <div class="container" id="newsWrapper">
+        <h2 class="text-dark p-2 text-center bg-yellow">News</h2>
+        @foreach (var entry in Model.NewsEntries)
+        {
+            <div class="news-entry-container news-entry-container-front">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
+                        <span class="text-muted ml-auto">@entry.PublishDate.ToLongDateString()</span>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="news-entry-inner">
+                            <div class="news-entry-header">
+                                <h4 class="text-yellow">@entry.Headline</h4>
+                            </div>
+                            <hr />
+                            <div class="news-entry-content-front collapse" id="newsEntryContent_@entry.Id">
+                                @if (!string.IsNullOrEmpty(entry.Lead))
+                                {
+                                    <p class="text-muted font-italic">@entry.Lead</p>
+
+                                }
+                                <p class="news-body-text">@entry.Body</p>
+                                @if (!string.IsNullOrEmpty(entry.LinkUrl))
+                                {
+                                    <a title="Opens new tab" class="d-block text-yellow mt-3" href="@entry.LinkUrl" target="_blank">@entry.LinkTitle</a>
+                                }
+                            </div>
+                            <a class="collapse-news-btn collapsed" id="collapseNewsBtn_@entry.Id" data-toggle="collapse" href="#newsEntryContent_@entry.Id" aria-expanded="false" aria-controls="collapseDescription"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -32,7 +32,7 @@
         <div class="news-entry-container" id="entryContainer_@entry.Id">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="News Image" />
+                    <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
                     <span class="text-muted ml-auto">@entry.PublishDate.ToLongDateString()</span>
                 </div>
                 <div class="col-md-8">
