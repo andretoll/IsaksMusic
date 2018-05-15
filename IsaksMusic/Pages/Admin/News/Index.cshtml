@@ -6,6 +6,17 @@
     Layout = "~/Pages/Admin/_AdminLayout.cshtml";
 }
 
+<!-- Show success message if any -->
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <script>
+        window.onload = function () {
+
+            ShowSuccessSnackbar("@Model.Message");
+        }
+    </script>
+}
+
 <div>
     <div class="d-flex align-items-center">
         <h3>News</h3>
@@ -18,7 +29,7 @@
 <div>
     @foreach (var entry in Model.NewsEntries)
     {
-        <div class="news-entry-container">
+        <div class="news-entry-container" id="entryContainer_@entry.Id">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="News Image" />

@@ -19,6 +19,9 @@ namespace IsaksMusic.Pages.Admin.News
             _applicationDbContext = applicationDbContext;
         }
 
+        [TempData]
+        public string Message { get; set; }
+
         public IList<NewsEntry> NewsEntries { get;set; }
 
         public async Task OnGetAsync()
