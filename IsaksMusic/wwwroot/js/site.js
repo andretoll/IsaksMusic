@@ -115,21 +115,27 @@ function checkTextOverflow() {
 }
 
 /* Function to load more news according to block size */
-function loadNews() {
+function loadNews() {    
 
     if (!noMoreData) {
 
         $('#newsLoadingInner').css('visibility', 'visible');
+        $('#newsLoading').show();
 
         $.ajax({
             type: "Get",
             url: "/news/index?handler=NewsBlock",
             data: { skip: skipEntries },
+            beforeSend: function () {
+                inProgress = true;
+            },
             success: function (data) {
                 noMoreData = data.noMoreData;
                 appendNews(data);
                 skipEntries += blockSize;
                 $('#newsLoadingInner').css('visibility', 'hidden');
+                $('#newsLoading').hide();
+                inProgress = false;
 
             },
             error: function () {
@@ -148,11 +154,11 @@ function appendNews(data) {
         $('#newsBlockContainer').append(""
             + "<div class='news-entry-container news-entry-container-front'>"
             + "<div class='row'>"
-            + "<div class='col-md-3 text-center'>"
-            + "<img class='img-thumbnail' src=" + data.newsEntries[i].imageUrl + " alt='News Image' title='@Model.Headline' />"
+            + "<div class='col-md-4 text-center'>"
+            + "<img class='img-thumbnail' src=" + data.newsEntries[i].imageUrl + " alt='News Image' title='" + data.newsEntries[i].headline +"' />"
             + "<span class='text-muted ml-auto'>" + data.newsEntries[i].publishDate + "</span>"
             + "</div>"
-            + "<div class='col-md-9'>"
+            + "<div class='col-md-8'>"
             + "<div class='news-entry-inner'>"
             + "<div class='news-entry-header'>"
             + "<h4 class='text-yellow'>" + data.newsEntries[i].headline + "</h4>"

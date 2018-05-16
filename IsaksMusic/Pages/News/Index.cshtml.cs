@@ -19,24 +19,59 @@ namespace IsaksMusic.Pages.News
             _applicationDbContext = applicationDbContext;
         }
 
-        public IList<NewsEntry> NewsEntries { get; set; }
+        public NewsBlockModel NewsBlock { get; set; }
 
         public async Task OnGetAsync()
         {
             int blockSize = 3;
 
-            NewsEntries = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Take(blockSize).ToListAsync();
-            foreach (var entry in NewsEntries)
+            NewsBlock = new NewsBlockModel();
+
+            var news = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Take(blockSize).ToListAsync();
+
+            NewsBlock.NewsEntries = new List<NewsEntryViewModel>();
+
+            foreach (var entry in news)
             {
-                if (string.IsNullOrEmpty(entry.ImageUrl))
+                NewsEntryViewModel viewModel = new NewsEntryViewModel()
                 {
-                    entry.ImageUrl = "/images/news-default.jpg";
+                    Id = entry.Id,
+                    Headline = entry.Headline,
+                    Lead = entry.Lead,
+                    Body = entry.Body,
+                    ImageUrl = entry.ImageUrl,
+                    LinkTitle = entry.LinkTitle,
+                    LinkUrl = entry.LinkUrl,
+                    PublishDate = entry.PublishDate.ToLongDateString()
+                };
+
+                if (string.IsNullOrEmpty(viewModel.ImageUrl))
+                {
+                    viewModel.ImageUrl = "/images/news-default.jpg";
                 }
+
+                NewsBlock.NewsEntries.Add(viewModel);
+            }
+
+            if (NewsBlock.NewsEntries.Count < blockSize)
+            {
+                NewsBlock.NoMoreData = true;
+            }
+            else
+            {
+                NewsBlock.NoMoreData = false;
             }
         }
 
+        /// <summary>
+        /// Ajax request for getting more news entry
+        /// </summary>
+        /// <param name="skip"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetNewsBlockAsync(int skip)
         {
+            //System.Threading.Thread.Sleep(2000);
+
             int blockSize = 3;
 
             NewsBlockModel newsBlock = new NewsBlockModel();
