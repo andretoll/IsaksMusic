@@ -23,9 +23,10 @@ $(document).ready(function () {
         }
     });
 
+    wavesurfer.setVolume(0.5);
+
     /* Check description overflow */
     var element = document.querySelector('#collapseDescription');
-
     if (element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth) {
         $('#collapseDescriptionBtn').show();
     }

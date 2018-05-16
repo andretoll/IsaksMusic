@@ -1188,6 +1188,9 @@ section {
 #trackWrapper {
     padding-top: 175px;
     padding-bottom: 175px;
+    background: -moz-radial-gradient(#0a547e, #040404);
+    background: -webkit-radial-gradient(#0a547e, #040404);
+    background: radial-gradient(#0a547e, #040404);
 }
 
 #trackWrapperInner {
@@ -1329,12 +1332,12 @@ section {
 }
 
 .collapse-news-btn.collapsed:after {
-    content: '+ Read More';
+    content: '[Read More]';
     color: @primary-text-color;
 }
 
 .collapse-news-btn:not(.collapsed):after {
-    content: '- Read Less';
+    content: '[Read Less]';
 }
 
 .news-entry-container-front {
@@ -1346,13 +1349,13 @@ section {
 }
 
 .news-entry-content-front.collapse:not(.show) {
-    height: 180px !important;
+    height: 140px !important;
     overflow: hidden;
     display: block;
 }
 
 .news-entry-content-front.collapsing {
-    min-height: 180px !important;
+    min-height: 140px !important;
 }
 
 #newsScroller {

@@ -47,11 +47,11 @@
 <section class="section-odd">
     <div class="container">
         <h3 class="text-yellow">Latest news</h3>
-        <div class="news-entry-container news-entry-container-front">
+        <div class="news-entry-container">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <img class="img-thumbnail" src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
-                    <span class="text-muted ml-auto">@Model.LatestNews.PublishDate.ToLongDateString()</span>
+                    <span class="text-muted d-block ml-auto mb-3">@Model.LatestNews.PublishDate.ToLongDateString()</span>
                 </div>
                 <div class="col-md-8">
                     <div class="news-entry-inner">

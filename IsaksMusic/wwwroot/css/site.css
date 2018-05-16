@@ -960,6 +960,9 @@ section {
 #trackWrapper {
   padding-top: 175px;
   padding-bottom: 175px;
+  background: -moz-radial-gradient(#0a547e, #040404);
+  background: -webkit-radial-gradient(#0a547e, #040404);
+  background: radial-gradient(#0a547e, #040404);
 }
 #trackWrapperInner {
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/city-clouds.jpg);
@@ -1074,11 +1077,11 @@ section {
   min-height: 130px !important;
 }
 .collapse-news-btn.collapsed:after {
-  content: '+ Read More';
+  content: '[Read More]';
   color: #ffc600;
 }
 .collapse-news-btn:not(.collapsed):after {
-  content: '- Read Less';
+  content: '[Read Less]';
 }
 .news-entry-container-front {
   margin: 40px 0;
@@ -1087,12 +1090,12 @@ section {
   cursor: default;
 }
 .news-entry-content-front.collapse:not(.show) {
-  height: 180px !important;
+  height: 140px !important;
   overflow: hidden;
   display: block;
 }
 .news-entry-content-front.collapsing {
-  min-height: 180px !important;
+  min-height: 140px !important;
 }
 #newsScroller {
   max-height: 600px;
