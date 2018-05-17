@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
+using IsaksMusic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace IsaksMusic.Pages
 
         public FeaturedModel Featured { get; set; }
 
-        public NewsEntry LatestNews { get; set; }
+        public NewsEntryViewModel LatestNews { get; set; }
 
         [TempData]
         public string Message { get; set; }
@@ -47,7 +48,19 @@ namespace IsaksMusic.Pages
             }
 
             /* Get latest news */
-            LatestNews = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).FirstOrDefaultAsync();
+            var news = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).FirstOrDefaultAsync();
+
+            LatestNews = new NewsEntryViewModel()
+            {
+                Id = news.Id,
+                Headline = news.Headline,
+                Lead = news.Lead,
+                Body = news.Body,
+                ImageUrl = news.ImageUrl,
+                LinkTitle = news.LinkTitle,
+                LinkUrl = news.LinkUrl,
+                PublishDate = news.PublishDate.ToLongDateString()
+            };
 
             if (string.IsNullOrEmpty(LatestNews.ImageUrl))
             {

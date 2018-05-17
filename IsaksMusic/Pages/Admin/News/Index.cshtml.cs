@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using IsaksMusic.Models.ViewModels;
 
 namespace IsaksMusic.Pages.Admin.News
 {
@@ -25,20 +26,36 @@ namespace IsaksMusic.Pages.Admin.News
 
         public string DateFiltered { get; set; }
 
-        public IList<NewsEntry> NewsEntries { get;set; }
+        public List<NewsEntryViewModel> NewsEntries { get;set; }
 
         public async Task OnGetAsync()
         {
             DateTime month = DateTime.Now.AddMonths(-1);
 
-            NewsEntries = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > month).OrderByDescending(n => n.PublishDate).ToListAsync();
+            var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > month).OrderByDescending(n => n.PublishDate).ToListAsync();
 
-            foreach (var entry in NewsEntries)
+            NewsEntries = new List<NewsEntryViewModel>();
+
+            foreach (var entry in news)
             {
-                if (string.IsNullOrEmpty(entry.ImageUrl))
+                NewsEntryViewModel viewModel = new NewsEntryViewModel()
                 {
-                    entry.ImageUrl = "/images/news-default.jpg";
+                    Id = entry.Id,
+                    Headline = entry.Headline,
+                    Lead = entry.Lead,
+                    Body = entry.Body,
+                    ImageUrl = entry.ImageUrl,
+                    LinkTitle = entry.LinkTitle,
+                    LinkUrl = entry.LinkUrl,
+                    PublishDate = entry.PublishDate.ToLongDateString()
+                };
+
+                if (string.IsNullOrEmpty(viewModel.ImageUrl))
+                {
+                    viewModel.ImageUrl = "/images/news-default.jpg";
                 }
+
+                NewsEntries.Add(viewModel);
             }
 
             DateFiltered = month.ToShortDateString();
@@ -78,14 +95,30 @@ namespace IsaksMusic.Pages.Admin.News
 
             if (filter != null)
             {
-                NewsEntries = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > filter).OrderByDescending(n => n.PublishDate).ToListAsync();
+                var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > filter).OrderByDescending(n => n.PublishDate).ToListAsync();
 
-                foreach (var entry in NewsEntries)
+                NewsEntries = new List<NewsEntryViewModel>();
+
+                foreach (var entry in news)
                 {
-                    if (string.IsNullOrEmpty(entry.ImageUrl))
+                    NewsEntryViewModel viewModel = new NewsEntryViewModel()
                     {
-                        entry.ImageUrl = "/images/news-default.jpg";
+                        Id = entry.Id,
+                        Headline = entry.Headline,
+                        Lead = entry.Lead,
+                        Body = entry.Body,
+                        ImageUrl = entry.ImageUrl,
+                        LinkTitle = entry.LinkTitle,
+                        LinkUrl = entry.LinkUrl,
+                        PublishDate = entry.PublishDate.ToLongDateString()
+                    };
+
+                    if (string.IsNullOrEmpty(viewModel.ImageUrl))
+                    {
+                        viewModel.ImageUrl = "/images/news-default.jpg";
                     }
+
+                    NewsEntries.Add(viewModel);
                 }
 
                 var myViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "_NewsEntries", NewsEntries } };

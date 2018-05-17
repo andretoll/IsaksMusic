@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IsaksMusic.Data;
 using IsaksMusic.Models;
+using IsaksMusic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -109,18 +110,6 @@ namespace IsaksMusic.Pages.News
         {
             public List<NewsEntryViewModel> NewsEntries { get; set; }
             public bool NoMoreData { get; set; }
-        }
-
-        public class NewsEntryViewModel
-        {
-            public int Id { get; set; }
-            public string Headline { get; set; }
-            public string Lead { get; set; }
-            public string Body { get; set; }
-            public string ImageUrl { get; set; }
-            public string LinkTitle { get; set; }
-            public string LinkUrl { get; set; }
-            public string PublishDate { get; set; }
         }
     }
 }
