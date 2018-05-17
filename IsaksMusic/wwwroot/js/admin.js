@@ -358,6 +358,4 @@ function getEntriesByDate(date) {
             console.log(error);
         }
     });
-
-
 }
