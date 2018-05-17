@@ -457,14 +457,15 @@ button[data-dismiss="modal"]:hover {
 /*#region Top Navbar */
 #mainNav {
   background-color: transparent;
-  padding-top: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
   -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
   transition: padding-top 0.3s, padding-bottom 0.3s;
 }
 #mainNav.navbar-shrink {
   background-color: #0e0e0e;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 10px;
 }
 #mainNav.navbar-shrink .navbar-brand {
@@ -628,20 +629,20 @@ section {
   color: #ffffff;
 }
 /*#endregion */
-/*#region Sitemap */
-#sitemapContainer {
+/*#region Misc Pages */
+.misc-container {
   margin-top: 50px;
   padding: 20px;
 }
-#sitemapContainer .card {
+.misc-container .card {
   border-color: #ffc600;
   margin: 15px 0;
 }
-#sitemapContainer .card-header {
+.misc-container .card-header {
   background-color: #ffc600;
   font-size: 1.0em;
 }
-#sitemapContainer li {
+.misc-container li {
   background-color: #0e0e0e;
   font-size: 1.0em;
 }
