@@ -7,6 +7,7 @@ using IsaksMusic.Models;
 using IsaksMusic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 
 namespace IsaksMusic.Pages.News
@@ -20,13 +21,13 @@ namespace IsaksMusic.Pages.News
             _applicationDbContext = applicationDbContext;
         }
 
-        public NewsBlockModel NewsBlock { get; set; }
+        public NewsBlockViewModel NewsBlock { get; set; }
 
         public async Task OnGetAsync()
         {
             int blockSize = 3;
 
-            NewsBlock = new NewsBlockModel();
+            NewsBlock = new NewsBlockViewModel();
 
             var news = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Take(blockSize).ToListAsync();
 
@@ -66,7 +67,7 @@ namespace IsaksMusic.Pages.News
 
             int blockSize = 3;
 
-            NewsBlockModel newsBlock = new NewsBlockModel();
+            NewsBlockViewModel newsBlock = new NewsBlockViewModel();
 
             var news = await _applicationDbContext.NewsEntries.OrderByDescending(n => n.PublishDate).Skip(skip).Take(blockSize).ToListAsync();
 
@@ -103,13 +104,16 @@ namespace IsaksMusic.Pages.News
                 newsBlock.NoMoreData = false;
             }
 
-            return new JsonResult(newsBlock);
-        }
+            var myViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "_NewsBlock", newsBlock } };
+            myViewData.Model = newsBlock;
 
-        public class NewsBlockModel
-        {
-            public List<NewsEntryViewModel> NewsEntries { get; set; }
-            public bool NoMoreData { get; set; }
+            PartialViewResult result = new PartialViewResult()
+            {
+                ViewName = "_NewsBlock",
+                ViewData = myViewData,
+            };
+
+            return result;
         }
     }
 }

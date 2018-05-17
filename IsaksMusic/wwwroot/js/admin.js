@@ -4,16 +4,25 @@ var songOrder;
 
 $(document).ready(function () {
 
-    /* Change active link in admin layout */
-    $('a.active').removeClass('active');
-    $('a[href="' + location.pathname + '"]').closest('.list-group-item').addClass('active');
-
-    /* Change active parent link in admin layout */
     if ($('a[href="' + location.pathname + '"]').length === 0) {
         var loc = location.pathname.substr(0, location.pathname.lastIndexOf("/"));
-
         $('a[href="' + loc + '"]').closest('.list-group-item').addClass('active');
+    } else {
+        $('a.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('.list-group-item').addClass('active');
     }
+
+    /* When collapsing side menu */
+    $('#adminSidemenuCollapse').on('click', function () {
+        var icon = $('#adminSidemenuCollapse').children('i');
+
+        if (icon.hasClass("down")) {
+            icon.removeClass("down");
+        }
+        else {
+            icon.addClass("down");
+        }
+    });        
 
     /* When submitting form */
     $('#songForm').submit(function (e) {
@@ -76,14 +85,7 @@ $(document).ready(function () {
     /* Prevent cut, copy and paste */
     $('.list-item-editable').on("cut copy paste", function (e) {
         e.preventDefault();
-    });
-
-    /* Initiate checkboxes */
-    $('input[type=checkbox]').iCheck({
-        checkboxClass: 'icheckbox_square-red',
-        radioClass: 'iradio_square-red',
-        increaseArea: '20%'
-    });
+    });    
 
     /* When a checkbox is clicked */
     $('.feature-check').on('ifClicked', function () {
@@ -128,7 +130,6 @@ $(document).ready(function () {
     $('#songTable').tableDnD({
         onDragClass: "row-drag",
         onDrop: function (table, row) {
-            $('#saveOrderBtn').fadeIn(500);
             var orderStr = $.tableDnD.serialize();
 
             var tmpArr = orderStr.split('&');
@@ -139,6 +140,9 @@ $(document).ready(function () {
                     orderArr.push(paramArr[1].split('_').pop());
                 }
             }
+
+            $('#saveOrderBtn').fadeIn(500);
+
             songOrder = orderArr.join(',');
         }
     });
@@ -170,7 +174,7 @@ $(document).ready(function () {
     paragraphBreaks();
 
     /* Check news text overflow */
-    checkTextOverflowAdmin();
+    checkTextOverflow();
 
     /* jQuery UI Datepicker */
     $('#datepicker').datepicker({
@@ -329,7 +333,7 @@ function paragraphBreaks() {
 }
 
 /* Function to determine text overflow */
-function checkTextOverflowAdmin() {
+function checkTextOverflow() {
     /* Check news text overflow */
     var element = $('.news-entry-content');
     $(element).each(function () {
@@ -352,7 +356,7 @@ function getEntriesByDate(date) {
         success: function (result) {
             $("#adminNewsEntries").html(result);  
             paragraphBreaks();
-            checkTextOverflowAdmin();
+            checkTextOverflow();
         },
         error: function (error) {
             console.log(error);
