@@ -59,7 +59,6 @@ label {
 }
 input {
   margin-bottom: 5px;
-  color: #ffffff;
   outline: none;
 }
 input[type="file"].file-valid {
@@ -351,6 +350,9 @@ button[data-dismiss="modal"]:hover {
 }
 .cursor-default {
   cursor: default;
+}
+.ui-datepicker-calendar {
+  color: white;
 }
 /*#endregion */
 /*#region Error Pages */

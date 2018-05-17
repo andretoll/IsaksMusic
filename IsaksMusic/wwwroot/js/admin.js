@@ -154,7 +154,7 @@ $(document).ready(function () {
                 ShowSuccessSnackbar("Order saved");
             }
         });
-    });    
+    });
 
     /* When an image is clicked */
     $('.img-thumbnail').on('click', function () {
@@ -167,17 +167,24 @@ $(document).ready(function () {
     });
 
     /* Break paragraphs */
-    paragraphBreaks();    
+    paragraphBreaks();
 
     /* Check news text overflow */
-    var element = $('.news-entry-content');
-    $(element).each(function () {
+    checkTextOverflowAdmin();
 
-        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
-            var btn = $(this).parent().children('.collapse-news-btn');
-            $(btn).show();
+    /* jQuery UI Datepicker */
+    $('#datepicker').datepicker({
+        "showAnim": "slideDown",
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'yy-mm-dd',
+        maxDate: '+0m',
+        onSelect: function (e) {
+            getEntriesByDate(e);
         }
-    }); 
+    });
 });
 
 /* Function to start loading animation */
@@ -225,7 +232,7 @@ function deleteCategory(categoryId) {
                 ShowSuccessSnackbar("Category removed");
                 $(element).fadeOut(500, function () {
                     element.remove();
-                }); 
+                });
             },
             error: function () {
                 location.reload();
@@ -298,7 +305,7 @@ function deleteNewsEntry(newsEntryId) {
                 ShowSuccessSnackbar("Entry removed");
                 $(element).fadeOut(500, function () {
                     element.remove();
-                });                
+                });
             },
             error: function () {
                 location.reload();
@@ -319,4 +326,38 @@ function paragraphBreaks() {
         /* Insert line breaks */
         $(bodyP).html($(bodyP).text());
     });
+}
+
+/* Function to determine text overflow */
+function checkTextOverflowAdmin() {
+    /* Check news text overflow */
+    var element = $('.news-entry-content');
+    $(element).each(function () {
+
+        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
+            var btn = $(this).parent().children('.collapse-news-btn');
+            $(btn).show();
+        }
+    });
+}
+
+/* Function to get news entries by date */
+function getEntriesByDate(date) {
+
+    $.ajax({
+        type: 'GET',
+        url: "/admin/news/index?handler=Filter",
+        contentType: 'application/json; charset=utf-8"',
+        data: { dateFilter: date },
+        success: function (result) {
+            $("#adminNewsEntries").html(result);  
+            paragraphBreaks();
+            checkTextOverflowAdmin();
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+
+
 }

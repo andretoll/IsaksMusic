@@ -49,6 +49,11 @@ namespace IsaksMusic
                     options.Conventions.AuthorizeFolder("/Admin", "RequireAdminRole");
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
+                });
+
+            services.AddMvc().AddRazorOptions(options =>
+            {
+                options.PageViewLocationFormats.Add("/Pages/Partials/{0}.cshtml");
             });
 
             /* Configure Identity options */

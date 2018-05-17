@@ -14,7 +14,8 @@ namespace IsaksMusic.Models
         [Required]
         public string Headline { get; set; }
 
-        [Display(Name = "Lead (optional)")]
+
+        [Required]
         public string Lead { get; set; }
 
         [Required]
