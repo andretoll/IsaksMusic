@@ -27,18 +27,19 @@ namespace IsaksMusic.Pages.Music
             _configuration = configuration;
         }
 
-        /* List of songs */
         public List<SongModel> SongList { get; set; }
 
-        /* Playlist */
         public ArrayList Playlist { get; set; }
 
-        /* Whether or not to autoplay */
         public bool Autoplay { get; set; }
 
-        /* For filtering */
         public IList<SelectListItem> CategoryList { get; set; }
 
+        /// <summary>
+        /// Get list of songs and categories
+        /// </summary>
+        /// <param name="autoplay"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(bool autoplay)
         {
             /* List of songs */

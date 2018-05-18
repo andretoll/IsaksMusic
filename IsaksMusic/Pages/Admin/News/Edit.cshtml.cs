@@ -13,11 +13,11 @@ namespace IsaksMusic.Pages.Admin.News
 {
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public EditModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext applicationDbContext)
         {
-            _context = context;
+            _applicationDbContext = applicationDbContext;
         }
 
         [TempData]
@@ -26,6 +26,11 @@ namespace IsaksMusic.Pages.Admin.News
         [BindProperty]
         public NewsEntry NewsEntry { get; set; }
 
+        /// <summary>
+        /// Get news entry by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -33,7 +38,7 @@ namespace IsaksMusic.Pages.Admin.News
                 return NotFound();
             }
 
-            NewsEntry = await _context.NewsEntries.SingleOrDefaultAsync(m => m.Id == id);
+            NewsEntry = await _applicationDbContext.NewsEntries.SingleOrDefaultAsync(m => m.Id == id);
 
             if (NewsEntry == null)
             {
@@ -43,6 +48,10 @@ namespace IsaksMusic.Pages.Admin.News
             return Page();
         }
 
+        /// <summary>
+        /// Edit news entry
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if ((!string.IsNullOrEmpty(NewsEntry.LinkTitle) && string.IsNullOrEmpty(NewsEntry.LinkUrl)) || (string.IsNullOrEmpty(NewsEntry.LinkTitle) && !string.IsNullOrEmpty(NewsEntry.LinkUrl)))
@@ -55,15 +64,15 @@ namespace IsaksMusic.Pages.Admin.News
                 return Page();
             }
 
-            _context.Attach(NewsEntry).State = EntityState.Modified;
+            _applicationDbContext.Attach(NewsEntry).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _applicationDbContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NewsEntryExists(NewsEntry.Id))
+                if (!_applicationDbContext.NewsEntries.Any(e => e.Id == NewsEntry.Id))
                 {
                     return NotFound();
                 }
@@ -76,11 +85,6 @@ namespace IsaksMusic.Pages.Admin.News
             Message = "Entry updated";
 
             return RedirectToPage("./Index");
-        }
-
-        private bool NewsEntryExists(int id)
-        {
-            return _context.NewsEntries.Any(e => e.Id == id);
         }
     }
 }

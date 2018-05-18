@@ -37,14 +37,11 @@ namespace IsaksMusic.Pages.Admin.Music
         [TempData]
         public string ErrorMessage { get; set; }
 
-        /* For uploading song */
         [BindProperty]
         public SongUploadModel Song { get; set; }
 
-        /* For displaying songs in table */
         public List<SongModel> SongList { get; set; }
 
-        /* For displaying categories when uploading song */
         public IList<SelectListItem> CategoryList { get; set; }             
 
         /// <summary>

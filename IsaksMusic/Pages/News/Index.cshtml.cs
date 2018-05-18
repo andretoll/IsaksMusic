@@ -23,6 +23,10 @@ namespace IsaksMusic.Pages.News
 
         public NewsBlockViewModel NewsBlock { get; set; }
 
+        /// <summary>
+        /// Get initial newsblock
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGetAsync()
         {
             int blockSize = 3;
@@ -57,7 +61,7 @@ namespace IsaksMusic.Pages.News
         }
 
         /// <summary>
-        /// Ajax request for getting more news entry
+        /// Get next newsblock
         /// </summary>
         /// <param name="skip"></param>
         /// <returns></returns>
@@ -104,6 +108,7 @@ namespace IsaksMusic.Pages.News
                 newsBlock.NoMoreData = false;
             }
 
+            /* Create partial view with news entries */
             var myViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "_NewsBlock", newsBlock } };
             myViewData.Model = newsBlock;
 

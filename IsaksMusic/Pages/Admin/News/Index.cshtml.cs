@@ -28,10 +28,14 @@ namespace IsaksMusic.Pages.Admin.News
 
         public List<NewsEntryViewModel> NewsEntries { get;set; }
 
+        /// <summary>
+        /// Get initial news entries by date
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGetAsync()
         {
+            /* Get news entries the last month */
             DateTime month = DateTime.Now.AddMonths(-1);
-
             var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > month).OrderByDescending(n => n.PublishDate).ToListAsync();
 
             NewsEntries = new List<NewsEntryViewModel>();
@@ -62,7 +66,7 @@ namespace IsaksMusic.Pages.Admin.News
         }
 
         /// <summary>
-        /// Delete news entry
+        /// Delete a news entry
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -121,6 +125,7 @@ namespace IsaksMusic.Pages.Admin.News
                     NewsEntries.Add(viewModel);
                 }
 
+                /* Create partial view with news entries */
                 var myViewData = new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "_NewsEntries", NewsEntries } };
                 myViewData.Model = NewsEntries;
 

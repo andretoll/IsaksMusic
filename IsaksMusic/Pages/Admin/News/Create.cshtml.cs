@@ -26,12 +26,19 @@ namespace IsaksMusic.Pages.Admin.News
         [BindProperty]
         public NewsEntry NewsEntry { get; set; }
 
+        /// <summary>
+        /// Open create news page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult OnGet()
         {
             return Page();
         }        
 
-        /* Create a news entry */
+        /// <summary>
+        /// Create news entry
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if ((!string.IsNullOrEmpty(NewsEntry.LinkTitle) && string.IsNullOrEmpty(NewsEntry.LinkUrl)) || (string.IsNullOrEmpty(NewsEntry.LinkTitle) && !string.IsNullOrEmpty(NewsEntry.LinkUrl)))

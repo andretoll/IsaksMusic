@@ -33,6 +33,10 @@ namespace IsaksMusic.Pages.Admin
 
         public UserModel SignedInUser { get; set; }
 
+        /// <summary>
+        /// Get notifications and warnings
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);

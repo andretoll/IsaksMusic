@@ -17,10 +17,8 @@
         <div id="trackWrapperInner">
             <div class="row">
                 <div class="col-md-8">
-                    <!-- Media player -->
                     <div id="waveformContainer">
                         <div id="waveformInner">
-                            <!-- Wave form header -->
                             <div id="waveformHeader">
                                 <h4 id="songPlayingTitle">@Model.Track.Title</h4>
                                 <label id="songPlayingCategories">@Model.Track.Categories</label>
@@ -68,7 +66,6 @@
                     </div>
                 </div>
                 <div class="col-md-4" id="trackContainer">
-                    <!-- Track info -->
                     <div>
                         <div id="trackHeader">
                             <h4 class="text-yellow">@Model.Track.Title</h4>
@@ -110,5 +107,5 @@
 @section scripts
     {
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/2.0.5/wavesurfer.min.js"></script>
-    <script src="~/js/track.js" asp-append-version="true"></script>
+    <script src="~/js/track.min.js" asp-append-version="true"></script>
 }

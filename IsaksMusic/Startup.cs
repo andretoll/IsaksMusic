@@ -43,14 +43,15 @@ namespace IsaksMusic
                 options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
             });
 
+            /* Authorize pages and folders */
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizeFolder("/Admin", "RequireAdminRole");
-                    options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
                 });
 
+            /* Register page folder */
             services.AddMvc().AddRazorOptions(options =>
             {
                 options.PageViewLocationFormats.Add("/Pages/Partials/{0}.cshtml");
@@ -120,6 +121,7 @@ namespace IsaksMusic
 
             app.UseMvc();
 
+            /* Seed user roles */
             //CreateUserRoles(services).Wait();
         }
 
@@ -131,6 +133,7 @@ namespace IsaksMusic
 
 
             IdentityResult roleResult;
+
             /* Add Admin role */ 
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
 

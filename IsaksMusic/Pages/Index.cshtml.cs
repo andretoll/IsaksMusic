@@ -33,6 +33,10 @@ namespace IsaksMusic.Pages
 
         public bool PostbackFailed { get; set; }
 
+        /// <summary>
+        /// Get featured song and latest news
+        /// </summary>
+        /// <returns></returns>
         public async Task OnGet()
         {
             /* Get featured song, if any */
@@ -68,7 +72,10 @@ namespace IsaksMusic.Pages
             }
         }
 
-        /* On contact submit */
+        /// <summary>
+        /// Send contact form
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

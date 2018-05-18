@@ -31,21 +31,13 @@ namespace IsaksMusic.Pages.Account
         public string ReturnUrl { get; set; }
 
         [TempData]
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; }                
 
-        public class InputModel
-        {
-            [Required(ErrorMessage = "An email is required.")]
-            public string Username { get; set; }
-
-            [Required(ErrorMessage = "A password is required.")]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
-        }
-
+        /// <summary>
+        /// Open login page
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task OnGet(string returnUrl = null)
         {
             if (User.Identity.IsAuthenticated)
@@ -66,6 +58,11 @@ namespace IsaksMusic.Pages.Account
             ReturnUrl = returnUrl;
         }
 
+        /// <summary>
+        /// Sign in user
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
@@ -108,6 +105,22 @@ namespace IsaksMusic.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        /// <summary>
+        /// Login model
+        /// </summary>
+        public class InputModel
+        {
+            [Required(ErrorMessage = "An email is required.")]
+            public string Username { get; set; }
+
+            [Required(ErrorMessage = "A password is required.")]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+
+            [Display(Name = "Remember me?")]
+            public bool RememberMe { get; set; }
         }
     }
 }

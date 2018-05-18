@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using IsaksMusic.Data;
-using IsaksMusic.Pages.Account.Manage;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,9 +15,9 @@ namespace IsaksMusic.Pages.Admin
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<ChangePasswordModel> _logger;
+        private readonly ILogger<PasswordModel> _logger;
 
-        public SettingsModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<ChangePasswordModel> logger)
+        public SettingsModel(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<PasswordModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -31,18 +30,18 @@ namespace IsaksMusic.Pages.Admin
         [TempData]
         public string ErrorMessage { get; set; }
 
-        /* Password */
         [BindProperty]
         public PasswordModel Password { get; set; }
 
-        /* Email */
         [BindProperty]
         public EmailModel Email { get; set; }
 
-        /* Username */
         [BindProperty]
         public UsernameModel Username { get; set; }
 
+        /// <summary>
+        /// Open settings page
+        /// </summary>
         public void OnGet()
         {
             ErrorMessage = null;

@@ -21,6 +21,11 @@ namespace IsaksMusic.Pages.Music
 
         public SongModel Track { get; set; }
 
+        /// <summary>
+        /// Get track by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -49,6 +54,11 @@ namespace IsaksMusic.Pages.Music
             return Page();
         }
 
+        /// <summary>
+        /// Get random track
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> OnGetRandomAsync(int? id)
         {
             if (id == null)
