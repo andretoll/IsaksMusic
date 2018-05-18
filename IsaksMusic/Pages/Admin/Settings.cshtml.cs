@@ -184,6 +184,7 @@ namespace IsaksMusic.Pages.Admin
                 return Page();
             }
 
+            await _signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their username successfully.");
             Message = "Your username has been changed.";
             ErrorMessage = null;

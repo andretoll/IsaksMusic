@@ -5,7 +5,7 @@
     <div class="news-entry-container" id="entryContainer_@entry.Id">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
+                <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" onclick="openImgModal('@entry.ImageUrl')" />
                 <span class="text-muted ml-auto">@entry.PublishDate</span>
             </div>
             <div class="col-md-8">

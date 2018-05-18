@@ -160,21 +160,14 @@ $(document).ready(function () {
         });
     });
 
-    /* When an image is clicked */
-    $('.img-thumbnail').on('click', function () {
-
-        var modal = document.getElementById('newsImgModal');
-        var modalImg = document.getElementById("newsImg");
-
-        $(modal).modal("toggle");
-        modalImg.src = this.src;
-    });
-
     /* Break paragraphs */
     paragraphBreaks();
 
     /* Check news text overflow */
     checkTextOverflow();
+
+    /* Check news entry count */
+    checkNewsEntryCount($('#adminNewsEntries').children().length);
 
     /* jQuery UI Datepicker */
     $('#datepicker').datepicker({
@@ -328,7 +321,9 @@ function paragraphBreaks() {
         var bodyP = $(this).children('.news-body-text');
 
         /* Insert line breaks */
-        $(bodyP).html($(bodyP).text());
+        if ($(bodyP).text().indexOf("<br>") >= 0) {
+            $(bodyP).html($(bodyP).text());
+        }
     });
 }
 
@@ -357,9 +352,30 @@ function getEntriesByDate(date) {
             $("#adminNewsEntries").html(result);  
             paragraphBreaks();
             checkTextOverflow();
+            checkNewsEntryCount($('#adminNewsEntries').children().length);
         },
         error: function (error) {
             console.log(error);
         }
     });
+}
+
+/* Function to check news entry count and show/hide alert */
+function checkNewsEntryCount(count) {
+
+    if (count === 0) {
+        $('#noNewsAlert').show();
+    } else {
+        $('#noNewsAlert').hide();
+    }
+}
+
+function openImgModal(url) {
+    var modal = document.getElementById('newsImgModal');
+    var modalHeader = document.getElementById('newsImgHeader');
+    var modalImg = document.getElementById("newsImg");
+
+    $(modal).modal("toggle");
+    modalHeader.innerHTML = url;
+    modalImg.src = url;
 }

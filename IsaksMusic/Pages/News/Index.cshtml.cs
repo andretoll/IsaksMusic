@@ -58,6 +58,15 @@ namespace IsaksMusic.Pages.News
 
                 NewsBlock.NewsEntries.Add(viewModel);
             }
+
+            if (NewsBlock.NewsEntries.Count < blockSize)
+            {
+                NewsBlock.NoMoreData = true;
+            }
+            else
+            {
+                NewsBlock.NoMoreData = false;
+            }
         }
 
         /// <summary>

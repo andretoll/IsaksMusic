@@ -27,9 +27,12 @@
     <hr />
 </div>
 <div>
-    <label class="mr-2">Showing entries from:</label><input type="text" id="datepicker" value="@Model.DateFiltered">
+    <label class="mr-2 text-yellow">Showing entries from:</label><input type="text" id="datepicker" value="@Model.DateFiltered">
     <div id="adminNewsEntries">
         @Html.Partial("_NewsEntries", Model.NewsEntries)
+    </div>
+    <div class="alert alert-warning mt-3" id="noNewsAlert" role="alert">
+        No news entries could be found. Try extending the date interval.
     </div>
 </div>
 
@@ -37,6 +40,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h6 class="text-yellow" id="newsImgHeader"></h6>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

@@ -33,10 +33,6 @@ body {
     color: @primary-text-color !important;
 }
 
-.bg-yellow {
-    background-color: @primary-text-color!important;
-}
-
 .text-muted {
     color: #9a9a9a !important;
 }
@@ -47,10 +43,6 @@ body {
 
 .text-dark {
     color: @secondary-bg-color!important;
-}
-
-.text-shadow {
-    text-shadow: 2px 2px 4px #000000;
 }
 
 a {
@@ -178,8 +170,6 @@ hr {
     border-color: rgba(255, 255, 255, 0.1);
     margin: 0;
 }
-
-/* Bootstrap Select */
 
 .bootstrap-select li.selected a {
     color: @primary-text-color;
@@ -399,7 +389,6 @@ button[data-dismiss="modal"] {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
-/* Side menu links */
 
 .side-menu-collapse .list-group .list-group-item {
     border-radius: 0;
@@ -440,8 +429,11 @@ button[data-dismiss="modal"] {
 .ui-datepicker-calendar {
     color: white;
 }
+
 /*#endregion */
+
 /*#region Error Pages */
+
 .error-section {
     text-align: center;
     display: table;
@@ -487,9 +479,11 @@ button[data-dismiss="modal"] {
     border-left: 1px solid @secondary-text-color;
     padding-left: 0.3em;
 }
+
 /*#endregion */
 
 /*#region Snackbars */
+
 #snackbar-success {
     visibility: hidden;
     min-width: 300px;
@@ -558,9 +552,11 @@ button[data-dismiss="modal"] {
         opacity: 0;
     }
 }
+
 /*#endregion */
 
 /*#region Top Navbar */
+
 #mainNav {
     background-color: transparent;
     padding-top: 25px;
@@ -587,10 +583,13 @@ button[data-dismiss="modal"] {
 .navbar-dark .navbar-nav .nav-link {
     color: @secondary-text-color;
     text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
 }
+
 /*#endregion */
 
 /*#region Bottom Footer */
+
 footer {
     bottom: 0;
 }
@@ -625,9 +624,11 @@ footer {
     background-color: @secondary-bg-color;
     text-align: center;
 }
+
 /*#endregion */
 
 /*#region Top Header */
+
 #topHeader {
     background: linear-gradient(rgba(10, 10, 10, 0.3), @primary-bg-color), url(../images/bg-header.jpg);
     background-repeat: no-repeat;
@@ -662,6 +663,7 @@ footer {
 /*#endregion */
 
 /*#region Sections */
+
 section {
     padding: 100px 0;
     height: auto;
@@ -670,9 +672,11 @@ section {
 .section-odd {
     background-color: @primary-bg-color;
 }
+
 /*#endregion */
 
 /*#region Index */
+
 #backToTopBtn {
     display: none;
     position: fixed;
@@ -717,6 +721,7 @@ section {
 /*#endregion */
 
 /*#region Index About Me */
+
 #aboutContainer {
     text-align: center;
 }
@@ -736,9 +741,6 @@ section {
     font-size: 1.4em !important;
 }
 
-.circle-social-media {
-}
-
 .circle-facebook {
     color: #3b5998;
 }
@@ -746,9 +748,11 @@ section {
 .circle-soundcloud {
     color: #f50;
 }
+
 /*#endregion */
 
 /*#region Index Website Info */
+
 #infoContainer h4 {
     margin: 15px 0;
 }
@@ -760,9 +764,11 @@ section {
 #infoContainer .fa-inverse {
     color: @primary-text-color;
 }
+
 /*#endregion */
 
 /*#region Contact Form */
+
 #contactForm {
     background: @primary-bg-color;
     padding: 30px;
@@ -773,9 +779,11 @@ section {
 #contactForm label {
     color: @secondary-text-color;
 }
+
 /*#endregion */
 
 /*#region Misc Pages */
+
 .misc-container {
     margin-top: 50px;
     padding: 20px;
@@ -795,9 +803,11 @@ section {
     background-color: @secondary-bg-color;
     font-size: 1.0em;
 }
+
 /*#endregion */
 
 /*#region Login */
+
 #loginForm {
     margin: 100px auto;
     padding: 50px;
@@ -806,9 +816,11 @@ section {
     width: 400px;
     text-align: center;
 }
+
 /*#endregion */
 
 /*#region Admin */
+
 #adminLayoutWrapper {
     padding: 175px 0;
     min-height: 600px;
@@ -835,8 +847,6 @@ section {
 #songTable a {
     cursor: pointer;
 }
-
-/* Row reorder DnD-plugin */
 
 .row-drag {
     background-color: #2d4451;
@@ -919,9 +929,14 @@ section {
     font-size: 0.9em;
 }
 
+#noNewsAlert {
+    display: none;
+}
+
 /*#endregion */
 
 /*#region Music */
+
 #musicBackground {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url(../images/bg-header.jpg);
 }
@@ -1396,9 +1411,11 @@ section {
 #newsLoadingInner {
     visibility: hidden;
 }
+
 /*#endregion */
 
 /*#region Media Queries  */
+
 @media (max-width: 1199px) {
 
     #songTable, #songTable thead, #songTable tbody, #songTable th, #songTable td, #songTable tr {

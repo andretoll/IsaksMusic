@@ -9,6 +9,7 @@ using IsaksMusic.Data;
 using IsaksMusic.Models;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using IsaksMusic.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace IsaksMusic.Pages.Admin.News
 {
@@ -34,9 +35,22 @@ namespace IsaksMusic.Pages.Admin.News
         /// <returns></returns>
         public async Task OnGetAsync()
         {
+            /* Get cookie */
+            string filterCookie = Request.Cookies["NewsFilter"];
+
+            DateTime filter = new DateTime();
+
+            if (filterCookie != null)
+            {
+                filter = DateTime.Parse(filterCookie);
+            }
+            else
+            {
+                filter = DateTime.Now.AddMonths(-1);
+            }
+
             /* Get news entries the last month */
-            DateTime month = DateTime.Now.AddMonths(-1);
-            var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > month).OrderByDescending(n => n.PublishDate).ToListAsync();
+            var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > filter).OrderByDescending(n => n.PublishDate).ToListAsync();
 
             NewsEntries = new List<NewsEntryViewModel>();
 
@@ -62,7 +76,7 @@ namespace IsaksMusic.Pages.Admin.News
                 NewsEntries.Add(viewModel);
             }
 
-            DateFiltered = month.ToShortDateString();
+            DateFiltered = filter.ToShortDateString();
         }
 
         /// <summary>
@@ -134,6 +148,13 @@ namespace IsaksMusic.Pages.Admin.News
                     ViewName = "_NewsEntries",
                     ViewData = myViewData,
                 };
+
+                /* Set cookie */
+                CookieOptions options = new CookieOptions();
+
+                options.Expires = DateTime.Now.AddMinutes(10);
+
+                Response.Cookies.Append("NewsFilter", filter.ToShortDateString(), options);
 
                 return result;
             }

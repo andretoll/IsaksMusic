@@ -17,9 +17,6 @@ body {
 .text-yellow {
   color: #ffc600 !important;
 }
-.bg-yellow {
-  background-color: #ffc600 !important;
-}
 .text-muted {
   color: #9a9a9a !important;
 }
@@ -28,9 +25,6 @@ body {
 }
 .text-dark {
   color: #0e0e0e !important;
-}
-.text-shadow {
-  text-shadow: 2px 2px 4px #000000;
 }
 a {
   color: #ffffff;
@@ -135,7 +129,6 @@ hr {
   border-color: rgba(255, 255, 255, 0.1);
   margin: 0;
 }
-/* Bootstrap Select */
 .bootstrap-select li.selected a {
   color: #ffc600;
 }
@@ -321,7 +314,6 @@ button[data-dismiss="modal"]:hover {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* Side menu links */
 .side-menu-collapse .list-group .list-group-item {
   border-radius: 0;
   background-color: transparent;
@@ -479,6 +471,7 @@ button[data-dismiss="modal"]:hover {
 .navbar-dark .navbar-nav .nav-link {
   color: #ffffff;
   text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
 }
 /*#endregion */
 /*#region Bottom Footer */
@@ -681,7 +674,6 @@ section {
 #songTable a {
   cursor: pointer;
 }
-/* Row reorder DnD-plugin */
 .row-drag {
   background-color: #2d4451;
 }
@@ -744,6 +736,9 @@ section {
 #dashboardContainer li {
   list-style: disc;
   font-size: 0.9em;
+}
+#noNewsAlert {
+  display: none;
 }
 /*#endregion */
 /*#region Music */

@@ -26,5 +26,10 @@
 
 @section Scripts {
     <script src="~/js/news.min.js" type="text/javascript"></script>
+    <script>
+        if ("@Model.NewsBlock.NoMoreData" == "True") {
+            noMoreData = true;
+        }
+    </script>
 }
 
