@@ -169,6 +169,10 @@ $(document).ready(function () {
     /* Check news entry count */
     checkNewsEntryCount($('#adminNewsEntries').children().length);
 
+    var defaultDate = $('#datepicker').val().replace('/', '-');
+    var regex = new RegExp('/', 'g');
+    defaultDate = defaultDate.replace(regex, '-');
+
     /* jQuery UI Datepicker */
     $('#datepicker').datepicker({
         "showAnim": "slideDown",
@@ -177,11 +181,16 @@ $(document).ready(function () {
         changeMonth: true,
         changeYear: true,
         dateFormat: 'yy-mm-dd',
+        altFormat: "yy-mm-dd",
         maxDate: '+0m',
+        defaultDate: defaultDate,
         onSelect: function (e) {
             getEntriesByDate(e);
         }
     });
+
+    console.log(defaultDate);
+
 });
 
 /* Function to start loading animation */
@@ -370,6 +379,7 @@ function checkNewsEntryCount(count) {
     }
 }
 
+/* Function to open image modal with provided image URL */
 function openImgModal(url) {
     var modal = document.getElementById('newsImgModal');
     var modalHeader = document.getElementById('newsImgHeader');

@@ -35,19 +35,8 @@ namespace IsaksMusic.Pages.Admin.News
         /// <returns></returns>
         public async Task OnGetAsync()
         {
-            /* Get cookie */
-            string filterCookie = Request.Cookies["NewsFilter"];
 
-            DateTime filter = new DateTime();
-
-            if (filterCookie != null)
-            {
-                filter = DateTime.Parse(filterCookie);
-            }
-            else
-            {
-                filter = DateTime.Now.AddMonths(-1);
-            }
+            DateTime filter = DateTime.Today.Date.AddMonths(-2);
 
             /* Get news entries the last month */
             var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > filter).OrderByDescending(n => n.PublishDate).ToListAsync();
@@ -76,7 +65,7 @@ namespace IsaksMusic.Pages.Admin.News
                 NewsEntries.Add(viewModel);
             }
 
-            DateFiltered = filter.ToShortDateString();
+            DateFiltered = string.Format("{0:yyyy/MM/dd}", filter);
         }
 
         /// <summary>
@@ -148,13 +137,6 @@ namespace IsaksMusic.Pages.Admin.News
                     ViewName = "_NewsEntries",
                     ViewData = myViewData,
                 };
-
-                /* Set cookie */
-                CookieOptions options = new CookieOptions();
-
-                options.Expires = DateTime.Now.AddMinutes(10);
-
-                Response.Cookies.Append("NewsFilter", filter.ToShortDateString(), options);
 
                 return result;
             }

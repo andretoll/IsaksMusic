@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using IsaksMusic.Data;
 using IsaksMusic.Services;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Localization;
 
 namespace IsaksMusic
 {
@@ -27,6 +28,11 @@ namespace IsaksMusic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("en-GB");
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("IsaksMusicConnection")));
 
@@ -94,6 +100,7 @@ namespace IsaksMusic
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseRequestLocalization();
             //app.UseStaticFiles();
             app.UseStatusCodePages();
 
