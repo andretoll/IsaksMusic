@@ -1,14 +1,14 @@
 ﻿@page "{id:int}"
 @model IsaksMusic.Pages.Music.TrackModel
-
-<!-- Facebook Meta Tags -->
-@{
+@{ 
     ViewData["Title"] = Model.Track.Title;
-    ViewData["Type"] = "music.song";
-    ViewData["Url"] = "";
-    ViewData["Image"] = "https://isaksmusic.azurewebsites.net/images/about-profile.jpg";
-    ViewData["Description"] = Model.Track.Description;
-    Layout = "~/Pages/_Layout.cshtml";
+}
+<!-- Facebook Meta Tags -->
+@section MetaSection {
+    <meta property="og:title" content="@Model.Track.Title" />
+    <meta property="og:type" content="music.song" />
+    <meta property="og:url" content="https://isaksmusic.azurewebsites.net/music/track/@Model.Track.Id" />
+    <meta property="og:description" content="@Model.Track.Description" />
 }
 
 <!-- Mouseover tooltip -->

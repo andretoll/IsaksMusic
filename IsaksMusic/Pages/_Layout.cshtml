@@ -3,15 +3,14 @@
 <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Listen to the latest music from Isak Toll"/>
-    <meta name="keywords" content="Music, Isak, Toll"/>
-    <meta name="author" content="André Toll"/>
+    <meta name="description" content="Listen to music, check out upcoming projects and tune in to the latest news." />
+    <meta name="keywords" content="Music, Isak, Toll" />
+    <meta name="author" content="André Toll" />
 
-    <meta property="og:title" content="@ViewData["Title"]" />
-    <meta property="og:type" content="@ViewData["Type"]" />
-    <meta property="og:url" content="@ViewData["url"]" />
-    <meta property="og:image" content="@ViewData["Image"]" />
-    <meta property="og:description" content="@ViewData["Description"]" />
+    @RenderSection("MetaSection", false)
+
+    <meta property="og:image" content="https://isaksmusic.azurewebsites.net/images/bg-header.jpg" />
+    <meta property="og:site_name" content="Isak's Music" />
 
     <title>@ViewData["Title"] - Isaks Music</title>
 
