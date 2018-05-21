@@ -1,8 +1,13 @@
 ﻿@page "{id:int}"
 @model IsaksMusic.Pages.Music.TrackModel
 
+<!-- Facebook Meta Tags -->
 @{
     ViewData["Title"] = Model.Track.Title;
+    ViewData["Type"] = "music.song";
+    ViewData["Url"] = "";
+    ViewData["Image"] = "https://isaksmusic.azurewebsites.net/images/about-profile.jpg";
+    ViewData["Description"] = Model.Track.Description;
     Layout = "~/Pages/_Layout.cshtml";
 }
 
@@ -88,9 +93,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="#communityWrapper" data-toggle="collapse"><i class="fas fa-arrow-alt-circle-down"></i></a>
                 <!-- Community -->
-                <div id="communityWrapper" class="collapse show">
+                <div id="communityWrapper">
                     <div class="row">
                         <div class="col-md-12">
                             <div id="communityContainer">
@@ -115,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
         </div>
     </div>
 </div>
