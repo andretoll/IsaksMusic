@@ -51,6 +51,12 @@ namespace IsaksMusic.Pages.News
                     PublishDate = entry.PublishDate.ToLongDateString()
                 };
 
+                if (viewModel.Body.Contains("\r\n"))
+                {
+                    string temp = viewModel.Body.Replace("\r\n", "<br>");
+                    viewModel.Body = temp;
+                }
+
                 if (string.IsNullOrEmpty(viewModel.ImageUrl))
                 {
                     viewModel.ImageUrl = "/images/news-default.jpg";
@@ -99,6 +105,12 @@ namespace IsaksMusic.Pages.News
                     LinkUrl = entry.LinkUrl,
                     PublishDate = entry.PublishDate.ToLongDateString()
                 };
+
+                if (viewModel.Body.Contains("\r\n"))
+                {
+                    string temp = viewModel.Body.Replace("\r\n", "<br>");
+                    viewModel.Body = temp;
+                }
 
                 if (string.IsNullOrEmpty(viewModel.ImageUrl))
                 {

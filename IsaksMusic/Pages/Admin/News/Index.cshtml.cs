@@ -44,7 +44,7 @@ namespace IsaksMusic.Pages.Admin.News
             NewsEntries = new List<NewsEntryViewModel>();
 
             foreach (var entry in news)
-            {
+            {               
                 NewsEntryViewModel viewModel = new NewsEntryViewModel()
                 {
                     Id = entry.Id,
@@ -56,6 +56,12 @@ namespace IsaksMusic.Pages.Admin.News
                     LinkUrl = entry.LinkUrl,
                     PublishDate = entry.PublishDate.ToLongDateString()
                 };
+
+                if (viewModel.Body.Contains("\r\n"))
+                {
+                    string temp = viewModel.Body.Replace("\r\n", "<br>");
+                    viewModel.Body = temp;
+                }               
 
                 if (string.IsNullOrEmpty(viewModel.ImageUrl))
                 {

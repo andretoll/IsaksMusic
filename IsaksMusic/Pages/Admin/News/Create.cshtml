@@ -57,14 +57,6 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="NewsEntry.Body" class="control-label"></label>
-                        <i tabindex="0"
-                           data-toggle="popover"
-                           data-trigger="focus"
-                           title="Body tags"
-                           data-content="Add < br > without spaces to break into a new line.<br>"
-                           data-html="true"
-                           class="fas fa-info-circle text-white">
-                        </i>
                         <textarea asp-for="NewsEntry.Body" class="form-control"></textarea>
                         <span asp-validation-for="NewsEntry.Body" class="text-danger"></span>
                     </div>

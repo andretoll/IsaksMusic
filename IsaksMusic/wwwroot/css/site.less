@@ -656,8 +656,9 @@ footer {
 }
 
 #featuredSongContainer:hover {
-    color: black !important;
-    opacity: 0.9;
+    transform: scale(1.02);
+    box-shadow: 0 2px 14px 0 rgb(255, 255, 255);
+    transition-timing-function: ease-out;
 }
 
 /*#endregion */
@@ -1207,7 +1208,7 @@ section {
 /*#region Tracks */
 
 #trackWrapper {
-    padding-top: 175px;
+    padding-top: 200px;
     padding-bottom: 175px;
     background: -moz-radial-gradient(#0a547e, #040404);
     background: -webkit-radial-gradient(#0a547e, #040404);
@@ -1406,7 +1407,7 @@ section {
 }
 
 #newsWrapper {
-    padding: 175px 0;
+    padding: 200px 0 175px 0;
 }
 
 #newsLoading {
@@ -1418,6 +1419,15 @@ section {
 
 #newsLoadingInner {
     visibility: hidden;
+}
+
+.news-image-container {
+    width: auto;
+    max-width: 500px;
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 /*#endregion */
@@ -1609,6 +1619,10 @@ section {
 
     #communityContainer {
         max-width: 100%;
+    }
+
+    .news-image-container {
+        margin: 0;
     }
 }
 
