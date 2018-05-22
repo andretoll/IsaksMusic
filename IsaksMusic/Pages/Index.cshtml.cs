@@ -66,6 +66,12 @@ namespace IsaksMusic.Pages
                 PublishDate = news.PublishDate.ToLongDateString()
             };
 
+            if (LatestNews.Body.Contains("\r\n"))
+            {
+                string temp = LatestNews.Body.Replace("\r\n", "<br>");
+                LatestNews.Body = temp;
+            }
+
             if (string.IsNullOrEmpty(LatestNews.ImageUrl))
             {
                 LatestNews.ImageUrl = "/images/news-default.jpg";
