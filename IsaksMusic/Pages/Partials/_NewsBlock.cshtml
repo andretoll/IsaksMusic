@@ -11,7 +11,7 @@
             <div class="col-md-8">
                 <div class="news-entry-inner">
                     <div class="news-entry-header">
-                        <h4 class="text-yellow">@entry.Headline</h4>
+                        <a asp-page="/News/Entry" asp-route-id="@entry.Id"><h4 class="text-yellow">@entry.Headline</h4></a>
                     </div>
                     <hr />
                     <div class="news-entry-content-front collapse" id="newsEntryContent_@entry.Id">

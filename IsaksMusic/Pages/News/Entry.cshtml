@@ -1,0 +1,76 @@
+﻿@page "{id:int}"
+@model IsaksMusic.Pages.News.EntryModel
+@{
+    ViewData["Title"] = Model.NewsEntryViewModel.Headline;
+}
+<!-- Facebook Meta Tags -->
+@section MetaSection {
+    <meta property="og:title" content="@Model.NewsEntryViewModel.Headline" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id" />
+    <meta property="og:description" content="@Model.NewsEntryViewModel.Lead" />
+}
+<div class="body-background">
+    <div class="container" id="newsWrapper">
+        <div class="mb-2">
+            <a asp-page="/news/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to all news</a>
+        </div>
+        <div class="news-entry-container">
+            <div class="row">
+                <div class="col-md-4 text-center">                    
+                    <img class="img-thumbnail" src="@Model.NewsEntryViewModel.ImageUrl" alt="News Image" title="@Model.NewsEntryViewModel.Headline" />
+                    <span class="text-muted d-block ml-auto mb-3">@Model.NewsEntryViewModel.PublishDate</span>
+                </div>
+                <div class="col-md-8">
+                    <div class="news-entry-inner">
+                        <div class="news-entry-header">
+                            <h4 class="text-yellow">@Model.NewsEntryViewModel.Headline</h4>
+                            <div class="fb-like ml-auto"
+                                 data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
+                                 data-layout="button_count"
+                                 data-action="like"
+                                 data-size="large"
+                                 data-show-faces="true"
+                                 data-share="true"
+                                 data-colorscheme="dark">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="news-entry-content-front">
+                            @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.Lead))
+                            {
+                                <p class="text-muted font-italic">@Model.NewsEntryViewModel.Lead</p>
+
+                            }
+                            <p class="news-body-text">@Model.NewsEntryViewModel.Body</p>
+                            @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.LinkUrl))
+                            {
+                                <a title="Opens new tab" class="d-block text-yellow mt-3" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Community -->
+            <div id="communityWrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="communityContainer">
+                            <div>                                
+                                <div class="fb-comments"
+                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
+                                     data-width="100%"
+                                     data-numposts="5"
+                                     data-colorscheme="dark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -64,7 +64,7 @@
                 <div class="col-md-8">
                     <div class="news-entry-inner">
                         <div class="news-entry-header">
-                            <h4 class="text-yellow">@Model.LatestNews.Headline</h4>
+                            <a asp-page="/News/Entry" asp-route-id="@Model.LatestNews.Id"><h4 class="text-yellow">@Model.LatestNews.Headline</h4></a>
                             <a class="ml-auto" asp-page="/News/Index">All news<i class="fas ml-2 align-middle fa-arrow-circle-right"></i></a>
                         </div>
                         <hr />
