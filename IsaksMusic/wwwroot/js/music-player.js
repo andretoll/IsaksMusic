@@ -396,3 +396,13 @@ function applyFilters() {
         }
     }
 }
+
+function shareTrack(id) {
+
+    console.log(location.href + '/track/' + id);
+
+    FB.ui({
+        method: 'share',
+        href: location.href + '/track/' + id,
+    }, function (response) { });
+}

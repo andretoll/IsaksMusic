@@ -36,7 +36,7 @@ namespace IsaksMusic.Pages.Admin.News
         public async Task OnGetAsync()
         {
 
-            DateTime filter = DateTime.Today.Date.AddMonths(-2);
+            DateTime filter = DateTime.Today.Date.AddMonths(-1);
 
             /* Get news entries the last month */
             var news = await _applicationDbContext.NewsEntries.Where(n => n.PublishDate > filter).OrderByDescending(n => n.PublishDate).ToListAsync();

@@ -1,6 +1,6 @@
 ﻿@page "{id:int}"
 @model IsaksMusic.Pages.Music.TrackModel
-@{ 
+@{
     ViewData["Title"] = Model.Track.Title;
 }
 <!-- Facebook Meta Tags -->
@@ -22,7 +22,7 @@
         <div>
             <div id="trackWrapperInner">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div id="waveformContainer">
                             <div id="waveformInner">
                                 <div id="waveformHeader">
@@ -71,17 +71,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4" id="trackContainer">
-                        <div>
-                            <div class="mb-4">
-                                <label class="text-yellow">Upload Date</label>
-                                <p>@Model.Track.UploadDate</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="trackContainer">
+                            <div class="row">
+                                <div class="col-sm-6 d-flex">
+                                    <label class="text-yellow mr-2">Upload Date: </label>
+                                    <p>@Model.Track.UploadDate</p>
+                                </div>
+                                <div class="col-sm-6 d-flex">
+                                    <label class="text-yellow mr-2">Genre: </label>
+                                    <p>@Model.Track.Categories</p>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label class="text-yellow">Genre</label>
-                                <p>@Model.Track.Categories</p>
-                            </div>
-                            <div class="mt-4">
+                            <div>
                                 <label class="text-yellow">Description</label>
                                 <div id="trackDescription">
                                     <p class="collapse" id="collapseDescription">
@@ -101,7 +105,7 @@
                                 <div>
                                     <div class="fb-like"
                                          data-href="https://isaksmusic.azurewebsites.net/music/track/@Model.Track.Id"
-                                         data-layout="button"
+                                         data-layout="button_count"
                                          data-action="like"
                                          data-size="small"
                                          data-show-faces="true"

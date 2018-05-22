@@ -188,9 +188,6 @@ $(document).ready(function () {
             getEntriesByDate(e);
         }
     });
-
-    console.log(defaultDate);
-
 });
 
 /* Function to start loading animation */

@@ -3,6 +3,14 @@
 @{
     ViewData["Title"] = "Home";
 }
+<!-- Facebook Meta Tags -->
+@section MetaSection {
+    <meta property="og:title" content="Home - Isak's Music" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://isaksmusic.azurewebsites.net" />
+    <meta property="og:description" content="Listen to music, check out upcoming projects and tune in to the latest news." />
+}
+
 <!-- Scroll back to contact form if postback failed -->
 @if (Model.PostbackFailed)
 {

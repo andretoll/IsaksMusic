@@ -9,6 +9,7 @@
 
     @RenderSection("MetaSection", false)
 
+    <meta property="fb:app_id" content="1910375995659521" />
     <meta property="og:image" content="https://isaksmusic.azurewebsites.net/images/bg-header.jpg" />
     <meta property="og:site_name" content="Isak's Music" />
 
@@ -46,9 +47,19 @@
     <link rel="stylesheet" href="~/lib/icheck/dist/css/skins/square/red.css" />
 </head>
 <body>
+
     <!-- Facebook generated code -->
     <div id="fb-root"></div>
     <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1910375995659521',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.0'
+            });
+        };
+
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
