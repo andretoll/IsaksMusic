@@ -32,13 +32,14 @@ function loadNews() {
             },
             success: function (result) {
                 $('#newsBlockContainer').append(result);
+                /* Refresh Like/Share buttons */
+                FB.XFBML.parse();
                 paragraphBreaks();
                 checkTextOverflow();
                 skipEntries += blockSize;
                 $('#newsLoadingInner').css('visibility', 'hidden');
                 $('#newsLoading').hide();
                 inProgress = false;
-
             },
             error: function () {
                 noMoreData = true;

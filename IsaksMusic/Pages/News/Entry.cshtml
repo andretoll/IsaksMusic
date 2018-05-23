@@ -7,6 +7,7 @@
 @section MetaSection {
     <meta property="og:title" content="@Model.NewsEntryViewModel.Headline" />
     <meta property="og:type" content="article" />
+    <meta property="og:image" content="@Model.NewsEntryViewModel.ImageUrl"/>
     <meta property="og:url" content="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id" />
     <meta property="og:description" content="@Model.NewsEntryViewModel.Lead" />
 }
@@ -21,6 +22,7 @@
                     <div class="news-entry-inner">
                         <div class="news-entry-header">
                             <h4 class="text-yellow">@Model.NewsEntryViewModel.Headline</h4>
+                            <!-- Community -->
                             <div class="fb-like ml-auto"
                                  data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
                                  data-layout="button_count"
@@ -45,7 +47,7 @@
                             <p class="news-body-text">@Model.NewsEntryViewModel.Body</p>
                             @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.LinkUrl))
                             {
-                                <a title="Opens new tab" class="d-block text-yellow mt-3" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
+                                <a title="Opens new tab" class="d-block text-yellow mt-4 text-center" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
                             }
                         </div>
                     </div>

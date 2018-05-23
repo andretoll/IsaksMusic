@@ -451,8 +451,8 @@ button[data-dismiss="modal"]:hover {
 /*#region Top Navbar */
 #mainNav {
   background-color: transparent;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
   -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
   transition: padding-top 0.3s, padding-bottom 0.3s;
@@ -1035,7 +1035,6 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .news-entry-container img {
-  margin-bottom: 20px;
   width: 100%;
   display: block;
 }
@@ -1291,7 +1290,8 @@ section {
     max-width: 100%;
   }
   .news-image-container {
-    margin: 0;
+    margin: 10px 0;
+    float: none;
   }
 }
 @media (min-width: 768px) {

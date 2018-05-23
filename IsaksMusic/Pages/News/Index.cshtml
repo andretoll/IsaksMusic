@@ -11,6 +11,10 @@
         </div>
         <div id="newsScroller">
             <div id="newsBlockContainer">
+                @if (Model.NewsBlock.NewsEntries.Count == 0)
+                {
+                    <p class="text-center mt-3 mb-3">No news or updates could be found at this moment, check in later!</p>
+                }
                 @Html.Partial("_NewsBlock", Model.NewsBlock)
             </div>
             <div id="newsLoading">
@@ -25,10 +29,5 @@
 
 @section Scripts {
     <script src="~/js/news.min.js" type="text/javascript"></script>
-    <script>
-        if ("@Model.NewsBlock.NoMoreData" == "True") {
-            noMoreData = true;
-        }
-    </script>
 }
 
