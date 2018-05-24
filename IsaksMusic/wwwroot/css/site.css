@@ -1171,14 +1171,14 @@ section {
 #statisticsWrapper .card {
   background-color: #0a0a0a;
   color: #ffffff;
-  margin-bottom: 30px;
+  margin: 20px 0;
 }
 #statisticsWrapper .card .card-title {
   color: #ff5400;
   text-transform: capitalize;
 }
 #statisticsWrapper .list-group-item {
-  background-color: #141414;
+  background-color: #0e0e0e;
 }
 /*#endregion */
 /*#region Media Queries  */
