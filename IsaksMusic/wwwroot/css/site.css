@@ -286,6 +286,7 @@ button[data-dismiss="modal"]:hover {
   -webkit-transition: width.5s;
   -moz-transition: width.5s;
   transition: width.5s;
+  overflow: hidden;
 }
 #sideMenuImgContainer {
   text-align: center;
@@ -530,7 +531,7 @@ footer {
 }
 #featuredSongContainer:hover {
   transform: scale(1.02);
-  box-shadow: 0 2px 14px 0 #ffffff;
+  box-shadow: 0 0 20px 0 #ffffff;
   transition-timing-function: ease-out;
 }
 /*#endregion */
@@ -1268,12 +1269,6 @@ section {
   }
   #aboutContactContainer {
     display: block;
-  }
-  .side-menu-collapse {
-    width: 60px;
-  }
-  .side-menu-header {
-    display: none;
   }
   .side-menu-collapse .list-group {
     overflow: visible;
