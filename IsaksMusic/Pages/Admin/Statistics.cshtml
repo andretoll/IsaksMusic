@@ -1,0 +1,79 @@
+﻿@page
+@model IsaksMusic.Pages.Admin.StatisticsModel
+@{
+    ViewData["Title"] = "Statistics";
+    Layout = "~/Pages/Admin/_AdminLayout.cshtml";
+}
+
+<div id="statisticsWrapper">
+    <h4 class="mb-5">Songs played</h4>
+    <div class="row text-center">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="statistics-circle">
+                        <h5 class="mt-4 text-white text-uppercase">2018</h5>
+                        <h2>10</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="statistics-circle">
+                        <h5 class="mt-4 text-white">May</h5>
+                        <h2>9</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="statistics-circle">
+                        <h5 class="mt-4 text-white">Week</h5>
+                        <h2>7</h2>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="statistics-circle">
+                        <h5 class="mt-4 text-white">Today</h5>
+                        <h2>3</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h5 class="card-title">Top songs played</h5>
+                        <i class="fas fa-music fa-lg ml-auto"></i>
+                    </div>                    
+                    <p class="card-text">The list below represents the number of times each song has been played.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span>Sample 3</span><span class="float-right">15</span></li>
+                    <li class="list-group-item"><span>Sample 3</span><span class="float-right">15</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h5 class="card-title">Top news read</h5>
+                        <i class="fas fa-newspaper fa-lg ml-auto"></i>
+                    </div>
+                    <p class="card-text">The list below represents the number of times a news entry has been read.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span>Sample 3</span><span class="float-right">15</span></li>
+                    <li class="list-group-item"><span>Sample 3</span><span class="float-right">15</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
