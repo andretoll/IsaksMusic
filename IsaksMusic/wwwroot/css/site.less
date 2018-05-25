@@ -335,8 +335,9 @@ button[data-dismiss="modal"] {
     background-size: cover;
     padding: 30px;
     max-height: 700px;
-    overflow-x: auto;
-
+    overflow-x: hidden;
+    overflow-y: auto;
+        
     &::-webkit-scrollbar {
         width: 10px;
     }
@@ -1479,6 +1480,7 @@ section {
     background-color: @primary-bg-color;
     color: @secondary-text-color;
     margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 #statisticsWrapper .card .card-title {
@@ -1488,6 +1490,10 @@ section {
 
 #statisticsWrapper .list-group-item {
     background-color: @secondary-bg-color;
+}
+
+#statisticsWrapper ul li:first-child {
+    background-color: #0e757b;
 }
 
 /*#endregion */

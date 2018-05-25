@@ -33,5 +33,7 @@ namespace IsaksMusic.Models
         [Display(Name = "Link URL (optional)")]
         [Url(ErrorMessage = "Not valid URL")]
         public string LinkUrl { get; set; }
+
+        public int ReadCount { get; set; }
     }
 }

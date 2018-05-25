@@ -52,6 +52,11 @@ namespace IsaksMusic.Pages.News
             {
                 NewsEntryViewModel.ImageUrl = "/images/news-default.jpg";
             }
+
+            /* Statistics */
+            var entry = await _applicationDbContext.NewsEntries.SingleOrDefaultAsync(n => n.Id == id);
+            entry.ReadCount++;
+            await _applicationDbContext.SaveChangesAsync();
         }        
     }
 }

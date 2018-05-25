@@ -268,7 +268,8 @@ button[data-dismiss="modal"]:hover {
   background-size: cover;
   padding: 30px;
   max-height: 700px;
-  overflow-x: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .wrapper-content::-webkit-scrollbar {
   width: 10px;
@@ -1175,6 +1176,7 @@ section {
   background-color: #0a0a0a;
   color: #ffffff;
   margin: 20px 0;
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }
 #statisticsWrapper .card .card-title {
   color: #ff5400;
@@ -1182,6 +1184,9 @@ section {
 }
 #statisticsWrapper .list-group-item {
   background-color: #0e0e0e;
+}
+#statisticsWrapper ul li:first-child {
+  background-color: #0e757b;
 }
 /*#endregion */
 /*#region Media Queries  */
