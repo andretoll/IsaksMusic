@@ -7,7 +7,7 @@
 
 <h3>Dashboard</h3>
 <hr />
-<div id="dashboardContainer">
+<div>
     @if (Model.MissingFiles.Count > 0)
     {
         <div class="alert alert-warning alert-dismissible fade show">
@@ -46,7 +46,29 @@
     {
         <p>No messages.</p>
     }
-
+    <div id="dashboardStatistics">
+        <hr />
+        <div class="row text-center">
+            <div class="col-sm-4 mb-3">
+                <div>
+                    <h5 class="text-orange">News read (all time)</h5>
+                    <h5 class="text-white">@Model.NewsRead</h5>
+                </div>
+            </div>
+            <div class="col-sm-4 mb-3">
+                <div>
+                    <h5 class="text-orange">Songs played (all time)</h5>
+                    <h5 class="text-white">@Model.SongsPlayed</h5>
+                </div>
+            </div>
+            <div class="col-sm-4 mb-3">
+                <div>
+                    <h5 class="text-orange">Trending song</h5>
+                    <h5 class="text-white">@Model.TrendingSong</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

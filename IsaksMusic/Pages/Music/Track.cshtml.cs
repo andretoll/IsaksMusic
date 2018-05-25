@@ -26,32 +26,33 @@ namespace IsaksMusic.Pages.Music
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task OnGetAsync(int? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return NotFound();
-            }
-
-            var song = await _applicationDbContext.Songs.Include(s => s.SongCategories)
+                var song = await _applicationDbContext.Songs.Include(s => s.SongCategories)
                 .ThenInclude(songCategories => songCategories.Category).OrderBy(s => s.Title).SingleOrDefaultAsync(m => m.Id == id);
 
-            if (song == null)
-            {
-                return NotFound();
+                Track = new SongModel()
+                {
+                    Id = song.Id,
+                    Title = song.Title,
+                    Description = song.Description,
+                    Categories = StringFormatter.GetCategoryString(song.SongCategories),
+                    UploadDate = song.UploadDate.ToShortDateString(),
+                    FilePath = "/music/" + song.FileName
+                };
+
+                int songId = (int)id;
+                Statistics statistics = new Statistics()
+                {
+                    SongId = songId,
+                    PlayedDate = DateTime.Now.Date
+                };
+
+                await _applicationDbContext.Statistics.AddAsync(statistics);
+                await _applicationDbContext.SaveChangesAsync();
             }
-
-            Track = new SongModel()
-            {
-                Id = song.Id,
-                Title = song.Title,
-                Description = song.Description,
-                Categories = StringFormatter.GetCategoryString(song.SongCategories),
-                UploadDate = song.UploadDate.ToShortDateString(),
-                FilePath = "/music/" + song.FileName
-            };
-
-            return Page();
         }
 
         /// <summary>

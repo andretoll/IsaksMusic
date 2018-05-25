@@ -63,6 +63,7 @@ wavesurfer.on('ready', function () {
 
     $('#songPlayingTitle').show();
     $('#songPlayingCategories').show();
+    console.log("Ready");
 });
 
 /* When song is being played */

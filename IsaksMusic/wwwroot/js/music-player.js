@@ -205,7 +205,7 @@ function loadSong(id) {
 
     var song = playlist.filter(function (e) {
         return e.playlistId === id;
-    })[0];
+    })[0];    
 
     wavesurfer.load(song.filePath);
 
@@ -222,6 +222,8 @@ function loadSong(id) {
     });
 
     $(currentSongElement).addClass('song-active');
+
+    addStatistics(song.songId);
 }
 
 function playPause() {
@@ -403,6 +405,22 @@ function shareTrack(id) {
 
     FB.ui({
         method: 'share',
-        href: location.href + '/track/' + id,
+        href: location.href + '/track/' + id
     }, function (response) { });
+}
+
+function addStatistics(songId) {
+
+    $.ajax({
+
+        type: "Get",
+        url: "/admin/statistics?handler=SongCount",
+        data: { id: songId },
+        success: function () {
+
+        },
+        error: function () {
+
+        }
+    });
 }

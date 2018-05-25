@@ -31,21 +31,17 @@ namespace IsaksMusic.Pages.Admin
 
         public List<string> MissingFiles { get; set; }
 
-        public UserModel SignedInUser { get; set; }
+        public int NewsRead { get; set; }
+        public int SongsPlayed { get; set; }
+        public string TrendingSong { get; set; }
 
         /// <summary>
         /// Get notifications and warnings
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> OnGetAsync()
+        public async Task OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
-
-            SignedInUser = new UserModel
-            {
-                Username = user.UserName,
-                Email = user.Email
-            };
 
             /* Check for unused categories */
             var categories = await _applicationDbContext.Categories.Where(c => !_applicationDbContext.SongCategories.Select(sc => sc.CategoryId).Contains(c.Id)).ToListAsync();
@@ -78,7 +74,24 @@ namespace IsaksMusic.Pages.Admin
                 }
             }
 
-            return Page();
+            /* Statistics */
+            SongsPlayed = await _applicationDbContext.Statistics.CountAsync();
+            NewsRead = await _applicationDbContext.NewsEntries.SumAsync(n => n.ReadCount);
+            try
+            {
+                TrendingSong = _applicationDbContext.Statistics.
+                    Include(s => s.Song).Where(s => s.PlayedDate >= DateTime.Today.AddDays(-14) && s.PlayedDate <= DateTime.Now).
+                    GroupBy(s => s.Song.Title).Select(g => new
+                    {
+                        Title = g.Key,
+                        Count = g.Distinct().Count()
+                    }).OrderByDescending(s => s.Count).
+                    FirstOrDefault().Title;
+            }
+            catch
+            {
+                TrendingSong = "-";
+            }
         }
 
         public class UserModel

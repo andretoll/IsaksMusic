@@ -297,10 +297,10 @@ button[data-dismiss="modal"] {
 
 .wrapper-header {
     background: @primary-text-color;
-    background: -moz-linear-gradient(top, rgb(255, 198, 0) 0%, #c99b00 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(255, 198, 0)), color-stop(100%, #c99b00));
-    background: -o-linear-gradient(top, rgb(255, 198, 0) 0%, #c99b00 100%);
-    background: linear-gradient(to bottom, rgb(255, 198, 0) 0%, #c99b00 100%);
+    background: -moz-linear-gradient(top, rgb(255, 198, 0) 0%, @primary-text-color 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(255, 198, 0)), color-stop(100%, @primary-text-color));
+    background: -o-linear-gradient(top, rgb(255, 198, 0) 0%, @primary-text-color 100%);
+    background: linear-gradient(to bottom, rgb(255, 198, 0) 0%, @primary-text-color 100%);
     text-align: center;
     padding: 10px 0;
     height: auto;
@@ -335,7 +335,7 @@ button[data-dismiss="modal"] {
     background-size: cover;
     padding: 30px;
     max-height: 700px;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
         
     &::-webkit-scrollbar {
@@ -1459,9 +1459,6 @@ section {
 
 /*#region Statistics */
 
-#statisticsWrapper {
-}
-
 .statistics-circle {
     height: 130px;
     width: 130px;
@@ -1469,11 +1466,7 @@ section {
     border-radius: 100%;
     margin: auto;
     margin-bottom: 20px;
-
-    & h5 {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+    padding: 25px 0;
 }
 
 #statisticsWrapper .card {
@@ -1492,11 +1485,12 @@ section {
     background-color: @secondary-bg-color;
 }
 
-#statisticsWrapper ul li:first-child {
-    background-color: #0e757b;
+#dashboardStatistics {
+    margin-top: 300px;
 }
 
 /*#endregion */
+
 /*#region Media Queries  */
 @media (max-width: 1199px) {
 
@@ -1592,7 +1586,7 @@ section {
     }
 
     .wrapper-content {
-        padding: 10px;
+        padding: 20px;
     }
 
     .statistics-circle {

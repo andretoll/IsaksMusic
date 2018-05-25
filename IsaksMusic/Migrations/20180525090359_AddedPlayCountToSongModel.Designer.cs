@@ -11,9 +11,10 @@ using System;
 namespace IsaksMusic.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180525090359_AddedPlayCountToSongModel")]
+    partial class AddedPlayCountToSongModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,6 +141,8 @@ namespace IsaksMusic.Migrations
 
                     b.Property<int>("Order");
 
+                    b.Property<int>("PlayCount");
+
                     b.Property<string>("Title")
                         .IsRequired();
 
@@ -166,22 +169,6 @@ namespace IsaksMusic.Migrations
                     b.HasIndex("SongId");
 
                     b.ToTable("SongCategories");
-                });
-
-            modelBuilder.Entity("IsaksMusic.Models.Statistics", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("PlayedDate");
-
-                    b.Property<int>("SongId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SongId");
-
-                    b.ToTable("Statistics");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -309,14 +296,6 @@ namespace IsaksMusic.Migrations
 
                     b.HasOne("IsaksMusic.Models.Song", "Song")
                         .WithMany("SongCategories")
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("IsaksMusic.Models.Statistics", b =>
-                {
-                    b.HasOne("IsaksMusic.Models.Song", "Song")
-                        .WithMany()
                         .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -235,10 +235,10 @@ button[data-dismiss="modal"]:hover {
 }
 .wrapper-header {
   background: #ffc600;
-  background: -moz-linear-gradient(top, #ffc600 0%, #c99b00 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffc600), color-stop(100%, #c99b00));
-  background: -o-linear-gradient(top, #ffc600 0%, #c99b00 100%);
-  background: linear-gradient(to bottom, #ffc600 0%, #c99b00 100%);
+  background: -moz-linear-gradient(top, #ffc600 0%, #ffc600 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffc600), color-stop(100%, #ffc600));
+  background: -o-linear-gradient(top, #ffc600 0%, #ffc600 100%);
+  background: linear-gradient(to bottom, #ffc600 0%, #ffc600 100%);
   text-align: center;
   padding: 10px 0;
   height: auto;
@@ -268,7 +268,7 @@ button[data-dismiss="modal"]:hover {
   background-size: cover;
   padding: 30px;
   max-height: 700px;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
 }
 .wrapper-content::-webkit-scrollbar {
@@ -1167,10 +1167,7 @@ section {
   border-radius: 100%;
   margin: auto;
   margin-bottom: 20px;
-}
-.statistics-circle h5 {
-  text-transform: uppercase;
-  font-weight: bold;
+  padding: 25px 0;
 }
 #statisticsWrapper .card {
   background-color: #0a0a0a;
@@ -1185,8 +1182,8 @@ section {
 #statisticsWrapper .list-group-item {
   background-color: #0e0e0e;
 }
-#statisticsWrapper ul li:first-child {
-  background-color: #0e757b;
+#dashboardStatistics {
+  margin-top: 300px;
 }
 /*#endregion */
 /*#region Media Queries  */
@@ -1269,7 +1266,7 @@ section {
     max-width: 70%;
   }
   .wrapper-content {
-    padding: 10px;
+    padding: 20px;
   }
   .statistics-circle {
     height: 110px;
