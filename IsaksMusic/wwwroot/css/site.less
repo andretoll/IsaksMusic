@@ -1,7 +1,7 @@
 @primary-text-color: #ffc600;
 @secondary-text-color: #ffffff;
 @error-text-color: #e43636;
-
+@orange-text-color: #ff5400;
 @primary-bg-color: #0a0a0a;
 @secondary-bg-color: #0e0e0e;
 @black-bg-color: #040404;
@@ -33,16 +33,20 @@ body {
     color: @primary-text-color !important;
 }
 
+.text-orange {
+    color: @orange-text-color !important;
+}
+
 .text-muted {
     color: #9a9a9a !important;
 }
 
 .bg-dark {
-    background-color: @secondary-bg-color!important;
+    background-color: @secondary-bg-color !important;
 }
 
 .text-dark {
-    color: @secondary-bg-color!important;
+    color: @secondary-bg-color !important;
 }
 
 a {
@@ -833,7 +837,7 @@ section {
 #songTable {
     margin: 30px 0;
     border-collapse: collapse !important;
-    background-color: #18313f;
+    background-color: rgba(24, 49, 63, 0.50);
 }
 
 #songTable td:last-child {
@@ -1309,7 +1313,7 @@ section {
 
 .news-entry-header {
     display: flex;
-    align-items: center;    
+    align-items: center;
 
     & a {
         cursor: pointer;
@@ -1443,7 +1447,7 @@ section {
 #communityContainer {
     text-align: left;
     max-width: 60%;
-    margin: 25px auto;   
+    margin: 25px auto;
 
     & .fb-like {
         padding-left: 8px;
@@ -1455,13 +1459,12 @@ section {
 /*#region Statistics */
 
 #statisticsWrapper {
-
 }
 
 .statistics-circle {
     height: 130px;
     width: 130px;
-    border: 3px solid #ff5400;
+    border: 3px solid @orange-text-color;
     border-radius: 100%;
     margin: auto;
     margin-bottom: 20px;
@@ -1479,8 +1482,8 @@ section {
 }
 
 #statisticsWrapper .card .card-title {
-    color: #ff5400;
-    text-transform: capitalize; 
+    color: @orange-text-color;
+    text-transform: capitalize;
 }
 
 #statisticsWrapper .list-group-item {
@@ -1581,6 +1584,19 @@ section {
     #communityContainer {
         max-width: 70%;
     }
+
+    .wrapper-content {
+        padding: 10px;
+    }
+
+    .statistics-circle {
+        height: 110px;
+        width: 110px;
+
+        & h2 {
+            font-size: 1.6rem;
+        }
+    }
 }
 
 @media (min-width: 992px) {
@@ -1616,7 +1632,7 @@ section {
         &:after {
             transform-origin: 0% 50%;
         }
-    }    
+    }
 }
 
 @media (max-width: 767px) {
@@ -1640,7 +1656,7 @@ section {
 
     #waveformInner {
         max-width: 90%;
-    }    
+    }
 
     #musicTable th.dismissable, #musicTable td.dismissable {
         display: none;
@@ -1653,6 +1669,10 @@ section {
     .news-image-container {
         margin: 10px 0;
         float: none;
+    }
+
+    #statisticsWrapper h4 {
+        text-align: center;
     }
 }
 

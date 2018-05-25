@@ -169,9 +169,12 @@ $(document).ready(function () {
     /* Check news entry count */
     checkNewsEntryCount($('#adminNewsEntries').children().length);
 
-    var defaultDate = $('#datepicker').val().replace('/', '-');
-    var regex = new RegExp('/', 'g');
-    defaultDate = defaultDate.replace(regex, '-');
+    var defaultDate = $('#datepicker').val();
+    if (defaultDate !== undefined) {
+        defaultDate = defaultDate.replace('/', '-');
+        var regex = new RegExp('/', 'g');
+        defaultDate = defaultDate.replace(regex, '-');
+    }
 
     /* jQuery UI Datepicker */
     $('#datepicker').datepicker({
