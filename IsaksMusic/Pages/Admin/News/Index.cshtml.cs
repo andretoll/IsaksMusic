@@ -35,7 +35,6 @@ namespace IsaksMusic.Pages.Admin.News
         /// <returns></returns>
         public async Task OnGetAsync()
         {
-
             DateTime filter = DateTime.Today.Date.AddMonths(-1);
 
             /* Get news entries the last month */
@@ -125,6 +124,12 @@ namespace IsaksMusic.Pages.Admin.News
                         LinkUrl = entry.LinkUrl,
                         PublishDate = entry.PublishDate.ToLongDateString()
                     };
+
+                    if (viewModel.Body.Contains("\r\n"))
+                    {
+                        string temp = viewModel.Body.Replace("\r\n", "<br>");
+                        viewModel.Body = temp;
+                    }
 
                     if (string.IsNullOrEmpty(viewModel.ImageUrl))
                     {

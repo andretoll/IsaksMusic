@@ -86,6 +86,16 @@ namespace IsaksMusic.Pages.Music
                 FilePath = "/music/" + song.FileName
             };
 
+            int songId = song.Id;
+            Statistics statistics = new Statistics()
+            {
+                SongId = songId,
+                PlayedDate = DateTime.Now.Date
+            };
+
+            await _applicationDbContext.Statistics.AddAsync(statistics);
+            await _applicationDbContext.SaveChangesAsync();
+
             return Page();
         }
 
