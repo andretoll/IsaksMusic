@@ -110,13 +110,13 @@
                             @foreach (var song in Model.SongList)
                             {
                                 <tr id="@song.PlaylistId" title="@song.Title">
-                                    <td class="is-playing min pl-3"><i class="fas fa-volume-up"></i></td>
+                                    <td class="is-playing min pl-3"><i class="fas fa-volume-up fa-sm"></i></td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Title</td>
                                     <td class="dismissable categoryColumn" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
                                     <td onclick="loadSong(@song.PlaylistId)">@song.Duration</td>
                                     <td class="min">
                                         <div class="song-actions">
-                                            <a class="btn btn-dark" id="actionDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a id="actionDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdownButton">
