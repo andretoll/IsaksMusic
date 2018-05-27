@@ -101,7 +101,7 @@ wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'white',
     progressColor: '#ffc600',
-    barHeight: 1,
+    barHeight: 2,
     barWidth: 3,
     cursorWidth: 0,
     responsive: true,
@@ -413,14 +413,18 @@ function addStatistics(songId) {
 
     $.ajax({
 
-        type: "Get",
-        url: "/admin/statistics?handler=SongCount",
+        type: "Post",
+        url: "/api/statistics?AddTrackCount",
         data: { id: songId },
+        headers: {
+            RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
         success: function () {
 
         },
-        error: function () {
-
+        error: function (response) {
+            console.log(response);
         }
     });
 }

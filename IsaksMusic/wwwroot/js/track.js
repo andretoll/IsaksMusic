@@ -63,7 +63,6 @@ wavesurfer.on('ready', function () {
 
     $('#songPlayingTitle').show();
     $('#songPlayingCategories').show();
-    console.log("Ready");
 });
 
 /* When song is being played */
@@ -147,4 +146,24 @@ function setVolume(myVolume) {
     }
 
     wavesurfer.setVolume(myVolume);
+}
+
+function addStatistics(songId) {
+
+    $.ajax({
+
+        type: "Post",
+        url: "/api/statistics?AddTrackCount",
+        data: { id: songId },
+        headers: {
+            RequestVerificationToken:
+                $('input:hidden[name="__RequestVerificationToken"]').val()
+        },
+        success: function () {
+
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
 }

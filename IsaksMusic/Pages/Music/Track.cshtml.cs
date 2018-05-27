@@ -42,16 +42,6 @@ namespace IsaksMusic.Pages.Music
                     UploadDate = song.UploadDate.ToShortDateString(),
                     FilePath = "/music/" + song.FileName
                 };
-
-                int songId = (int)id;
-                Statistics statistics = new Statistics()
-                {
-                    SongId = songId,
-                    PlayedDate = DateTime.Now.Date
-                };
-
-                await _applicationDbContext.Statistics.AddAsync(statistics);
-                await _applicationDbContext.SaveChangesAsync();
             }
         }
 

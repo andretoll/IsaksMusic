@@ -98,21 +98,5 @@ namespace IsaksMusic.Pages.Admin
             {
             }            
         }
-
-        public async Task OnGetSongCount(int? id)
-        {
-            if (id != null)
-            {
-                int songId = (int)id;
-                Statistics statistics = new Statistics()
-                {
-                    SongId = songId,
-                    PlayedDate = DateTime.Now.Date
-                };
-
-                await _applicationDbContext.Statistics.AddAsync(statistics);
-                await _applicationDbContext.SaveChangesAsync();
-            }
-        }
     }
 }
