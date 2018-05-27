@@ -54,8 +54,8 @@
 </header>
 <section class="section-odd">
     <div class="container">
-        <h3 class="text-yellow">Latest news</h3>
-        <div class="news-entry-container news-entry-container-front">
+        <h3 class="text-yellow mb-0">Latest news</h3>
+        <div class="news-entry-container news-entry-container-front mt-3">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <img class="img-thumbnail" src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
@@ -80,7 +80,7 @@
                                 <a title="Opens new tab" class="d-block text-yellow mt-3" href="@Model.LatestNews.LinkUrl" target="_blank">@Model.LatestNews.LinkTitle</a>
                             }
                         </div>
-                        <a class="collapse-news-btn collapsed" id="collapseNewsBtn_@Model.LatestNews.Id" data-toggle="collapse" href="#newsEntryContent_@Model.LatestNews.Id" aria-expanded="false" aria-controls="collapseDescription"></a>
+                        <a class="collapse-news-btn collapsed" asp-page="/news/entry" asp-route-id="@Model.LatestNews.Id"></a>
                     </div>
                 </div>
             </div>
