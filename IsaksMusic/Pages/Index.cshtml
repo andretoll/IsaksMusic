@@ -58,8 +58,8 @@
         <div class="news-entry-container news-entry-container-front mt-3">
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img class="img-thumbnail" src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
-                    <span class="text-muted d-block mt-3">@Model.LatestNews.PublishDate</span>
+                    <img src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
+                    <span class="text-muted d-block mt-3">Published: @Model.LatestNews.PublishDate</span>
                 </div>
                 <div class="col-md-8">
                     <div class="news-entry-inner">
@@ -77,7 +77,7 @@
                             <p class="news-body-text">@Model.LatestNews.Body</p>
                             @if (!string.IsNullOrEmpty(Model.LatestNews.LinkUrl))
                             {
-                                <a title="Opens new tab" class="d-block text-yellow mt-3" href="@Model.LatestNews.LinkUrl" target="_blank">@Model.LatestNews.LinkTitle</a>
+                                <a title="Opens new tab" class="d-inline-block text-yellow mt-3" href="@Model.LatestNews.LinkUrl" target="_blank">@Model.LatestNews.LinkTitle</a>
                             }
                         </div>
                         <a class="collapse-news-btn collapsed" asp-page="/news/entry" asp-route-id="@Model.LatestNews.Id"></a>

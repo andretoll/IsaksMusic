@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4 text-center">
                 <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" onclick="openImgModal('@entry.ImageUrl')" />
-                <span class="text-muted ml-auto">@entry.PublishDate</span>
+                <span class="text-muted d-block mt-3">Published: @entry.PublishDate</span>
             </div>
             <div class="col-md-8">
                 <div class="news-entry-inner">
@@ -31,7 +31,7 @@
                         <p class="news-body-text">@entry.Body</p>
                         @if (!string.IsNullOrEmpty(entry.LinkUrl))
                         {
-                            <a title="Opens new tab" class="d-block text-yellow mt-3" href="@entry.LinkUrl" target="_blank">@entry.LinkTitle</a>
+                            <a title="Opens new tab" class="d-inline-block text-yellow mt-3" href="@entry.LinkUrl" target="_blank">@entry.LinkTitle</a>
                         }
                     </div>
                     <a class="collapse-news-btn collapsed" id="collapseNewsBtn_@entry.Id" data-toggle="collapse" href="#newsEntryContent_@entry.Id" aria-expanded="false" aria-controls="collapseDescription"></a>

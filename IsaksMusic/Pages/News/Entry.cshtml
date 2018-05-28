@@ -39,11 +39,11 @@
                                  data-size="large">                               
                             </div>
                         </div>
-                        <span class="text-muted d-block ml-auto mb-3">@Model.NewsEntryViewModel.PublishDate</span>
+                        <span class="text-muted d-block ml-auto mt-3">Published: @Model.NewsEntryViewModel.PublishDate</span>
                         <hr />
                         <div class="news-entry-content-front">
                             <div class="news-image-container">
-                                <img class="img-thumbnail" src="@Model.NewsEntryViewModel.ImageUrl" alt="News Image" title="@Model.NewsEntryViewModel.Headline" />
+                                <img src="@Model.NewsEntryViewModel.ImageUrl" alt="News Image" title="@Model.NewsEntryViewModel.Headline" />
                             </div>
                             @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.Lead))
                             {
@@ -53,7 +53,7 @@
                             <p class="news-body-text">@Model.NewsEntryViewModel.Body</p>
                             @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.LinkUrl))
                             {
-                                <a title="Opens new tab" class="d-block text-yellow mt-4 text-center" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
+                                <a title="Opens new tab" class="d-inline-block text-yellow mt-4 text-center" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
                             }
                         </div>
                     </div>

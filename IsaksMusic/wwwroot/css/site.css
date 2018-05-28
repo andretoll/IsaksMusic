@@ -348,6 +348,9 @@ button[data-dismiss="modal"]:hover {
 .ui-datepicker-calendar {
   color: white;
 }
+.img-thumbnail {
+  padding: 0;
+}
 /*#endregion */
 /*#region Error Pages */
 .error-section {
@@ -399,7 +402,7 @@ button[data-dismiss="modal"]:hover {
   text-align: center;
   padding: 16px;
   position: fixed;
-  z-index: 1000;
+  z-index: 1001;
   left: 50%;
   bottom: 15%;
   transform: translateX(-50%);
@@ -742,6 +745,9 @@ section {
 #noNewsAlert {
   display: none;
 }
+#adminNewsEntries .news-entry-container {
+  margin: 30px 0;
+}
 #adminNewsEntries img {
   cursor: zoom-in;
 }
@@ -1039,12 +1045,14 @@ section {
 .news-entry-container {
   padding: 30px 20px;
   background-color: #0e0e0e;
-  margin: 20px 0;
+  margin: 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  background: -moz-radial-gradient(#0a4262, #02111d);
+  background: -webkit-radial-gradient(#0a4262, #02111d);
+  background: radial-gradient(#0a4262, #02111d);
 }
 .news-entry-container img {
   width: 100%;
-  display: block;
   margin-top: 5px;
 }
 .news-entry-header {
@@ -1081,6 +1089,9 @@ section {
 .news-entry-content-front a:hover {
   opacity: 0.7;
 }
+.news-entry-content-front .text-muted {
+  font-size: 1.1rem;
+}
 .news-entry-content.collapse:not(.show) {
   height: 130px !important;
   overflow: hidden;
@@ -1096,19 +1107,13 @@ section {
 .collapse-news-btn:not(.collapsed):after {
   content: '[Read Less]';
 }
-.news-entry-container-front {
-  margin: 40px 0;
-}
-.news-entry-container-front img {
-  cursor: default;
-}
 .news-entry-content-front.collapse:not(.show) {
-  height: 210px !important;
+  height: 140px !important;
   overflow: hidden;
   display: block;
 }
 .news-entry-content-front.collapsing {
-  min-height: 210px !important;
+  min-height: 140px !important;
 }
 #newsScroller {
   max-height: 650px;
@@ -1145,10 +1150,9 @@ section {
 .news-image-container {
   width: auto;
   max-width: 500px;
-  float: left;
-  margin-right: 30px;
+  float: right;
+  margin-left: 30px;
   margin-bottom: 10px;
-  text-align: center;
 }
 /*#endregion */
 /*#region Community */
