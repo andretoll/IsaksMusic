@@ -1,7 +1,6 @@
 @primary-text-color: #ffc600;
 @secondary-text-color: #ffffff;
 @error-text-color: #e43636;
-@orange-text-color: #ff5400;
 @primary-bg-color: #0a0a0a;
 @secondary-bg-color: #0e0e0e;
 @black-bg-color: #040404;
@@ -31,10 +30,6 @@ body {
 
 .text-yellow {
     color: @primary-text-color !important;
-}
-
-.text-orange {
-    color: @orange-text-color !important;
 }
 
 .text-muted {
@@ -330,14 +325,13 @@ button[data-dismiss="modal"] {
 .wrapper-content {
     width: 100%;
     position: relative;
-    /*background-color: @secondary-bg-color;*/
     background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../images/bg-header.jpg);
     background-size: cover;
     padding: 30px;
     max-height: 700px;
     overflow-x: auto;
     overflow-y: auto;
-        
+
     &::-webkit-scrollbar {
         width: 10px;
     }
@@ -354,7 +348,7 @@ button[data-dismiss="modal"] {
         background: #555;
     }
 }
-/* Side menu collapse */
+
 .side-menu-collapse {
     z-index: 3;
     height: 100%;
@@ -1474,7 +1468,7 @@ section {
 .statistics-circle {
     height: 130px;
     width: 130px;
-    border: 3px solid @orange-text-color;
+    border: 3px solid @primary-text-color;
     border-radius: 100%;
     margin: auto;
     margin-bottom: 20px;
@@ -1489,7 +1483,7 @@ section {
 }
 
 #statisticsWrapper .card .card-title {
-    color: @orange-text-color;
+    color: @primary-text-color;
     text-transform: capitalize;
 }
 
@@ -1671,6 +1665,13 @@ section {
 
     #musicTable th.dismissable, #musicTable td.dismissable {
         display: none;
+    }
+
+    #musicTable td {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     #communityContainer {

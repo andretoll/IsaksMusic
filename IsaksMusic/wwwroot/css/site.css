@@ -17,9 +17,6 @@ body {
 .text-yellow {
   color: #ffc600 !important;
 }
-.text-orange {
-  color: #ff5400 !important;
-}
 .text-muted {
   color: #9a9a9a !important;
 }
@@ -263,7 +260,6 @@ button[data-dismiss="modal"]:hover {
 .wrapper-content {
   width: 100%;
   position: relative;
-  /*background-color: @secondary-bg-color;*/
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url(../images/bg-header.jpg);
   background-size: cover;
   padding: 30px;
@@ -283,7 +279,6 @@ button[data-dismiss="modal"]:hover {
 .wrapper-content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-/* Side menu collapse */
 .side-menu-collapse {
   z-index: 3;
   height: 100%;
@@ -1173,7 +1168,7 @@ section {
 .statistics-circle {
   height: 130px;
   width: 130px;
-  border: 3px solid #ff5400;
+  border: 3px solid #ffc600;
   border-radius: 100%;
   margin: auto;
   margin-bottom: 20px;
@@ -1186,7 +1181,7 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 #statisticsWrapper .card .card-title {
-  color: #ff5400;
+  color: #ffc600;
   text-transform: capitalize;
 }
 #statisticsWrapper .list-group-item {
@@ -1332,6 +1327,12 @@ section {
   #musicTable th.dismissable,
   #musicTable td.dismissable {
     display: none;
+  }
+  #musicTable td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   #communityContainer {
     max-width: 100%;
