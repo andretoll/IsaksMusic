@@ -106,13 +106,13 @@
                     <div id="aboutContactContainer">
                         <div id="socialLinks">
                             <div class="social-media-container mt-3 mb-3">
-                                <a class="mr-2" title="Facebook" href="https://www.facebook.com/" target="_blank">
+                                <a class="mr-2" title="Facebook" href="https://www.facebook.com/isak.toll.7" target="_blank">
                                     <span class="fa-stack circle-social-media">
                                         <i class="fas circle-facebook fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
-                                <a title="Soundcloud" href="https://soundcloud.com/" target="_blank">
+                                <a title="Soundcloud" href="https://soundcloud.com/driverubror" target="_blank">
                                     <span class="fa-stack circle-social-media">
                                         <i class="fas circle-soundcloud fa-circle fa-stack-2x"></i>
                                         <i class="fab fa-soundcloud fa-stack-1x fa-inverse"></i>
@@ -122,8 +122,7 @@
                         </div>
                         <div class="ml-auto" id="contactInfo">
                             <ul class="list-unstyled text-muted m-0">
-                                <li><i class="far fa-fw fa-envelope mr-2"></i>example@mail.com</li>
-                                <li><i class="fas fa-fw fa-mobile-alt mr-2"></i>+46 707371882</li>
+                                <li><i class="far fa-fw fa-envelope mr-2"></i>isaktoll@live.se</li>
                                 <li><i class="fas fa-fw fa-globe mr-2"></i>Märsta, Sweden</li>
                             </ul>
                         </div>
@@ -185,6 +184,7 @@
                 </div>
                 <hr />
                 <form class="form" method="post">
+                    <div asp-validation-summary="ModelOnly"></div>
                     <div class="form-group">
                         <label asp-for="Contact.FirstName">First Name:</label>
                         <input asp-for="Contact.FirstName" autocomplete="off" class="form-control" />
@@ -231,4 +231,8 @@
             </div>
         </div>
     }
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

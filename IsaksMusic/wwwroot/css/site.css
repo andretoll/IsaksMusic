@@ -725,9 +725,6 @@ section {
 [data-toggle="collapse"].collapsed .card-header .fas:before {
   content: "\f0da";
 }
-#settingsAccordion [data-toggle="collapse"]:not(.collapsed) {
-  font-weight: 800;
-}
 #settingsAccordion .form-group {
   max-width: 400px;
 }

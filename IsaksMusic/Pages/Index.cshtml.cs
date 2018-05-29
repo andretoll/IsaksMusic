@@ -31,6 +31,7 @@ namespace IsaksMusic.Pages
         [TempData]
         public string Message { get; set; }
 
+        [TempData]
         public bool PostbackFailed { get; set; }
 
         /// <summary>
@@ -87,7 +88,6 @@ namespace IsaksMusic.Pages
             if (!ModelState.IsValid)
             {
                 PostbackFailed = true;
-                return Page();
             }
 
             /* Send email here */
@@ -95,7 +95,7 @@ namespace IsaksMusic.Pages
             /* Show confirmation */
             Message = "Email successfully sent!";
 
-            return RedirectToPage("Index");
+            return RedirectToPage();
         }
 
         public class FeaturedModel
