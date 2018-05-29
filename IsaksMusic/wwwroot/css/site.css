@@ -486,7 +486,7 @@ footer {
 #mainFooter {
   bottom: 0;
   min-height: 200px;
-  background-color: #0a0a0a;
+  background-color: #0e0e0e;
   padding: 30px;
 }
 #mainFooter .col-md-4 {
@@ -505,7 +505,7 @@ footer {
 #subFooter {
   height: 60px;
   line-height: 60px;
-  background-color: #0e0e0e;
+  background-color: #0a0a0a;
   text-align: center;
 }
 /*#endregion */
@@ -596,6 +596,7 @@ section {
 }
 #aboutContactContainer {
   display: flex;
+  align-items: center;
 }
 .circle-social-media {
   font-size: 1.4em !important;

@@ -21,8 +21,8 @@ namespace IsaksMusic.Pages
             _applicationDbContext = applicationDbContext;
         }
 
-        [BindProperty]
-        public ContactFormModel Contact { get; set; }
+        //[BindProperty]
+        //public ContactFormModel Contact { get; set; }
 
         public FeaturedModel Featured { get; set; }
 
@@ -83,20 +83,20 @@ namespace IsaksMusic.Pages
         /// Send contact form
         /// </summary>
         /// <returns></returns>
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                PostbackFailed = true;
-            }
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        PostbackFailed = true;
+        //    }
 
-            /* Send email here */
+        //    /* Send email here */
 
-            /* Show confirmation */
-            Message = "Email successfully sent!";
+        //    /* Show confirmation */
+        //    Message = "Email successfully sent!";
 
-            return RedirectToPage();
-        }
+        //    return RedirectToPage();
+        //}
 
         public class FeaturedModel
         {
@@ -104,17 +104,17 @@ namespace IsaksMusic.Pages
             public string Title { get; set; }
         }
 
-        public class ContactFormModel
-        {
-            [Required(ErrorMessage = "Please enter your first name")]
-            public string FirstName { get; set; }
-            [Required(ErrorMessage = "Please enter your last name")]
-            public string LastName { get; set; }
-            [Required(ErrorMessage = "Please enter your email address")]
-            [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address")]
-            public string Email { get; set; }
-            [Required(ErrorMessage = "Please enter a message")]
-            public string Message { get; set; }
-        }
+        //public class ContactFormModel
+        //{
+        //    [Required(ErrorMessage = "Please enter your first name")]
+        //    public string FirstName { get; set; }
+        //    [Required(ErrorMessage = "Please enter your last name")]
+        //    public string LastName { get; set; }
+        //    [Required(ErrorMessage = "Please enter your email address")]
+        //    [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address")]
+        //    public string Email { get; set; }
+        //    [Required(ErrorMessage = "Please enter a message")]
+        //    public string Message { get; set; }
+        //}
     }
 }
