@@ -1081,13 +1081,11 @@ section {
 .news-entry-content,
 .news-entry-content-front {
   margin-bottom: 20px;
+  position: relative;
 }
 .news-entry-content a:hover,
 .news-entry-content-front a:hover {
   opacity: 0.7;
-}
-.news-entry-content-front .text-muted {
-  font-size: 1.1rem;
 }
 .news-entry-content.collapse:not(.show) {
   height: 130px !important;
@@ -1129,6 +1127,10 @@ section {
 #newsScroller::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+#newsScroller .news-entry-container {
+  background: none;
+  background-color: #0a0a0a;
+}
 .news-entry-header a:hover {
   opacity: 0.7;
 }
@@ -1150,6 +1152,17 @@ section {
   float: right;
   margin-left: 30px;
   margin-bottom: 10px;
+}
+.news-entry-fade {
+  height: 100px;
+  background: linear-gradient(rgba(10, 10, 10, 0), #0a0a0a);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.collapsing .news-entry-fade,
+.show .news-entry-fade {
+  display: none;
 }
 /*#endregion */
 /*#region Community */
