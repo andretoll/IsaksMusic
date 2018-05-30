@@ -6,21 +6,25 @@
 
 <div class="body-background">
     <div class="container" id="newsWrapper">
-        <div class="wrapper-header p-0">
-            <h2 class="text-dark p-2 m-0 text-center">News Feed</h2>
-        </div>
-        <div id="newsScroller">
-            <div id="newsBlockContainer">
-                @if (Model.NewsBlock.NewsEntries.Count == 0)
-                {
-                    <p class="text-center mt-3 mb-3">No news or updates could be found at this moment, check in later!</p>
-                }
-                @Html.Partial("_NewsBlock", Model.NewsBlock)
-            </div>
-            <div id="newsLoading">
-                <div id="newsLoadingInner">
-                    <i class="fas fa-cog fa-spin fa-2x text-yellow"></i>
-                    <span class="d-block">Fetching more news...</span>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="wrapper-header">
+                    <h2 class="text-dark text-center">News Feed</h2>
+                </div>
+                <div id="newsScroller">
+                    <div id="newsBlockContainer">
+                        @if (Model.NewsBlock.NewsEntries.Count == 0)
+                        {
+                            <p class="text-center mt-3 mb-3">No news or updates could be found at this moment, check in later!</p>
+                        }
+                        @Html.Partial("_NewsBlock", Model.NewsBlock)
+                    </div>
+                    <div id="newsLoading">
+                        <div id="newsLoadingInner">
+                            <i class="fas fa-cog fa-spin fa-2x text-yellow"></i>
+                            <span class="d-block">Fetching more news...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

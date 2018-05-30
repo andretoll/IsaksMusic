@@ -17,59 +17,61 @@
         <div class="mb-2">
             <a asp-page="/news/index"><i class="fas fas-mr fa-arrow-alt-circle-left"></i>Back to all news</a>
         </div>
-        <div class="news-entry-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="news-entry-inner">
-                        <div class="news-entry-header">
-                            <h4 class="text-yellow">@Model.NewsEntryViewModel.Headline</h4>
-                            <!-- Community -->
-                            <div class="fb-like ml-auto"
-                                 data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
-                                 data-layout="button_count"
-                                 data-action="like"
-                                 data-size="large"
-                                 data-show-faces="true"
-                                 data-share="false"
-                                 data-colorscheme="dark">
+        <div class="row">
+            <div class="col-xl-12 news-entry-container background-blue">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="news-entry-inner">
+                            <div class="news-entry-header">
+                                <h4 class="text-yellow">@Model.NewsEntryViewModel.Headline</h4>
+                                <!-- Community -->
+                                <div class="fb-like ml-auto"
+                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
+                                     data-layout="button_count"
+                                     data-action="like"
+                                     data-size="small"
+                                     data-show-faces="true"
+                                     data-share="false"
+                                     data-colorscheme="dark">
+                                </div>
+                                <div class="fb-share-button ml-2"
+                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
+                                     data-layout="button_count"
+                                     data-size="small">
+                                </div>
                             </div>
-                            <div class="fb-share-button ml-2"
-                                 data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
-                                 data-layout="button_count"
-                                 data-size="large">                               
-                            </div>
-                        </div>
-                        <span class="text-muted d-block ml-auto mt-3">Published: @Model.NewsEntryViewModel.PublishDate</span>
-                        <hr />
-                        <div class="news-entry-content-front">
-                            <div class="news-image-container">
-                                <img src="@Model.NewsEntryViewModel.ImageUrl" alt="News Image" title="@Model.NewsEntryViewModel.Headline" />
-                            </div>
-                            @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.Lead))
-                            {
-                                <p class="text-yellow font-italic">@Model.NewsEntryViewModel.Lead</p>
+                            <span class="text-muted d-block ml-auto mt-3">Published: @Model.NewsEntryViewModel.PublishDate</span>
+                            <hr />
+                            <div class="news-entry-content">
+                                <div class="news-image-container">
+                                    <img src="@Model.NewsEntryViewModel.ImageUrl" alt="News Image" title="@Model.NewsEntryViewModel.Headline" />
+                                </div>
+                                @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.Lead))
+                                {
+                                    <p class="text-yellow font-italic">@Model.NewsEntryViewModel.Lead</p>
 
-                            }
-                            <p class="news-body-text">@Model.NewsEntryViewModel.Body</p>
-                            @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.LinkUrl))
-                            {
-                                <a title="Opens new tab" class="d-inline-block text-yellow mt-4 text-center" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
-                            }
+                                }
+                                <p class="news-body-text">@Model.NewsEntryViewModel.Body</p>
+                                @if (!string.IsNullOrEmpty(Model.NewsEntryViewModel.LinkUrl))
+                                {
+                                    <a title="Opens new tab" class="d-inline-block text-yellow mt-4 text-center" href="@Model.NewsEntryViewModel.LinkUrl" target="_blank">@Model.NewsEntryViewModel.LinkTitle</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Community -->
-            <div class="mt-3" id="communityWrapper">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="communityContainer">
-                            <div>
-                                <div class="fb-comments"
-                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
-                                     data-width="100%"
-                                     data-numposts="5"
-                                     data-colorscheme="dark">
+                <!-- Community -->
+                <div class="mt-3" id="communityWrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="communityContainer">
+                                <div>
+                                    <div class="fb-comments"
+                                         data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
+                                         data-width="100%"
+                                         data-numposts="5"
+                                         data-colorscheme="dark">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,6 +81,3 @@
         </div>
     </div>
 </div>
-
-
-

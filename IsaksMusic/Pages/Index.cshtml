@@ -55,7 +55,7 @@
 <section class="section-odd">
     <div class="container">
         <h3 class="text-yellow mb-0">Latest news</h3>
-        <div class="news-entry-container news-entry-container-front mt-3">
+        <div class="news-entry-container mt-3">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <img src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
@@ -68,7 +68,8 @@
                             <a class="ml-auto" asp-page="/News/Index">All news<i class="fas ml-2 align-middle fa-arrow-circle-right"></i></a>
                         </div>
                         <hr />
-                        <div class="news-entry-content-front collapse" id="newsEntryContent_@Model.LatestNews.Id">
+                        <div class="news-entry-content collapse" id="newsEntryContent_@Model.LatestNews.Id">
+                            <div class="news-entry-fade"></div>
                             @if (!string.IsNullOrEmpty(Model.LatestNews.Lead))
                             {
                                 <p class="text-yellow font-italic">@Model.LatestNews.Lead</p>
@@ -107,11 +108,11 @@
                         <div id="socialLinks">
                             <div class="social-media-container mt-3 mb-3">
                                 @*<a class="mr-2" title="Facebook" href="https://www.facebook.com/isak.toll.7" target="_blank">
-                                    <span class="fa-stack circle-social-media">
-                                        <i class="fas circle-facebook fa-circle fa-stack-2x"></i>
-                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>*@
+                                        <span class="fa-stack circle-social-media">
+                                            <i class="fas circle-facebook fa-circle fa-stack-2x"></i>
+                                            <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>*@
                                 <a title="Soundcloud" href="https://soundcloud.com/driverubror" target="_blank">
                                     <span class="fa-stack circle-social-media">
                                         <i class="fas circle-soundcloud fa-circle fa-stack-2x"></i>
@@ -169,50 +170,50 @@
     </div>
 </section>
 @*<section class="section-even">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" id="contactForm">
-                <div class="row">
-                    <div class="col-md-10">
-                        <h4><span class="text-yellow">Contact me</span></h4>
-                        <p>Fill out the form below to send me a message.</p>
-                    </div>
-                    <div class="col-md-2">
-                        <i class="far fa-envelope fa-4x"></i>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="contactForm">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4><span class="text-yellow">Contact me</span></h4>
+                            <p>Fill out the form below to send me a message.</p>
+                        </div>
+                        <div class="col-md-2">
+                            <i class="far fa-envelope fa-4x"></i>
 
+                        </div>
                     </div>
+                    <hr />
+                    <form class="form" method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label asp-for="Contact.FirstName">First Name:</label>
+                            <input asp-for="Contact.FirstName" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="Contact.FirstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Contact.LastName">Last Name:</label>
+                            <input asp-for="Contact.LastName" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="Contact.LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Contact.Email">Email Address:</label>
+                            <input asp-for="Contact.Email" autocomplete="off" class="form-control" />
+                            <span asp-validation-for="Contact.Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Contact.Message">Message:</label>
+                            <textarea asp-for="Contact.Message" class="form-control"></textarea>
+                            <span asp-validation-for="Contact.Message"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success" title="Send">Send message</button>
+                        </div>
+                    </form>
                 </div>
-                <hr />
-                <form class="form" method="post">
-                    <div asp-validation-summary="ModelOnly"></div>
-                    <div class="form-group">
-                        <label asp-for="Contact.FirstName">First Name:</label>
-                        <input asp-for="Contact.FirstName" autocomplete="off" class="form-control" />
-                        <span asp-validation-for="Contact.FirstName"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Contact.LastName">Last Name:</label>
-                        <input asp-for="Contact.LastName" autocomplete="off" class="form-control" />
-                        <span asp-validation-for="Contact.LastName"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Contact.Email">Email Address:</label>
-                        <input asp-for="Contact.Email" autocomplete="off" class="form-control" />
-                        <span asp-validation-for="Contact.Email"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Contact.Message">Message:</label>
-                        <textarea asp-for="Contact.Message" class="form-control"></textarea>
-                        <span asp-validation-for="Contact.Message"></span>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-success" title="Send">Send message</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div>
-</section>*@
+    </section>*@
 
 <!-- Back to Top Button -->
 <button onclick="scrollToTop()" id="backToTopBtn" title="Back to Top"><i class="fas fa-chevron-up fa-lg"></i><span id="backToTopText">Top</span></button>

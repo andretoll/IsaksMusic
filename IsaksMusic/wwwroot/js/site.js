@@ -79,7 +79,7 @@ function scrollToTop() {
 /* Function to convert string to paragraph html with breaks */
 function paragraphBreaks() {
 
-    var containers = $('.news-entry-content-front');
+    var containers = $('.news-entry-content');
 
     /* For each paragraph */
     $(containers).each(function () {
@@ -95,7 +95,7 @@ function paragraphBreaks() {
 /* Function to determine text overflow */
 function checkTextOverflow() {
     /* Check news text overflow */
-    var element = $('.news-entry-content-front');
+    var element = $('.news-entry-content');
     $(element).each(function () {
 
         if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {

@@ -5,7 +5,7 @@
     <div class="news-entry-container news-entry-container-front">
         <div class="row">
             <div class="col-md-4 text-center">
-                <img src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
+                <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
                 <span class="text-muted ml-auto d-block mt-3 mb-3">Published: @entry.PublishDate</span>
             </div>
             <div class="col-md-8">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <hr />
-                    <div class="news-entry-content-front collapse" id="newsEntryContent_@entry.Id">
+                    <div class="news-entry-content collapse" id="newsEntryContent_@entry.Id">
                         <div class="news-entry-fade"></div>
                         @if (!string.IsNullOrEmpty(entry.Lead))
                         {

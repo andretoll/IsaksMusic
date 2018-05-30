@@ -1,0 +1,129 @@
+﻿@page
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div class="body-background body-background-dark">
+    <div class="container">
+        <div id="aboutWrapper">
+            <section>
+                <h2>Biography</h2>
+                <div class="row" id="aboutBio">
+                    <div class="col-md-4 mb-4">
+                        <img class="img-fluid" src="~/images/about-profile.jpg" alt="Isak Toll" title="Isak Toll" />
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere dui sit amet commodo efficitur. Morbi euismod ornare nunc, nec efficitur augue eleifend quis. Etiam facilisis augue id mi aliquam mattis. In tristique at dui elementum lacinia. Suspendisse bibendum bibendum congue. Ut et magna nibh. Pellentesque felis augue, fringilla ut aliquam nec, egestas in arcu. Sed ipsum lacus, suscipit scelerisque ex ut, convallis auctor dui. Nulla vitae mi ac nibh pellentesque imperdiet vestibulum ac massa. Nam convallis interdum nunc, ut hendrerit justo facilisis id. Nam nec dolor feugiat massa facilisis aliquet non sed est.
+                            <br /><br />
+                            Mauris nibh est, molestie eu cursus vitae, tincidunt vitae massa. Integer varius odio euismod, feugiat diam nec, semper metus. Donec nec quam ligula. Duis fringilla lorem eget feugiat laoreet. Vivamus efficitur fringilla lacus, in hendrerit massa luctus vulputate. Integer id ante blandit, laoreet magna in, ultrices justo. Nulla ultrices leo nisi. Aenean eu eleifend eros.
+                            <br /><br />
+                            Maecenas in malesuada augue. Sed porta, quam sit amet tincidunt ornare, ex turpis congue sem, id malesuada nulla felis ac lectus. Ut placerat sem quis ligula laoreet sagittis. In et elit sollicitudin, porttitor felis ac, dignissim metus. Praesent a ante vitae metus tempor laoreet. Sed placerat mattis quam quis malesuada. Aenean lacinia, tortor eget consectetur cursus, erat leo vehicula lorem, vitae lacinia neque purus sodales odio. Sed laoreet magna sed sapien tempus commodo.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>The Journey</h2>
+                <div class="row" id="aboutJourney">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-image">
+                                        <img class="rounded-circle img-fluid" src="~/images/news-default.jpg">
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4>2009-2011</h4>
+                                            <h4 class="subheading">Our Humble Beginnings</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-image">
+                                        <img class="rounded-circle img-fluid" src="~/images/news-default.jpg" alt="">
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4>March 2011</h4>
+                                            <h4 class="subheading">An Agency is Born</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-image">
+                                        <img class="rounded-circle img-fluid" src="~/images/news-default.jpg" alt="">
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4>December 2012</h4>
+                                            <h4 class="subheading">Transition to Full Service</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-image">
+                                        <img class="rounded-circle img-fluid" src="~/images/news-default.jpg" alt="">
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4>July 2014</h4>
+                                            <h4 class="subheading">Phase Two Expansion</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-image">
+                                        <h4>
+                                            Be Part
+                                            <br>Of Our
+                                            <br>Story!
+                                        </h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Production</h2>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $('.timeline-image').on('mouseover', function () {
+
+            var panel = $(this).parent().children('.timeline-panel');
+
+            $(panel).css('transform', 'translateY(-10%)');
+        });
+
+        $('.timeline-image').on('mouseleave', function () {
+
+            var panel = $(this).parent().children('.timeline-panel');
+
+            $(panel).css('transform', 'scale(1.0)');
+        });
+
+    </script>
+}
+
