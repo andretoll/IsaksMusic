@@ -148,11 +148,11 @@ hr {
 .bootstrap-select li.selected a {
   color: #ffc600;
 }
-ul,
+ul:not(.bullet-list),
 ol {
   padding: 0;
 }
-li {
+li:not(.bullet-list-item) {
   list-style: none;
 }
 .table {
@@ -479,7 +479,7 @@ button[data-dismiss="modal"]:hover {
   transition: padding-top 0.3s, padding-bottom 0.3s;
 }
 #mainNav.navbar-shrink {
-  background-color: #040404;
+  background-color: #0a0a0a;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -502,7 +502,8 @@ footer {
 #mainFooter {
   bottom: 0;
   min-height: 200px;
-  background-color: #040404;
+  background-color: #0e0e0e;
+  border-top: 1px solid;
   padding: 30px;
 }
 #mainFooter .col-md-4 {
@@ -1007,7 +1008,6 @@ section {
 #trackContainer {
   max-width: 80%;
   margin: auto;
-  padding: 30px 0;
 }
 #trackHeader {
   text-align: center;
@@ -1090,12 +1090,12 @@ section {
   opacity: 0.7;
 }
 .news-entry-content.collapse:not(.show) {
-  height: 130px !important;
+  height: 160px !important;
   overflow: hidden;
   display: block;
 }
 .news-entry-content.collapsing {
-  min-height: 130px !important;
+  min-height: 160px !important;
 }
 .collapse-news-btn.collapsed:after {
   content: '[Read More]';
@@ -1150,10 +1150,11 @@ section {
   position: absolute;
   width: 100%;
   bottom: 0;
+  display: none;
 }
 .collapsing .news-entry-fade,
 .show .news-entry-fade {
-  display: none;
+  display: none!important;
 }
 /*#endregion */
 /*#region Community */

@@ -192,11 +192,11 @@ hr {
     color: @primary-text-color;
 }
 
-ul, ol {
+ul:not(.bullet-list), ol {
     padding: 0;
 }
 
-li {
+li:not(.bullet-list-item) {
     list-style: none;
 }
 
@@ -591,7 +591,7 @@ button[data-dismiss="modal"] {
 }
 
 #mainNav.navbar-shrink {
-    background-color: #040404;
+    background-color: @primary-bg-color;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -621,7 +621,8 @@ footer {
 #mainFooter {
     bottom: 0;
     min-height: 200px;
-    background-color: #040404;
+    background-color: @secondary-bg-color;
+    border-top: 1px solid;
     padding: 30px;
 }
 
@@ -1258,7 +1259,6 @@ section {
 #trackContainer {
     max-width: 80%;
     margin: auto;
-    padding: 30px 0;
 }
 
 #trackHeader {
@@ -1365,13 +1365,13 @@ section {
 }
 
 .news-entry-content.collapse:not(.show) {
-    height: 130px !important;
+    height: 160px !important;
     overflow: hidden;
     display: block;
 }
 
 .news-entry-content.collapsing {
-    min-height: 130px !important;
+    min-height: 160px !important;
 }
 
 .collapse-news-btn.collapsed:after {
@@ -1439,10 +1439,11 @@ section {
     position: absolute;
     width: 100%;
     bottom: 0;
+    display: none;
 }
 
 .collapsing .news-entry-fade, .show .news-entry-fade {
-    display: none;
+    display: none!important;
 }
 
 /*#endregion */

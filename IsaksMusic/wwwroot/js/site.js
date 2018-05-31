@@ -101,6 +101,9 @@ function checkTextOverflow() {
         if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
             var btn = $(this).parent().children('.collapse-news-btn');
             $(btn).show();
+
+            var fade = $(this).children('.news-entry-fade');
+            $(fade).show();
         }
     });
 }

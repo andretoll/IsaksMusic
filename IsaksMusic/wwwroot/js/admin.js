@@ -160,12 +160,6 @@ $(document).ready(function () {
         });
     });
 
-    /* Break paragraphs */
-    paragraphBreaks();
-
-    /* Check news text overflow */
-    checkTextOverflow();
-
     /* Check news entry count */
     checkNewsEntryCount($('#adminNewsEntries').children().length);
 
@@ -318,35 +312,6 @@ function deleteNewsEntry(newsEntryId) {
             }
         });
     }
-}
-
-/* Function to convert string to paragraph html with breaks */
-function paragraphBreaks() {
-
-    var containers = $('.news-entry-content');
-
-    /* For each paragraph */
-    $(containers).each(function () {
-        var bodyP = $(this).children('.news-body-text');
-
-        /* Insert line breaks */
-        if ($(bodyP).text().indexOf("<br>") >= 0) {
-            $(bodyP).html($(bodyP).text());
-        }
-    });
-}
-
-/* Function to determine text overflow */
-function checkTextOverflow() {
-    /* Check news text overflow */
-    var element = $('.news-entry-content');
-    $(element).each(function () {
-
-        if (this.offsetHeight < this.scrollHeight || this.offsetWidth < this.scrollWidth) {
-            var btn = $(this).parent().children('.collapse-news-btn');
-            $(btn).show();
-        }
-    });
 }
 
 /* Function to get news entries by date */
