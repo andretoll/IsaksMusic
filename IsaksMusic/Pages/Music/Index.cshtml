@@ -115,7 +115,7 @@
                                     <tr id="@song.PlaylistId" title="@song.Title">
                                         <td class="is-playing min pl-3"><i class="fas fa-volume-up fa-sm"></i></td>
                                         <td onclick="loadSong(@song.PlaylistId)">@song.Title</td>
-                                        <td onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
+                                        <td class="categoryColumn" onclick="loadSong(@song.PlaylistId)">@song.Categories</td>
                                         <td class="dismissable" onclick="loadSong(@song.PlaylistId)">@song.Duration</td>
                                         <td class="min">
                                             <div class="song-actions">
