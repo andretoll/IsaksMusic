@@ -502,8 +502,7 @@ footer {
 #mainFooter {
   bottom: 0;
   min-height: 200px;
-  background-color: #0e0e0e;
-  border-top: 1px solid;
+  background-color: #0a0a0a;
   padding: 30px;
 }
 #mainFooter .col-md-4 {
@@ -522,7 +521,7 @@ footer {
 #subFooter {
   height: 60px;
   line-height: 60px;
-  background-color: #0a0a0a;
+  background-color: #0e0e0e;
   text-align: center;
 }
 /*#endregion */
@@ -558,7 +557,7 @@ footer {
 /*#endregion */
 /*#region Sections */
 section {
-  padding: 100px 0;
+  padding: 150px 0;
   height: auto;
 }
 .section-odd {
@@ -626,7 +625,7 @@ section {
   margin: 15px 0;
 }
 #infoContainer .fa-stack {
-  color: #0e0e0e;
+  color: #0a0a0a;
 }
 #infoContainer .fa-inverse {
   color: #ffc600;
