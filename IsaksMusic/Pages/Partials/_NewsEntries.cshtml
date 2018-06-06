@@ -3,23 +3,24 @@
 @foreach (var entry in Model)
 {
     <div class="news-entry-container" id="entryContainer_@entry.Id">
+        <div class="text-right mb-2">
+            <a class="mr-2 cursor-default" title="Edit" data-toggle="tooltip" asp-page="./Edit" asp-route-id="@entry.Id">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+            <a title="Delete" data-toggle="tooltip" onclick="deleteNewsEntry(@entry.Id)">
+                <i class="fas fa-trash"></i>
+            </a>
+        </div>      
         <div class="row">
             <div class="col-md-4 text-center">
                 <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" onclick="openImgModal('@entry.ImageUrl')" />
-                <span class="text-muted d-block mt-3">Published: @entry.PublishDate</span>
+                <span class="text-muted d-block mt-3 mb-3">Published: @entry.PublishDate</span>
             </div>
             <div class="col-md-8">
                 <div class="news-entry-inner">
                     <div class="news-entry-header">
                         <h4 class="text-yellow">@entry.Headline</h4>
-                        <div class="news-entry-actions">
-                            <a title="Edit" data-toggle="tooltip" asp-page="./Edit" asp-route-id="@entry.Id">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a title="Delete" data-toggle="tooltip" onclick="deleteNewsEntry(@entry.Id)">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
+
                     </div>
                     <hr />
                     <div class="news-entry-content collapse" id="newsEntryContent_@entry.Id">

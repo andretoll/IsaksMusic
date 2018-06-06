@@ -454,10 +454,15 @@ button[data-dismiss="modal"] {
     padding: 0;
 }
 
+.text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80%;
+}
+
 /*#endregion */
-
 /*#region Error Pages */
-
 .error-section {
     text-align: center;
     display: table;
@@ -654,7 +659,7 @@ footer {
 /*#region Top Header */
 
 #topHeader {
-    background: linear-gradient(rgba(10, 10, 10, 0.3), @primary-bg-color), url(../images/bg-header.jpg);
+    background: linear-gradient(rgba(10, 10, 10, 0.6), @primary-bg-color), url(../images/bg-header.jpg);
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -1221,7 +1226,7 @@ section {
     color: @primary-text-color;
     border: 2px solid @primary-text-color;
     border-radius: 100%;
-    padding: 7px;
+    padding: 4px;
 }
 
 #musicTable tr.song-active .is-playing {
@@ -1330,14 +1335,6 @@ section {
 
     & h4 {
         margin-bottom: 0;
-    }
-}
-
-.news-entry-actions {
-    margin-left: auto;
-
-    & a {
-        margin: 0 5px;
     }
 }
 

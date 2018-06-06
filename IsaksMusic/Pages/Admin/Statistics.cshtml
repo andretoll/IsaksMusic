@@ -93,7 +93,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach (var item in Model.ViewModel.TopSongsPlayed)
                     {
-                        <li class="list-group-item"><span>@item.Title</span><span class="float-right text-yellow">@item.Points</span></li>
+                        <li class="list-group-item d-flex"><span class="text-overflow-ellipsis">@item.Title</span><span class="ml-auto text-yellow">@item.Points</span></li>
                     }
                 </ul>
             </div>
@@ -110,7 +110,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach (var item in Model.ViewModel.TopNewsRead)
                     {
-                        <li class="list-group-item"><span>@item.Title</span><span class="float-right text-yellow">@item.Points</span></li>
+                        <li class="list-group-item d-flex"><span class="text-overflow-ellipsis">@item.Title</span><span class="ml-auto text-yellow">@item.Points</span></li>
                     }
                 </ul>
             </div>

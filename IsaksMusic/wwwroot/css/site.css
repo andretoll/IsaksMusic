@@ -367,6 +367,12 @@ button[data-dismiss="modal"]:hover {
 .img-thumbnail {
   padding: 0;
 }
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+}
 /*#endregion */
 /*#region Error Pages */
 .error-section {
@@ -527,7 +533,7 @@ footer {
 /*#endregion */
 /*#region Top Header */
 #topHeader {
-  background: linear-gradient(rgba(10, 10, 10, 0.3), #0a0a0a), url(../images/bg-header.jpg);
+  background: linear-gradient(rgba(10, 10, 10, 0.6), #0a0a0a), url(../images/bg-header.jpg);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
@@ -978,7 +984,7 @@ section {
   color: #ffc600;
   border: 2px solid #ffc600;
   border-radius: 100%;
-  padding: 7px;
+  padding: 4px;
 }
 #musicTable tr.song-active .is-playing {
   opacity: 1;
@@ -1064,12 +1070,6 @@ section {
 }
 .news-entry-header h4 {
   margin-bottom: 0;
-}
-.news-entry-actions {
-  margin-left: auto;
-}
-.news-entry-actions a {
-  margin: 0 5px;
 }
 .news-entry-lead {
   font-style: italic;

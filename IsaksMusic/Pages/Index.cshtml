@@ -54,18 +54,20 @@
 </header>
 <section class="section-odd">
     <div class="container">
-        <h3 class="text-yellow mb-0">Latest news</h3>
+        <div class="d-flex align-items-center">
+            <h3 class="text-yellow mb-0">Latest news</h3>
+            <a class="ml-auto" asp-page="/News/Index">All news<i class="fas ml-2 align-middle fa-arrow-circle-right"></i></a>
+        </div>
         <div class="news-entry-container mt-3">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <img src="@Model.LatestNews.ImageUrl" alt="News Image" title="@Model.LatestNews.Headline" />
-                    <span class="text-muted d-block mt-3">Published: @Model.LatestNews.PublishDate</span>
+                    <span class="text-muted d-block mt-3 mb-3">Published: @Model.LatestNews.PublishDate</span>
                 </div>
                 <div class="col-md-8">
                     <div class="news-entry-inner">
                         <div class="news-entry-header">
                             <a asp-page="/News/Entry" asp-route-id="@Model.LatestNews.Id"><h4 class="text-yellow">@Model.LatestNews.Headline</h4></a>
-                            <a class="ml-auto" asp-page="/News/Index">All news<i class="fas ml-2 align-middle fa-arrow-circle-right"></i></a>
                         </div>
                         <hr />
                         <div class="news-entry-content collapse" id="newsEntryContent_@Model.LatestNews.Id">

@@ -67,7 +67,7 @@ namespace IsaksMusic.Pages.Admin.Music
                     Description = song.Description,
                     Duration = StringFormatter.GetDurationFromSeconds(song.Length),
                     Categories = StringFormatter.GetCategoryString(song.SongCategories),
-                    UploadDate = song.UploadDate.ToShortDateString(),
+                    UploadDate = string.Format("{0:yyyy/MM/dd}", song.UploadDate),
                     FileName = song.FileName
                 };
 
