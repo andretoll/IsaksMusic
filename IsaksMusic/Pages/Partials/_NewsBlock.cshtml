@@ -2,30 +2,26 @@
 
 @foreach (var entry in Model.NewsEntries)
 {
-    <div class="news-entry-container news-entry-container-front">
+    <div class="news-entry-container news-entry-container-front">        
         <div class="row">
             <div class="col-md-4 text-center">
                 <img class="img-thumbnail" src="@entry.ImageUrl" alt="News Image" title="@entry.Headline" />
                 <span class="text-muted ml-auto d-block mt-3 mb-3">Published: @entry.PublishDate</span>
             </div>
             <div class="col-md-8">
-                <div class="news-entry-inner">                    
+                <div class="news-entry-inner">
                     <div class="news-entry-header">
                         <a asp-page="/News/Entry" asp-route-id="@entry.Id"><h4 class="text-yellow">@entry.Headline</h4></a>
                         <!-- Community -->
-                        <div class="fb-like ml-auto"
-                             data-href="https://isaksmusic.azurewebsites.net/news/entry/@entry.Id"
-                             data-layout="button_count"
-                             data-action="like"
-                             data-size="small"
-                             data-show-faces="true"
-                             data-share="false"
-                             data-colorscheme="dark">
-                        </div>
-                        <div class="fb-share-button ml-2"
-                             data-href="https://isaksmusic.azurewebsites.net/news/entry/@entry.Id"
-                             data-layout="button_count"
-                             data-size="small">
+                        <div class="ml-auto pl-2">
+                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fisaksmusic.azurewebsites.net%2Fnews%2Fentry%2F @entry.Id &width=106&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=1910375995659521"
+                                    width="106"
+                                    height="46"
+                                    style="border:none;overflow:hidden"
+                                    scrolling="no"
+                                    frameborder="0"
+                                    allowTransparency="true"
+                                    allow="encrypted-media"></iframe>
                         </div>
                     </div>
                     <hr />

@@ -12,6 +12,25 @@
     <meta property="og:description" content="@Model.Track.Description" />
 }
 
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1910375995659521',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v3.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <!-- Mouseover tooltip -->
 <div class="tooltip-track">00:00</div>
 
@@ -99,19 +118,16 @@
                     <div class="col-md-12">
                         <div id="communityContainer">
                             <div>
-                                <div class="fb-like"
-                                     data-href="https://isaksmusic.azurewebsites.net/music/track/@Model.Track.Id"
-                                     data-layout="button_count"
-                                     data-action="like"
-                                     data-size="small"
-                                     data-show-faces="true"
-                                     data-share="false"
-                                     data-colorscheme="dark">
-                                </div>
-                                <div class="fb-share-button"
-                                     data-href="https://isaksmusic.azurewebsites.net/music/track/@Model.Track.Id"
-                                     data-layout="button_count">
-                                </div>
+                                <div class="ml-2">
+                                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fisaksmusic.azurewebsites.net%2Fmusic%2Ftrack%2F @Model.Track.Id &width=106&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=1910375995659521"
+                                            width="106"
+                                            height="46"
+                                            style="border:none;overflow:hidden"
+                                            scrolling="no"
+                                            frameborder="0"
+                                            allowTransparency="true"
+                                            allow="encrypted-media"></iframe>
+                                </div>                                
                                 <div class="fb-comments"
                                      data-href="https://isaksmusic.azurewebsites.net/music/track/@Model.Track.Id"
                                      data-width="100%"

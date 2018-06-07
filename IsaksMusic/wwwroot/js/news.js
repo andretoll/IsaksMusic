@@ -30,7 +30,7 @@ function loadNews() {
             success: function (result) {
                 $('#newsBlockContainer').append(result);
                 /* Refresh Like/Share buttons */
-                FB.XFBML.parse();
+                //FB.XFBML.parse();
                 paragraphBreaks();
                 checkTextOverflow();
                 skipEntries += blockSize;

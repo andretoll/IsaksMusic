@@ -12,6 +12,25 @@
     <meta property="og:description" content="@Model.NewsEntryViewModel.Lead" />
 }
 
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1910375995659521',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v3.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="body-background">
     <div class="container" id="newsWrapper">
         <div class="mb-2">
@@ -25,20 +44,16 @@
                             <div class="news-entry-header">
                                 <h4 class="text-yellow">@Model.NewsEntryViewModel.Headline</h4>
                                 <!-- Community -->
-                                <div class="fb-like ml-auto"
-                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
-                                     data-layout="button_count"
-                                     data-action="like"
-                                     data-size="small"
-                                     data-show-faces="true"
-                                     data-share="false"
-                                     data-colorscheme="dark">
-                                </div>
-                                <div class="fb-share-button ml-2"
-                                     data-href="https://isaksmusic.azurewebsites.net/news/entry/@Model.NewsEntryViewModel.Id"
-                                     data-layout="button_count"
-                                     data-size="small">
-                                </div>
+                                <div class="ml-auto">
+                                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fisaksmusic.azurewebsites.net%2Fnews%2Fentry%2F @Model.NewsEntryViewModel.Id &width=106&layout=button_count&action=like&size=small&show_faces=true&share=true&height=46&appId=1910375995659521"
+                                            width="106"
+                                            height="46"
+                                            style="border:none;overflow:hidden"
+                                            scrolling="no"
+                                            frameborder="0"
+                                            allowTransparency="true"
+                                            allow="encrypted-media"></iframe>
+                                </div>                                
                             </div>
                             <span class="text-muted d-block ml-auto mt-3">Published: @Model.NewsEntryViewModel.PublishDate</span>
                             <hr />

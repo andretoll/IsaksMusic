@@ -1063,7 +1063,7 @@ section {
 }
 .news-entry-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 .news-entry-header a {
   cursor: pointer;
